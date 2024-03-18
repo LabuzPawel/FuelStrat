@@ -6,7 +6,7 @@ Originally project was created in python using tkinter GUI. Old script can be fo
 
 Release version requieres .NET 8.0 Framework to work. Larger size exe release that is independent from .NET version can be found in 'FCalcACC\bin\Release\self_contained'.
 
-For application to work it requieres 'CARS.json' and 'TRACKS.json' files to be included in exe folder. Default versions of those json files can be found in 'FCalcACC/default_json'.
+For application to work it requieres 'CARS.json' and 'TRACKS.json' files to be included in exe folder. Default versions of those json files can be found in 'FCalcACC\default_json'.
 
 Future plans:
 

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FCalcACC", "FCalcACC\FCalcACC.csproj", "{B86744D9-3A7E-4DBE-A66C-F9A630F54A41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B86744D9-3A7E-4DBE-A66C-F9A630F54A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86744D9-3A7E-4DBE-A66C-F9A630F54A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86744D9-3A7E-4DBE-A66C-F9A630F54A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86744D9-3A7E-4DBE-A66C-F9A630F54A41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96D3C448-18E9-4C38-BBDA-6F6A6E5666D2}
+	EndGlobalSection
+EndGlobal

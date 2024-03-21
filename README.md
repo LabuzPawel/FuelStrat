@@ -13,8 +13,3 @@ Future plans:
 1. Better UI.
 2. Error handling.
 3. Telemetry integration with ACC.
-<<<<<<< HEAD
-=======
-
-a
->>>>>>> 3096f53 (UI and overall calculation improvements)

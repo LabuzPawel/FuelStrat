@@ -9,7 +9,6 @@ Release version requieres .NET 8.0 Framework to work. Larger size exe release th
 For application to work it requieres 'CARS.json' and 'TRACKS.json' files to be included in exe folder. Default versions of those json files can be found in 'FCalcACC\default_json'.
 
 Future plans:
-
-1. Better UI.
-2. Error handling.
+1. Error handling.
+2. Ability to move pit stop earlier/later in pit strategy
 3. Telemetry integration with ACC.

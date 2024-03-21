@@ -154,7 +154,7 @@ namespace FCalcACC
             {
                 comboBox_pit_options.ResetText();
             }
-            if (comboBox_track == null)
+            if (comboBox_track.Text == "TRACK")
             {
                 switch (pit_stop_option)
                 {
@@ -199,9 +199,17 @@ namespace FCalcACC
         }
         private void RefuelTimeLost()
         {
-            var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Contains(comboBox_track.Text));
-            int.TryParse(selected_track.track_pit_duration, out int time_in_pits);
-
+            int time_in_pits;
+            if (comboBox_track.Text != "TRACK")
+            {
+                var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Contains(comboBox_track.Text));
+                int.TryParse(selected_track.track_pit_duration, out time_in_pits);
+            }
+            else
+            {
+                time_in_pits = DEFAULT_TIME_IN_PITS;
+            }
+                
             int first_stint_laps = (int)Math.Ceiling(number_of_laps / 2.0);
             float fuel_first_stint = first_stint_laps * fuel_per_lap;
             int fuel_first_stint_round_up = (int)Math.Ceiling(fuel_first_stint);
@@ -214,6 +222,7 @@ namespace FCalcACC
                 time_lost_in_pits += ONE_L_MORE;
                 refuel--;
             }
+            time_lost_in_pits *= number_of_pits;
         }
 
         private void CalculateRaceDuration()
@@ -347,32 +356,38 @@ namespace FCalcACC
             GroupBox groupBox_start = new GroupBox();
             groupBox_start.Text = "Stint 1 - Start of the race";
             groupBox_start.BackColor = Color.Gainsboro;
+            groupBox_start.Font = groupBox_car_track.Font;
             groupBox_start.Location = new Point(16, 26);
-            groupBox_start.Size = new Size(325, 83);
+            groupBox_start.Size = new Size(385, 83);
             panel_pit_stop_strategy.Controls.Add(groupBox_start);
 
             TableLayoutPanel tableLayoutPanel_start = new TableLayoutPanel();
-            tableLayoutPanel_start.Size = new Size(290, 30);
+            tableLayoutPanel_start.Size = new Size(350, 30);
             tableLayoutPanel_start.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
             tableLayoutPanel_start.ColumnCount = 2;
             tableLayoutPanel_start.ColumnStyles.Clear();
-            tableLayoutPanel_start.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65f));
-            tableLayoutPanel_start.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35f));
+            tableLayoutPanel_start.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+            tableLayoutPanel_start.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             tableLayoutPanel_start.RowCount = 1;
             tableLayoutPanel_start.Location = new Point(15, 35);
             groupBox_start.Controls.Add(tableLayoutPanel_start);
 
             Label label_fuel_for_start = new Label();
             label_fuel_for_start.Text = "Fuel for the start";
-            label_fuel_for_start.AutoSize = false;
-            label_fuel_for_start.AutoEllipsis = false;
+            label_fuel_for_start.Dock = DockStyle.Fill;
+            label_fuel_for_start.TextAlign = ContentAlignment.MiddleCenter;
             label_fuel_for_start.Size = new Size(130, 17);
             Label label_fuel_start_result = new Label();
             label_fuel_start_result.Text = "0 L";
+            label_fuel_start_result.Dock = DockStyle.Fill;
+            label_fuel_start_result.TextAlign = ContentAlignment.MiddleCenter;
+
             tableLayoutPanel_start.Controls.Add(label_fuel_for_start, 0, 0);
             tableLayoutPanel_start.Controls.Add(label_fuel_start_result, 1, 0);
 
-            if ((int)numericUpDown_pits.Value == 0)
+            number_of_pits = (int)numericUpDown_pits.Value;
+
+            if (number_of_pits == 0)
             {
                 label_fuel_start_result.Text = label_fuel_race_result.Text;
             }
@@ -418,6 +433,7 @@ namespace FCalcACC
                         GroupBox groupBox_temp = new GroupBox();
                         groupBox_temp.Name = name_for_groupbox;
                         groupBox_temp.Location = new Point(15, y_groupBox);
+                        groupBox_temp.Font = groupBox_car_track.Font;
                         groupBox_temp.Size = groupBox_start.Size;
                         groupBox_temp.BackColor = groupBox_start.BackColor;
                         groupBox_temp.Text = "Stint " + stint;
@@ -425,26 +441,33 @@ namespace FCalcACC
 
                         TableLayoutPanel table_temp = new TableLayoutPanel();
                         table_temp.Name = name_for_table;
-                        table_temp.Location = new Point(10, 30);
+                        table_temp.Location = new Point(16, 30);
                         table_temp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
+                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
 
                         Label label_refuel_temp = new Label();
+                        label_refuel_temp.Dock = DockStyle.Fill;
+                        label_refuel_temp.TextAlign = ContentAlignment.MiddleCenter;
                         label_refuel_temp.Name = name_for_refuel_label;
-                        if (stint == 1)
+                        if (stint == 2)
                         {
-                            label_refuel_temp.Text = "Refuel after " + laps_first_stint.ToString();
-                            laps_per_stint += laps_first_stint;
+                            label_refuel_temp.Text = "Tires change after";
+                            laps_per_stint = laps_first_stint;
                         }
                         else
                         {
-                            label_refuel_temp.Text = "Refuel after " + laps_per_stint.ToString();
-                            laps_per_stint += laps_per_stint;
+                            label_refuel_temp.Text = "Tires change after";
+                            laps_per_stint = laps_first_stint + (laps_per_stint * i);
                         }
 
                         Label label_refuel_result_temp = new Label();
                         label_refuel_result_temp.Name = name_for_refuel_result_label;
-                        label_refuel_result_temp.Text = "Tires only, no refuel";
+                        label_refuel_result_temp.Text = laps_per_stint.ToString() + " laps";
                         label_refuel_result_temp.Size = new Size(130, 17);
+                        label_refuel_result_temp.Dock = DockStyle.Fill;
+                        label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
+
                         table_temp.Controls.Add(label_refuel_temp, 0, 0);
                         table_temp.Controls.Add(label_refuel_result_temp, 1, 0);
                         table_temp.Size = tableLayoutPanel_start.Size;
@@ -455,40 +478,47 @@ namespace FCalcACC
                     }
                     else if (comboBox_pit_options.Text == "1L refuel")
                     {
-                        label_fuel_start_result.Text = (fuel_for_race_round_up - 1).ToString() + " L";
+                        
+                        label_fuel_start_result.Text = (fuel_for_race_round_up - number_of_pits).ToString() + " L";
 
                         GroupBox groupBox_temp = new GroupBox();
                         groupBox_temp.Name = name_for_groupbox;
                         groupBox_temp.Location = new Point(15, y_groupBox);
                         groupBox_temp.Size = groupBox_start.Size;
+                        groupBox_temp.Font = groupBox_car_track.Font;
                         groupBox_temp.BackColor = groupBox_start.BackColor;
                         groupBox_temp.Text = "Stint " + stint;
                         panel_pit_stop_strategy.Controls.Add(groupBox_temp);
 
                         TableLayoutPanel table_temp = new TableLayoutPanel();
                         table_temp.Name = name_for_table;
-                        table_temp.Location = new Point(10, 30);
+                        table_temp.Location = new Point(16, 30);
                         table_temp.ColumnStyles.Clear();
-                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65f));
-                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35f));
+                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                         table_temp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
 
                         Label label_refuel_temp = new Label();
                         label_refuel_temp.Name = name_for_refuel_label;
+                        label_refuel_temp.Dock = DockStyle.Fill;
+                        label_refuel_temp.TextAlign = ContentAlignment.MiddleCenter;
                         if (stint == 1)
                         {
-                            label_refuel_temp.Text = "Refuel after " + laps_first_stint.ToString();
+                            label_refuel_temp.Text = "Refuel after " + laps_first_stint.ToString() + " laps";
                             laps_per_stint += laps_first_stint;
                         }
                         else
                         {
-                            label_refuel_temp.Text = "Refuel after " + laps_per_stint.ToString();
+                            label_refuel_temp.Text = "Refuel after " + laps_per_stint.ToString() + " laps";
                             laps_per_stint += laps_per_stint;
                         }
 
                         Label label_refuel_result_temp = new Label();
                         label_refuel_result_temp.Name = name_for_refuel_result_label;
                         label_refuel_result_temp.Text = "1 L";
+                        label_refuel_result_temp.Dock = DockStyle.Fill;
+                        label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
+
                         table_temp.Controls.Add(label_refuel_temp, 0, 0);
                         table_temp.Controls.Add(label_refuel_result_temp, 1, 0);
                         table_temp.Size = tableLayoutPanel_start.Size;
@@ -505,20 +535,23 @@ namespace FCalcACC
                         groupBox_temp.Name = name_for_groupbox;
                         groupBox_temp.Location = new Point(15, y_groupBox);
                         groupBox_temp.Size = groupBox_start.Size;
+                        groupBox_temp.Font = groupBox_car_track.Font;
                         groupBox_temp.BackColor = groupBox_start.BackColor;
                         groupBox_temp.Text = "Stint " + stint;
                         panel_pit_stop_strategy.Controls.Add(groupBox_temp);
 
                         TableLayoutPanel table_temp = new TableLayoutPanel();
                         table_temp.Name = name_for_table;
-                        table_temp.Location = new Point(10, 30);
+                        table_temp.Location = new Point(16, 30);
                         table_temp.ColumnStyles.Clear();
-                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65f));
-                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35f));
+                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+                        table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                         table_temp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
 
                         Label label_refuel_temp = new Label();
                         label_refuel_temp.Name = name_for_refuel_label;
+                        label_refuel_temp.Dock = DockStyle.Fill;
+                        label_refuel_temp.TextAlign = ContentAlignment.MiddleCenter;
 
                         if (stint == 1)
                         {
@@ -534,6 +567,9 @@ namespace FCalcACC
                         Label label_refuel_result_temp = new Label();
                         label_refuel_result_temp.Name = name_for_refuel_result_label;
                         label_refuel_result_temp.Text = fuel_per_stint.ToString() + " L";
+                        label_refuel_result_temp.Dock = DockStyle.Fill;
+                        label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
+
                         table_temp.Controls.Add(label_refuel_temp, 0, 0);
                         table_temp.Controls.Add(label_refuel_result_temp, 1, 0);
                         table_temp.Size = tableLayoutPanel_start.Size;
@@ -560,7 +596,7 @@ namespace FCalcACC
                 int lap_time_mins = (int)(lap_time / 60);
                 float lap_time_secs = lap_time % 60;
                 textBox_lap_time_min.Text = lap_time_mins.ToString();
-                textBox_lap_time_sec.Text = lap_time_secs.ToString();
+                textBox_lap_time_sec.Text = lap_time_secs.ToString("0.000");
 
                 if (comboBox_car.Text != "CAR")
                 {

@@ -5,31 +5,33 @@ namespace FCalcACC
 {
     public partial class Form1 : Form
     {
-        class Car
+        public class Car
         {
             public string car_name { get; set; }
             public string class_name { get; set; }
         }
-        class Track
+        public class Track
         {
             public string track_name { get; set; }
             public string track_lap_time { get; set; }
             public string track_pit_duration { get; set; }
             public List<CarTrackFuel> car_track_fuel { get; set; }
         }
-        class CarTrackFuel
+        public class CarTrackFuel
         {
             public string car_name { get; set; }
             public string fuel_per_lap { get; set; }
         }
-        List<Track> all_tracks;
-        List<Car> all_cars;
+        public List<Track> all_tracks;
+        public List<Car> all_cars;
+        public List<string> car_classes;
 
-        double time_lost_in_pits;
-        int number_of_laps;
-        double overall_race_duration;
-        int race_duration_secs;
-        float lap_time_secs;
+        public double time_lost_in_pits;
+        public int time_in_pits;
+        public int number_of_laps;
+        public double overall_race_duration;
+        public int race_duration_secs;
+        public float lap_time_secs;
         int fuel_for_race_round_up;
         float fuel_per_lap;
         int number_of_pits;
@@ -39,19 +41,9 @@ namespace FCalcACC
         string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         double ONE_L_PIT_TIME = 3.6;
         double ONE_L_MORE = 0.2;
-        int DEFAULT_TIME_IN_PITS = 57;
+        public int DEFAULT_TIME_IN_PITS = 57;
 
-
-        List<string> CAR_CLASSES = new List<string>()
-        {
-            "GT3",
-            "GT4",
-            "GT2",
-            "GTC",
-            "TCX"
-        };
-
-        List<string> PIT_OPTIONS = new List<string>()
+        public List<string> PIT_OPTIONS = new List<string>()
         {
             "Refuel only",
             "Fixed refuel only",
@@ -60,62 +52,67 @@ namespace FCalcACC
             "1L refuel"
         };
 
-        void LoadCarClasses()
+        public void LoadCarObjectsList()
         {
-            foreach (var car_class in CAR_CLASSES)
-            {
-                comboBox_class.Items.Add(car_class);
-            }
-        }
-
-        void LoadPitOptions()
-        {
-            foreach (var pit_option in PIT_OPTIONS)
-            {
-                comboBox_pit_options.Items.Add(pit_option);
-            }
-        }
-
-        void LoadCars()
-        {
-            comboBox_car.ResetText();
-            comboBox_car.Items.Clear();
-            string selected_car_class = comboBox_class.Text;
-
             string json_string_cars = File.ReadAllText("CARS.json");
             all_cars = JsonConvert.DeserializeObject<List<Car>>(json_string_cars);
-
-            var cars_within_a_class = all_cars.Where(car => car.class_name.Contains(selected_car_class));
-
-            foreach (var car in cars_within_a_class)
-            {
-                comboBox_car.Items.Add(car.car_name);
-            }
-            comboBox_car.Text = "CAR";
-
-            if (selected_car_class == "TCX")
-            {
-                comboBox_car.SelectedIndex = 0;
-            }
-
         }
 
-        void LoadTracks()
+        public void LoadTrackObjectsList()
         {
             string json_string_tracks = File.ReadAllText("TRACKS.json");
             all_tracks = JsonConvert.DeserializeObject<List<Track>>(json_string_tracks);
+        }
 
-            foreach (var track in all_tracks)
+        public void LoadCarClasses(ComboBox comboBoxClass)
+        {
+            car_classes = all_cars.Select(car => car.class_name).Distinct().ToList();
+
+            foreach (var car_class in car_classes)
             {
-                comboBox_track.Items.Add(track.track_name);
+                comboBoxClass.Items.Add(car_class);
             }
         }
-        private void comboBox_class_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void LoadCars(ComboBox comboBoxCar, string car_class)
         {
-            LoadCars();
+            comboBoxCar.ResetText();
+            comboBoxCar.Items.Clear();
+
+            var cars_within_a_class = all_cars.Where(car => car.class_name.Contains(car_class));
+
+            foreach (var car in cars_within_a_class)
+            {
+                comboBoxCar.Items.Add(car.car_name);
+            }
+            comboBoxCar.Text = "CAR";
+
+            if (car_class == "TCX")
+            {
+                comboBoxCar.SelectedIndex = 0;
+            }
         }
 
-        // TEXTBOX INPUT RESTRICTIONS
+        public void LoadTracks(ComboBox comboBoxTrack)
+        {
+            foreach (var track in all_tracks)
+            {
+                comboBoxTrack.Items.Add(track.track_name);
+            }
+        }
+
+        public void LoadPitOptions(ComboBox comboBoxPit)
+        {
+            foreach (var pit_option in PIT_OPTIONS)
+            {
+                comboBoxPit.Items.Add(pit_option);
+            }
+        }
+
+        private void comboBox_class_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadCars(comboBox_car, comboBox_class.Text);
+        }
 
         private void textBox_race_h_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -146,15 +143,13 @@ namespace FCalcACC
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void CalculateTimeLostInPits()
+        public void CalculateTimeLostInPits(int number_of_pits, string pit_stop_option, string selected_track)
         {
-            number_of_pits = (int)numericUpDown_pits.Value;
-            string pit_stop_option = comboBox_pit_options.Text;
             if (number_of_pits == 0)
             {
                 comboBox_pit_options.ResetText();
             }
-            if (comboBox_track.Text == "TRACK")
+            if (selected_track == "TRACK")
             {
                 switch (pit_stop_option)
                 {
@@ -175,8 +170,8 @@ namespace FCalcACC
             }
             else
             {
-                var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Contains(comboBox_track.Text));
-                int.TryParse(selected_track.track_pit_duration, out int time_in_pits);
+                var selected_track_object = all_tracks.FirstOrDefault(track => track.track_name.Contains(selected_track));
+                int.TryParse(selected_track_object.track_pit_duration, out time_in_pits);
 
                 switch (pit_stop_option)
                 {
@@ -197,19 +192,19 @@ namespace FCalcACC
 
             }
         }
-        private void RefuelTimeLost()
+        public void RefuelTimeLost(string selected_track)
         {
             int time_in_pits;
-            if (comboBox_track.Text != "TRACK")
+            if (selected_track != "TRACK")
             {
-                var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Contains(comboBox_track.Text));
-                int.TryParse(selected_track.track_pit_duration, out time_in_pits);
+                var selected_track_object = all_tracks.FirstOrDefault(track => track.track_name.Contains(selected_track));
+                int.TryParse(selected_track_object.track_pit_duration, out time_in_pits);
             }
             else
             {
                 time_in_pits = DEFAULT_TIME_IN_PITS;
             }
-                
+
             int first_stint_laps = (int)Math.Ceiling(number_of_laps / 2.0);
             float fuel_first_stint = first_stint_laps * fuel_per_lap;
             int fuel_first_stint_round_up = (int)Math.Ceiling(fuel_first_stint);
@@ -225,17 +220,18 @@ namespace FCalcACC
             time_lost_in_pits *= number_of_pits;
         }
 
-        private void CalculateRaceDuration()
+        public void CalculateRaceDuration(TextBox TextBoxRaceH, TextBox textBoxRaceMin, TextBox textBoxLapMin,
+            TextBox textBoxLapSec, Label labelOverallResult, Label labelLapsResult, Label labelLapTimeResult2)
         {
-            int.TryParse(textBox_race_h.Text, out int h_race);
-            int.TryParse(textBox_race_min.Text, out int min_race);
+            int.TryParse(TextBoxRaceH.Text, out int h_race);
+            int.TryParse(textBoxRaceMin.Text, out int min_race);
             if (min_race > 59)
             {
                 min_race = 59;
-                textBox_race_min.Text = min_race.ToString();
+                textBoxRaceMin.Text = min_race.ToString();
             }
 
-            string lap_time_sec_normalize = textBox_lap_time_sec.Text.Replace(".", DECIMAL_SEPARATOR).Replace(",", DECIMAL_SEPARATOR);
+            string lap_time_sec_normalize = textBoxLapSec.Text.Replace(".", DECIMAL_SEPARATOR).Replace(",", DECIMAL_SEPARATOR);
             int decimal_separator_count = 0;
             foreach (char d in lap_time_sec_normalize)
             {
@@ -248,21 +244,26 @@ namespace FCalcACC
             {
                 lap_time_sec_normalize = lap_time_sec_normalize.Replace(DECIMAL_SEPARATOR, string.Empty).Replace(DECIMAL_SEPARATOR, "")
                     .Insert(lap_time_sec_normalize.IndexOf(DECIMAL_SEPARATOR[0]), DECIMAL_SEPARATOR);
-                textBox_lap_time_sec.Text = lap_time_sec_normalize;
             }
 
             float.TryParse(lap_time_sec_normalize, out float sec_laptime);
-            int.TryParse(textBox_lap_time_min.Text, out int min_laptime);
+            int.TryParse(textBoxLapMin.Text, out int min_laptime);
             if (min_laptime > 59)
             {
                 min_laptime = 59;
-                textBox_lap_time_min.Text = min_laptime.ToString();
+                textBoxLapMin.Text = min_laptime.ToString();
             }
             if (sec_laptime > 59.99999)
             {
                 sec_laptime = 59.999f;
-                textBox_lap_time_sec.Text = sec_laptime.ToString();
+                textBoxLapSec.Text = sec_laptime.ToString();
             }
+
+            int lap_time_secs_floor = (int)Math.Floor(sec_laptime);
+            int lap_time_secs_rest = (int)Math.Round((sec_laptime - lap_time_secs_floor) * 1000);
+            string formatted_lap_time = string.Format("{0:D1}:{1:D2}.{2:000}",
+                textBoxLapMin.Text, lap_time_secs_floor, lap_time_secs_rest);
+            labelLapTimeResult2.Text = formatted_lap_time;
 
             race_duration_secs = (h_race * 3600) + (min_race * 60);
             lap_time_secs = (min_laptime * 60) + sec_laptime;
@@ -276,23 +277,25 @@ namespace FCalcACC
                 overall_race_duration += lap_time_secs;
                 number_of_laps++;
             }
+            labelLapsResult.Text = number_of_laps.ToString();
 
             TimeSpan time_interval = TimeSpan.FromSeconds(overall_race_duration);
             string formatted_overall_duration = string.Format("{0:D2}:{1:D2}:{2:D2}",
                 (int)time_interval.TotalHours, time_interval.Minutes, time_interval.Seconds);
 
-            label_overall_result.Text = formatted_overall_duration;
+            labelOverallResult.Text = formatted_overall_duration;
         }
 
-        private void CalculateLapTimePlusMinus()
+        public void CalculateLapTimePlusMinus(Label labelPlus1LapTimeResult, Label labelMinus1LapTimeResult)
         {
+
             double plus1_lap_time_secs = lap_time_secs - ((overall_race_duration - race_duration_secs) / number_of_laps);
             int plus1_lap_time_floor = (int)Math.Floor(plus1_lap_time_secs);
             int plus1_lap_time_rest = (int)Math.Round((plus1_lap_time_secs - plus1_lap_time_floor) * 1000);
             TimeSpan time_interval_plus = TimeSpan.FromSeconds(plus1_lap_time_floor);
             string formatted_plus1_lap_time = string.Format("{0:D1}:{1:D2}.{2:000}",
                 (int)time_interval_plus.TotalMinutes, (int)time_interval_plus.Seconds, (int)plus1_lap_time_rest);
-            label_plus1_lap_time_result.Text = formatted_plus1_lap_time;
+            labelPlus1LapTimeResult.Text = formatted_plus1_lap_time;
 
             double minus1_lap_time_secs = (race_duration_secs - time_lost_in_pits) / (number_of_laps - 1);
             int minus1_lap_time_floor = (int)Math.Floor(minus1_lap_time_secs);
@@ -300,13 +303,13 @@ namespace FCalcACC
             TimeSpan time_interval_minus = TimeSpan.FromSeconds(minus1_lap_time_floor);
             string formatted_minus1_lap_time = string.Format("{0:D1}:{1:D2}.{2:000}",
                 (int)time_interval_minus.TotalMinutes, (int)time_interval_minus.Seconds, (int)minus1_lap_time_rest);
-            label_minus1_lap_time_result.Text = formatted_minus1_lap_time;
+            labelMinus1LapTimeResult.Text = formatted_minus1_lap_time;
         }
 
-        private void CalculateFuel()
+        public void CalculateFuel(TextBox textBoxFuelPerLap, ListBox listBoxformationLap, Label labelFuelRaceResult,
+            Label labelPlus1FuelResult, Label labelMinus1FuelResult)
         {
-            string fuel_per_lap_normalize = textBox_fuel_per_lap.Text.Replace(".", DECIMAL_SEPARATOR).Replace(",", DECIMAL_SEPARATOR);
-            float.TryParse(fuel_per_lap_normalize, out fuel_per_lap);
+            string fuel_per_lap_normalize = textBoxFuelPerLap.Text.Replace(".", DECIMAL_SEPARATOR).Replace(",", DECIMAL_SEPARATOR);
             int decimal_separator_count = 0;
             foreach (char d in fuel_per_lap_normalize)
             {
@@ -317,11 +320,13 @@ namespace FCalcACC
             }
             if (decimal_separator_count > 1)
             {
-                fuel_per_lap_normalize = fuel_per_lap_normalize.Replace(DECIMAL_SEPARATOR, string.Empty).Replace(".", "").Insert(fuel_per_lap_normalize.IndexOf(DECIMAL_SEPARATOR[0]), ".");
-                textBox_fuel_per_lap.Text = fuel_per_lap_normalize;
+                fuel_per_lap_normalize = fuel_per_lap_normalize.Replace(DECIMAL_SEPARATOR, string.Empty)
+                    .Insert(fuel_per_lap_normalize.IndexOf(DECIMAL_SEPARATOR[0]), DECIMAL_SEPARATOR);
+                textBoxFuelPerLap.Text = fuel_per_lap_normalize;
             }
+            float.TryParse(fuel_per_lap_normalize, out fuel_per_lap);
 
-            bool full_formation_lap = (listBox_formation.Text == "Full");
+            bool full_formation_lap = (listBoxformationLap.Text == "Full");
             double brake_dragging_full = 0;
             double brake_dragging_short = 0;
 
@@ -334,19 +339,18 @@ namespace FCalcACC
                 brake_dragging_short = fuel_per_lap * 0.25;
             }
             formation_lap_fuel = brake_dragging_full + brake_dragging_short;
-            label_laps_result.Text = number_of_laps + " laps";
 
             fuel_for_race = number_of_laps * (fuel_per_lap + 0.01) + formation_lap_fuel;
             fuel_for_race_round_up = (int)Math.Ceiling(fuel_for_race);
-            label_fuel_race_result.Text = fuel_for_race_round_up.ToString() + " L";
+            labelFuelRaceResult.Text = fuel_for_race_round_up.ToString() + " L";
 
             double fuel_plus1 = fuel_for_race + (fuel_per_lap + 0.01);
             int fuel_plus1_round_up = (int)Math.Ceiling(fuel_plus1);
-            label_plus1_fuel_result.Text = fuel_plus1_round_up.ToString() + " L";
+            labelPlus1FuelResult.Text = fuel_plus1_round_up.ToString() + " L";
 
             double fuel_minus1 = fuel_for_race - (fuel_per_lap + 0.01);
             int fuel_minus1_round_up = (int)Math.Ceiling(fuel_minus1);
-            label_minus1_fuel_result.Text = fuel_minus1_round_up.ToString() + " L";
+            labelMinus1FuelResult.Text = fuel_minus1_round_up.ToString() + " L";
         }
 
         private void CalculatePitStops()
@@ -478,7 +482,7 @@ namespace FCalcACC
                     }
                     else if (comboBox_pit_options.Text == "1L refuel")
                     {
-                        
+
                         label_fuel_start_result.Text = (fuel_for_race_round_up - number_of_pits).ToString() + " L";
 
                         GroupBox groupBox_temp = new GroupBox();
@@ -513,9 +517,8 @@ namespace FCalcACC
                             laps_per_stint += laps_per_stint;
                         }
 
-                        Label label_refuel_result_temp = new Label();
+                        Label label_refuel_result_temp = new Label() { Text = "1 L" };
                         label_refuel_result_temp.Name = name_for_refuel_result_label;
-                        label_refuel_result_temp.Text = "1 L";
                         label_refuel_result_temp.Dock = DockStyle.Fill;
                         label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
 
@@ -631,13 +634,17 @@ namespace FCalcACC
             }
         }
 
-
         public Form1()
         {
             InitializeComponent();
-            LoadCarClasses();
-            LoadTracks();
-            LoadPitOptions();
+        }
+        public void Form1_Load(object sender, EventArgs e)
+        {
+            LoadCarObjectsList();
+            LoadTrackObjectsList();
+            LoadCarClasses(comboBox_class);
+            LoadTracks(comboBox_track);
+            LoadPitOptions(comboBox_pit_options);
 
             listBox_formation.Items.Add("Full");
             listBox_formation.Items.Add("Short");
@@ -651,18 +658,22 @@ namespace FCalcACC
                 time_lost_in_pits = 57;
                 for (int i = 3; i > 0; i--)
                 {
-                    CalculateRaceDuration();
-                    CalculateLapTimePlusMinus();
-                    CalculateFuel();
-                    RefuelTimeLost();
+                    CalculateRaceDuration(textBox_race_h, textBox_race_min, textBox_lap_time_min, textBox_lap_time_sec,
+                        label_overall_result, label_laps_result, label_lap_time_result2);
+                    CalculateLapTimePlusMinus(label_plus1_lap_time_result, label_minus1_lap_time_result);
+                    CalculateFuel(textBox_fuel_per_lap, listBox_formation, label_fuel_race_result,
+                    label_plus1_fuel_result, label_minus1_fuel_result);
+                    RefuelTimeLost(comboBox_track.Text);
                 }
             }
             else
             {
-                CalculateTimeLostInPits();
-                CalculateRaceDuration();
-                CalculateLapTimePlusMinus();
-                CalculateFuel();
+                CalculateTimeLostInPits((int)numericUpDown_pits.Value, comboBox_pit_options.Text, comboBox_track.Text);
+                CalculateRaceDuration(textBox_race_h, textBox_race_min, textBox_lap_time_min, textBox_lap_time_sec,
+                    label_overall_result, label_laps_result, label_lap_time_result2);
+                CalculateLapTimePlusMinus(label_plus1_lap_time_result, label_minus1_lap_time_result);
+                CalculateFuel(textBox_fuel_per_lap, listBox_formation, label_fuel_race_result,
+                    label_plus1_fuel_result, label_minus1_fuel_result);
             }
             CalculatePitStops();
             SaveData();
@@ -677,6 +688,5 @@ namespace FCalcACC
         {
             LoadData();
         }
-
     }
 }

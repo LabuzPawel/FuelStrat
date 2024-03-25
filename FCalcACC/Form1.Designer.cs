@@ -84,6 +84,11 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             label1 = new Label();
             label2 = new Label();
+            menuStrip1 = new MenuStrip();
+            menuStrip2 = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -95,6 +100,7 @@
             tableLayoutPanel1.SuspendLayout();
             table_fuel_results.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            menuStrip2.SuspendLayout();
             SuspendLayout();
             // 
             // listBox_formation
@@ -253,7 +259,7 @@
             // splitContainer1
             // 
             splitContainer1.BorderStyle = BorderStyle.FixedSingle;
-            splitContainer1.Location = new Point(12, 38);
+            splitContainer1.Location = new Point(12, 58);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -477,7 +483,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68.7763748F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.223629F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 136F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 61F));
             tableLayoutPanel1.Controls.Add(label_laps_result, 3, 0);
             tableLayoutPanel1.Controls.Add(label_overall_duration, 0, 0);
             tableLayoutPanel1.Controls.Add(label_laps_number, 2, 0);
@@ -486,8 +492,8 @@
             tableLayoutPanel1.Location = new Point(15, 14);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
             tableLayoutPanel1.Size = new Size(435, 34);
             tableLayoutPanel1.TabIndex = 1;
             // 
@@ -495,9 +501,9 @@
             // 
             label_laps_result.AutoSize = true;
             label_laps_result.Dock = DockStyle.Fill;
-            label_laps_result.Location = new Point(380, 2);
+            label_laps_result.Location = new Point(374, 2);
             label_laps_result.Name = "label_laps_result";
-            label_laps_result.Size = new Size(50, 30);
+            label_laps_result.Size = new Size(56, 34);
             label_laps_result.TabIndex = 4;
             label_laps_result.Text = "0";
             label_laps_result.TextAlign = ContentAlignment.MiddleCenter;
@@ -508,7 +514,7 @@
             label_overall_duration.Dock = DockStyle.Fill;
             label_overall_duration.Location = new Point(5, 2);
             label_overall_duration.Name = "label_overall_duration";
-            label_overall_duration.Size = new Size(154, 30);
+            label_overall_duration.Size = new Size(150, 34);
             label_overall_duration.TabIndex = 2;
             label_overall_duration.Text = "Overall race duration";
             label_overall_duration.TextAlign = ContentAlignment.MiddleCenter;
@@ -517,9 +523,9 @@
             // 
             label_laps_number.AutoSize = true;
             label_laps_number.Dock = DockStyle.Fill;
-            label_laps_number.Location = new Point(242, 2);
+            label_laps_number.Location = new Point(236, 2);
             label_laps_number.Name = "label_laps_number";
-            label_laps_number.Size = new Size(130, 30);
+            label_laps_number.Size = new Size(130, 34);
             label_laps_number.TabIndex = 3;
             label_laps_number.Text = "Number of laps";
             label_laps_number.TextAlign = ContentAlignment.MiddleCenter;
@@ -528,9 +534,9 @@
             // 
             label_overall_result.AutoSize = true;
             label_overall_result.Dock = DockStyle.Fill;
-            label_overall_result.Location = new Point(167, 2);
+            label_overall_result.Location = new Point(163, 2);
             label_overall_result.Name = "label_overall_result";
-            label_overall_result.Size = new Size(67, 30);
+            label_overall_result.Size = new Size(65, 34);
             label_overall_result.TabIndex = 3;
             label_overall_result.Text = "00:00:00";
             label_overall_result.TextAlign = ContentAlignment.MiddleCenter;
@@ -543,7 +549,7 @@
             table_fuel_results.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68.7763748F));
             table_fuel_results.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.223629F));
             table_fuel_results.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 136F));
-            table_fuel_results.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
+            table_fuel_results.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 61F));
             table_fuel_results.Controls.Add(label_lap_time_result2, 1, 0);
             table_fuel_results.Controls.Add(label_lap_time_restult, 0, 0);
             table_fuel_results.Controls.Add(label_minus1_fuel_result, 3, 2);
@@ -560,9 +566,9 @@
             table_fuel_results.Location = new Point(15, 68);
             table_fuel_results.Name = "table_fuel_results";
             table_fuel_results.RowCount = 3;
-            table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
+            table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
+            table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
             table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             table_fuel_results.Size = new Size(435, 101);
             table_fuel_results.TabIndex = 0;
@@ -571,9 +577,9 @@
             // 
             label_lap_time_result2.AutoSize = true;
             label_lap_time_result2.Dock = DockStyle.Fill;
-            label_lap_time_result2.Location = new Point(167, 2);
+            label_lap_time_result2.Location = new Point(163, 2);
             label_lap_time_result2.Name = "label_lap_time_result2";
-            label_lap_time_result2.Size = new Size(67, 30);
+            label_lap_time_result2.Size = new Size(65, 29);
             label_lap_time_result2.TabIndex = 9;
             label_lap_time_result2.Text = "0:00.000";
             label_lap_time_result2.TextAlign = ContentAlignment.MiddleCenter;
@@ -584,7 +590,7 @@
             label_lap_time_restult.Dock = DockStyle.Fill;
             label_lap_time_restult.Location = new Point(5, 2);
             label_lap_time_restult.Name = "label_lap_time_restult";
-            label_lap_time_restult.Size = new Size(154, 30);
+            label_lap_time_restult.Size = new Size(150, 29);
             label_lap_time_restult.TabIndex = 7;
             label_lap_time_restult.Text = "Lap time";
             label_lap_time_restult.TextAlign = ContentAlignment.MiddleCenter;
@@ -593,9 +599,9 @@
             // 
             label_minus1_fuel_result.AutoSize = true;
             label_minus1_fuel_result.Dock = DockStyle.Fill;
-            label_minus1_fuel_result.Location = new Point(380, 66);
+            label_minus1_fuel_result.Location = new Point(374, 64);
             label_minus1_fuel_result.Name = "label_minus1_fuel_result";
-            label_minus1_fuel_result.Size = new Size(50, 33);
+            label_minus1_fuel_result.Size = new Size(56, 35);
             label_minus1_fuel_result.TabIndex = 6;
             label_minus1_fuel_result.Text = "0 L";
             label_minus1_fuel_result.TextAlign = ContentAlignment.MiddleCenter;
@@ -604,9 +610,9 @@
             // 
             label_plus1_fuel_result.AutoSize = true;
             label_plus1_fuel_result.Dock = DockStyle.Fill;
-            label_plus1_fuel_result.Location = new Point(380, 34);
+            label_plus1_fuel_result.Location = new Point(374, 33);
             label_plus1_fuel_result.Name = "label_plus1_fuel_result";
-            label_plus1_fuel_result.Size = new Size(50, 30);
+            label_plus1_fuel_result.Size = new Size(56, 29);
             label_plus1_fuel_result.TabIndex = 6;
             label_plus1_fuel_result.Text = "0 L";
             label_plus1_fuel_result.TextAlign = ContentAlignment.MiddleCenter;
@@ -615,9 +621,9 @@
             // 
             label_fuel_for_plus1.AutoSize = true;
             label_fuel_for_plus1.Dock = DockStyle.Fill;
-            label_fuel_for_plus1.Location = new Point(242, 34);
+            label_fuel_for_plus1.Location = new Point(236, 33);
             label_fuel_for_plus1.Name = "label_fuel_for_plus1";
-            label_fuel_for_plus1.Size = new Size(130, 30);
+            label_fuel_for_plus1.Size = new Size(130, 29);
             label_fuel_for_plus1.TabIndex = 10;
             label_fuel_for_plus1.Text = "Fuel for +1 lap";
             label_fuel_for_plus1.TextAlign = ContentAlignment.MiddleCenter;
@@ -626,9 +632,9 @@
             // 
             label_plus1_lap_time_result.AutoSize = true;
             label_plus1_lap_time_result.Dock = DockStyle.Fill;
-            label_plus1_lap_time_result.Location = new Point(167, 34);
+            label_plus1_lap_time_result.Location = new Point(163, 33);
             label_plus1_lap_time_result.Name = "label_plus1_lap_time_result";
-            label_plus1_lap_time_result.Size = new Size(67, 30);
+            label_plus1_lap_time_result.Size = new Size(65, 29);
             label_plus1_lap_time_result.TabIndex = 8;
             label_plus1_lap_time_result.Text = "0:00.000";
             label_plus1_lap_time_result.TextAlign = ContentAlignment.MiddleCenter;
@@ -637,9 +643,9 @@
             // 
             label_lap_time_plus1.AutoSize = true;
             label_lap_time_plus1.Dock = DockStyle.Fill;
-            label_lap_time_plus1.Location = new Point(5, 34);
+            label_lap_time_plus1.Location = new Point(5, 33);
             label_lap_time_plus1.Name = "label_lap_time_plus1";
-            label_lap_time_plus1.Size = new Size(154, 30);
+            label_lap_time_plus1.Size = new Size(150, 29);
             label_lap_time_plus1.TabIndex = 6;
             label_lap_time_plus1.Text = "Lap time for +1 lap";
             label_lap_time_plus1.TextAlign = ContentAlignment.MiddleCenter;
@@ -648,9 +654,9 @@
             // 
             label_fuel_for_the_race.AutoSize = true;
             label_fuel_for_the_race.Dock = DockStyle.Fill;
-            label_fuel_for_the_race.Location = new Point(242, 2);
+            label_fuel_for_the_race.Location = new Point(236, 2);
             label_fuel_for_the_race.Name = "label_fuel_for_the_race";
-            label_fuel_for_the_race.Size = new Size(130, 30);
+            label_fuel_for_the_race.Size = new Size(130, 29);
             label_fuel_for_the_race.TabIndex = 4;
             label_fuel_for_the_race.Text = "Fuel for the race";
             label_fuel_for_the_race.TextAlign = ContentAlignment.MiddleCenter;
@@ -660,9 +666,9 @@
             label_fuel_race_result.AutoSize = true;
             label_fuel_race_result.BackColor = Color.Gainsboro;
             label_fuel_race_result.Dock = DockStyle.Fill;
-            label_fuel_race_result.Location = new Point(380, 2);
+            label_fuel_race_result.Location = new Point(374, 2);
             label_fuel_race_result.Name = "label_fuel_race_result";
-            label_fuel_race_result.Size = new Size(50, 30);
+            label_fuel_race_result.Size = new Size(56, 29);
             label_fuel_race_result.TabIndex = 5;
             label_fuel_race_result.Text = "0 L";
             label_fuel_race_result.TextAlign = ContentAlignment.MiddleCenter;
@@ -671,9 +677,9 @@
             // 
             label_lap_time_minus1.AutoSize = true;
             label_lap_time_minus1.Dock = DockStyle.Fill;
-            label_lap_time_minus1.Location = new Point(5, 66);
+            label_lap_time_minus1.Location = new Point(5, 64);
             label_lap_time_minus1.Name = "label_lap_time_minus1";
-            label_lap_time_minus1.Size = new Size(154, 33);
+            label_lap_time_minus1.Size = new Size(150, 35);
             label_lap_time_minus1.TabIndex = 7;
             label_lap_time_minus1.Text = "Lap time for -1 lap";
             label_lap_time_minus1.TextAlign = ContentAlignment.MiddleCenter;
@@ -682,9 +688,9 @@
             // 
             label_minus1_lap_time_result.AutoSize = true;
             label_minus1_lap_time_result.Dock = DockStyle.Fill;
-            label_minus1_lap_time_result.Location = new Point(167, 66);
+            label_minus1_lap_time_result.Location = new Point(163, 64);
             label_minus1_lap_time_result.Name = "label_minus1_lap_time_result";
-            label_minus1_lap_time_result.Size = new Size(67, 33);
+            label_minus1_lap_time_result.Size = new Size(65, 35);
             label_minus1_lap_time_result.TabIndex = 9;
             label_minus1_lap_time_result.Text = "0:00.000";
             label_minus1_lap_time_result.TextAlign = ContentAlignment.MiddleCenter;
@@ -693,9 +699,9 @@
             // 
             label_fuel_for_minus1.AutoSize = true;
             label_fuel_for_minus1.Dock = DockStyle.Fill;
-            label_fuel_for_minus1.Location = new Point(242, 66);
+            label_fuel_for_minus1.Location = new Point(236, 64);
             label_fuel_for_minus1.Name = "label_fuel_for_minus1";
-            label_fuel_for_minus1.Size = new Size(130, 33);
+            label_fuel_for_minus1.Size = new Size(130, 35);
             label_fuel_for_minus1.TabIndex = 11;
             label_fuel_for_minus1.Text = "Fuel for -1 lap";
             label_fuel_for_minus1.TextAlign = ContentAlignment.MiddleCenter;
@@ -705,7 +711,7 @@
             label_input_data.BackColor = SystemColors.ActiveBorder;
             label_input_data.BorderStyle = BorderStyle.FixedSingle;
             label_input_data.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            label_input_data.Location = new Point(12, 16);
+            label_input_data.Location = new Point(12, 36);
             label_input_data.Name = "label_input_data";
             label_input_data.Size = new Size(410, 19);
             label_input_data.TabIndex = 9;
@@ -717,7 +723,7 @@
             label_results.BackColor = SystemColors.ActiveBorder;
             label_results.BorderStyle = BorderStyle.FixedSingle;
             label_results.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            label_results.Location = new Point(426, 16);
+            label_results.Location = new Point(426, 36);
             label_results.Name = "label_results";
             label_results.Size = new Size(466, 19);
             label_results.TabIndex = 10;
@@ -755,15 +761,61 @@
             label2.TabIndex = 3;
             label2.Text = "Number of laps";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Location = new Point(0, 24);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(904, 24);
+            menuStrip1.TabIndex = 11;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // menuStrip2
+            // 
+            menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, helpToolStripMenuItem });
+            menuStrip2.Location = new Point(0, 0);
+            menuStrip2.Name = "menuStrip2";
+            menuStrip2.Size = new Size(904, 24);
+            menuStrip2.TabIndex = 12;
+            menuStrip2.Text = "menuStrip2";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.BackColor = Color.Gainsboro;
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
+            toolStripMenuItem1.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(47, 20);
+            toolStripMenuItem1.Text = "Menu";
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(102, 22);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.BackColor = Color.Gainsboro;
+            helpToolStripMenuItem.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(47, 20);
+            helpToolStripMenuItem.Text = "Help";
+            helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(901, 601);
+            ClientSize = new Size(904, 623);
             Controls.Add(label_results);
             Controls.Add(label_input_data);
             Controls.Add(splitContainer1);
+            Controls.Add(menuStrip1);
+            Controls.Add(menuStrip2);
+            Font = new Font("Segoe UI", 9.75F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "FCalcACC - Fuel and strategy for ACC";
             Load += Form1_Load;
@@ -783,7 +835,10 @@
             table_fuel_results.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
+            menuStrip2.ResumeLayout(false);
+            menuStrip2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -811,7 +866,6 @@
         private Label label_race_h;
         private ListBox listBox_formation;
         private TableLayoutPanel table_fuel_results;
-        private Label label_number_of_laps;
         private Label label_fuel_for_the_race;
         private Label label_overall_result;
         private Label label_overall_duration;
@@ -844,5 +898,10 @@
         private Label label_lap_time_minus1;
         private Label label_lap_time_restult;
         private Label label_lap_time_result2;
+        private MenuStrip menuStrip1;
+        private MenuStrip menuStrip2;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
     }
 }

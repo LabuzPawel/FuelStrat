@@ -1,20 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FCalcACC;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using static FCalcACC.Form1;
-using System.DirectoryServices.ActiveDirectory;
 
 namespace FCalcACC.Tests
 {
     [TestClass()]
     public class Form1Tests
     {
-        private Form1 form;
+        private Form1? form;
 
         [TestInitialize]
         public void TestInitialize()
@@ -67,17 +59,17 @@ namespace FCalcACC.Tests
             var gt4_cars = form.all_cars.Where(car => car.class_name.Contains("GT4"));
             Assert.AreEqual(gt4_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "Alpine A110 GT4 2018");
-            
+
             form.LoadCars(comboBox_test_car, "GT2");
             var gt2_cars = form.all_cars.Where(car => car.class_name.Contains("GT2"));
             Assert.AreEqual(gt2_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "Audi R8 LMS GT2");
-            
+
             form.LoadCars(comboBox_test_car, "GTC");
             var gtc_cars = form.all_cars.Where(car => car.class_name.Contains("GTC"));
             Assert.AreEqual(gtc_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "Ferrari 488 Challenge Evo 2020");
-            
+
             form.LoadCars(comboBox_test_car, "TCX");
             var tcx_cars = form.all_cars.Where(car => car.class_name.Contains("TCX"));
             Assert.AreEqual(tcx_cars.Count(), comboBox_test_car.Items.Count);
@@ -99,7 +91,7 @@ namespace FCalcACC.Tests
         public void LoadPitOptions_AddPitOptions_ComboBoxCorrectlyPopulated()
         {
             ComboBox comboBox_test = new ComboBox();
-            form.LoadPitOptions(comboBox_test);
+            form.LoadPitOptions(comboBox_test, form.PIT_OPTIONS);
 
             Assert.AreEqual(form.PIT_OPTIONS.Count, comboBox_test.Items.Count);
             foreach (var option in form.PIT_OPTIONS)
@@ -111,26 +103,28 @@ namespace FCalcACC.Tests
         [TestMethod("Time lost in pits (No Track, 2 pits)")]
         public void CalculateTimeLostInPits_NoTrack2Pits()
         {
-            List<string> test_options = form.PIT_OPTIONS;
-            test_options.Remove("Refuel only");
+            ComboBox comboBoxPitOptionsTest = new ComboBox();
+            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
 
-            foreach (string test in test_options)
+            for (int i = 0; i < 5; i++)
             {
-                form.CalculateTimeLostInPits(2, test, "TRACK");
-                
-                if (test == "Tires only")
+                comboBoxPitOptionsTest.SelectedIndex = i;
+
+                form.CalculateTimeLostInPits(2, comboBoxPitOptionsTest, "TRACK");
+
+                if (comboBoxPitOptionsTest.Text == "Tires only")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, form.DEFAULT_TIME_IN_PITS * 2);
                 }
-                else if (test == "Fixed refuel only")
+                else if (comboBoxPitOptionsTest.Text == "Fixed refuel only")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, (form.DEFAULT_TIME_IN_PITS - 5) * 2);
                 }
-                else if (test == "1L refuel")
+                else if (comboBoxPitOptionsTest.Text == "1L refuel")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, (form.DEFAULT_TIME_IN_PITS - 26.4) * 2);
                 }
-                else if (test == "Refuel + tires")
+                else if (comboBoxPitOptionsTest.Text == "Refuel + tires")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, form.DEFAULT_TIME_IN_PITS * 2);
                 }
@@ -140,28 +134,29 @@ namespace FCalcACC.Tests
         [TestMethod("Time lost in pits (Selected Track, 2 pits)")]
         public void CalculateTimeLostInPits_SelectedTrack2Pits()
         {
-            List<string> test_options = form.PIT_OPTIONS;
-            test_options.Remove("Refuel only");
-
+            ComboBox comboBoxPitOptionsTest = new ComboBox();
+            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
             form.LoadTrackObjectsList();
-            
-            foreach (string test in test_options)
-            {
-                form.CalculateTimeLostInPits(2, test, "Barcelona");
 
-                if (test == "Tires only")
+            for (int i = 0; i < 5; i++)
+            {
+                comboBoxPitOptionsTest.SelectedIndex = i;
+
+                form.CalculateTimeLostInPits(2, comboBoxPitOptionsTest, "Barcelona");
+        
+                if (comboBoxPitOptionsTest.Text == "Tires only")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, form.time_in_pits * 2);
                 }
-                else if (test == "Fixed refuel only")
+                else if (comboBoxPitOptionsTest.Text == "Fixed refuel only")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, (form.time_in_pits - 5) * 2);
                 }
-                else if (test == "1L refuel")
+                else if (comboBoxPitOptionsTest.Text == "1L refuel")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, (form.time_in_pits - 26.4) * 2);
                 }
-                else if (test == "Refuel + tires")
+                else if (comboBoxPitOptionsTest.Text == "Refuel + tires")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, form.time_in_pits * 2);
                 }
@@ -209,7 +204,7 @@ namespace FCalcACC.Tests
         }
 
         [TestMethod("Calculating Lap times for +1 and -1 lap #1")]
-        public void CalculateLapTimnePlusMinus_SampleData1() 
+        public void CalculateLapTimnePlusMinus_SampleData1()
         {
             form.number_of_laps = 29;
             form.lap_time_secs = 126.035f;

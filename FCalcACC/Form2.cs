@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FCalcACC
+﻿namespace FCalcACC
 {
     public partial class Form2 : Form
     {
         public Form2()
         {
             InitializeComponent();
-            string help_text = 
+            string help_text =
                 "This application was created to help with calculating fuel and pit strategy for Assetto Corsa Competizione (ACC).\r\n\r\n" +
                 "ACC is a racing simulation where races are set up with certain duration and exact number of laps will change depending on many variables that this application takes into account.\r\n\r\n" +
                 "Additional file \"CARS.json\" and \"TRACKS.json\" holds important data for this app to work. \"TRACKS.json\" is also a file where some of the data will be saved for future use after pressing \"Calculate\" button. \r\n" +
@@ -34,7 +24,6 @@ namespace FCalcACC
                 "Pit stop panel will show a recommended pit stop strategy for the race, considering the selected pit stop option and the number of pit stops.";
             richTextBox_help.Text = help_text;
         }
-        
 
         private void button_close_help_Click(object sender, EventArgs e)
         {

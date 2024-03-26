@@ -43,7 +43,7 @@
             label_fuel_per_lap = new Label();
             label_lap_time = new Label();
             label_race_duration = new Label();
-            splitContainer1 = new SplitContainer();
+            splitContainer_input_result = new SplitContainer();
             groupBox_pit = new GroupBox();
             comboBox_pit_options = new ComboBox();
             label_pits_count = new Label();
@@ -89,10 +89,10 @@
             toolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
-            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
+            splitContainer_input_result.Panel1.SuspendLayout();
+            splitContainer_input_result.Panel2.SuspendLayout();
+            splitContainer_input_result.SuspendLayout();
             groupBox_pit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_pits).BeginInit();
             groupBox_variables.SuspendLayout();
@@ -256,28 +256,29 @@
             label_race_duration.Text = "Race Duration";
             label_race_duration.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // splitContainer1
+            // splitContainer_input_result
             // 
-            splitContainer1.BorderStyle = BorderStyle.FixedSingle;
-            splitContainer1.Location = new Point(12, 58);
-            splitContainer1.Name = "splitContainer1";
+            splitContainer_input_result.BorderStyle = BorderStyle.FixedSingle;
+            splitContainer_input_result.IsSplitterFixed = true;
+            splitContainer_input_result.Location = new Point(12, 58);
+            splitContainer_input_result.Name = "splitContainer_input_result";
             // 
-            // splitContainer1.Panel1
+            // splitContainer_input_result.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(groupBox_pit);
-            splitContainer1.Panel1.Controls.Add(groupBox_variables);
-            splitContainer1.Panel1.Controls.Add(groupBox_car_track);
-            splitContainer1.Panel1.Controls.Add(button_calculate);
+            splitContainer_input_result.Panel1.Controls.Add(groupBox_pit);
+            splitContainer_input_result.Panel1.Controls.Add(groupBox_variables);
+            splitContainer_input_result.Panel1.Controls.Add(groupBox_car_track);
+            splitContainer_input_result.Panel1.Controls.Add(button_calculate);
             // 
-            // splitContainer1.Panel2
+            // splitContainer_input_result.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(panel_pit_stop_strategy);
-            splitContainer1.Panel2.Controls.Add(label_pit_stops);
-            splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
-            splitContainer1.Panel2.Controls.Add(table_fuel_results);
-            splitContainer1.Size = new Size(880, 551);
-            splitContainer1.SplitterDistance = 410;
-            splitContainer1.TabIndex = 8;
+            splitContainer_input_result.Panel2.Controls.Add(panel_pit_stop_strategy);
+            splitContainer_input_result.Panel2.Controls.Add(label_pit_stops);
+            splitContainer_input_result.Panel2.Controls.Add(tableLayoutPanel1);
+            splitContainer_input_result.Panel2.Controls.Add(table_fuel_results);
+            splitContainer_input_result.Size = new Size(880, 551);
+            splitContainer_input_result.SplitterDistance = 410;
+            splitContainer_input_result.TabIndex = 8;
             // 
             // groupBox_pit
             // 
@@ -292,7 +293,7 @@
             groupBox_pit.Size = new Size(371, 94);
             groupBox_pit.TabIndex = 13;
             groupBox_pit.TabStop = false;
-            groupBox_pit.Text = "Pit stop";
+            groupBox_pit.Text = "Pit stops";
             // 
             // comboBox_pit_options
             // 
@@ -810,7 +811,7 @@
             ClientSize = new Size(904, 623);
             Controls.Add(label_results);
             Controls.Add(label_input_data);
-            Controls.Add(splitContainer1);
+            Controls.Add(splitContainer_input_result);
             Controls.Add(menuStrip1);
             Controls.Add(menuStrip2);
             Font = new Font("Segoe UI", 9.75F);
@@ -819,10 +820,10 @@
             Name = "Form1";
             Text = "FCalcACC - Fuel and strategy for ACC";
             Load += Form1_Load;
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
+            splitContainer_input_result.Panel1.ResumeLayout(false);
+            splitContainer_input_result.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).EndInit();
+            splitContainer_input_result.ResumeLayout(false);
             groupBox_pit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown_pits).EndInit();
             groupBox_variables.ResumeLayout(false);
@@ -846,7 +847,7 @@
         private Label label_race_duration;
         private Label label_fuel_per_lap;
         private Label label_formation;
-        private SplitContainer splitContainer1;
+        private SplitContainer splitContainer_input_result;
         private Label label_input_data;
         private Label label_pits_count;
         private Label label_results;

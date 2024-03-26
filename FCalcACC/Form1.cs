@@ -403,7 +403,7 @@ namespace FCalcACC
             else
             {
                 double current_laps = 0.0;
-                int stints_left = number_of_pits + 1;
+                int stints_left = number_of_pits;
 
                 double laps_per_stint = (double)number_of_laps / (number_of_pits + 1);
                 double number_of_laps_remaining = number_of_laps;
@@ -411,8 +411,7 @@ namespace FCalcACC
                 int y_groupBox = 120;
 
                 int fuel_first_stint = (int)Math.Ceiling((laps_per_stint * fuel_per_lap) + formation_lap_fuel);
-                double fuel_rest_from_stint = fuel_first_stint - (laps_per_stint * fuel_per_lap) - formation_lap_fuel;
-                double fuel_remaining = (double)fuel_for_race_round_up - (double)fuel_first_stint;
+                double fuel_remaining = fuel_for_race_round_up - fuel_first_stint;
 
                 int stint = 2;
                 for (int i = number_of_pits; i > 0; i--)
@@ -543,15 +542,10 @@ namespace FCalcACC
                         label_refuel_temp.Text = "Refuel after " + ((int)Math.Ceiling(current_laps)) + " laps";
                         number_of_laps_remaining -= laps_per_stint;
 
-                        fuel_remaining -= fuel_rest_from_stint;
-
-                        double TEMP = fuel_remaining / stints_left;
-
-                        double current_part_fuel = Math.Min(fuel_remaining, TEMP);
-                        stints_left--;
+                        double current_part_fuel = Math.Min(fuel_remaining, fuel_remaining / stints_left);
                         int fuel_for_this_stint = (int)Math.Ceiling(current_part_fuel);
-                        fuel_rest_from_stint = fuel_for_this_stint - current_part_fuel;
                         fuel_remaining -= fuel_for_this_stint;
+                        stints_left--;
 
                         Label label_refuel_result_temp = new Label();
                         label_refuel_result_temp.Name = name_for_refuel_result_label;
@@ -564,8 +558,8 @@ namespace FCalcACC
                         table_temp.Size = tableLayoutPanel_start.Size;
 
                         groupBox_temp.Controls.Add(table_temp);
-                        stint++;
                         y_groupBox += 100;
+                        stint++;
                     }
                 }
             }

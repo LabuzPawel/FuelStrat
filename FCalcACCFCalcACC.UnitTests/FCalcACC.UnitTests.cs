@@ -143,7 +143,7 @@ namespace FCalcACC.Tests
                 comboBoxPitOptionsTest.SelectedIndex = i;
 
                 form.CalculateTimeLostInPits(2, comboBoxPitOptionsTest, "Barcelona");
-        
+
                 if (comboBoxPitOptionsTest.Text == "Tires only")
                 {
                     Assert.AreEqual(form.time_lost_in_pits, form.time_in_pits * 2);
@@ -163,7 +163,39 @@ namespace FCalcACC.Tests
             }
         }
 
-        // RefuelTimeLost
+        [TestMethod("Calculating time lost in pits with only refuel #1 (No track selected, 1 pit)")]
+        public void RefuelTimeLost_SampleData1()
+        {
+            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
+            numericUpDownPitsTest.Value = 1;
+            form.time_lost_in_pits = 0;
+            form.LoadTrackObjectsList();
+            form.fuel_for_race_round_up = 104;
+            form.fuel_per_lap = 4;
+            form.formation_lap_fuel = 4;
+            form.number_of_laps = 25;
+
+            form.RefuelTimeLost("TRACK", numericUpDownPitsTest);
+
+            Assert.AreEqual(Math.Round(form.time_lost_in_pits, 2), 40.4);
+        }
+
+        [TestMethod("Calculating time lost in pits with only refuel #2 (Track selected, 4 pits)")]
+        public void RefuelTimeLost_SampleData2()
+        {
+            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
+            numericUpDownPitsTest.Value = 4;
+            form.time_lost_in_pits = 0;
+            form.LoadTrackObjectsList();
+            form.fuel_for_race_round_up = 104;
+            form.fuel_per_lap = 4;
+            form.formation_lap_fuel = 4;
+            form.number_of_laps = 25;
+
+            form.RefuelTimeLost("Barcelona", numericUpDownPitsTest);
+
+            Assert.AreEqual(Math.Round(form.time_lost_in_pits, 2), 165.6);
+        }
 
         [TestMethod("Calculating laps and overall race duration #1")]
         public void CalculateRaceDuration_SampleData1()
@@ -237,7 +269,7 @@ namespace FCalcACC.Tests
             Assert.AreEqual(labelMinus1LapTimeResultTest.Text, "1:40.606");
         }
 
-        [TestMethod("Calculating fuel for the race #1")]
+        [TestMethod("Calculating fuel for the race #1 (33 laps, full formation, 3,55 fpr)")]
         public void CalculateFuel_SampleData1()
         {
             TextBox textBoxFuelPerLapTest = new TextBox() { Text = "3,55" };
@@ -255,7 +287,7 @@ namespace FCalcACC.Tests
             Assert.AreEqual(labelMinus1FuelResultTest.Text, "118 L");
         }
 
-        [TestMethod("Calculating fuel for the race #2")]
+        [TestMethod("Calculating fuel for the race #2 (16 laps, short formation, 3.1 fpr)")]
         public void CalculateFuel_SampleData2()
         {
             TextBox textBoxFuelPerLapTest = new TextBox() { Text = "3.,1" };
@@ -271,6 +303,122 @@ namespace FCalcACC.Tests
             Assert.AreEqual(labelFuelRaceResultTest.Text, "51 L");
             Assert.AreEqual(labelPlus1FuelResultTest.Text, "54 L");
             Assert.AreEqual(labelMinus1FuelResultTest.Text, "48 L");
+        }
+
+        [TestMethod("Calculating pit strategy #1 (0 pits)")]
+        public void CalculatePitStops_SampleData1()
+        {
+            Panel panelPitStopStrategyTest = new Panel();
+            Label labelFuelRaceResultTest = new Label() { Text = "56 L" };
+            ComboBox comboBoxPitOptionsTest = new ComboBox();
+            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
+            numericUpDownPitsTest.Value = 0;
+            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            form.number_of_laps = 10;
+            form.fuel_for_race_round_up = 56;
+            form.fuel_per_lap = 5;
+            form.formation_lap_fuel = 5.1;
+
+            form.CalculatePitStops(panelPitStopStrategyTest, labelFuelRaceResultTest, numericUpDownPitsTest, comboBoxPitOptionsTest,
+                out string labelFuelStartResultTextTest, out List<int> fuelPerStintTest, out List<int> lapsPitStintTest);
+
+            Assert.AreEqual(fuelPerStintTest[0].ToString() + " L", labelFuelStartResultTextTest);
+            Assert.AreEqual(fuelPerStintTest.Count, 1);
+        }
+
+        [TestMethod("Calculating pit strategy #2 (3 pit, tires only)")]
+        public void CalculatePitStops_SampleData2()
+        {
+            Panel panelPitStopStrategyTest = new Panel();
+            Label labelFuelRaceResultTest = new Label();
+            ComboBox comboBoxPitOptionsTest = new ComboBox();
+            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
+            numericUpDownPitsTest.Value = 3;
+            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            comboBoxPitOptionsTest.SelectedIndex = 2;
+            form.number_of_laps = 20;
+            form.fuel_for_race_round_up = 84;
+            form.fuel_per_lap = 4;
+            form.formation_lap_fuel = 4;
+
+            form.CalculatePitStops(panelPitStopStrategyTest, labelFuelRaceResultTest, numericUpDownPitsTest, comboBoxPitOptionsTest,
+                out string labelFuelStartResultTextTest, out List<int> fuelPerStintTest, out List<int> lapsPitStintTest);
+
+            Assert.AreEqual(fuelPerStintTest[0].ToString() + " L", labelFuelStartResultTextTest);
+            Assert.AreEqual(fuelPerStintTest.Count, 4);
+            for (int i = 1; i < fuelPerStintTest.Count; i++)
+            {
+                Assert.IsTrue(fuelPerStintTest[i] == 0);
+            }
+            int pit_after = 5;
+            for (int i = 0; i < lapsPitStintTest.Count; i++)
+            {
+                Assert.IsTrue(lapsPitStintTest[i] == pit_after);
+                pit_after += 5;
+            }
+        }
+
+        [TestMethod("Calculating pit strategy #3 (1 pit, 1L)")]
+        public void CalculatePitStops_SampleData3()
+        {
+            Panel panelPitStopStrategyTest = new Panel();
+            Label labelFuelRaceResultTest = new Label();
+            ComboBox comboBoxPitOptionsTest = new ComboBox();
+            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
+            numericUpDownPitsTest.Value = 1;
+            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            comboBoxPitOptionsTest.SelectedIndex = 4;
+            form.number_of_laps = 10;
+            form.fuel_for_race_round_up = 44;
+            form.fuel_per_lap = 4;
+            form.formation_lap_fuel = 4;
+
+            form.CalculatePitStops(panelPitStopStrategyTest, labelFuelRaceResultTest, numericUpDownPitsTest, comboBoxPitOptionsTest,
+                out string labelFuelStartResultTextTest, out List<int> fuelPerStintTest, out List<int> lapsPitStintTest);
+
+            Assert.AreEqual(fuelPerStintTest[0].ToString() + " L", labelFuelStartResultTextTest);
+            Assert.AreEqual(fuelPerStintTest.Count, 2);
+            for (int i = 1; i < fuelPerStintTest.Count; i++)
+            {
+                Assert.IsTrue(fuelPerStintTest[i] == 1);
+            }
+            int pit_after = 5;
+            for (int i = 0; i < lapsPitStintTest.Count; i++)
+            {
+                Assert.IsTrue(lapsPitStintTest[i] == pit_after);
+            }
+        }
+
+        [TestMethod("Calculating pit strategy #4 (5 pit, refuel+tires)")]
+        public void CalculatePitStops_SampleData4()
+        {
+            Panel panelPitStopStrategyTest = new Panel();
+            Label labelFuelRaceResultTest = new Label();
+            ComboBox comboBoxPitOptionsTest = new ComboBox();
+            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
+            numericUpDownPitsTest.Value = 5;
+            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            comboBoxPitOptionsTest.SelectedIndex = 3;
+            form.number_of_laps = 30;
+            form.fuel_for_race_round_up = 124;
+            form.fuel_per_lap = 4;
+            form.formation_lap_fuel = 4;
+
+            form.CalculatePitStops(panelPitStopStrategyTest, labelFuelRaceResultTest, numericUpDownPitsTest, comboBoxPitOptionsTest,
+                out string labelFuelStartResultTextTest, out List<int> fuelPerStintTest, out List<int> lapsPitStintTest);
+
+            Assert.AreEqual(fuelPerStintTest[0].ToString() + " L", labelFuelStartResultTextTest);
+            Assert.AreEqual(fuelPerStintTest.Count, 6);
+            for (int i = 1; i < fuelPerStintTest.Count; i++)
+            {
+                Assert.IsTrue(fuelPerStintTest[i] == 20);
+            }
+            int pit_after = 5;
+            for (int i = 0; i < lapsPitStintTest.Count; i++)
+            {
+                Assert.IsTrue(lapsPitStintTest[i] == pit_after);
+                pit_after += 5;
+            }
         }
     }
 }

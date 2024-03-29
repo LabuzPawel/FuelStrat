@@ -37,7 +37,7 @@
             richTextBox_help.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             richTextBox_help.Location = new Point(12, 12);
             richTextBox_help.Name = "richTextBox_help";
-            richTextBox_help.Size = new Size(623, 332);
+            richTextBox_help.Size = new Size(760, 500);
             richTextBox_help.TabIndex = 0;
             richTextBox_help.Text = "";
             // 
@@ -45,9 +45,9 @@
             // 
             button_close_help.BackColor = SystemColors.ActiveCaption;
             button_close_help.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button_close_help.Location = new Point(12, 350);
+            button_close_help.Location = new Point(12, 518);
             button_close_help.Name = "button_close_help";
-            button_close_help.Size = new Size(623, 34);
+            button_close_help.Size = new Size(760, 34);
             button_close_help.TabIndex = 1;
             button_close_help.Text = "CLOSE";
             button_close_help.UseVisualStyleBackColor = false;
@@ -57,11 +57,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(647, 399);
+            ClientSize = new Size(784, 561);
             Controls.Add(button_close_help);
             Controls.Add(richTextBox_help);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form2";
-            Text = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "FCalcACC - HELP";
             ResumeLayout(false);
         }
 

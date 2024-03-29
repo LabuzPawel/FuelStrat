@@ -73,14 +73,35 @@ namespace FCalcACC
                 using (Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name))
                 using (StreamReader reader = new StreamReader(stream))
                 {
-                    string tracks_embedded = reader.ReadToEnd();
-                    all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
+                     string tracks_embedded = reader.ReadToEnd();
+                     all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
                 }
             }
             else
             {
-                string json_string_tracks = File.ReadAllText("FCalcACC_data.json");
-                all_tracks = JsonConvert.DeserializeObject<List<Track>>(json_string_tracks);
+                try
+                {
+                    string json_string_tracks = File.ReadAllText("FCalcACC_data.json");
+                    all_tracks = JsonConvert.DeserializeObject<List<Track>>(json_string_tracks);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error reading FCalcACC_data.json:\n" + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    DialogResult result = MessageBox.Show("Would you like to reset the FCalcACC_data.json?\n\n" +
+                        "Choosing 'No' will exit application.",
+                        "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        File.Delete("FCalcACC_data.json");
+                        LoadCarTrackObjects();
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        Application.Exit();
+                    }
+                }
             }
         }
 
@@ -716,7 +737,7 @@ namespace FCalcACC
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)

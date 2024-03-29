@@ -816,6 +816,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FCalcACC - Fuel and strategy for ACC";
             Load += Form1_Load;
             splitContainer_input_result.Panel1.ResumeLayout(false);

@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="car_track_data\CARS.json" />
+    <None Remove="car_track_data\TRACKS.json" />
+    <None Remove="help.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="car_track_data\CARS.json" />
+    <EmbeddedResource Include="car_track_data\TRACKS.json" />
+    <EmbeddedResource Include="help.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

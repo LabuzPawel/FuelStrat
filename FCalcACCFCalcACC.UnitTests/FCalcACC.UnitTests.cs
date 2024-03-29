@@ -17,14 +17,14 @@ namespace FCalcACC.Tests
         [TestMethod("Car object from CAR.json")]
         public void LoadCarObjectList_LoadCarJson_ReturnsListOfCarObjects()
         {
-            form.LoadCarObjectsList();
+            form.LoadCarTrackObjects();
             Assert.IsTrue(form.all_cars[0] is Car);
         }
 
         [TestMethod("Track object from TRACK.json")]
         public void LoadTrackObjectList_LoadTrackJson_ReturnsListOfTrackObjects()
         {
-            form.LoadTrackObjectsList();
+            form.LoadCarTrackObjects();
             Assert.IsTrue(form.all_tracks[0] is Track);
             Assert.IsTrue(form.all_tracks[0].car_track_fuel[0] is CarTrackFuel);
         }
@@ -33,7 +33,7 @@ namespace FCalcACC.Tests
         public void LoadCarClasses_AddUniqueCarClasses_ComboBoxCorrectlyPopulated()
         {
             ComboBox comboBox_test = new ComboBox();
-            form.LoadCarObjectsList();
+            form.LoadCarTrackObjects();
 
             form.LoadCarClasses(comboBox_test);
 
@@ -48,7 +48,7 @@ namespace FCalcACC.Tests
         public void LoadCars_AddCars_ComboBoxCorrectlyPopulated()
         {
             ComboBox comboBox_test_car = new ComboBox();
-            form.LoadCarObjectsList();
+            form.LoadCarTrackObjects();
 
             form.LoadCars(comboBox_test_car, "GT3");
             var gt3_cars = form.all_cars.Where(car => car.class_name.Contains("GT3"));
@@ -80,7 +80,7 @@ namespace FCalcACC.Tests
         public void LoadTracks_AddTracks_ComboBoxCorrectlyPopulated()
         {
             ComboBox comboBox_test = new ComboBox();
-            form.LoadTrackObjectsList();
+            form.LoadCarTrackObjects();
             form.LoadTracks(comboBox_test);
 
             Assert.AreEqual(form.all_tracks.Count, comboBox_test.Items.Count);
@@ -136,7 +136,7 @@ namespace FCalcACC.Tests
         {
             ComboBox comboBoxPitOptionsTest = new ComboBox();
             form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
-            form.LoadTrackObjectsList();
+            form.LoadCarTrackObjects();
 
             for (int i = 0; i < 5; i++)
             {
@@ -169,7 +169,7 @@ namespace FCalcACC.Tests
             NumericUpDown numericUpDownPitsTest = new NumericUpDown();
             numericUpDownPitsTest.Value = 1;
             form.time_lost_in_pits = 0;
-            form.LoadTrackObjectsList();
+            form.LoadCarTrackObjects();
             form.fuel_for_race_round_up = 104;
             form.fuel_per_lap = 4;
             form.formation_lap_fuel = 4;
@@ -186,7 +186,7 @@ namespace FCalcACC.Tests
             NumericUpDown numericUpDownPitsTest = new NumericUpDown();
             numericUpDownPitsTest.Value = 4;
             form.time_lost_in_pits = 0;
-            form.LoadTrackObjectsList();
+            form.LoadCarTrackObjects();
             form.fuel_for_race_round_up = 104;
             form.fuel_per_lap = 4;
             form.formation_lap_fuel = 4;

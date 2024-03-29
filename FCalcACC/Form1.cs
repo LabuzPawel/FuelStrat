@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System.Globalization;
+using System.Reflection;
 
 namespace FCalcACC
 {
@@ -23,6 +24,7 @@ namespace FCalcACC
         {
             public string car_name { get; set; }
             public string fuel_per_lap { get; set; }
+            public string tank_capacity { get; set; }
         }
 
         public List<Track> all_tracks;
@@ -55,16 +57,31 @@ namespace FCalcACC
             "1L refuel"
         };
 
-        public void LoadCarObjectsList()
+        public void LoadCarTrackObjects()
         {
-            string json_string_cars = File.ReadAllText("CARS.json");
-            all_cars = JsonConvert.DeserializeObject<List<Car>>(json_string_cars);
-        }
-
-        public void LoadTrackObjectsList()
-        {
-            string json_string_tracks = File.ReadAllText("TRACKS.json");
-            all_tracks = JsonConvert.DeserializeObject<List<Track>>(json_string_tracks);
+            string cars_resourse_name = "FCalcACC.car_track_data.CARS.json";
+            string tracks_resourse_name = "FCalcACC.car_track_data.TRACKS.json";
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream(cars_resourse_name))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string cars_embedded = reader.ReadToEnd();
+                all_cars = JsonConvert.DeserializeObject<List<Car>>(cars_embedded);
+            }
+            if (File.Exists("FCalcACC_data.json") == false)
+            {
+                using (Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string tracks_embedded = reader.ReadToEnd();
+                    all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
+                }
+            }
+            else
+            {
+                string json_string_tracks = File.ReadAllText("FCalcACC_data.json");
+                all_tracks = JsonConvert.DeserializeObject<List<Track>>(json_string_tracks);
+            }
         }
 
         public void LoadCarClasses(ComboBox comboBoxClass)
@@ -633,11 +650,8 @@ namespace FCalcACC
                 }
             }
 
-            if (File.Exists("TRACKS.json"))
-            {
-                string json_tracks_save = JsonConvert.SerializeObject(all_tracks, Formatting.Indented);
-                File.WriteAllText("TRACKS.json", json_tracks_save);
-            }
+            string json_data_save = JsonConvert.SerializeObject(all_tracks, Formatting.Indented);
+            File.WriteAllText("FCalcACC_data.json", json_data_save);
         }
 
         public Form1()
@@ -647,8 +661,11 @@ namespace FCalcACC
 
         public void Form1_Load(object sender, EventArgs e)
         {
-            LoadCarObjectsList();
-            LoadTrackObjectsList();
+            LoadCarTrackObjects();
+            if (File.Exists("FCalcACC_data.json") == false)
+            {
+                SaveData();
+            }
             LoadCarClasses(comboBox_class);
             LoadTracks(comboBox_track);
             LoadPitOptions(comboBox_pit_options, PIT_OPTIONS);

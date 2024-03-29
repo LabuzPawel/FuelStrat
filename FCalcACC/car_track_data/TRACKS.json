@@ -1,0 +1,6530 @@
+[
+  {
+    "track_name": "Barcelona",
+    "track_lap_time": "103.5",
+    "track_pit_duration": "64",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.05",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "109"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.77",
+        "tank_capacity": "106"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.77",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.77",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "111"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.92",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "106"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.95",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "103"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.32",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.48",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.43",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.32",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.48",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.48",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "135"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Brands Hatch",
+    "track_lap_time": "83",
+    "track_pit_duration": "54",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.92",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.95",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "1.96",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.06",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.08",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "1.96",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.03",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "1.94",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "1.85",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "COTA",
+    "track_lap_time": "125.5",
+    "track_pit_duration": "69",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "132",
+        "tank_capacity": "3.45"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "106"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.42",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "106"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "2.56",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Donington Park",
+    "track_lap_time": "86",
+    "track_pit_duration": "55",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.18",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.18",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.42",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.42",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.33",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.34",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.88",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "2.56",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "1.75",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "1.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "1.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "1.85",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "1.96",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.05",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "1.77",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "1.78",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "1.95",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "1.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "1.77",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "1.48",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "1.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Hungaroring",
+    "track_lap_time": "104",
+    "track_pit_duration": "61",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.82",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.95",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.71",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.62",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.62",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.62",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.79",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.71",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.71",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.64",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.64",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.15",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.32",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.28",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.15",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.32",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.32",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.95",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.0",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Imola",
+    "track_lap_time": "100",
+    "track_pit_duration": "74",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.15",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.15",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.15",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.43",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.43",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.36",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.82",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Indianapolis",
+    "track_lap_time": "95.8",
+    "track_pit_duration": "90",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "116"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "118"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "2.56",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Kyalami",
+    "track_lap_time": "100.1",
+    "track_pit_duration": "55",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "113",
+        "tank_capacity": "3.0"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "113",
+        "tank_capacity": "3.0"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.95",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.48",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.43",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.32",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.48",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.48",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.31",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Laguna Seca",
+    "track_lap_time": "81.8",
+    "track_pit_duration": "63",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.05",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.15",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.15",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "1.96",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.06",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.08",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "1.96",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "1.94",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "1.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "1.9",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Misano",
+    "track_lap_time": "92.8",
+    "track_pit_duration": "74",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.49",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.49",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.66",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.71",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.76",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.76",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.83",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.28",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.28",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.28",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.12",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Monza",
+    "track_lap_time": "107",
+    "track_pit_duration": "65",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.67",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.29",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.29",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.73",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.96",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.92",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.94",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.96",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.96",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.78",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Mount Panorama",
+    "track_lap_time": "119.5",
+    "track_pit_duration": "60",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.75",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "4.1",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "4.3.95",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "4.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "3.18",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "3.22",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "4.05",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Nurburgring",
+    "track_lap_time": "113.1",
+    "track_pit_duration": "62",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.36",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "106"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.27",
+        "tank_capacity": "111"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.88",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.88",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.04",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.04",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.04",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.24",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.16",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.16",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.33",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.26",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "103"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.72",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.68",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.76",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.76",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.72",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.72",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.59",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Oulton Park",
+    "track_lap_time": "92.8",
+    "track_pit_duration": "50",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.42",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.59",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.15",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.44",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.42",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "2.73",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "1.9",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.05",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.05",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.0",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "1.92",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "1.93",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.11",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.05",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "1.92",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "1.65",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Paul Ricard",
+    "track_lap_time": "112.8",
+    "track_pit_duration": "65",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.26",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.18",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.18",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.18",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "117"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "1120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.65",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.44",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.42",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "109"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.33",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.33",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.450",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.61",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.67",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.82",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.78",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.67",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.82",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.82",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.46",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Red Bull Ring",
+    "track_lap_time": "88",
+    "track_pit_duration": "60",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.67",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.66",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.56",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "120",
+        "tank_capacity": "2.73"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.06",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.16",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.18",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.24",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.27",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.06",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.24",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "1.94",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Silverstone",
+    "track_lap_time": "117.7",
+    "track_pit_duration": "59",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.36",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.18",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.18",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.18",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.65",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "120",
+        "tank_capacity": "3.44"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.42",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.96",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.91",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.96",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.96",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.78",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Snetterton",
+    "track_lap_time": "106",
+    "track_pit_duration": "53",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.57",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.67",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.88",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.67",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.04",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.19",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.15",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.07",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.08",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.07",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.00",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "1.9",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Spa-Francorchamps",
+    "track_lap_time": "135.8",
+    "track_pit_duration": "106",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "4.37",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "4.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "4.08",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "4.6",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "4.1",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "4.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "4.24",
+        "tank_capacity": "108"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "4.24",
+        "tank_capacity": "117"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "4.24",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "4.23",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "4.15",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "4.1",
+        "tank_capacity": "109"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "4.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "4.05",
+        "tank_capacity": "116"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "4.05",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "4.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "4.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "104"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "4.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "3.43",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "120",
+        "tank_capacity": "3.25"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "3.23",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "4.1",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "4.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "4.4",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "4.2",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.95",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Suzuka",
+    "track_lap_time": "118.7",
+    "track_pit_duration": "61",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.55",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "3.15",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.93",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.75",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "4.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.72",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.68",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.76",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.76",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.61",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.72",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.72",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.72",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.59",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.65",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "4.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Valencia",
+    "track_lap_time": "90",
+    "track_pit_duration": "61",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.35",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Watkins Glen",
+    "track_lap_time": "103",
+    "track_pit_duration": "69",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.42",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "112"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "3.25",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "113"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "109"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "116"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "3.6",
+        "tank_capacity": "114"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "3.35",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "3.4",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Zandvoort",
+    "track_lap_time": "95",
+    "track_pit_duration": "49",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.82",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.65",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.95",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.55",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "3.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.62",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.79",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.66",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.66",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.64",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.64",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.85",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.9",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.28",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.23",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.25",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "107"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.13",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.28",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.28",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "2.12",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  },
+  {
+    "track_name": "Zolder",
+    "track_lap_time": "87.6",
+    "track_pit_duration": "66",
+    "car_track_fuel": [
+      {
+        "car_name": "Aston Martin V12 Vantage GT3 2013",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT3 2019",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo GT3 2019",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS Evo II GT3 2022",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT3 2015",
+        "fuel_per_lap": "2.45",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT3 2022",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M6 GT3 2017",
+        "fuel_per_lap": "2.67",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2015",
+        "fuel_per_lap": "2.66",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Bentley Continental GT3 2018",
+        "fuel_per_lap": "2.56",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Emil Frey Jaguar GT3 2012",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "119"
+      },
+      {
+        "car_name": "Ferrari 296 GT3 2023",
+        "fuel_per_lap": "2.3",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 2018",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Ferrari 488 GT3 Evo 2020",
+        "fuel_per_lap": "2.4",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Honda NSX Evo GT3 2019",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Honda NSX GT3 2017",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo GT3 2019",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Evo2 GT3 2023",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan GT3 2015",
+        "fuel_per_lap": "2.51",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lexus RC F GT3 2016",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "McLaren 650S GT3 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 2019",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "125"
+      },
+      {
+        "car_name": "McLaren 720S GT3 Evo 2023",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2015",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT3 2020",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2015",
+        "fuel_per_lap": "2.75",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Nissan GTR Nismo GT3 2018",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "132"
+      },
+      {
+        "car_name": "Porsche 911 GT3 R 2018",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 R 2019",
+        "fuel_per_lap": "2.73",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 992 GT3 R 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Reiter Engineering R-EX GT3 2017",
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "130"
+      },
+      {
+        "car_name": "Alpine A110 GT4 2018",
+        "fuel_per_lap": "2.06",
+        "tank_capacity": "95"
+      },
+      {
+        "car_name": "Aston Martin V8 Vantage GT4 2018",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Audi R8 LMS GT4 2018",
+        "fuel_per_lap": "2.16",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "BMW M4 GT4 2018",
+        "fuel_per_lap": "2.18",
+        "tank_capacity": "127"
+      },
+      {
+        "car_name": "Chevrolet Camaro R GT4 2017",
+        "fuel_per_lap": "2.24",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ginetta G55 GT4 2012",
+        "fuel_per_lap": "2.24",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "KTM X-Bow GT4 2016",
+        "fuel_per_lap": "2.06",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati Granturismo MC GT4 2016",
+        "fuel_per_lap": "2.24",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mclaren 570S GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "110"
+      },
+      {
+        "car_name": "Mercedes AMG GT4 2016",
+        "fuel_per_lap": "2.2",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 718 Cayman GT4 Clubsport 2019",
+        "fuel_per_lap": "1.94",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Audi R8 LMS GT2 2021",
+        "fuel_per_lap": "2.5",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "KTM X-Bow GT2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Maserati MC20 GT2 2023",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Mercedes AMG GT2 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 935 GT2 2019",
+        "fuel_per_lap": "3.5",
+        "tank_capacity": "115"
+      },
+      {
+        "car_name": "Ferrari 488 Challenge Evo 2020",
+        "fuel_per_lap": "2.8",
+        "tank_capacity": "126"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo 2015",
+        "fuel_per_lap": "2.6",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
+        "fuel_per_lap": "2.7",
+        "tank_capacity": "120"
+      },
+      {
+        "car_name": "Porsche 911 II GT3 Cup 2017",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "Porsche 911 GT3 Cup (992) 2021",
+        "fuel_per_lap": "2.86",
+        "tank_capacity": "100"
+      },
+      {
+        "car_name": "BMW M2 CS 2020",
+        "fuel_per_lap": "2.1",
+        "tank_capacity": "85"
+      }
+    ]
+  }
+]

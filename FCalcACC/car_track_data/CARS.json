@@ -8,23 +8,15 @@
     "class_name": "GT3"
   },
   {
+    "car_name": "Audi R8 LMS GT3 2015",
+    "class_name": "GT3"
+  },
+  {
     "car_name": "Audi R8 LMS Evo GT3 2019",
     "class_name": "GT3"
   },
   {
     "car_name": "Audi R8 LMS Evo II GT3 2022",
-    "class_name": "GT3"
-  },
-  {
-    "car_name": "Audi R8 LMS GT3 2015",
-    "class_name": "GT3"
-  },
-  {
-    "car_name": "BMW M4 GT3 2022",
-    "class_name": "GT3"
-  },
-  {
-    "car_name": "BMW M6 GT3 2017",
     "class_name": "GT3"
   },
   {
@@ -36,11 +28,15 @@
     "class_name": "GT3"
   },
   {
-    "car_name": "Emil Frey Jaguar GT3 2012",
+    "car_name": "BMW M6 GT3 2017",
     "class_name": "GT3"
   },
   {
-    "car_name": "Ferrari 296 GT3 2023",
+    "car_name": "BMW M4 GT3 2022",
+    "class_name": "GT3"
+  },
+  {
+    "car_name": "Emil Frey Jaguar GT3 2012",
     "class_name": "GT3"
   },
   {
@@ -52,11 +48,19 @@
     "class_name": "GT3"
   },
   {
-    "car_name": "Honda NSX Evo GT3 2019",
+    "car_name": "Ferrari 296 GT3 2023",
     "class_name": "GT3"
   },
   {
     "car_name": "Honda NSX GT3 2017",
+    "class_name": "GT3"
+  },
+  {
+    "car_name": "Honda NSX Evo GT3 2019",
+    "class_name": "GT3"
+  },
+  {
+    "car_name": "Lamborghini Huracan GT3 2015",
     "class_name": "GT3"
   },
   {
@@ -65,10 +69,6 @@
   },
   {
     "car_name": "Lamborghini Huracan Evo2 GT3 2023",
-    "class_name": "GT3"
-  },
-  {
-    "car_name": "Lamborghini Huracan GT3 2015",
     "class_name": "GT3"
   },
   {
@@ -120,27 +120,27 @@
     "class_name": "GT3"
   },
   {
-    "car_name": "Audi R8 LMS GT2",
+    "car_name": "Audi R8 LMS GT2 2021",
     "class_name": "GT2"
   },
   {
-    "car_name": "KTM X-Bow GT2",
+    "car_name": "KTM X-Bow GT2 2021",
     "class_name": "GT2"
   },
   {
-    "car_name": "Maserati MC20 GT2",
+    "car_name": "Maserati MC20 GT2 2023",
     "class_name": "GT2"
   },
   {
-    "car_name": "Mercedes AMG GT2",
+    "car_name": "Mercedes AMG GT2 2023",
     "class_name": "GT2"
   },
   {
-    "car_name": "Porsche 991 II GT2 RS CS Evo",
+    "car_name": "Porsche 991 II GT2 RS CS Evo 2023",
     "class_name": "GT2"
   },
   {
-    "car_name": "Porsche 935 GT2",
+    "car_name": "Porsche 935 GT2 2019",
     "class_name": "GT2"
   },
   {
@@ -180,7 +180,7 @@
     "class_name": "GT4"
   },
   {
-    "car_name": "Mercedes ANG GT4 2016",
+    "car_name": "Mercedes AMG GT4 2016",
     "class_name": "GT4"
   },
   {
@@ -196,7 +196,7 @@
     "class_name": "GTC"
   },
   {
-    "car_name": "Lamborghini Huracan Super Trofeo Evo 2 2021",
+    "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
     "class_name": "GTC"
   },
   {

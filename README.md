@@ -6,9 +6,10 @@ Originally project was created in python using tkinter GUI. Old script can be fo
 
 Release version requieres .NET 8.0 Framework to work. Larger size exe release that is independent from .NET version can be found in 'FCalcACC/self_contained'.
 
-For application to work it requieres 'CARS.json' and 'TRACKS.json' files to be included in exe folder. Default versions of those json files can be found in 'FCalcACC\default_json'.
+Application is creating a 'FCalcACC_data.json' at first start up. This file stores user data.
 
 Future plans:
-1. Error handling.
-2. Ability to move pit stop earlier/later in pit strategy
-3. Telemetry integration with ACC.
+1. Add fuel tank capacity and maximum stint duration to calculations.
+2. More error handling.
+3. Ability to move pit stop earlier/later in pit strategy
+4. Telemetry integration with ACC.

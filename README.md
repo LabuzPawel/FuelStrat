@@ -9,7 +9,6 @@ Release version requieres .NET 8.0 Framework to work. Larger size exe release th
 Application is creating a 'FCalcACC_data.json' at first start up. This file stores user data.
 
 Future plans:
-1. Add fuel tank capacity and maximum stint duration to calculations.
-2. More error handling.
-3. Ability to move pit stop earlier/later in pit strategy
-4. Telemetry integration with ACC.
+1. More error handling.
+2. Ability to move pit stop earlier/later in pit strategy
+3. Telemetry integration with ACC.

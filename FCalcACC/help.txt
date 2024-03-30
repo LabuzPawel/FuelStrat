@@ -3,6 +3,7 @@ This application was created to help with calculating fuel and pit strategy for 
 ACC is a racing simulation where races are set up with certain duration and exact number of laps will change depending on many variables that this application takes into account.
 
 Application is creating "FCalcACC_data.json" file that holds user defined information about fuel per lap for every given track and car combination and track's lap time. 
+Additionaly it holds information about fuel tank capacity for every car and track combination (taken from Open Series data in ACC).
 New data is being saved when user clicks on "Calculate" button.
 Every track also have unique time that is needed for full pit stop (tires change and refuel)
 

@@ -45,9 +45,13 @@
             label_race_duration = new Label();
             splitContainer_input_result = new SplitContainer();
             groupBox_pit = new GroupBox();
+            checkBox_max_stint = new CheckBox();
             comboBox_pit_options = new ComboBox();
+            textBox_max_stint = new TextBox();
             label_pits_count = new Label();
+            label_max_stint_min = new Label();
             numericUpDown_pits = new NumericUpDown();
+            label_max_stint = new Label();
             label_pits_options = new Label();
             groupBox_variables = new GroupBox();
             groupBox_car_track = new GroupBox();
@@ -86,9 +90,11 @@
             label2 = new Label();
             menuStrip1 = new MenuStrip();
             menuStrip2 = new MenuStrip();
-            toolStripMenuItem1 = new ToolStripMenuItem();
+            toolStripMenuItem_menu = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            helpToolStripMenuItem = new ToolStripMenuItem();
+            ToolStripMenuItem_help = new ToolStripMenuItem();
+            ToolStripMenuItem_github = new ToolStripMenuItem();
+            resetDataToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -107,15 +113,16 @@
             // 
             listBox_formation.FormattingEnabled = true;
             listBox_formation.ItemHeight = 15;
-            listBox_formation.Location = new Point(215, 144);
+            listBox_formation.Items.AddRange(new object[] { "Full", "Short" });
+            listBox_formation.Location = new Point(206, 131);
             listBox_formation.Name = "listBox_formation";
-            listBox_formation.Size = new Size(150, 34);
+            listBox_formation.Size = new Size(180, 34);
             listBox_formation.TabIndex = 20;
             // 
             // label_fuel_L
             // 
             label_fuel_L.AutoSize = true;
-            label_fuel_L.Location = new Point(56, 137);
+            label_fuel_L.Location = new Point(41, 145);
             label_fuel_L.Name = "label_fuel_L";
             label_fuel_L.Size = new Size(56, 15);
             label_fuel_L.TabIndex = 19;
@@ -123,10 +130,10 @@
             // 
             // textBox_fuel_per_lap
             // 
-            textBox_fuel_per_lap.Location = new Point(56, 155);
+            textBox_fuel_per_lap.Location = new Point(103, 142);
             textBox_fuel_per_lap.MaxLength = 4;
             textBox_fuel_per_lap.Name = "textBox_fuel_per_lap";
-            textBox_fuel_per_lap.Size = new Size(56, 23);
+            textBox_fuel_per_lap.Size = new Size(55, 23);
             textBox_fuel_per_lap.TabIndex = 18;
             textBox_fuel_per_lap.Text = "0.0";
             textBox_fuel_per_lap.TextAlign = HorizontalAlignment.Center;
@@ -135,7 +142,7 @@
             // label_lap_time_sec
             // 
             label_lap_time_sec.AutoSize = true;
-            label_lap_time_sec.Location = new Point(287, 52);
+            label_lap_time_sec.Location = new Point(285, 68);
             label_lap_time_sec.Name = "label_lap_time_sec";
             label_lap_time_sec.Size = new Size(28, 15);
             label_lap_time_sec.TabIndex = 17;
@@ -144,7 +151,7 @@
             // label_lap_time_min
             // 
             label_lap_time_min.AutoSize = true;
-            label_lap_time_min.Location = new Point(215, 52);
+            label_lap_time_min.Location = new Point(206, 68);
             label_lap_time_min.Name = "label_lap_time_min";
             label_lap_time_min.Size = new Size(28, 15);
             label_lap_time_min.TabIndex = 16;
@@ -152,10 +159,10 @@
             // 
             // textBox_lap_time_sec
             // 
-            textBox_lap_time_sec.Location = new Point(287, 70);
+            textBox_lap_time_sec.Location = new Point(313, 65);
             textBox_lap_time_sec.MaxLength = 6;
             textBox_lap_time_sec.Name = "textBox_lap_time_sec";
-            textBox_lap_time_sec.Size = new Size(78, 23);
+            textBox_lap_time_sec.Size = new Size(73, 23);
             textBox_lap_time_sec.TabIndex = 15;
             textBox_lap_time_sec.Text = "0.000";
             textBox_lap_time_sec.TextAlign = HorizontalAlignment.Center;
@@ -163,10 +170,10 @@
             // 
             // textBox_lap_time_min
             // 
-            textBox_lap_time_min.Location = new Point(215, 70);
+            textBox_lap_time_min.Location = new Point(232, 65);
             textBox_lap_time_min.MaxLength = 1;
             textBox_lap_time_min.Name = "textBox_lap_time_min";
-            textBox_lap_time_min.Size = new Size(50, 23);
+            textBox_lap_time_min.Size = new Size(46, 23);
             textBox_lap_time_min.TabIndex = 14;
             textBox_lap_time_min.Text = "0";
             textBox_lap_time_min.TextAlign = HorizontalAlignment.Center;
@@ -175,7 +182,7 @@
             // label_race_min
             // 
             label_race_min.AutoSize = true;
-            label_race_min.Location = new Point(102, 52);
+            label_race_min.Location = new Point(103, 68);
             label_race_min.Name = "label_race_min";
             label_race_min.Size = new Size(28, 15);
             label_race_min.TabIndex = 13;
@@ -184,7 +191,7 @@
             // label_race_h
             // 
             label_race_h.AutoSize = true;
-            label_race_h.Location = new Point(10, 52);
+            label_race_h.Location = new Point(10, 68);
             label_race_h.Name = "label_race_h";
             label_race_h.Size = new Size(14, 15);
             label_race_h.TabIndex = 12;
@@ -192,7 +199,7 @@
             // 
             // textBox_race_min
             // 
-            textBox_race_min.Location = new Point(105, 70);
+            textBox_race_min.Location = new Point(135, 65);
             textBox_race_min.MaxLength = 2;
             textBox_race_min.Name = "textBox_race_min";
             textBox_race_min.Size = new Size(55, 23);
@@ -203,7 +210,7 @@
             // 
             // textBox_race_h
             // 
-            textBox_race_h.Location = new Point(10, 70);
+            textBox_race_h.Location = new Point(27, 65);
             textBox_race_h.MaxLength = 2;
             textBox_race_h.Name = "textBox_race_h";
             textBox_race_h.Size = new Size(55, 23);
@@ -216,9 +223,9 @@
             // 
             label_formation.BackColor = Color.Silver;
             label_formation.BorderStyle = BorderStyle.FixedSingle;
-            label_formation.Location = new Point(215, 120);
+            label_formation.Location = new Point(206, 107);
             label_formation.Name = "label_formation";
-            label_formation.Size = new Size(150, 17);
+            label_formation.Size = new Size(180, 17);
             label_formation.TabIndex = 9;
             label_formation.Text = "Formation lap";
             label_formation.TextAlign = ContentAlignment.MiddleCenter;
@@ -227,9 +234,9 @@
             // 
             label_fuel_per_lap.BackColor = Color.Silver;
             label_fuel_per_lap.BorderStyle = BorderStyle.FixedSingle;
-            label_fuel_per_lap.Location = new Point(10, 120);
+            label_fuel_per_lap.Location = new Point(10, 107);
             label_fuel_per_lap.Name = "label_fuel_per_lap";
-            label_fuel_per_lap.Size = new Size(150, 17);
+            label_fuel_per_lap.Size = new Size(180, 17);
             label_fuel_per_lap.TabIndex = 8;
             label_fuel_per_lap.Text = "Fuel per lap";
             label_fuel_per_lap.TextAlign = ContentAlignment.MiddleCenter;
@@ -238,9 +245,9 @@
             // 
             label_lap_time.BackColor = Color.Silver;
             label_lap_time.BorderStyle = BorderStyle.FixedSingle;
-            label_lap_time.Location = new Point(215, 33);
+            label_lap_time.Location = new Point(206, 33);
             label_lap_time.Name = "label_lap_time";
-            label_lap_time.Size = new Size(150, 19);
+            label_lap_time.Size = new Size(180, 19);
             label_lap_time.TabIndex = 7;
             label_lap_time.Text = "Lap time";
             label_lap_time.TextAlign = ContentAlignment.MiddleCenter;
@@ -251,7 +258,7 @@
             label_race_duration.BorderStyle = BorderStyle.FixedSingle;
             label_race_duration.Location = new Point(10, 33);
             label_race_duration.Name = "label_race_duration";
-            label_race_duration.Size = new Size(150, 19);
+            label_race_duration.Size = new Size(180, 19);
             label_race_duration.TabIndex = 6;
             label_race_duration.Text = "Race Duration";
             label_race_duration.TextAlign = ContentAlignment.MiddleCenter;
@@ -276,32 +283,57 @@
             splitContainer_input_result.Panel2.Controls.Add(label_pit_stops);
             splitContainer_input_result.Panel2.Controls.Add(tableLayoutPanel_duration_laps_result);
             splitContainer_input_result.Panel2.Controls.Add(table_fuel_results);
-            splitContainer_input_result.Size = new Size(880, 551);
-            splitContainer_input_result.SplitterDistance = 410;
+            splitContainer_input_result.Size = new Size(910, 560);
+            splitContainer_input_result.SplitterDistance = 435;
             splitContainer_input_result.TabIndex = 8;
             // 
             // groupBox_pit
             // 
             groupBox_pit.BackColor = Color.Gainsboro;
+            groupBox_pit.Controls.Add(checkBox_max_stint);
             groupBox_pit.Controls.Add(comboBox_pit_options);
+            groupBox_pit.Controls.Add(textBox_max_stint);
             groupBox_pit.Controls.Add(label_pits_count);
+            groupBox_pit.Controls.Add(label_max_stint_min);
             groupBox_pit.Controls.Add(numericUpDown_pits);
+            groupBox_pit.Controls.Add(label_max_stint);
             groupBox_pit.Controls.Add(label_pits_options);
             groupBox_pit.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            groupBox_pit.Location = new Point(18, 403);
+            groupBox_pit.Location = new Point(18, 388);
             groupBox_pit.Name = "groupBox_pit";
-            groupBox_pit.Size = new Size(371, 94);
+            groupBox_pit.Size = new Size(397, 121);
             groupBox_pit.TabIndex = 13;
             groupBox_pit.TabStop = false;
             groupBox_pit.Text = "Pit stops";
             // 
+            // checkBox_max_stint
+            // 
+            checkBox_max_stint.AutoSize = true;
+            checkBox_max_stint.Location = new Point(254, 80);
+            checkBox_max_stint.Name = "checkBox_max_stint";
+            checkBox_max_stint.Size = new Size(15, 14);
+            checkBox_max_stint.TabIndex = 0;
+            checkBox_max_stint.UseVisualStyleBackColor = true;
+            checkBox_max_stint.Click += checkBox_max_stint_Click;
+            // 
             // comboBox_pit_options
             // 
             comboBox_pit_options.FormattingEnabled = true;
-            comboBox_pit_options.Location = new Point(215, 53);
+            comboBox_pit_options.Location = new Point(90, 76);
             comboBox_pit_options.Name = "comboBox_pit_options";
-            comboBox_pit_options.Size = new Size(150, 23);
+            comboBox_pit_options.Size = new Size(155, 23);
             comboBox_pit_options.TabIndex = 12;
+            // 
+            // textBox_max_stint
+            // 
+            textBox_max_stint.Enabled = false;
+            textBox_max_stint.Location = new Point(272, 76);
+            textBox_max_stint.MaxLength = 2;
+            textBox_max_stint.Name = "textBox_max_stint";
+            textBox_max_stint.Size = new Size(114, 23);
+            textBox_max_stint.TabIndex = 17;
+            textBox_max_stint.Text = "0";
+            textBox_max_stint.TextAlign = HorizontalAlignment.Center;
             // 
             // label_pits_count
             // 
@@ -309,29 +341,49 @@
             label_pits_count.BorderStyle = BorderStyle.FixedSingle;
             label_pits_count.Location = new Point(10, 29);
             label_pits_count.Name = "label_pits_count";
-            label_pits_count.Size = new Size(150, 17);
+            label_pits_count.Size = new Size(74, 38);
             label_pits_count.TabIndex = 10;
             label_pits_count.Text = "Number of pit stops";
             label_pits_count.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label_max_stint_min
+            // 
+            label_max_stint_min.AutoSize = true;
+            label_max_stint_min.Location = new Point(272, 58);
+            label_max_stint_min.Name = "label_max_stint_min";
+            label_max_stint_min.Size = new Size(28, 15);
+            label_max_stint_min.TabIndex = 18;
+            label_max_stint_min.Text = "Min";
+            // 
             // numericUpDown_pits
             // 
-            numericUpDown_pits.Location = new Point(10, 53);
+            numericUpDown_pits.Location = new Point(10, 77);
             numericUpDown_pits.Name = "numericUpDown_pits";
-            numericUpDown_pits.Size = new Size(150, 23);
+            numericUpDown_pits.Size = new Size(74, 23);
             numericUpDown_pits.TabIndex = 11;
             numericUpDown_pits.TextAlign = HorizontalAlignment.Center;
             numericUpDown_pits.KeyPress += numericUpDown_pits_KeyPress;
+            // 
+            // label_max_stint
+            // 
+            label_max_stint.BackColor = Color.Silver;
+            label_max_stint.BorderStyle = BorderStyle.FixedSingle;
+            label_max_stint.Location = new Point(251, 29);
+            label_max_stint.Name = "label_max_stint";
+            label_max_stint.Size = new Size(135, 20);
+            label_max_stint.TabIndex = 19;
+            label_max_stint.Text = "Max stint duration";
+            label_max_stint.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label_pits_options
             // 
             label_pits_options.BackColor = Color.Silver;
             label_pits_options.BorderStyle = BorderStyle.FixedSingle;
-            label_pits_options.Location = new Point(215, 27);
+            label_pits_options.Location = new Point(90, 29);
             label_pits_options.Name = "label_pits_options";
-            label_pits_options.Size = new Size(150, 19);
+            label_pits_options.Size = new Size(155, 38);
             label_pits_options.TabIndex = 10;
-            label_pits_options.Text = "Pit stops options";
+            label_pits_options.Text = " Pit stops  options";
             label_pits_options.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // groupBox_variables
@@ -355,7 +407,7 @@
             groupBox_variables.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
             groupBox_variables.Location = new Point(18, 188);
             groupBox_variables.Name = "groupBox_variables";
-            groupBox_variables.Size = new Size(371, 195);
+            groupBox_variables.Size = new Size(397, 183);
             groupBox_variables.TabIndex = 12;
             groupBox_variables.TabStop = false;
             groupBox_variables.Text = "Variables";
@@ -374,7 +426,7 @@
             groupBox_car_track.Font = new Font("Consolas", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             groupBox_car_track.Location = new Point(18, 14);
             groupBox_car_track.Name = "groupBox_car_track";
-            groupBox_car_track.Size = new Size(371, 155);
+            groupBox_car_track.Size = new Size(397, 155);
             groupBox_car_track.TabIndex = 11;
             groupBox_car_track.TabStop = false;
             groupBox_car_track.Text = "Car and track";
@@ -383,9 +435,9 @@
             // 
             label_choose_track.BackColor = Color.Silver;
             label_choose_track.BorderStyle = BorderStyle.FixedSingle;
-            label_choose_track.Location = new Point(5, 87);
+            label_choose_track.Location = new Point(10, 85);
             label_choose_track.Name = "label_choose_track";
-            label_choose_track.Size = new Size(360, 19);
+            label_choose_track.Size = new Size(376, 19);
             label_choose_track.TabIndex = 4;
             label_choose_track.Text = "Choose the track";
             label_choose_track.TextAlign = ContentAlignment.MiddleCenter;
@@ -393,7 +445,7 @@
             // comboBox_class
             // 
             comboBox_class.FormattingEnabled = true;
-            comboBox_class.Location = new Point(5, 56);
+            comboBox_class.Location = new Point(10, 54);
             comboBox_class.Name = "comboBox_class";
             comboBox_class.Size = new Size(72, 23);
             comboBox_class.TabIndex = 2;
@@ -403,9 +455,9 @@
             // comboBox_track
             // 
             comboBox_track.FormattingEnabled = true;
-            comboBox_track.Location = new Point(5, 110);
+            comboBox_track.Location = new Point(10, 108);
             comboBox_track.Name = "comboBox_track";
-            comboBox_track.Size = new Size(360, 23);
+            comboBox_track.Size = new Size(376, 23);
             comboBox_track.TabIndex = 5;
             comboBox_track.Text = "TRACK";
             comboBox_track.SelectedIndexChanged += comboBox_track_SelectedIndexChanged;
@@ -415,7 +467,7 @@
             label_choose_class.AutoSize = true;
             label_choose_class.BackColor = Color.Silver;
             label_choose_class.BorderStyle = BorderStyle.FixedSingle;
-            label_choose_class.Location = new Point(5, 34);
+            label_choose_class.Location = new Point(10, 32);
             label_choose_class.Name = "label_choose_class";
             label_choose_class.Size = new Size(72, 17);
             label_choose_class.TabIndex = 0;
@@ -426,9 +478,9 @@
             // 
             label_choose_car.BackColor = Color.Silver;
             label_choose_car.BorderStyle = BorderStyle.FixedSingle;
-            label_choose_car.Location = new Point(87, 33);
+            label_choose_car.Location = new Point(92, 31);
             label_choose_car.Name = "label_choose_car";
-            label_choose_car.Size = new Size(278, 17);
+            label_choose_car.Size = new Size(294, 17);
             label_choose_car.TabIndex = 1;
             label_choose_car.Text = "Choose the car";
             label_choose_car.TextAlign = ContentAlignment.MiddleCenter;
@@ -436,9 +488,9 @@
             // comboBox_car
             // 
             comboBox_car.FormattingEnabled = true;
-            comboBox_car.Location = new Point(87, 54);
+            comboBox_car.Location = new Point(92, 52);
             comboBox_car.Name = "comboBox_car";
-            comboBox_car.Size = new Size(278, 23);
+            comboBox_car.Size = new Size(294, 23);
             comboBox_car.TabIndex = 3;
             comboBox_car.Text = "CAR";
             comboBox_car.SelectedIndexChanged += comboBox_car_SelectedIndexChanged;
@@ -447,9 +499,9 @@
             // 
             button_calculate.BackColor = SystemColors.ActiveCaption;
             button_calculate.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            button_calculate.Location = new Point(18, 503);
+            button_calculate.Location = new Point(18, 515);
             button_calculate.Name = "button_calculate";
-            button_calculate.Size = new Size(371, 31);
+            button_calculate.Size = new Size(397, 31);
             button_calculate.TabIndex = 10;
             button_calculate.Text = "Calculate";
             button_calculate.UseVisualStyleBackColor = false;
@@ -459,9 +511,9 @@
             // 
             panel_pit_stop_strategy.AutoScroll = true;
             panel_pit_stop_strategy.BorderStyle = BorderStyle.FixedSingle;
-            panel_pit_stop_strategy.Location = new Point(15, 209);
+            panel_pit_stop_strategy.Location = new Point(14, 209);
             panel_pit_stop_strategy.Name = "panel_pit_stop_strategy";
-            panel_pit_stop_strategy.Size = new Size(435, 325);
+            panel_pit_stop_strategy.Size = new Size(435, 337);
             panel_pit_stop_strategy.TabIndex = 8;
             // 
             // label_pit_stops
@@ -469,7 +521,7 @@
             label_pit_stops.BackColor = Color.Silver;
             label_pit_stops.BorderStyle = BorderStyle.FixedSingle;
             label_pit_stops.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            label_pit_stops.Location = new Point(15, 188);
+            label_pit_stops.Location = new Point(14, 188);
             label_pit_stops.Name = "label_pit_stops";
             label_pit_stops.Size = new Size(435, 17);
             label_pit_stops.TabIndex = 7;
@@ -490,7 +542,7 @@
             tableLayoutPanel_duration_laps_result.Controls.Add(label_laps_number, 2, 0);
             tableLayoutPanel_duration_laps_result.Controls.Add(label_overall_result, 1, 0);
             tableLayoutPanel_duration_laps_result.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            tableLayoutPanel_duration_laps_result.Location = new Point(15, 14);
+            tableLayoutPanel_duration_laps_result.Location = new Point(14, 14);
             tableLayoutPanel_duration_laps_result.Name = "tableLayoutPanel_duration_laps_result";
             tableLayoutPanel_duration_laps_result.RowCount = 1;
             tableLayoutPanel_duration_laps_result.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
@@ -563,7 +615,7 @@
             table_fuel_results.Controls.Add(label_lap_time_result2, 1, 0);
             table_fuel_results.Controls.Add(label_fuel_for_the_race, 2, 0);
             table_fuel_results.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            table_fuel_results.Location = new Point(15, 68);
+            table_fuel_results.Location = new Point(14, 68);
             table_fuel_results.Name = "table_fuel_results";
             table_fuel_results.RowCount = 3;
             table_fuel_results.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
@@ -712,7 +764,7 @@
             label_input_data.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
             label_input_data.Location = new Point(12, 36);
             label_input_data.Name = "label_input_data";
-            label_input_data.Size = new Size(410, 19);
+            label_input_data.Size = new Size(434, 19);
             label_input_data.TabIndex = 9;
             label_input_data.Text = "Input data";
             label_input_data.TextAlign = ContentAlignment.MiddleCenter;
@@ -722,9 +774,9 @@
             label_results.BackColor = SystemColors.ActiveBorder;
             label_results.BorderStyle = BorderStyle.FixedSingle;
             label_results.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            label_results.Location = new Point(426, 36);
+            label_results.Location = new Point(451, 36);
             label_results.Name = "label_results";
-            label_results.Size = new Size(466, 19);
+            label_results.Size = new Size(471, 19);
             label_results.TabIndex = 10;
             label_results.Text = "Results";
             label_results.TextAlign = ContentAlignment.MiddleCenter;
@@ -764,49 +816,65 @@
             // 
             menuStrip1.Location = new Point(0, 24);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(904, 24);
+            menuStrip1.Size = new Size(934, 24);
             menuStrip1.TabIndex = 11;
             menuStrip1.Text = "menuStrip1";
             // 
             // menuStrip2
             // 
-            menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, helpToolStripMenuItem });
+            menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem_menu, ToolStripMenuItem_help, ToolStripMenuItem_github });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
-            menuStrip2.Size = new Size(904, 24);
+            menuStrip2.Size = new Size(934, 24);
             menuStrip2.TabIndex = 12;
             menuStrip2.Text = "menuStrip2";
             // 
-            // toolStripMenuItem1
+            // toolStripMenuItem_menu
             // 
-            toolStripMenuItem1.BackColor = Color.Gainsboro;
-            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
-            toolStripMenuItem1.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(47, 20);
-            toolStripMenuItem1.Text = "Menu";
+            toolStripMenuItem_menu.BackColor = Color.Gainsboro;
+            toolStripMenuItem_menu.DropDownItems.AddRange(new ToolStripItem[] { resetDataToolStripMenuItem, exitToolStripMenuItem });
+            toolStripMenuItem_menu.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            toolStripMenuItem_menu.Name = "toolStripMenuItem_menu";
+            toolStripMenuItem_menu.Size = new Size(47, 20);
+            toolStripMenuItem_menu.Text = "Menu";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(102, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // helpToolStripMenuItem
+            // ToolStripMenuItem_help
             // 
-            helpToolStripMenuItem.BackColor = Color.Gainsboro;
-            helpToolStripMenuItem.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(47, 20);
-            helpToolStripMenuItem.Text = "Help";
-            helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
+            ToolStripMenuItem_help.BackColor = Color.Gainsboro;
+            ToolStripMenuItem_help.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            ToolStripMenuItem_help.Name = "ToolStripMenuItem_help";
+            ToolStripMenuItem_help.Size = new Size(47, 20);
+            ToolStripMenuItem_help.Text = "Help";
+            ToolStripMenuItem_help.Click += helpToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItem_github
+            // 
+            ToolStripMenuItem_github.BackColor = Color.Gainsboro;
+            ToolStripMenuItem_github.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            ToolStripMenuItem_github.Name = "ToolStripMenuItem_github";
+            ToolStripMenuItem_github.Size = new Size(61, 20);
+            ToolStripMenuItem_github.Text = "GitHub";
+            ToolStripMenuItem_github.Click += gitHubToolStripMenuItem_Click;
+            // 
+            // resetDataToolStripMenuItem
+            // 
+            resetDataToolStripMenuItem.Name = "resetDataToolStripMenuItem";
+            resetDataToolStripMenuItem.Size = new Size(180, 22);
+            resetDataToolStripMenuItem.Text = "Reset data";
+            resetDataToolStripMenuItem.Click += resetDataToolStripMenuItem_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(904, 623);
+            ClientSize = new Size(934, 628);
             Controls.Add(label_results);
             Controls.Add(label_input_data);
             Controls.Add(splitContainer_input_result);
@@ -824,6 +892,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).EndInit();
             splitContainer_input_result.ResumeLayout(false);
             groupBox_pit.ResumeLayout(false);
+            groupBox_pit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_pits).EndInit();
             groupBox_variables.ResumeLayout(false);
             groupBox_variables.PerformLayout();
@@ -900,8 +969,14 @@
         private Label label_lap_time_result2;
         private MenuStrip menuStrip1;
         private MenuStrip menuStrip2;
-        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem_menu;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem ToolStripMenuItem_help;
+        private TextBox textBox_max_stint;
+        private Label label_max_stint_min;
+        private Label label_max_stint;
+        private CheckBox checkBox_max_stint;
+        private ToolStripMenuItem ToolStripMenuItem_github;
+        private ToolStripMenuItem resetDataToolStripMenuItem;
     }
 }

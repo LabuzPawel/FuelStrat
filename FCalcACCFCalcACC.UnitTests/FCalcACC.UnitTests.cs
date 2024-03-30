@@ -63,7 +63,7 @@ namespace FCalcACC.Tests
             form.LoadCars(comboBox_test_car, "GT2");
             var gt2_cars = form.all_cars.Where(car => car.class_name.Contains("GT2"));
             Assert.AreEqual(gt2_cars.Count(), comboBox_test_car.Items.Count);
-            Assert.AreEqual(comboBox_test_car.Items[0], "Audi R8 LMS GT2");
+            Assert.AreEqual(comboBox_test_car.Items[0], "Audi R8 LMS GT2 2021");
 
             form.LoadCars(comboBox_test_car, "GTC");
             var gtc_cars = form.all_cars.Where(car => car.class_name.Contains("GTC"));

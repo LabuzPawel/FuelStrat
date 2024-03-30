@@ -34,7 +34,7 @@
             // 
             // richTextBox_help
             // 
-            richTextBox_help.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            richTextBox_help.Font = new Font("Consolas", 12F);
             richTextBox_help.Location = new Point(12, 12);
             richTextBox_help.Name = "richTextBox_help";
             richTextBox_help.Size = new Size(760, 500);

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 
@@ -81,8 +82,8 @@ namespace FCalcACC
                 using (Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name))
                 using (StreamReader reader = new StreamReader(stream))
                 {
-                     string tracks_embedded = reader.ReadToEnd();
-                     all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
+                    string tracks_embedded = reader.ReadToEnd();
+                    all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
                 }
             }
             else
@@ -195,11 +196,6 @@ namespace FCalcACC
 
         public void CalculateTimeLostInPits(int number_of_pits, ComboBox comboBoxPitOptions, string selected_track)
         {
-            if (number_of_pits == 0)
-            {
-                comboBoxPitOptions.SelectedIndex = -1;
-            }
-
             if (number_of_pits > 0 && comboBoxPitOptions.SelectedIndex == -1)
             {
                 comboBoxPitOptions.SelectedIndex = 3;
@@ -419,7 +415,8 @@ namespace FCalcACC
         }
 
         public void CalculatePitStops(Panel panelPitStopStrategy, Label labelFuelRaceResult, NumericUpDown numericUpDownPits,
-            ComboBox comboBoxPitOptions, out string labelFuelStartResultText, out List<int> fuelPerStint, out List<int> lapsPitStint)
+            ComboBox comboBoxPitOptions, out string labelFuelStartResultText, out List<int> fuelPerStint,
+            out List<int> lapsPitStint)
         {
             panelPitStopStrategy.Controls.Clear();
 
@@ -460,7 +457,54 @@ namespace FCalcACC
 
             fuelPerStint = new List<int>();
             lapsPitStint = new List<int>();
-            int tank_capacity = GetTankCapacity(comboBox_car.Text, comboBox_track.Text);
+            labelFuelStartResultText = "";
+
+            int tank_capacity;
+
+            if (comboBox_car.Text == "CAR")
+            {
+                tank_capacity = 999999;
+            }
+            else
+            {
+                tank_capacity = GetTankCapacity(comboBox_car.Text, comboBox_track.Text);
+            }
+
+            if (comboBoxPitOptions.Text != "" && checkBox_max_stint.Checked == false &&
+                number_of_pits == 0)
+            {
+                if (comboBoxPitOptions.Text == "1L refuel" || comboBoxPitOptions.Text == "Tires only")
+                {
+                    number_of_pits = 1;
+                    numericUpDownPits.Value = number_of_pits;
+                    button_calculate_Click(button_calculate, EventArgs.Empty);
+                    return;
+                }
+                else if (comboBox_car.Text != "CAR")
+                {
+                    number_of_pits = fuel_for_race_round_up / tank_capacity;
+                    numericUpDownPits.Value = number_of_pits;
+                    button_calculate_Click(button_calculate, EventArgs.Empty);
+                    return;
+                }
+            }
+            else if (comboBoxPitOptions.SelectedIndex != -1 && checkBox_max_stint.Checked == true &&
+                number_of_pits == 0)
+            {
+                number_of_pits = race_duration_secs / (int.Parse(textBox_max_stint.Text) * 60);
+                numericUpDownPits.Value = number_of_pits;
+                button_calculate_Click(button_calculate, EventArgs.Empty);
+                return;
+            }
+
+            if ((number_of_pits + 1) * (int.Parse(textBox_max_stint.Text) * 60) < race_duration_secs &&
+                checkBox_max_stint.Checked == true)
+            {
+                number_of_pits = race_duration_secs / (int.Parse(textBox_max_stint.Text) * 60);
+                numericUpDownPits.Value = number_of_pits;
+                button_calculate_Click(button_calculate, EventArgs.Empty);
+                return;
+            }
 
             if (number_of_pits == 0)
             {
@@ -497,7 +541,14 @@ namespace FCalcACC
 
                 if (fuel_first_stint > tank_capacity)
                 {
-                    laps_per_stint = (int)(fuel_first_stint / fuel_per_lap);
+                    int laps_per_stint_tank = (int)(fuel_first_stint / fuel_per_lap);
+                    laps_per_stint = laps_per_stint_tank;
+                }
+
+                if (checkBox_max_stint.Checked == true && textBox_max_stint.Text != "0")
+                {
+                    int laps_per_stint_max = (int)((int.Parse(textBox_max_stint.Text)) * 60 / lap_time_secs);
+                    laps_per_stint = laps_per_stint_max;
                 }
 
                 List<int> fuel_1L_adjusted = new List<int>();
@@ -511,11 +562,11 @@ namespace FCalcACC
                 }
 
                 int pit_stops_left = number_of_pits - full_tank_count;
-                int fuel_1L_adjusted_remaining = fuel_for_race_round_up - full_tank_sum - 
+                int fuel_1L_adjusted_remaining = fuel_for_race_round_up - full_tank_sum -
                     (pit_stops_left);
 
                 fuel_1L_adjusted.Add(fuel_1L_adjusted_remaining);
-                
+
                 for (int i = pit_stops_left; i > 0; i--)
                 {
                     fuel_1L_adjusted.Add(1);
@@ -727,10 +778,10 @@ namespace FCalcACC
 
                             Label label_warning = new Label();
                             label_warning.Name = name_for_refuel_result_label + "_warning";
-                            label_warning.Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() + 
-                                " L) is greater than sum of full tank pit stops (" + full_tank_sum.ToString() +" L). " +
+                            label_warning.Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
+                                " L) is greater than sum of full tank pit stops (" + full_tank_sum.ToString() + " L). " +
                                 "\n\nConsider changing pit option to refuel and increase number of pit stops or " +
-                                "fuel saving (" + (fuel_for_race_round_up - full_tank_sum).ToString() + " L) during the race." ;
+                                "fuel saving (" + (fuel_for_race_round_up - full_tank_sum).ToString() + " L) during the race.";
                             label_warning.Location = new Point(16, 30);
                             label_warning.Size = new Size(350, 90);
                             label_warning.ForeColor = Color.Black;
@@ -769,7 +820,7 @@ namespace FCalcACC
                         number_of_laps_remaining -= laps_per_stint;
                         lapsPitStint.Add((int)Math.Ceiling(current_laps));
 
-                        double current_part_fuel = Math.Min(fuel_remaining, 
+                        double current_part_fuel = Math.Min(fuel_remaining,
                             Math.Min((fuel_remaining / stints_left), tank_capacity));
                         int fuel_for_this_stint = (int)Math.Ceiling(current_part_fuel);
                         fuel_remaining -= fuel_for_this_stint;
@@ -874,13 +925,12 @@ namespace FCalcACC
             if (File.Exists("FCalcACC_data.json") == false)
             {
                 SaveData();
+                MessageBox.Show("'FCalcACC_data.json' created in application directory");
             }
             LoadCarClasses(comboBox_class);
             LoadTracks(comboBox_track);
             LoadPitOptions(comboBox_pit_options, PIT_OPTIONS);
 
-            listBox_formation.Items.Add("Full");
-            listBox_formation.Items.Add("Short");
             listBox_formation.SelectedIndex = 0;
         }
 
@@ -909,7 +959,8 @@ namespace FCalcACC
                     label_plus1_fuel_result, label_minus1_fuel_result);
             }
             CalculatePitStops(panel_pit_stop_strategy, label_fuel_race_result, numericUpDown_pits, comboBox_pit_options,
-                out string labelFuelStartResultTextForTesting, out List<int> fuelPerStintForTesting, out List<int> lapsPitStintForTesting);
+                out string labelFuelStartResultTextForTesting, out List<int> fuelPerStintForTesting,
+                out List<int> lapsPitStintForTesting);
             SaveData();
         }
 
@@ -932,6 +983,40 @@ namespace FCalcACC
         {
             Form2 form2 = new Form2();
             form2.ShowDialog();
+        }
+
+        private void checkBox_max_stint_Click(object sender, EventArgs e)
+        {
+            if (checkBox_max_stint.Checked == true)
+            {
+                textBox_max_stint.Enabled = true;
+            }
+            else if (checkBox_max_stint.Checked == false)
+            {
+                textBox_max_stint.Enabled = false;
+                textBox_max_stint.Text = "0";
+            }
+        }
+
+        private void gitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string github_url = "https://github.com/LabuzPawel/FCalcACC";
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = github_url,
+                UseShellExecute = true
+            });
+        }
+
+        private void resetDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Would you like to reset the FCalcACC_data.json?",
+                        "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                File.Delete("FCalcACC_data.json");
+                LoadCarTrackObjects();
+            }
         }
     }
 }

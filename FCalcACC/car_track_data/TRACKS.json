@@ -550,8 +550,8 @@
     "car_track_fuel": [
       {
         "car_name": "Aston Martin V12 Vantage GT3 2013",
-        "fuel_per_lap": "132",
-        "tank_capacity": "3.45"
+        "fuel_per_lap": "3.45",
+        "tank_capacity": "132"
       },
       {
         "car_name": "Aston Martin V8 Vantage GT3 2019",
@@ -1920,13 +1920,13 @@
       },
       {
         "car_name": "Audi R8 LMS Evo GT3 2019",
-        "fuel_per_lap": "113",
-        "tank_capacity": "3.0"
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "113"
       },
       {
         "car_name": "Audi R8 LMS Evo II GT3 2022",
-        "fuel_per_lap": "113",
-        "tank_capacity": "3.0"
+        "fuel_per_lap": "3.0",
+        "tank_capacity": "113"
       },
       {
         "car_name": "Audi R8 LMS GT3 2015",
@@ -3123,7 +3123,7 @@
       },
       {
         "car_name": "Nissan GTR Nismo GT3 2018",
-        "fuel_per_lap": "4.3.95",
+        "fuel_per_lap": "3.95",
         "tank_capacity": "132"
       },
       {
@@ -3855,7 +3855,7 @@
       {
         "car_name": "Bentley Continental GT3 2018",
         "fuel_per_lap": "3.25",
-        "tank_capacity": "1120"
+        "tank_capacity": "120"
       },
       {
         "car_name": "Emil Frey Jaguar GT3 2012",
@@ -3939,7 +3939,7 @@
       },
       {
         "car_name": "Nissan GTR Nismo GT3 2018",
-        "fuel_per_lap": "3.450",
+        "fuel_per_lap": "3.45",
         "tank_capacity": "120"
       },
       {
@@ -4221,8 +4221,8 @@
       },
       {
         "car_name": "Porsche 911 II GT3 R 2019",
-        "fuel_per_lap": "120",
-        "tank_capacity": "2.73"
+        "fuel_per_lap": "2.73",
+        "tank_capacity": "120"
       },
       {
         "car_name": "Porsche 992 GT3 R 2023",
@@ -4448,8 +4448,8 @@
       },
       {
         "car_name": "Lexus RC F GT3 2016",
-        "fuel_per_lap": "120",
-        "tank_capacity": "3.44"
+        "fuel_per_lap": "3.44",
+        "tank_capacity": "120"
       },
       {
         "car_name": "McLaren 650S GT3 2015",
@@ -4875,7 +4875,7 @@
       },
       {
         "car_name": "Lamborghini Huracan Super Trofeo Evo2 2021",
-        "fuel_per_lap": "3.00",
+        "fuel_per_lap": "3.0",
         "tank_capacity": "120"
       },
       {

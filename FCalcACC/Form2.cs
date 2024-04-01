@@ -15,6 +15,7 @@ namespace FCalcACC
         {
             this.Close();
         }
+
         public void LoadHelpText(out string helpText)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();

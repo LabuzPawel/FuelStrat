@@ -91,10 +91,10 @@
             menuStrip1 = new MenuStrip();
             menuStrip2 = new MenuStrip();
             toolStripMenuItem_menu = new ToolStripMenuItem();
+            resetDataToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem_help = new ToolStripMenuItem();
             ToolStripMenuItem_github = new ToolStripMenuItem();
-            resetDataToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -334,6 +334,7 @@
             textBox_max_stint.TabIndex = 17;
             textBox_max_stint.Text = "0";
             textBox_max_stint.TextAlign = HorizontalAlignment.Center;
+            textBox_max_stint.KeyPress += textBox_max_stint_KeyPress;
             // 
             // label_pits_count
             // 
@@ -838,10 +839,17 @@
             toolStripMenuItem_menu.Size = new Size(47, 20);
             toolStripMenuItem_menu.Text = "Menu";
             // 
+            // resetDataToolStripMenuItem
+            // 
+            resetDataToolStripMenuItem.Name = "resetDataToolStripMenuItem";
+            resetDataToolStripMenuItem.Size = new Size(144, 22);
+            resetDataToolStripMenuItem.Text = "Reset data";
+            resetDataToolStripMenuItem.Click += resetDataToolStripMenuItem_Click;
+            // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(144, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -863,13 +871,6 @@
             ToolStripMenuItem_github.Text = "GitHub";
             ToolStripMenuItem_github.Click += gitHubToolStripMenuItem_Click;
             // 
-            // resetDataToolStripMenuItem
-            // 
-            resetDataToolStripMenuItem.Name = "resetDataToolStripMenuItem";
-            resetDataToolStripMenuItem.Size = new Size(180, 22);
-            resetDataToolStripMenuItem.Text = "Reset data";
-            resetDataToolStripMenuItem.Click += resetDataToolStripMenuItem_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -887,6 +888,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FCalcACC - Fuel and strategy for ACC";
             Load += Form1_Load;
+            Shown += Form1_Shown;
             splitContainer_input_result.Panel1.ResumeLayout(false);
             splitContainer_input_result.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).EndInit();

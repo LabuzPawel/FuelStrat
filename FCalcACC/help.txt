@@ -17,16 +17,17 @@ Car and track are not required for calculation.
 Car class has to be selected to get a list of cars in next box.
 Car needs to be selected to store a fuel per lap data.
 
-If no track is being selected then time lost during pit stop is set to default. Default pit stop time is set to 57 seconds which is roughly a median from all tracks. Selecting track will give more accurate results.
+If no track is selected then time lost during pit stop is set to default. Default pit stop time is set to 57 seconds which is roughly a median from all tracks. Selecting track will give more accurate results.
 
-Variables section is required for calculation. Formation lap is set to Full by default. Lap time should be an average time.
+Variables section is required for calculation. Formation lap is set to 'Full' by default. Lap time should be an average time.
 
 Pit stop section is optional. If no pit option is selected and number of pits is more than 0, then tires + refuel is selected as default.
-If maximum stint duration is selected along with pit option, require number of pits will be calculated automatically. 
+If maximum stint duration and/or pit option are selected, require number of pits will be calculated automatically. 
 If number of pits isnt enough to cover the race with certain maximum stint duration, then additional pit(s) will be added.
 
 3. RESULTS
 
 Row Lap time for +1 lap shows lap time that is needed for the race to have one more lap. If this threshold is reached during the race, there will be one more lap compared to lap time set in Variables section (row above).
 Row Lap time for -1 lap shows the opposite situation with race shorter by one lap.
+
 Pit stop panel will show a recommended pit stop strategy for the race, considering the selected pit stop option and the number of pit stops.

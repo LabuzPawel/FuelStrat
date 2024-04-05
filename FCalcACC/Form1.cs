@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
@@ -633,6 +634,7 @@ namespace FCalcACC
                 //'stint' is a number of laps between pit stops
 
                 dynamic_numericUpDowns.Clear();
+                new_list_of_laps_to_pit.Clear();
 
                 double current_laps = 0.0;
                 int stints_left = number_of_pits;
@@ -1036,6 +1038,7 @@ namespace FCalcACC
                         numericUpDown_laps_temp.Name = "numericUpDown_laps_stint" + stint.ToString();
                         numericUpDown_laps_temp.Dock = DockStyle.Fill;
                         numericUpDown_laps_temp.TextAlign = HorizontalAlignment.Center;
+                        //numericUpDown_laps_temp.Maximum = 999;
                         this.Controls.Add(numericUpDown_laps_temp);
                         dynamic_numericUpDowns.Add(numericUpDown_laps_temp);
 
@@ -1046,8 +1049,7 @@ namespace FCalcACC
                         label_refuel_temp.Text = "Refuel for Stint " + stint.ToString();
 
                         double current_part_laps = Math.Min(number_of_laps_remaining, laps_per_stint);
-                        current_laps += current_part_laps;
-                        
+                        current_laps += current_part_laps; 
 
                         if (newListOfLapsToPit.Count > 0)
                         {
@@ -1064,11 +1066,10 @@ namespace FCalcACC
 
                             sum_of_laps_from_prev_iterations += (int)current_laps;
                             numericUpDown_laps_temp.Value = newListOfLapsToPit[stint - 2];
-                            int test = 0;
                         }
                         else
                         {
-                            numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
+                            numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_part_laps));
                         }
                         
                         number_of_laps_remaining -= laps_per_stint;
@@ -1344,9 +1345,28 @@ namespace FCalcACC
         {
             //set a minimum and maximum for NumericUpDown
 
+            int tank_capacity_limit = 99999;
+            int tank_capacity_limit_start = 99999;
+            int max_stint_limit = 99999;
+
+            if (comboBox_car.Text != "CAR" && comboBox_track.Text != "TRACK")
+            {
+                int tank_capacity = GetTankCapacity(comboBox_car.Text, comboBox_track.Text);
+                tank_capacity_limit = (int)(tank_capacity / fuel_per_lap);
+                tank_capacity_limit_start = (int)((tank_capacity - formation_lap_fuel) / fuel_per_lap);
+            }
+            
+            if (checkBox_max_stint.Checked && textBox_max_stint.Text != "0")
+            {
+                int.TryParse(textBox_max_stint.Text, out int max_stint);
+                max_stint_limit = (int)((max_stint * 60) / lap_time_secs);
+            }
+
+            int max_laps_in_stint = Math.Min(tank_capacity_limit, max_stint_limit);
+            int max_laps_in_stint_start = Math.Min(tank_capacity_limit_start, max_stint_limit);
+
             //get updated list of laps when user wants to pit
 
-            new_list_of_laps_to_pit.Clear();
             foreach (NumericUpDown numericUpDown in dynamic_numericUpDowns)
             {
                 int numeric_value = Convert.ToInt32((numericUpDown).Value);
@@ -1355,14 +1375,31 @@ namespace FCalcACC
 
             //first pit stop cant be earlier than after lap 1 (min) and later than next pit stop or
             //2nd to last lap (max)
-            dynamic_numericUpDowns[0].Minimum = 1;
-            if (new_list_of_laps_to_pit.Count == 1)
+
+            if (new_list_of_laps_to_pit.Count > 1)
             {
-                dynamic_numericUpDowns[0].Maximum = number_of_laps - 1;
+                if (max_laps_in_stint < dynamic_numericUpDowns[1].Value - dynamic_numericUpDowns[0].Value)
+                {
+
+                    dynamic_numericUpDowns[0].Minimum = dynamic_numericUpDowns[1].Value - max_laps_in_stint;
+                }
+                else
+                {
+                    dynamic_numericUpDowns[0].Minimum = 1;
+                }
             }
             else
             {
-                dynamic_numericUpDowns[0].Maximum = new_list_of_laps_to_pit[1] - 1;
+                dynamic_numericUpDowns[0].Minimum = 1;
+            }
+
+            if (new_list_of_laps_to_pit.Count == 1)
+            {
+                dynamic_numericUpDowns[0].Maximum = Math.Min(number_of_laps - 1, max_laps_in_stint_start);
+            }
+            else
+            {
+                dynamic_numericUpDowns[0].Maximum = Math.Min(new_list_of_laps_to_pit[1] - 1, max_laps_in_stint_start);
             }
 
             //another pit stop thresholds are previous pit timing and next or 2nd to last lap
@@ -1371,6 +1408,7 @@ namespace FCalcACC
                 for (int i = 1; i < dynamic_numericUpDowns.Count; i++)
                 {
                     dynamic_numericUpDowns[i].Minimum = dynamic_numericUpDowns[i - 1].Value + 1;
+
                     if (i < dynamic_numericUpDowns.Count - 1)
                     {
                         dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i + 1].Value - 1;
@@ -1378,6 +1416,35 @@ namespace FCalcACC
                     else
                     {
                         dynamic_numericUpDowns[i].Maximum = number_of_laps - 1;
+                    }
+                }
+
+                for (int i = 1; i < dynamic_numericUpDowns.Count; i++)
+                {
+                    if (i > dynamic_numericUpDowns.Count - 1)
+                    {
+                        if (max_laps_in_stint > dynamic_numericUpDowns[i + 1].Value - dynamic_numericUpDowns[i].Value)
+                        {
+                            dynamic_numericUpDowns[i].Minimum = dynamic_numericUpDowns[i - 1].Value + 1;
+                        }
+                        else
+                        {
+                            dynamic_numericUpDowns[i].Minimum = dynamic_numericUpDowns[i + 1].Value - max_laps_in_stint;
+                        }
+
+                        if (max_laps_in_stint > dynamic_numericUpDowns[i].Value - dynamic_numericUpDowns[i - 1].Value)
+                        {
+                            dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i + 1].Value - 1;
+                        }
+                        else
+                        {
+                            dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i - 1].Value + max_laps_in_stint;
+                        }
+                    }
+                    else
+                    {
+                        dynamic_numericUpDowns[i].Minimum = number_of_laps - max_laps_in_stint;
+                        dynamic_numericUpDowns[i].Maximum = number_of_laps;
                     }
                 }
             }

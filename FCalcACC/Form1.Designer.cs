@@ -91,7 +91,9 @@
             menuStrip1 = new MenuStrip();
             menuStrip2 = new MenuStrip();
             toolStripMenuItem_menu = new ToolStripMenuItem();
-            resetDataToolStripMenuItem = new ToolStripMenuItem();
+            resetDataToolStripMenuItem1 = new ToolStripMenuItem();
+            resetAllDataToolStripMenuItem = new ToolStripMenuItem();
+            resetCurrentCartrackToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem_help = new ToolStripMenuItem();
             ToolStripMenuItem_github = new ToolStripMenuItem();
@@ -323,6 +325,7 @@
             comboBox_pit_options.Name = "comboBox_pit_options";
             comboBox_pit_options.Size = new Size(155, 23);
             comboBox_pit_options.TabIndex = 12;
+            comboBox_pit_options.SelectedIndexChanged += comboBox_pit_options_SelectedIndexChanged;
             // 
             // textBox_max_stint
             // 
@@ -833,23 +836,37 @@
             // toolStripMenuItem_menu
             // 
             toolStripMenuItem_menu.BackColor = Color.Gainsboro;
-            toolStripMenuItem_menu.DropDownItems.AddRange(new ToolStripItem[] { resetDataToolStripMenuItem, exitToolStripMenuItem });
+            toolStripMenuItem_menu.DropDownItems.AddRange(new ToolStripItem[] { resetDataToolStripMenuItem1, exitToolStripMenuItem });
             toolStripMenuItem_menu.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
             toolStripMenuItem_menu.Name = "toolStripMenuItem_menu";
             toolStripMenuItem_menu.Size = new Size(47, 20);
             toolStripMenuItem_menu.Text = "Menu";
             // 
-            // resetDataToolStripMenuItem
+            // resetDataToolStripMenuItem1
             // 
-            resetDataToolStripMenuItem.Name = "resetDataToolStripMenuItem";
-            resetDataToolStripMenuItem.Size = new Size(144, 22);
-            resetDataToolStripMenuItem.Text = "Reset data";
-            resetDataToolStripMenuItem.Click += resetDataToolStripMenuItem_Click;
+            resetDataToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { resetAllDataToolStripMenuItem, resetCurrentCartrackToolStripMenuItem });
+            resetDataToolStripMenuItem1.Name = "resetDataToolStripMenuItem1";
+            resetDataToolStripMenuItem1.Size = new Size(180, 22);
+            resetDataToolStripMenuItem1.Text = "Reset data";
+            // 
+            // resetAllDataToolStripMenuItem
+            // 
+            resetAllDataToolStripMenuItem.Name = "resetAllDataToolStripMenuItem";
+            resetAllDataToolStripMenuItem.Size = new Size(235, 22);
+            resetAllDataToolStripMenuItem.Text = "Reset all data";
+            resetAllDataToolStripMenuItem.Click += resetAllDataToolStripMenuItem_Click;
+            // 
+            // resetCurrentCartrackToolStripMenuItem
+            // 
+            resetCurrentCartrackToolStripMenuItem.Name = "resetCurrentCartrackToolStripMenuItem";
+            resetCurrentCartrackToolStripMenuItem.Size = new Size(235, 22);
+            resetCurrentCartrackToolStripMenuItem.Text = "Reset current car/track";
+            resetCurrentCartrackToolStripMenuItem.Click += resetCurrentCartrackToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(144, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -979,6 +996,8 @@
         private Label label_max_stint;
         private CheckBox checkBox_max_stint;
         private ToolStripMenuItem ToolStripMenuItem_github;
-        private ToolStripMenuItem resetDataToolStripMenuItem;
+        private ToolStripMenuItem resetDataToolStripMenuItem1;
+        private ToolStripMenuItem resetAllDataToolStripMenuItem;
+        private ToolStripMenuItem resetCurrentCartrackToolStripMenuItem;
     }
 }

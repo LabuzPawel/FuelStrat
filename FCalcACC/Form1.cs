@@ -1,9 +1,8 @@
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
+using System.DirectoryServices;
 using System.Globalization;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace FCalcACC
 {
@@ -35,6 +34,12 @@ namespace FCalcACC
             var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Equals(comboBox_track.Text));
             var selected_trackCarFuel = selected_track.car_track_fuel.FirstOrDefault(
                 carTrackFuel => carTrackFuel.car_name.Equals(comboBox_car.Text));
+
+            if (carName == "CAR" || trackName == "TRACK")
+            {
+                return 99999;
+            }
+
             return int.Parse(selected_trackCarFuel.tank_capacity);
         }
 
@@ -72,7 +77,8 @@ namespace FCalcACC
             "Fixed refuel only",
             "Tires only",
             "Refuel + tires",
-            "1L refuel"
+            "1L refuel",
+            "No pit stops"
         };
 
         public void LoadCarTrackObjects()
@@ -127,6 +133,67 @@ namespace FCalcACC
                 }
             }
         }
+        public void ResetSpecficCarTrack(ComboBox comboBoxCar, ComboBox comboBoxTrack)
+        {
+            if (comboBoxCar.Text == "CAR" || comboBoxTrack.Text == "TRACK")
+            {
+                return;
+            }
+
+            string tracks_resourse_name = "FCalcACC.car_track_data.TRACKS.json";
+            Assembly assembly = Assembly.GetExecutingAssembly();
+
+            try
+            {
+                using (Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string tracks_embedded = reader.ReadToEnd();
+                    List<Track> temp_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
+
+                    //Find the specific track in the list
+                    Track default_track = temp_tracks.Find(t => t.track_name == comboBoxTrack.Text);
+                    CarTrackFuel default_car_track_fuel = default_track.car_track_fuel.Find(
+                        c => c.car_name == comboBoxCar.Text);
+                    foreach (var track in all_tracks)
+                    {
+                        if (track.track_name.Equals(comboBox_track.Text))
+                        {
+                            track.track_lap_time = default_track.track_lap_time;
+                            
+                            foreach (var car_fuel in track.car_track_fuel)
+                            {
+                                if (car_fuel.car_name.Equals(comboBox_car.Text))
+                                {
+                                    car_fuel.fuel_per_lap = default_car_track_fuel.fuel_per_lap;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show("Error reading FCalcACC_data.json:\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                DialogResult result = MessageBox.Show("Would you like to reset the FCalcACC_data.json?\n\n" +
+                    "Choosing 'No' will exit application.",
+                    "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    File.Delete("FCalcACC_data.json");
+                    LoadCarTrackObjects();
+                }
+                else if (result == DialogResult.No)
+                {
+                    Application.Exit();
+                }
+            }
+        }
+
+
 
         public void LoadCarClasses(ComboBox comboBoxClass)
         {
@@ -562,7 +629,7 @@ namespace FCalcACC
 
                     //even if result above is 0 (tank capacity is more than enough for whole race)
                     //but pit option is selected then add one pit stop
-                    if(number_of_pits == 0)
+                    if (number_of_pits == 0)
                     {
                         number_of_pits++;
                     }
@@ -957,6 +1024,21 @@ namespace FCalcACC
                                 label_refuel_temp2.TextAlign = ContentAlignment.MiddleCenter;
                                 label_refuel_temp2.Text = "Refuel for Stint " + stint.ToString();
 
+                                if (stint == 2)
+                                {
+                                    fuelPerStint.Clear();
+                                    fuelPerStint.Add(tank_capacity);
+                                }
+
+                                int fuel_for_this_stint = fuel_1L_adjusted[stint - 1];
+                                stints_left--;
+                                fuelPerStint.Add(fuel_for_this_stint);
+                                double more_time_in_pits = 0.0;
+                                if (fuel_for_this_stint > 1)
+                                {
+                                    more_time_in_pits += (fuel_for_this_stint - 1) * ONE_L_MORE;
+                                }
+
                                 NumericUpDown numericUpDown_laps_temp2 = new NumericUpDown();
                                 numericUpDown_laps_temp2.Name = "numericUpDown_laps_stint" + stint.ToString();
                                 numericUpDown_laps_temp2.Dock = DockStyle.Fill;
@@ -964,14 +1046,6 @@ namespace FCalcACC
                                 numericUpDown_laps_temp2.Maximum = 999;
                                 this.Controls.Add(numericUpDown_laps_temp2);
                                 dynamic_numericUpDowns.Add(numericUpDown_laps_temp2);
-
-
-                                //TO DO:
-                                //
-                                //IMPLEMENT A SITUATION WHERE USER CHANGES PIT STOP TIMING FOR STRAT NOT OK
-                                //TANK CAPACITY AND CURRENT FUEL LIMITS POSSIBLE PIT STOP TIMING
-                                //MAYBE CHANGE THRESHOLDS WHEN STRAT NOT OK
-
 
                                 double current_part_laps = Math.Min(number_of_laps_remaining, laps_per_stint);
                                 current_laps += current_part_laps;
@@ -994,19 +1068,27 @@ namespace FCalcACC
 
                                     sum_of_laps_from_prev_iterations += (int)current_laps;
                                     numericUpDown_laps_temp2.Value = newListOfLapsToPit[stint - 2];
+
+                                    if (fuel_for_this_stint == tank_capacity && fuelPerStint[stint - 2] == tank_capacity)
+                                    {
+                                        numericUpDown_laps_temp2.Value = (int)(tank_capacity / fuel_per_lap) * (stint - 1);
+                                        numericUpDown_laps_temp2.Enabled = false;
+                                    }
                                 }
                                 else
                                 {
                                     numericUpDown_laps_temp2.Value = ((int)Math.Ceiling(current_laps));
+
+                                    if (fuel_for_this_stint == tank_capacity || fuelPerStint[stint - 2] == tank_capacity)
+                                    {
+                                        numericUpDown_laps_temp2.Value = (int)(tank_capacity / fuel_per_lap) * (stint - 1);
+                                        numericUpDown_laps_temp2.Enabled = false;
+                                    }
                                 }
 
-                                int fuel_for_this_stint = fuel_1L_adjusted[stint - 1];
-                                stints_left--;
-                                fuelPerStint.Add(fuel_for_this_stint);
-                                double more_time_in_pits = 0.0;
-                                if (fuel_for_this_stint > 1)
+                                if (fuelPerStint[stint - 2] == tank_capacity)
                                 {
-                                    more_time_in_pits += (fuel_for_this_stint - 1) * ONE_L_MORE;
+                                    numericUpDown_laps_temp2.Enabled = false;
                                 }
 
                                 Label label_refuel_result_temp2 = new Label();
@@ -1133,7 +1215,7 @@ namespace FCalcACC
                         {
                             numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
                         }
-                        
+
                         number_of_laps_remaining -= laps_per_stint;
                         lapsPerStint.Add((int)Math.Ceiling(current_laps));
 
@@ -1144,7 +1226,7 @@ namespace FCalcACC
                         {
                             //this handles situation when user changes pit stop timing
 
-                            current_part_fuel = Math.Min(fuel_remaining, 
+                            current_part_fuel = Math.Min(fuel_remaining,
                                 Math.Min((current_laps * fuel_per_lap - rest_from_prev_stint), tank_capacity));
                             rest_from_prev_stint = (int)Math.Ceiling(current_part_fuel) - current_part_fuel;
                         }
@@ -1205,22 +1287,42 @@ namespace FCalcACC
                 }
             }
             PitLimits();
-            int test = 0;
         }
 
         private void PitLimits()
         {
+            if (number_of_pits == 0)
+            {
+                return;
+            }
+
             //set a minimum and maximum for NumericUpDown
 
-            int tank_capacity_limit = 99999;
-            int tank_capacity_limit_start = 99999;
             int max_stint_limit = 99999;
+            List<int> tank_capacity_limit = new List<int>();
 
             if (comboBox_car.Text != "CAR" && comboBox_track.Text != "TRACK")
             {
                 int tank_capacity = GetTankCapacity(comboBox_car.Text, comboBox_track.Text);
-                tank_capacity_limit = (int)(tank_capacity / fuel_per_lap);
-                tank_capacity_limit_start = (int)((tank_capacity - formation_lap_fuel) / fuel_per_lap);
+
+                tank_capacity_limit.Add((int)((tank_capacity - formation_lap_fuel) / fuel_per_lap));
+
+                int sum_of_prev_stints = 0;
+
+                for (int i = 1; i < dynamic_numericUpDowns.Count; i++)
+                {
+                    tank_capacity_limit.Add(Math.Min(
+                        (int)(tank_capacity / fuel_per_lap),
+                        (int)(tank_capacity - (fuel_per_lap * (sum_of_prev_stints - (int)dynamic_numericUpDowns[i].Value))
+                        )));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dynamic_numericUpDowns.Count; i++)
+                {
+                    tank_capacity_limit.Add(99999);
+                }
             }
 
             if (checkBox_max_stint.Checked && textBox_max_stint.Text != "0")
@@ -1229,20 +1331,16 @@ namespace FCalcACC
                 max_stint_limit = (int)((max_stint * 60) / lap_time_secs);
             }
 
-            int max_laps_in_stint = Math.Min(tank_capacity_limit, max_stint_limit);
-            int max_laps_in_stint_start = Math.Min(tank_capacity_limit_start, max_stint_limit);
-
-
-
             //first pit stop cant be earlier than after lap 1 (min) and later than next pit stop or
             //2nd to last lap (max)
 
             if (dynamic_numericUpDowns.Count > 1)
             {
-                if (max_laps_in_stint < dynamic_numericUpDowns[1].Value - dynamic_numericUpDowns[0].Value)
+                if (Math.Min(tank_capacity_limit[0], max_stint_limit) <
+                    dynamic_numericUpDowns[1].Value - dynamic_numericUpDowns[0].Value)
                 {
-
-                    dynamic_numericUpDowns[0].Minimum = dynamic_numericUpDowns[1].Value - max_laps_in_stint;
+                    dynamic_numericUpDowns[0].Minimum = dynamic_numericUpDowns[1].Value -
+                        Math.Min(tank_capacity_limit[0], max_stint_limit);
                 }
                 else
                 {
@@ -1256,11 +1354,13 @@ namespace FCalcACC
 
             if (dynamic_numericUpDowns.Count == 1)
             {
-                dynamic_numericUpDowns[0].Maximum = Math.Min(number_of_laps - 1, max_laps_in_stint_start);
+                dynamic_numericUpDowns[0].Maximum = Math.Min(number_of_laps - 1,
+                    Math.Min(tank_capacity_limit[0], max_stint_limit));
             }
             else
             {
-                dynamic_numericUpDowns[0].Maximum = Math.Min(dynamic_numericUpDowns[1].Value - 1, max_laps_in_stint_start);
+                dynamic_numericUpDowns[0].Maximum = Math.Min(dynamic_numericUpDowns[1].Value - 1,
+                    Math.Min(tank_capacity_limit[0], max_stint_limit));
             }
 
             //another pit stop thresholds are previous pit timing and next or 2nd to last lap
@@ -1270,36 +1370,42 @@ namespace FCalcACC
                 {
                     if (i < new_list_of_laps_to_pit.Count - 1)
                     {
-                        if (max_laps_in_stint > dynamic_numericUpDowns[i + 1].Value - dynamic_numericUpDowns[i].Value)
+                        if (Math.Min(tank_capacity_limit[i], max_stint_limit) >
+                            dynamic_numericUpDowns[i + 1].Value - dynamic_numericUpDowns[i].Value)
                         {
                             dynamic_numericUpDowns[i].Minimum = dynamic_numericUpDowns[i - 1].Value + 1;
                         }
                         else
                         {
-                            dynamic_numericUpDowns[i].Minimum = dynamic_numericUpDowns[i + 1].Value - max_laps_in_stint;
+                            dynamic_numericUpDowns[i].Minimum = dynamic_numericUpDowns[i + 1].Value -
+                                Math.Min(tank_capacity_limit[0], max_stint_limit);
                         }
 
-                        if (max_laps_in_stint > dynamic_numericUpDowns[i].Value - dynamic_numericUpDowns[i - 1].Value)
+                        if (Math.Min(tank_capacity_limit[0], max_stint_limit) >
+                            dynamic_numericUpDowns[i].Value - dynamic_numericUpDowns[i - 1].Value)
                         {
                             dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i + 1].Value - 1;
                         }
                         else
                         {
-                            dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i - 1].Value + max_laps_in_stint;
+                            dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i - 1].Value +
+                                Math.Min(tank_capacity_limit[0], max_stint_limit);
                         }
                     }
                     else
                     {
-                        dynamic_numericUpDowns[i].Minimum = Math.Max(number_of_laps - max_laps_in_stint, 
+                        dynamic_numericUpDowns[i].Minimum = Math.Max(number_of_laps - Math.Min(tank_capacity_limit[0], max_stint_limit),
                             dynamic_numericUpDowns[i - 1].Value + 1);
 
-                        if (max_laps_in_stint > dynamic_numericUpDowns[i].Value - dynamic_numericUpDowns[i - 1].Value)
+                        if (Math.Min(tank_capacity_limit[0], max_stint_limit) >
+                            dynamic_numericUpDowns[i].Value - dynamic_numericUpDowns[i - 1].Value)
                         {
                             dynamic_numericUpDowns[i].Maximum = number_of_laps - 1;
                         }
                         else
                         {
-                            dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i - 1].Value + max_laps_in_stint;
+                            dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i - 1].Value +
+                                Math.Min(tank_capacity_limit[0], max_stint_limit);
                         }
                     }
                 }
@@ -1497,15 +1603,7 @@ namespace FCalcACC
             }
         }
 
-        //private void AttachEvenHandlersToNumericUpDownsInPitStrategy()
-        //{
-        //    foreach (NumericUpDown numericUpDown in dynamic_numericUpDowns)
-        //    {
-        //        numericUpDown.ValueChanged += new EventHandler(NumericUpDown_pit_strat_changes);
-        //    }
-        //}
-
-        private void NumericUpDown_pit_strat_changes (object sender, EventArgs e)
+        private void NumericUpDown_pit_strat_changes(object sender, EventArgs e)
         {
             //get updated list of laps when user wants to pit
             new_list_of_laps_to_pit.Clear();
@@ -1519,6 +1617,40 @@ namespace FCalcACC
             CalculatePitStops(panel_pit_stop_strategy, label_fuel_race_result, numericUpDown_pits, comboBox_pit_options,
                 out string labelFuelStartResultTextForTesting, out List<int> fuelPerStint,
                 out List<int> lapsPerStint, new_list_of_laps_to_pit);
+
+            new_list_of_laps_to_pit.Clear();
+        }
+
+        private void comboBox_pit_options_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if 'no pit stops' selected -> reset pit stops panel
+
+            if (comboBox_pit_options.SelectedIndex == 5)
+            {
+                comboBox_pit_options.SelectedIndex = -1;
+                numericUpDown_pits.Value = 0;
+                textBox_max_stint.Text = "0";
+                if (checkBox_max_stint.Checked)
+                {
+                    checkBox_max_stint.Checked = false;
+                    textBox_max_stint.Enabled = false;
+                }
+            }
+        }
+
+        private void resetAllDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            File.Delete("FCalcACC_data.json");
+            LoadCarTrackObjects();
+        }
+
+        private void resetCurrentCartrackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResetSpecficCarTrack(comboBox_car, comboBox_track);
+            LoadData();
+            CalculateRaceDuration(textBox_race_h, textBox_race_min, textBox_lap_time_min, textBox_lap_time_sec,
+                    label_overall_result, label_laps_result, label_lap_time_result2);
+            SaveData();
         }
     }
 }

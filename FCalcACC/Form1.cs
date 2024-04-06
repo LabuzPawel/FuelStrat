@@ -730,6 +730,14 @@ namespace FCalcACC
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
 
+                        NumericUpDown numericUpDown_laps_temp = new NumericUpDown();
+                        numericUpDown_laps_temp.Name = "numericUpDown_laps_stint" + stint.ToString();
+                        numericUpDown_laps_temp.Dock = DockStyle.Fill;
+                        numericUpDown_laps_temp.TextAlign = HorizontalAlignment.Center;
+                        numericUpDown_laps_temp.Maximum = 999;
+                        this.Controls.Add(numericUpDown_laps_temp);
+                        dynamic_numericUpDowns.Add(numericUpDown_laps_temp);
+
                         Label label_refuel_temp = new Label();
                         label_refuel_temp.Dock = DockStyle.Fill;
                         label_refuel_temp.TextAlign = ContentAlignment.MiddleCenter;
@@ -742,19 +750,34 @@ namespace FCalcACC
                         fuelPerStint.Add(0);
                         lapsPerStint.Add((int)Math.Ceiling(current_laps));
 
-                        Label label_refuel_result_temp = new Label();
-                        label_refuel_result_temp.Name = name_for_refuel_result_label;
-                        label_refuel_result_temp.Text = ((int)Math.Ceiling(current_laps)).ToString() + " laps";
-                        label_refuel_result_temp.Size = new Size(130, 17);
-                        label_refuel_result_temp.Dock = DockStyle.Fill;
-                        label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
+                        if (newListOfLapsToPit.Count > 0)
+                        {
+                            //this handles situation when user changes pit stop timing
+
+                            if (stints_left > 1)
+                            {
+                                current_laps = newListOfLapsToPit[stint - 1] - newListOfLapsToPit[stint - 2];
+                            }
+                            else
+                            {
+                                current_laps = newListOfLapsToPit[stint - 2] - sum_of_laps_from_prev_iterations;
+                            }
+
+                            sum_of_laps_from_prev_iterations += (int)current_laps;
+                            numericUpDown_laps_temp.Value = newListOfLapsToPit[stint - 2];
+                        }
+                        else
+                        {
+                            numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
+                        }
 
                         table_temp.Controls.Add(label_refuel_temp, 0, 0);
-                        table_temp.Controls.Add(label_refuel_result_temp, 1, 0);
+                        table_temp.Controls.Add(numericUpDown_laps_temp, 1, 0);
                         table_temp.Size = tableLayoutPanel_start.Size;
 
                         groupBox_temp.Controls.Add(table_temp);
                         stint++;
+                        stints_left--;
                         y_groupBox += 100;
 
                         //on last loop iteration when all stint groupBoxes are done,
@@ -842,6 +865,9 @@ namespace FCalcACC
                                 numericUpDown_laps_temp.Name = "numericUpDown_laps_stint" + stint.ToString();
                                 numericUpDown_laps_temp.Dock = DockStyle.Fill;
                                 numericUpDown_laps_temp.TextAlign = HorizontalAlignment.Center;
+                                numericUpDown_laps_temp.Maximum = 999;
+                                this.Controls.Add(numericUpDown_laps_temp);
+                                dynamic_numericUpDowns.Add(numericUpDown_laps_temp);
 
                                 double current_part = Math.Min(number_of_laps_remaining, laps_per_stint);
                                 current_laps += current_part;
@@ -850,13 +876,23 @@ namespace FCalcACC
                                 {
                                     //this handles situation when user changes pit stop timing
 
-                                    current_laps = newListOfLapsToPit[stint - 1] - sum_of_laps_from_prev_iterations;
-                                    sum_of_laps_from_prev_iterations += (int)current_laps;
-                                }
-                                this.Controls.Add(numericUpDown_laps_temp);
-                                dynamic_numericUpDowns.Add(numericUpDown_laps_temp);
+                                    if (stints_left > 1)
+                                    {
+                                        current_laps = newListOfLapsToPit[stint - 1] - newListOfLapsToPit[stint - 2];
+                                    }
+                                    else
+                                    {
+                                        current_laps = newListOfLapsToPit[stint - 2] - sum_of_laps_from_prev_iterations;
+                                    }
 
-                                numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
+                                    sum_of_laps_from_prev_iterations += (int)current_laps;
+                                    numericUpDown_laps_temp.Value = newListOfLapsToPit[stint - 2];
+                                }
+                                else
+                                {
+                                    numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
+                                }
+
                                 number_of_laps_remaining -= laps_per_stint;
                                 lapsPerStint.Add((int)Math.Ceiling(current_laps));
 
@@ -880,6 +916,7 @@ namespace FCalcACC
 
                                 groupBox_temp.Controls.Add(table_temp);
                                 stint++;
+                                stints_left--;
                                 y_groupBox += 130;
                                 break;
 
@@ -924,18 +961,44 @@ namespace FCalcACC
                                 numericUpDown_laps_temp2.Name = "numericUpDown_laps_stint" + stint.ToString();
                                 numericUpDown_laps_temp2.Dock = DockStyle.Fill;
                                 numericUpDown_laps_temp2.TextAlign = HorizontalAlignment.Center;
+                                numericUpDown_laps_temp2.Maximum = 999;
+                                this.Controls.Add(numericUpDown_laps_temp2);
+                                dynamic_numericUpDowns.Add(numericUpDown_laps_temp2);
 
 
-                                //TO DO: IMPLEMENT A SITUATION WHERE USER CHANGES PIT STOP TIMING FOR STRAT NOT OK
+                                //TO DO:
+                                //
+                                //IMPLEMENT A SITUATION WHERE USER CHANGES PIT STOP TIMING FOR STRAT NOT OK
                                 //TANK CAPACITY AND CURRENT FUEL LIMITS POSSIBLE PIT STOP TIMING
                                 //MAYBE CHANGE THRESHOLDS WHEN STRAT NOT OK
 
 
                                 double current_part_laps = Math.Min(number_of_laps_remaining, laps_per_stint);
                                 current_laps += current_part_laps;
-                                label_refuel_temp2.Text = "Refuel after " + ((int)Math.Ceiling(current_laps)) + " laps";
+                                label_refuel_temp2.Text = "Refuel after ";
                                 number_of_laps_remaining -= laps_per_stint;
                                 lapsPerStint.Add((int)Math.Ceiling(current_laps));
+
+                                if (newListOfLapsToPit.Count > 0)
+                                {
+                                    //this handles situation when user changes pit stop timing
+
+                                    if (stints_left > 1)
+                                    {
+                                        current_laps = newListOfLapsToPit[stint - 1] - newListOfLapsToPit[stint - 2];
+                                    }
+                                    else
+                                    {
+                                        current_laps = newListOfLapsToPit[stint - 2] - sum_of_laps_from_prev_iterations;
+                                    }
+
+                                    sum_of_laps_from_prev_iterations += (int)current_laps;
+                                    numericUpDown_laps_temp2.Value = newListOfLapsToPit[stint - 2];
+                                }
+                                else
+                                {
+                                    numericUpDown_laps_temp2.Value = ((int)Math.Ceiling(current_laps));
+                                }
 
                                 int fuel_for_this_stint = fuel_1L_adjusted[stint - 1];
                                 stints_left--;
@@ -1201,25 +1264,11 @@ namespace FCalcACC
             }
 
             //another pit stop thresholds are previous pit timing and next or 2nd to last lap
-            if (dynamic_numericUpDowns.Count > 1)
+            if (new_list_of_laps_to_pit.Count > 1)
             {
-                for (int i = 1; i < dynamic_numericUpDowns.Count; i++)
+                for (int i = 1; i < new_list_of_laps_to_pit.Count; i++)
                 {
-                    dynamic_numericUpDowns[i].Minimum = dynamic_numericUpDowns[i - 1].Value + 1;
-
-                    if (i < dynamic_numericUpDowns.Count - 1)
-                    {
-                        dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i + 1].Value - 1;
-                    }
-                    else
-                    {
-                        dynamic_numericUpDowns[i].Maximum = number_of_laps - 1;
-                    }
-                }
-
-                for (int i = 1; i < dynamic_numericUpDowns.Count; i++)
-                {
-                    if (i > dynamic_numericUpDowns.Count - 1)
+                    if (i < new_list_of_laps_to_pit.Count - 1)
                     {
                         if (max_laps_in_stint > dynamic_numericUpDowns[i + 1].Value - dynamic_numericUpDowns[i].Value)
                         {
@@ -1241,8 +1290,17 @@ namespace FCalcACC
                     }
                     else
                     {
-                        dynamic_numericUpDowns[i].Minimum = number_of_laps - max_laps_in_stint;
-                        dynamic_numericUpDowns[i].Maximum = number_of_laps;
+                        dynamic_numericUpDowns[i].Minimum = Math.Max(number_of_laps - max_laps_in_stint, 
+                            dynamic_numericUpDowns[i - 1].Value + 1);
+
+                        if (max_laps_in_stint > dynamic_numericUpDowns[i].Value - dynamic_numericUpDowns[i - 1].Value)
+                        {
+                            dynamic_numericUpDowns[i].Maximum = number_of_laps - 1;
+                        }
+                        else
+                        {
+                            dynamic_numericUpDowns[i].Maximum = dynamic_numericUpDowns[i - 1].Value + max_laps_in_stint;
+                        }
                     }
                 }
             }

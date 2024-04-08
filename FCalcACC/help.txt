@@ -9,7 +9,7 @@ Additionaly it holds information about fuel tank capacity for every car and trac
 New data is being saved when user clicks on "Calculate" button.
 Every track also have unique time that is needed for full pit stop (tires change and refuel).
 
-To reset all data to its default values use "Reset data" in Menu strip.
+To reset all data or current car/track combination to its default values use Menu -> Reset Data.
 
 2. INPUT DATA
 
@@ -22,8 +22,8 @@ If no track is selected then time lost during pit stop is set to default. Defaul
 Variables section is required for calculation. Formation lap is set to 'Full' by default. Lap time should be an average time.
 
 Pit stop section is optional. If no pit option is selected and number of pits is more than 0, then tires + refuel is selected as default.
-If maximum stint duration and/or pit option are selected, require number of pits will be calculated automatically. 
-If number of pits isnt enough to cover the race with certain maximum stint duration, then additional pit(s) will be added.
+If maximum stint duration and/or pit option are selected, required number of pits will be calculated automatically. 
+If number of pits is not enough to cover the race with certain maximum stint duration, then additional pit(s) will be added.
 
 3. RESULTS
 
@@ -31,3 +31,5 @@ Row Lap time for +1 lap shows lap time that is needed for the race to have one m
 Row Lap time for -1 lap shows the opposite situation with race shorter by one lap.
 
 Pit stop panel will show a recommended pit stop strategy for the race, considering the selected pit stop option and the number of pit stops.
+If pit option is not "Tires only" or "1L refuel" then moving pit stops earlier/later than initially suggest will recalculate fuel needed for each stint.
+There are few limitations set that will prevent moving the pit stop beyond practical feasibility. Limiting factors are maximum stint timer, tank capacity or other pit stops.

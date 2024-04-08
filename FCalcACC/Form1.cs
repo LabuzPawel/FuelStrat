@@ -31,14 +31,14 @@ namespace FCalcACC
 
         public int GetTankCapacity(string carName, string trackName)
         {
-            var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Equals(comboBox_track.Text));
-            var selected_trackCarFuel = selected_track.car_track_fuel.FirstOrDefault(
-                carTrackFuel => carTrackFuel.car_name.Equals(comboBox_car.Text));
-
             if (carName == "CAR" || trackName == "TRACK")
             {
                 return 99999;
             }
+
+            var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Equals(comboBox_track.Text));
+            var selected_trackCarFuel = selected_track.car_track_fuel.FirstOrDefault(
+                carTrackFuel => carTrackFuel.car_name.Equals(comboBox_car.Text));
 
             return int.Parse(selected_trackCarFuel.tank_capacity);
         }
@@ -64,7 +64,9 @@ namespace FCalcACC
         public int number_of_pits;
         public double formation_lap_fuel;
         private double fuel_for_race;
+        private Debouncer recalculate_debouncer = new Debouncer(100);
 
+        bool is_strat_ok = true;
         private bool is_recalculate_needed = true;
         private string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         private double ONE_L_PIT_TIME = 3.6;
@@ -81,7 +83,52 @@ namespace FCalcACC
             "No pit stops"
         };
 
-        public void LoadCarTrackObjects()
+        class Debouncer
+        {
+            private List<CancellationTokenSource> StepperCancelTokens = new List<CancellationTokenSource>();
+            private int MillisecondsToWait;
+            private readonly object _lockThis = new object(); // Use a locking object to prevent the debouncer to trigger again while the func is still running
+
+            public Debouncer(int millisecondsToWait = 300)
+            {
+                this.MillisecondsToWait = millisecondsToWait;
+            }
+
+            public void Debouce(Action func)
+            {
+                CancelAllStepperTokens(); // Cancel all api requests;
+                var newTokenSrc = new CancellationTokenSource();
+                lock (_lockThis)
+                {
+                    StepperCancelTokens.Add(newTokenSrc);
+                }
+                Task.Delay(MillisecondsToWait, newTokenSrc.Token).ContinueWith(task => // Create new request
+                {
+                    if (!newTokenSrc.IsCancellationRequested) // if it hasn't been cancelled
+                    {
+                        CancelAllStepperTokens(); // Cancel any that remain (there shouldn't be any)
+                        StepperCancelTokens = new List<CancellationTokenSource>(); // set to new list
+                        lock (_lockThis)
+                        {
+                            func(); // run
+                        }
+                    }
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+
+            private void CancelAllStepperTokens()
+            {
+                foreach (var token in StepperCancelTokens)
+                {
+                    if (!token.IsCancellationRequested)
+                    {
+                        token.Cancel();
+                    }
+                }
+            }
+        }
+
+            public void LoadCarTrackObjects()
         {
             //Load Cars from embedded json's
             string cars_resourse_name = "FCalcACC.car_track_data.CARS.json";
@@ -192,8 +239,6 @@ namespace FCalcACC
                 }
             }
         }
-
-
 
         public void LoadCarClasses(ComboBox comboBoxClass)
         {
@@ -549,6 +594,9 @@ namespace FCalcACC
         {
             //calculate pit stop strategy based on number of pit stops, pit options, max stint duration, tank capacity etc.
 
+            dynamic_numericUpDowns.Clear();
+            dynamic_labels.Clear();
+
             //clear pit stop panel from previous calculation
             panelPitStopStrategy.Controls.Clear();
 
@@ -564,7 +612,7 @@ namespace FCalcACC
 
             //tableLayout with results for groupBox above
             TableLayoutPanel tableLayoutPanel_start = new TableLayoutPanel();
-            tableLayoutPanel_start.Size = new Size(350, 30);
+            tableLayoutPanel_start.Size = new Size(350, 32);
             tableLayoutPanel_start.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
             tableLayoutPanel_start.ColumnCount = 2;
             tableLayoutPanel_start.ColumnStyles.Clear();
@@ -584,6 +632,8 @@ namespace FCalcACC
             Label label_fuel_start_result = new Label();
             label_fuel_start_result.Dock = DockStyle.Fill;
             label_fuel_start_result.TextAlign = ContentAlignment.MiddleCenter;
+            this.Controls.Add(label_fuel_start_result);
+            dynamic_labels.Add(label_fuel_start_result);
 
             tableLayoutPanel_start.Controls.Add(label_fuel_for_start, 0, 0);
             tableLayoutPanel_start.Controls.Add(label_fuel_start_result, 1, 0);
@@ -700,8 +750,6 @@ namespace FCalcACC
                 //set some variables before going into a pit stop loop
                 //'stint' is a number of laps between pit stops
 
-                dynamic_numericUpDowns.Clear();
-
                 double current_laps = 0.0;
                 int stints_left = number_of_pits;
 
@@ -718,18 +766,6 @@ namespace FCalcACC
                 fuel_first_stint = Math.Min(fuel_first_stint, tank_capacity);
 
                 double fuel_remaining = fuel_for_race_round_up - fuel_first_stint;
-                int sum_of_laps_from_prev_iterations = 0;
-                double rest_from_prev_stint = 0;
-
-                if (newListOfLapsToPit.Count > 0)
-                {
-                    //this handles situation when user changes pit stop timing
-
-                    fuel_first_stint = (int)Math.Ceiling((newListOfLapsToPit[0] * fuel_per_lap) + formation_lap_fuel);
-                    fuel_remaining = fuel_for_race_round_up - fuel_first_stint;
-                    rest_from_prev_stint = fuel_first_stint - (int)Math.Ceiling((newListOfLapsToPit[0] * fuel_per_lap) +
-                        formation_lap_fuel);
-                }
 
                 labelFuelStartResultText = fuel_first_stint.ToString() + " L";
                 fuelPerStint.Add(fuel_first_stint);
@@ -817,26 +853,7 @@ namespace FCalcACC
                         fuelPerStint.Add(0);
                         lapsPerStint.Add((int)Math.Ceiling(current_laps));
 
-                        if (newListOfLapsToPit.Count > 0)
-                        {
-                            //this handles situation when user changes pit stop timing
-
-                            if (stints_left > 1)
-                            {
-                                current_laps = newListOfLapsToPit[stint - 1] - newListOfLapsToPit[stint - 2];
-                            }
-                            else
-                            {
-                                current_laps = newListOfLapsToPit[stint - 2] - sum_of_laps_from_prev_iterations;
-                            }
-
-                            sum_of_laps_from_prev_iterations += (int)current_laps;
-                            numericUpDown_laps_temp.Value = newListOfLapsToPit[stint - 2];
-                        }
-                        else
-                        {
-                            numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
-                        }
+                        numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
 
                         table_temp.Controls.Add(label_refuel_temp, 0, 0);
                         table_temp.Controls.Add(numericUpDown_laps_temp, 1, 0);
@@ -875,8 +892,7 @@ namespace FCalcACC
                     {
                         //'1L refuel' pit options will attempt to set only 1L of refuel in each pit stop
                         //'is_strat_ok' is used to switch to adjusted strategy if 1L per pit stop isnt enough of a refuel
-
-                        bool is_strat_ok = true;
+                        is_strat_ok = true;
 
                         //warning that strategy needs to be adjusted
                         if (fuel_for_race_round_up > (tank_capacity + number_of_pits))
@@ -938,27 +954,7 @@ namespace FCalcACC
 
                                 double current_part = Math.Min(number_of_laps_remaining, laps_per_stint);
                                 current_laps += current_part;
-
-                                if (newListOfLapsToPit.Count > 0)
-                                {
-                                    //this handles situation when user changes pit stop timing
-
-                                    if (stints_left > 1)
-                                    {
-                                        current_laps = newListOfLapsToPit[stint - 1] - newListOfLapsToPit[stint - 2];
-                                    }
-                                    else
-                                    {
-                                        current_laps = newListOfLapsToPit[stint - 2] - sum_of_laps_from_prev_iterations;
-                                    }
-
-                                    sum_of_laps_from_prev_iterations += (int)current_laps;
-                                    numericUpDown_laps_temp.Value = newListOfLapsToPit[stint - 2];
-                                }
-                                else
-                                {
-                                    numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
-                                }
+                                numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
 
                                 number_of_laps_remaining -= laps_per_stint;
                                 lapsPerStint.Add((int)Math.Ceiling(current_laps));
@@ -1049,41 +1045,15 @@ namespace FCalcACC
 
                                 double current_part_laps = Math.Min(number_of_laps_remaining, laps_per_stint);
                                 current_laps += current_part_laps;
-                                label_refuel_temp2.Text = "Refuel after ";
                                 number_of_laps_remaining -= laps_per_stint;
                                 lapsPerStint.Add((int)Math.Ceiling(current_laps));
 
-                                if (newListOfLapsToPit.Count > 0)
+                                numericUpDown_laps_temp2.Value = ((int)Math.Ceiling(current_laps));
+
+                                if (fuel_for_this_stint == tank_capacity || fuelPerStint[stint - 2] == tank_capacity)
                                 {
-                                    //this handles situation when user changes pit stop timing
-
-                                    if (stints_left > 1)
-                                    {
-                                        current_laps = newListOfLapsToPit[stint - 1] - newListOfLapsToPit[stint - 2];
-                                    }
-                                    else
-                                    {
-                                        current_laps = newListOfLapsToPit[stint - 2] - sum_of_laps_from_prev_iterations;
-                                    }
-
-                                    sum_of_laps_from_prev_iterations += (int)current_laps;
-                                    numericUpDown_laps_temp2.Value = newListOfLapsToPit[stint - 2];
-
-                                    if (fuel_for_this_stint == tank_capacity && fuelPerStint[stint - 2] == tank_capacity)
-                                    {
-                                        numericUpDown_laps_temp2.Value = (int)(tank_capacity / fuel_per_lap) * (stint - 1);
-                                        numericUpDown_laps_temp2.Enabled = false;
-                                    }
-                                }
-                                else
-                                {
-                                    numericUpDown_laps_temp2.Value = ((int)Math.Ceiling(current_laps));
-
-                                    if (fuel_for_this_stint == tank_capacity || fuelPerStint[stint - 2] == tank_capacity)
-                                    {
-                                        numericUpDown_laps_temp2.Value = (int)(tank_capacity / fuel_per_lap) * (stint - 1);
-                                        numericUpDown_laps_temp2.Enabled = false;
-                                    }
+                                    numericUpDown_laps_temp2.Value = (int)(tank_capacity / fuel_per_lap) * (stint - 1);
+                                    numericUpDown_laps_temp2.Enabled = false;
                                 }
 
                                 if (fuelPerStint[stint - 2] == tank_capacity)
@@ -1195,41 +1165,13 @@ namespace FCalcACC
                         double current_part_laps = Math.Min(number_of_laps_remaining, laps_per_stint);
                         current_laps += current_part_laps;
 
-                        if (newListOfLapsToPit.Count > 0)
-                        {
-                            //this handles situation when user changes pit stop timing
-
-                            if (stints_left > 1)
-                            {
-                                current_laps = newListOfLapsToPit[stint - 1] - newListOfLapsToPit[stint - 2];
-                            }
-                            else
-                            {
-                                current_laps = newListOfLapsToPit[stint - 2] - sum_of_laps_from_prev_iterations;
-                            }
-
-                            sum_of_laps_from_prev_iterations += (int)current_laps;
-                            numericUpDown_laps_temp.Value = newListOfLapsToPit[stint - 2];
-                        }
-                        else
-                        {
-                            numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
-                        }
+                        numericUpDown_laps_temp.Value = ((int)Math.Ceiling(current_laps));
 
                         number_of_laps_remaining -= laps_per_stint;
                         lapsPerStint.Add((int)Math.Ceiling(current_laps));
 
                         double current_part_fuel = Math.Min(fuel_remaining,
                             Math.Min((fuel_remaining / stints_left), tank_capacity));
-
-                        if (newListOfLapsToPit.Count > 0)
-                        {
-                            //this handles situation when user changes pit stop timing
-
-                            current_part_fuel = Math.Min(fuel_remaining,
-                                Math.Min((current_laps * fuel_per_lap - rest_from_prev_stint), tank_capacity));
-                            rest_from_prev_stint = (int)Math.Ceiling(current_part_fuel) - current_part_fuel;
-                        }
 
                         int fuel_for_this_stint = (int)Math.Ceiling(current_part_fuel);
                         fuel_remaining -= fuel_for_this_stint;
@@ -1247,6 +1189,8 @@ namespace FCalcACC
                         label_refuel_result_temp.Text = fuel_for_this_stint.ToString() + " L";
                         label_refuel_result_temp.Dock = DockStyle.Fill;
                         label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
+                        this.Controls.Add(label_refuel_result_temp);
+                        dynamic_labels.Add(label_refuel_result_temp);
 
                         table_temp.Controls.Add(label_refuel_temp, 0, 1);
                         table_temp.Controls.Add(label_refuel_result_temp, 1, 1);
@@ -1289,7 +1233,54 @@ namespace FCalcACC
             PitLimits();
         }
 
-        private void PitLimits()
+        private void Recalculate()
+        {
+            if (comboBox_pit_options.Text == "Tires only" || comboBox_pit_options.Text == "1L refuel")
+            {
+                PitLimits();
+                return;
+            }
+            else
+            {
+                int fuel_first_stint = (int)Math.Ceiling((new_list_of_laps_to_pit[0] * fuel_per_lap) + formation_lap_fuel);
+                double fuel_remaining = fuel_for_race_round_up - fuel_first_stint;
+                double rest_from_prev_stint = fuel_first_stint - (int)Math.Ceiling((new_list_of_laps_to_pit[0] * fuel_per_lap) +
+                    formation_lap_fuel);
+                dynamic_labels[0].Text = fuel_first_stint.ToString() + " L";
+
+                int sum_of_laps_from_prev_iterations = 0;
+                int current_laps = 0;
+
+                for (int i = 1; i < dynamic_labels.Count; i++)
+                {
+                    if ( i != dynamic_labels.Count - 1)
+                    {
+                        current_laps = new_list_of_laps_to_pit[i] - new_list_of_laps_to_pit[i - 1];
+                    }
+                    else
+                    {
+                        current_laps = number_of_laps - sum_of_laps_from_prev_iterations;
+                    }
+
+                    sum_of_laps_from_prev_iterations += (int)current_laps;
+
+                    int tank_capacity = GetTankCapacity(comboBox_car.Text, comboBox_track.Text);
+
+                    double current_part_fuel = Math.Min(fuel_remaining,(
+                                    Math.Min((current_laps * fuel_per_lap) - rest_from_prev_stint, tank_capacity)));
+                    rest_from_prev_stint = (int)Math.Ceiling(current_part_fuel) - current_part_fuel;
+
+                    int fuel_for_this_stint = (int)Math.Ceiling(current_part_fuel);
+                    fuel_remaining -= fuel_for_this_stint;
+
+                    dynamic_labels[i].Text = fuel_for_this_stint.ToString() + " L";
+                    int test = 0;
+                }
+            }
+            PitLimits();
+        }
+
+    private void PitLimits()
         {
             if (number_of_pits == 0)
             {
@@ -1299,12 +1290,17 @@ namespace FCalcACC
             //set a minimum and maximum for NumericUpDown
 
             int max_stint_limit = 99999;
+            int tank_capacity = 99999;
             List<int> tank_capacity_limit = new List<int>();
 
             if (comboBox_car.Text != "CAR" && comboBox_track.Text != "TRACK")
             {
-                int tank_capacity = GetTankCapacity(comboBox_car.Text, comboBox_track.Text);
 
+                if (comboBox_pit_options.Text != "Tires only")
+                {
+                    tank_capacity = GetTankCapacity(comboBox_car.Text, comboBox_track.Text);
+                }
+                
                 tank_capacity_limit.Add((int)((tank_capacity - formation_lap_fuel) / fuel_per_lap));
 
                 int sum_of_prev_stints = 0;
@@ -1484,8 +1480,69 @@ namespace FCalcACC
             listBox_formation.SelectedIndex = 0;
         }
 
+        public void ChangeTextBoxColor(TextBox textBox)
+        {
+            Color original_color = textBox.BackColor;
+
+            textBox.BackColor = Color.Red;
+
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 800;
+            timer.Tick += (sender, e) =>
+            {
+                textBox.BackColor = original_color;
+
+                timer.Dispose();
+            };
+            timer.Start();
+        }
+
+        private bool OnlyZeros(string text)
+        {
+            List<char> chars = new List<char> { '0', '.', ',' };
+
+            foreach (char c in text)
+            {
+                if (!chars.Contains(c))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void button_calculate_Click(object sender, EventArgs e)
         {
+            //if either lap time, fuel per lap or race duration is set to 0
+            //prevent further calculations and flash textBox(es) with red color
+
+            bool only_zeros = false;
+
+            if (!OnlyZeros(textBox_fuel_per_lap.Text))
+            {
+                ChangeTextBoxColor(textBox_fuel_per_lap);
+                only_zeros = true;
+            }
+
+            if (!OnlyZeros(textBox_lap_time_min.Text + textBox_lap_time_sec.Text))
+            {
+                ChangeTextBoxColor(textBox_lap_time_min);
+                ChangeTextBoxColor(textBox_lap_time_sec);
+                only_zeros = true;
+            }
+
+            if (!OnlyZeros(textBox_race_h.Text + textBox_race_min.Text))
+            {
+                ChangeTextBoxColor(textBox_race_h);
+                ChangeTextBoxColor(textBox_race_min);
+                only_zeros = true;
+            }
+
+            if (only_zeros)
+            {
+                return;
+            }
+
             if (comboBox_pit_options.Text == "Refuel only")
             {
                 //for 'refuel only' pit option, time lost in pits is unknown because it relies on how much fuel
@@ -1608,16 +1665,15 @@ namespace FCalcACC
             //get updated list of laps when user wants to pit
             new_list_of_laps_to_pit.Clear();
 
-            foreach (NumericUpDown numericUpDown in dynamic_numericUpDowns)
-            {
-                int numeric_value = Convert.ToInt32((numericUpDown).Value);
-                new_list_of_laps_to_pit.Add(numeric_value);
-            }
-
-            CalculatePitStops(panel_pit_stop_strategy, label_fuel_race_result, numericUpDown_pits, comboBox_pit_options,
-                out string labelFuelStartResultTextForTesting, out List<int> fuelPerStint,
-                out List<int> lapsPerStint, new_list_of_laps_to_pit);
-
+            recalculate_debouncer.Debouce(() => {
+                foreach (NumericUpDown numericUpDown in dynamic_numericUpDowns)
+                {
+                    int numeric_value = Convert.ToInt32((numericUpDown).Value);
+                    new_list_of_laps_to_pit.Add(numeric_value);
+                };
+                Recalculate(); 
+            });
+            
             new_list_of_laps_to_pit.Clear();
         }
 

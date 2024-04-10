@@ -4,11 +4,8 @@ This is an application made in Visual Studio 2022 using C# Windows Form for calc
 
 Originally project was created in python using tkinter GUI. Old script can be found in 'FCalcACC\python_old_script'.
 
-Release version requieres .NET 8.0 Framework to work. Larger size exe release that is independent from .NET version can be found in 'FCalcACC/self_contained'.
+Release version requieres .NET 8.0 Framework to work (https://dotnet.microsoft.com/en-us/download/dotnet/8.0). Larger size exe release that is independent from .NET version can be found in 'FCalcACC/self_contained'.
 
 Application is creating a 'FCalcACC_data.json' at first start up. This file stores user data.
 
-Future plans:
-1. More error handling.
-2. Ability to move pit stop earlier/later in pit strategy
-3. Telemetry integration with ACC.
+Future plan is to add telemetry integration with ACC.

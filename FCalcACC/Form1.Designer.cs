@@ -124,7 +124,7 @@
             // label_fuel_L
             // 
             label_fuel_L.AutoSize = true;
-            label_fuel_L.Location = new Point(41, 145);
+            label_fuel_L.Location = new Point(105, 142);
             label_fuel_L.Name = "label_fuel_L";
             label_fuel_L.Size = new Size(56, 15);
             label_fuel_L.TabIndex = 19;
@@ -132,19 +132,19 @@
             // 
             // textBox_fuel_per_lap
             // 
-            textBox_fuel_per_lap.Location = new Point(103, 142);
+            textBox_fuel_per_lap.Location = new Point(45, 139);
             textBox_fuel_per_lap.MaxLength = 4;
             textBox_fuel_per_lap.Name = "textBox_fuel_per_lap";
             textBox_fuel_per_lap.Size = new Size(55, 23);
             textBox_fuel_per_lap.TabIndex = 18;
             textBox_fuel_per_lap.Text = "0.0";
             textBox_fuel_per_lap.TextAlign = HorizontalAlignment.Center;
-            textBox_fuel_per_lap.KeyPress += textBox_fuel_per_lap_KeyPress;
+            textBox_fuel_per_lap.KeyPress += TextBox_fuel_per_lap_KeyPress;
             // 
             // label_lap_time_sec
             // 
             label_lap_time_sec.AutoSize = true;
-            label_lap_time_sec.Location = new Point(285, 68);
+            label_lap_time_sec.Location = new Point(358, 68);
             label_lap_time_sec.Name = "label_lap_time_sec";
             label_lap_time_sec.Size = new Size(28, 15);
             label_lap_time_sec.TabIndex = 17;
@@ -153,7 +153,7 @@
             // label_lap_time_min
             // 
             label_lap_time_min.AutoSize = true;
-            label_lap_time_min.Location = new Point(206, 68);
+            label_lap_time_min.Location = new Point(254, 68);
             label_lap_time_min.Name = "label_lap_time_min";
             label_lap_time_min.Size = new Size(28, 15);
             label_lap_time_min.TabIndex = 16;
@@ -161,30 +161,30 @@
             // 
             // textBox_lap_time_sec
             // 
-            textBox_lap_time_sec.Location = new Point(313, 65);
+            textBox_lap_time_sec.Location = new Point(290, 65);
             textBox_lap_time_sec.MaxLength = 6;
             textBox_lap_time_sec.Name = "textBox_lap_time_sec";
-            textBox_lap_time_sec.Size = new Size(73, 23);
+            textBox_lap_time_sec.Size = new Size(64, 23);
             textBox_lap_time_sec.TabIndex = 15;
             textBox_lap_time_sec.Text = "0.000";
             textBox_lap_time_sec.TextAlign = HorizontalAlignment.Center;
-            textBox_lap_time_sec.KeyPress += textBox_lap_time_sec_KeyPress;
+            textBox_lap_time_sec.KeyPress += TextBox_lap_time_sec_KeyPress;
             // 
             // textBox_lap_time_min
             // 
-            textBox_lap_time_min.Location = new Point(232, 65);
-            textBox_lap_time_min.MaxLength = 1;
+            textBox_lap_time_min.Location = new Point(206, 65);
+            textBox_lap_time_min.MaxLength = 2;
             textBox_lap_time_min.Name = "textBox_lap_time_min";
             textBox_lap_time_min.Size = new Size(46, 23);
             textBox_lap_time_min.TabIndex = 14;
             textBox_lap_time_min.Text = "0";
             textBox_lap_time_min.TextAlign = HorizontalAlignment.Center;
-            textBox_lap_time_min.KeyPress += textBox_lap_time_min_KeyPress;
+            textBox_lap_time_min.KeyPress += TextBox_lap_time_min_KeyPress;
             // 
             // label_race_min
             // 
             label_race_min.AutoSize = true;
-            label_race_min.Location = new Point(103, 68);
+            label_race_min.Location = new Point(162, 68);
             label_race_min.Name = "label_race_min";
             label_race_min.Size = new Size(28, 15);
             label_race_min.TabIndex = 13;
@@ -193,7 +193,7 @@
             // label_race_h
             // 
             label_race_h.AutoSize = true;
-            label_race_h.Location = new Point(10, 68);
+            label_race_h.Location = new Point(70, 68);
             label_race_h.Name = "label_race_h";
             label_race_h.Size = new Size(14, 15);
             label_race_h.TabIndex = 12;
@@ -201,25 +201,25 @@
             // 
             // textBox_race_min
             // 
-            textBox_race_min.Location = new Point(135, 65);
+            textBox_race_min.Location = new Point(103, 65);
             textBox_race_min.MaxLength = 2;
             textBox_race_min.Name = "textBox_race_min";
             textBox_race_min.Size = new Size(55, 23);
             textBox_race_min.TabIndex = 11;
             textBox_race_min.Text = "0";
             textBox_race_min.TextAlign = HorizontalAlignment.Center;
-            textBox_race_min.KeyPress += textBox_race_min_KeyPress;
+            textBox_race_min.KeyPress += TextBox_race_min_KeyPress;
             // 
             // textBox_race_h
             // 
-            textBox_race_h.Location = new Point(27, 65);
+            textBox_race_h.Location = new Point(10, 65);
             textBox_race_h.MaxLength = 2;
             textBox_race_h.Name = "textBox_race_h";
             textBox_race_h.Size = new Size(55, 23);
             textBox_race_h.TabIndex = 10;
             textBox_race_h.Text = "0";
             textBox_race_h.TextAlign = HorizontalAlignment.Center;
-            textBox_race_h.KeyPress += textBox_race_h_KeyPress;
+            textBox_race_h.KeyPress += TextBox_race_h_KeyPress;
             // 
             // label_formation
             // 
@@ -316,7 +316,7 @@
             checkBox_max_stint.Size = new Size(15, 14);
             checkBox_max_stint.TabIndex = 0;
             checkBox_max_stint.UseVisualStyleBackColor = true;
-            checkBox_max_stint.Click += checkBox_max_stint_Click;
+            checkBox_max_stint.Click += CheckBox_max_stint_Click;
             // 
             // comboBox_pit_options
             // 
@@ -325,7 +325,7 @@
             comboBox_pit_options.Name = "comboBox_pit_options";
             comboBox_pit_options.Size = new Size(155, 23);
             comboBox_pit_options.TabIndex = 12;
-            comboBox_pit_options.SelectedIndexChanged += comboBox_pit_options_SelectedIndexChanged;
+            comboBox_pit_options.SelectedIndexChanged += ComboBox_pit_options_SelectedIndexChanged;
             // 
             // textBox_max_stint
             // 
@@ -333,11 +333,11 @@
             textBox_max_stint.Location = new Point(272, 76);
             textBox_max_stint.MaxLength = 2;
             textBox_max_stint.Name = "textBox_max_stint";
-            textBox_max_stint.Size = new Size(114, 23);
+            textBox_max_stint.Size = new Size(82, 23);
             textBox_max_stint.TabIndex = 17;
             textBox_max_stint.Text = "0";
             textBox_max_stint.TextAlign = HorizontalAlignment.Center;
-            textBox_max_stint.KeyPress += textBox_max_stint_KeyPress;
+            textBox_max_stint.KeyPress += TextBox_max_stint_KeyPress;
             // 
             // label_pits_count
             // 
@@ -353,7 +353,7 @@
             // label_max_stint_min
             // 
             label_max_stint_min.AutoSize = true;
-            label_max_stint_min.Location = new Point(272, 58);
+            label_max_stint_min.Location = new Point(358, 80);
             label_max_stint_min.Name = "label_max_stint_min";
             label_max_stint_min.Size = new Size(28, 15);
             label_max_stint_min.TabIndex = 18;
@@ -366,7 +366,7 @@
             numericUpDown_pits.Size = new Size(74, 23);
             numericUpDown_pits.TabIndex = 11;
             numericUpDown_pits.TextAlign = HorizontalAlignment.Center;
-            numericUpDown_pits.KeyPress += numericUpDown_pits_KeyPress;
+            numericUpDown_pits.KeyPress += NumericUpDown_pits_KeyPress;
             // 
             // label_max_stint
             // 
@@ -374,9 +374,9 @@
             label_max_stint.BorderStyle = BorderStyle.FixedSingle;
             label_max_stint.Location = new Point(251, 29);
             label_max_stint.Name = "label_max_stint";
-            label_max_stint.Size = new Size(135, 20);
+            label_max_stint.Size = new Size(135, 38);
             label_max_stint.TabIndex = 19;
-            label_max_stint.Text = "Max stint duration";
+            label_max_stint.Text = "Maximum stint duration";
             label_max_stint.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label_pits_options
@@ -454,7 +454,7 @@
             comboBox_class.Size = new Size(72, 23);
             comboBox_class.TabIndex = 2;
             comboBox_class.Text = "CLASS";
-            comboBox_class.SelectedIndexChanged += comboBox_class_SelectedIndexChanged;
+            comboBox_class.SelectedIndexChanged += ComboBox_class_SelectedIndexChanged;
             // 
             // comboBox_track
             // 
@@ -464,7 +464,7 @@
             comboBox_track.Size = new Size(376, 23);
             comboBox_track.TabIndex = 5;
             comboBox_track.Text = "TRACK";
-            comboBox_track.SelectedIndexChanged += comboBox_track_SelectedIndexChanged;
+            comboBox_track.SelectedIndexChanged += ComboBox_track_SelectedIndexChanged;
             // 
             // label_choose_class
             // 
@@ -497,7 +497,7 @@
             comboBox_car.Size = new Size(294, 23);
             comboBox_car.TabIndex = 3;
             comboBox_car.Text = "CAR";
-            comboBox_car.SelectedIndexChanged += comboBox_car_SelectedIndexChanged;
+            comboBox_car.SelectedIndexChanged += ComboBox_car_SelectedIndexChanged;
             // 
             // button_calculate
             // 
@@ -509,7 +509,7 @@
             button_calculate.TabIndex = 10;
             button_calculate.Text = "Calculate";
             button_calculate.UseVisualStyleBackColor = false;
-            button_calculate.Click += button_calculate_Click;
+            button_calculate.Click += Button_calculate_Click;
             // 
             // panel_pit_stop_strategy
             // 
@@ -846,7 +846,7 @@
             // 
             resetDataToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { resetAllDataToolStripMenuItem, resetCurrentCartrackToolStripMenuItem });
             resetDataToolStripMenuItem1.Name = "resetDataToolStripMenuItem1";
-            resetDataToolStripMenuItem1.Size = new Size(180, 22);
+            resetDataToolStripMenuItem1.Size = new Size(144, 22);
             resetDataToolStripMenuItem1.Text = "Reset data";
             // 
             // resetAllDataToolStripMenuItem
@@ -854,21 +854,21 @@
             resetAllDataToolStripMenuItem.Name = "resetAllDataToolStripMenuItem";
             resetAllDataToolStripMenuItem.Size = new Size(235, 22);
             resetAllDataToolStripMenuItem.Text = "Reset all data";
-            resetAllDataToolStripMenuItem.Click += resetAllDataToolStripMenuItem_Click;
+            resetAllDataToolStripMenuItem.Click += ResetAllDataToolStripMenuItem_Click;
             // 
             // resetCurrentCartrackToolStripMenuItem
             // 
             resetCurrentCartrackToolStripMenuItem.Name = "resetCurrentCartrackToolStripMenuItem";
             resetCurrentCartrackToolStripMenuItem.Size = new Size(235, 22);
             resetCurrentCartrackToolStripMenuItem.Text = "Reset current car/track";
-            resetCurrentCartrackToolStripMenuItem.Click += resetCurrentCartrackToolStripMenuItem_Click;
+            resetCurrentCartrackToolStripMenuItem.Click += ResetCurrentCartrackToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(144, 22);
             exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            exitToolStripMenuItem.Click += ExitToolStripMenuItem_Click;
             // 
             // ToolStripMenuItem_help
             // 
@@ -877,7 +877,7 @@
             ToolStripMenuItem_help.Name = "ToolStripMenuItem_help";
             ToolStripMenuItem_help.Size = new Size(47, 20);
             ToolStripMenuItem_help.Text = "Help";
-            ToolStripMenuItem_help.Click += helpToolStripMenuItem_Click;
+            ToolStripMenuItem_help.Click += HelpToolStripMenuItem_Click;
             // 
             // ToolStripMenuItem_github
             // 
@@ -886,7 +886,7 @@
             ToolStripMenuItem_github.Name = "ToolStripMenuItem_github";
             ToolStripMenuItem_github.Size = new Size(61, 20);
             ToolStripMenuItem_github.Text = "GitHub";
-            ToolStripMenuItem_github.Click += gitHubToolStripMenuItem_Click;
+            ToolStripMenuItem_github.Click += GitHubToolStripMenuItem_Click;
             // 
             // Form1
             // 

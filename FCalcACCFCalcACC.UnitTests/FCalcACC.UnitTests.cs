@@ -14,25 +14,25 @@ namespace FCalcACC.Tests
             form = new Form1();
         }
 
-        [TestMethod("Car object from CAR.json")]
+        [TestMethod("Car object from CARS.json")]
         public void LoadCarObjectList_LoadCarJson_ReturnsListOfCarObjects()
         {
             form.LoadCarTrackObjects();
             Assert.IsTrue(form.all_cars[0] is Car);
         }
 
-        [TestMethod("Track object from TRACK.json")]
+        [TestMethod("Track object from TRACKS.json")]
         public void LoadTrackObjectList_LoadTrackJson_ReturnsListOfTrackObjects()
         {
             form.LoadCarTrackObjects();
             Assert.IsTrue(form.all_tracks[0] is Track);
-            Assert.IsTrue(form.all_tracks[0].car_track_fuel[0] is CarTrackFuel);
+            Assert.IsTrue(form.all_tracks[0].CarTrackFuel[0] is CarTrackFuel);
         }
 
         [TestMethod("Load car classes into comboBox")]
         public void LoadCarClasses_AddUniqueCarClasses_ComboBoxCorrectlyPopulated()
         {
-            ComboBox comboBox_test = new ComboBox();
+            ComboBox comboBox_test = new();
             form.LoadCarTrackObjects();
 
             form.LoadCarClasses(comboBox_test);
@@ -47,31 +47,31 @@ namespace FCalcACC.Tests
         [TestMethod("Load cars based on selected car class")]
         public void LoadCars_AddCars_ComboBoxCorrectlyPopulated()
         {
-            ComboBox comboBox_test_car = new ComboBox();
+            ComboBox comboBox_test_car = new();
             form.LoadCarTrackObjects();
 
             form.LoadCars(comboBox_test_car, "GT3");
-            var gt3_cars = form.all_cars.Where(car => car.class_name.Contains("GT3"));
+            var gt3_cars = form.all_cars.Where(car => car.ClassName.Contains("GT3"));
             Assert.AreEqual(gt3_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "Aston Martin V12 Vantage GT3 2013");
 
             form.LoadCars(comboBox_test_car, "GT4");
-            var gt4_cars = form.all_cars.Where(car => car.class_name.Contains("GT4"));
+            var gt4_cars = form.all_cars.Where(car => car.ClassName.Contains("GT4"));
             Assert.AreEqual(gt4_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "Alpine A110 GT4 2018");
 
             form.LoadCars(comboBox_test_car, "GT2");
-            var gt2_cars = form.all_cars.Where(car => car.class_name.Contains("GT2"));
+            var gt2_cars = form.all_cars.Where(car => car.ClassName.Contains("GT2"));
             Assert.AreEqual(gt2_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "Audi R8 LMS GT2 2021");
 
             form.LoadCars(comboBox_test_car, "GTC");
-            var gtc_cars = form.all_cars.Where(car => car.class_name.Contains("GTC"));
+            var gtc_cars = form.all_cars.Where(car => car.ClassName.Contains("GTC"));
             Assert.AreEqual(gtc_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "Ferrari 488 Challenge Evo 2020");
 
             form.LoadCars(comboBox_test_car, "TCX");
-            var tcx_cars = form.all_cars.Where(car => car.class_name.Contains("TCX"));
+            var tcx_cars = form.all_cars.Where(car => car.ClassName.Contains("TCX"));
             Assert.AreEqual(tcx_cars.Count(), comboBox_test_car.Items.Count);
             Assert.AreEqual(comboBox_test_car.Items[0], "BMW M2 CS 2020");
         }
@@ -79,7 +79,7 @@ namespace FCalcACC.Tests
         [TestMethod("Load tracks into comboBox")]
         public void LoadTracks_AddTracks_ComboBoxCorrectlyPopulated()
         {
-            ComboBox comboBox_test = new ComboBox();
+            ComboBox comboBox_test = new();
             form.LoadCarTrackObjects();
             form.LoadTracks(comboBox_test);
 
@@ -90,8 +90,8 @@ namespace FCalcACC.Tests
         [TestMethod("Load pit options into comboBox")]
         public void LoadPitOptions_AddPitOptions_ComboBoxCorrectlyPopulated()
         {
-            ComboBox comboBox_test = new ComboBox();
-            form.LoadPitOptions(comboBox_test, form.PIT_OPTIONS);
+            ComboBox comboBox_test = new();
+            LoadPitOptions(comboBox_test, form.PIT_OPTIONS);
 
             Assert.AreEqual(form.PIT_OPTIONS.Count, comboBox_test.Items.Count);
             foreach (var option in form.PIT_OPTIONS)
@@ -103,8 +103,8 @@ namespace FCalcACC.Tests
         [TestMethod("Time lost in pits (No Track, 2 pits)")]
         public void CalculateTimeLostInPits_NoTrack2Pits()
         {
-            ComboBox comboBoxPitOptionsTest = new ComboBox();
-            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            ComboBox comboBoxPitOptionsTest = new();
+            LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
 
             for (int i = 0; i < 5; i++)
             {
@@ -134,8 +134,8 @@ namespace FCalcACC.Tests
         [TestMethod("Time lost in pits (Selected Track, 2 pits)")]
         public void CalculateTimeLostInPits_SelectedTrack2Pits()
         {
-            ComboBox comboBoxPitOptionsTest = new ComboBox();
-            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            ComboBox comboBoxPitOptionsTest = new();
+            LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
             form.LoadCarTrackObjects();
 
             for (int i = 0; i < 5; i++)
@@ -166,8 +166,7 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating time lost in pits with only refuel #1 (No track selected, 1 pit)")]
         public void RefuelTimeLost_SampleData1()
         {
-            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
-            numericUpDownPitsTest.Value = 1;
+            NumericUpDown numericUpDownPitsTest = new() { Value = 1 };
             form.time_lost_in_pits = 0;
             form.LoadCarTrackObjects();
             form.fuel_for_race_round_up = 104;
@@ -183,8 +182,7 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating time lost in pits with only refuel #2 (Track selected, 4 pits)")]
         public void RefuelTimeLost_SampleData2()
         {
-            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
-            numericUpDownPitsTest.Value = 4;
+            NumericUpDown numericUpDownPitsTest = new() { Value = 4 };
             form.time_lost_in_pits = 0;
             form.LoadCarTrackObjects();
             form.fuel_for_race_round_up = 104;
@@ -201,13 +199,13 @@ namespace FCalcACC.Tests
         public void CalculateRaceDuration_SampleData1()
         {
             form.time_lost_in_pits = form.DEFAULT_TIME_IN_PITS;
-            TextBox textBoxRaceHTest = new TextBox() { Text = "1" };
-            TextBox textBoxRaceMinTest = new TextBox() { Text = "0" };
-            TextBox textBoxLapMinTest = new TextBox() { Text = "1" };
-            TextBox textBoxLapSecTest = new TextBox() { Text = "45,5" };
-            Label labelLapsResultTest = new Label();
-            Label labelLapTimeResult2 = new Label();
-            Label labelOverallResultTest = new Label();
+            TextBox textBoxRaceHTest = new() { Text = "1" };
+            TextBox textBoxRaceMinTest = new() { Text = "0" };
+            TextBox textBoxLapMinTest = new() { Text = "1" };
+            TextBox textBoxLapSecTest = new() { Text = "45,5" };
+            Label labelLapsResultTest = new();
+            Label labelLapTimeResult2 = new();
+            Label labelOverallResultTest = new();
 
             form.CalculateRaceDuration(textBoxRaceHTest, textBoxRaceMinTest,
                 textBoxLapMinTest, textBoxLapSecTest, labelOverallResultTest, labelLapsResultTest, labelLapTimeResult2);
@@ -220,13 +218,13 @@ namespace FCalcACC.Tests
         public void CalculateRaceDuration_SampleData2()
         {
             form.time_lost_in_pits = form.DEFAULT_TIME_IN_PITS * 2;
-            TextBox textBoxRaceHTest = new TextBox() { Text = "0" };
-            TextBox textBoxRaceMinTest = new TextBox() { Text = "45" };
-            TextBox textBoxLapMinTest = new TextBox() { Text = "2" };
-            TextBox textBoxLapSecTest = new TextBox() { Text = "33,33,," };
-            Label labelLapsResultTest = new Label();
-            Label labelLapTimeResult2 = new Label();
-            Label labelOverallResultTest = new Label();
+            TextBox textBoxRaceHTest = new() { Text = "0" };
+            TextBox textBoxRaceMinTest = new() { Text = "45" };
+            TextBox textBoxLapMinTest = new() { Text = "2" };
+            TextBox textBoxLapSecTest = new() { Text = "33,33,," };
+            Label labelLapsResultTest = new();
+            Label labelLapTimeResult2 = new();
+            Label labelOverallResultTest = new();
 
             form.CalculateRaceDuration(textBoxRaceHTest, textBoxRaceMinTest,
                 textBoxLapMinTest, textBoxLapSecTest, labelOverallResultTest, labelLapsResultTest, labelLapTimeResult2);
@@ -243,8 +241,8 @@ namespace FCalcACC.Tests
             form.overall_race_duration = 3655.015;
             form.race_duration_secs = 3600;
             form.time_lost_in_pits = 0;
-            Label labelPlus1LapTimeResultTest = new Label();
-            Label labelMinus1LapTimeResultTest = new Label();
+            Label labelPlus1LapTimeResultTest = new();
+            Label labelMinus1LapTimeResultTest = new();
 
             form.CalculateLapTimePlusMinus(labelPlus1LapTimeResultTest, labelMinus1LapTimeResultTest);
 
@@ -260,8 +258,8 @@ namespace FCalcACC.Tests
             form.overall_race_duration = 7258.111;
             form.race_duration_secs = 7200;
             form.time_lost_in_pits = 57;
-            Label labelPlus1LapTimeResultTest = new Label();
-            Label labelMinus1LapTimeResultTest = new Label();
+            Label labelPlus1LapTimeResultTest = new();
+            Label labelMinus1LapTimeResultTest = new();
 
             form.CalculateLapTimePlusMinus(labelPlus1LapTimeResultTest, labelMinus1LapTimeResultTest);
 
@@ -272,11 +270,11 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating fuel for the race #1 (33 laps, full formation, 3,55 fpr)")]
         public void CalculateFuel_SampleData1()
         {
-            TextBox textBoxFuelPerLapTest = new TextBox() { Text = "3,55" };
-            ListBox listBoxformationLapTest = new ListBox() { Text = "Full" };
-            Label labelFuelRaceResultTest = new Label();
-            Label labelPlus1FuelResultTest = new Label();
-            Label labelMinus1FuelResultTest = new Label();
+            TextBox textBoxFuelPerLapTest = new() { Text = "3,55" };
+            ListBox listBoxformationLapTest = new() { Text = "Full" };
+            Label labelFuelRaceResultTest = new();
+            Label labelPlus1FuelResultTest = new();
+            Label labelMinus1FuelResultTest = new();
             form.number_of_laps = 33;
 
             form.CalculateFuel(textBoxFuelPerLapTest, listBoxformationLapTest, labelFuelRaceResultTest,
@@ -290,11 +288,11 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating fuel for the race #2 (16 laps, short formation, 3.1 fpr)")]
         public void CalculateFuel_SampleData2()
         {
-            TextBox textBoxFuelPerLapTest = new TextBox() { Text = "3.,1" };
-            ListBox listBoxformationLapTest = new ListBox() { Text = "Short" };
-            Label labelFuelRaceResultTest = new Label();
-            Label labelPlus1FuelResultTest = new Label();
-            Label labelMinus1FuelResultTest = new Label();
+            TextBox textBoxFuelPerLapTest = new() { Text = "3.,1" };
+            ListBox listBoxformationLapTest = new() { Text = "Short" };
+            Label labelFuelRaceResultTest = new();
+            Label labelPlus1FuelResultTest = new();
+            Label labelMinus1FuelResultTest = new();
             form.number_of_laps = 16;
 
             form.CalculateFuel(textBoxFuelPerLapTest, listBoxformationLapTest, labelFuelRaceResultTest,
@@ -308,12 +306,11 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating pit strategy #1 (0 pits)")]
         public void CalculatePitStops_SampleData1()
         {
-            Panel panelPitStopStrategyTest = new Panel();
-            Label labelFuelRaceResultTest = new Label() { Text = "56 L" };
-            ComboBox comboBoxPitOptionsTest = new ComboBox();
-            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
-            numericUpDownPitsTest.Value = 0;
-            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            Panel panelPitStopStrategyTest = new();
+            Label labelFuelRaceResultTest = new() { Text = "56 L" };
+            ComboBox comboBoxPitOptionsTest = new();
+            NumericUpDown numericUpDownPitsTest = new() { Value = 0 };
+            LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
             form.number_of_laps = 10;
             form.fuel_for_race_round_up = 56;
             form.fuel_per_lap = 5;
@@ -329,12 +326,11 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating pit strategy #2 (3 pit, tires only)")]
         public void CalculatePitStops_SampleData2()
         {
-            Panel panelPitStopStrategyTest = new Panel();
-            Label labelFuelRaceResultTest = new Label();
-            ComboBox comboBoxPitOptionsTest = new ComboBox();
-            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
-            numericUpDownPitsTest.Value = 3;
-            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            Panel panelPitStopStrategyTest = new();
+            Label labelFuelRaceResultTest = new();
+            ComboBox comboBoxPitOptionsTest = new();
+            NumericUpDown numericUpDownPitsTest = new() { Value = 3 };
+            LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
             comboBoxPitOptionsTest.SelectedIndex = 2;
             form.number_of_laps = 20;
             form.fuel_for_race_round_up = 84;
@@ -361,12 +357,11 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating pit strategy #3 (1 pit, 1L)")]
         public void CalculatePitStops_SampleData3()
         {
-            Panel panelPitStopStrategyTest = new Panel();
-            Label labelFuelRaceResultTest = new Label();
-            ComboBox comboBoxPitOptionsTest = new ComboBox();
-            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
-            numericUpDownPitsTest.Value = 1;
-            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            Panel panelPitStopStrategyTest = new();
+            Label labelFuelRaceResultTest = new();
+            ComboBox comboBoxPitOptionsTest = new();
+            NumericUpDown numericUpDownPitsTest = new() { Value = 1 };
+            LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
             comboBoxPitOptionsTest.SelectedIndex = 4;
             form.number_of_laps = 10;
             form.fuel_for_race_round_up = 44;
@@ -392,12 +387,11 @@ namespace FCalcACC.Tests
         [TestMethod("Calculating pit strategy #4 (5 pit, refuel+tires)")]
         public void CalculatePitStops_SampleData4()
         {
-            Panel panelPitStopStrategyTest = new Panel();
-            Label labelFuelRaceResultTest = new Label();
-            ComboBox comboBoxPitOptionsTest = new ComboBox();
-            NumericUpDown numericUpDownPitsTest = new NumericUpDown();
-            numericUpDownPitsTest.Value = 5;
-            form.LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
+            Panel panelPitStopStrategyTest = new();
+            Label labelFuelRaceResultTest = new();
+            ComboBox comboBoxPitOptionsTest = new();
+            NumericUpDown numericUpDownPitsTest = new() { Value = 5 };
+            LoadPitOptions(comboBoxPitOptionsTest, form.PIT_OPTIONS);
             comboBoxPitOptionsTest.SelectedIndex = 3;
             form.number_of_laps = 30;
             form.fuel_for_race_round_up = 124;

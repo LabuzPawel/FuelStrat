@@ -9,23 +9,23 @@ namespace FCalcACC
     {
         public class Car
         {
-            public string car_name { get; set; }
-            public string class_name { get; set; }
+            public string CarName { get; set; }
+            public string ClassName { get; set; }
         }
 
         public class Track
         {
-            public string track_name { get; set; }
-            public string track_lap_time { get; set; }
-            public string track_pit_duration { get; set; }
-            public List<CarTrackFuel> car_track_fuel { get; set; }
+            public string TrackName { get; set; }
+            public string TrackLapTime { get; set; }
+            public string TrackPitDuration { get; set; }
+            public List<CarTrackFuel> CarTrackFuel { get; set; }
         }
 
         public class CarTrackFuel
         {
-            public string car_name { get; set; }
-            public string fuel_per_lap { get; set; }
-            public string tank_capacity { get; set; }
+            public string CarName { get; set; }
+            public string FuelPerLap { get; set; }
+            public string TankCapacity { get; set; }
         }
 
         public int GetTankCapacity(string carName, string trackName)
@@ -35,11 +35,11 @@ namespace FCalcACC
                 return 99999;
             }
 
-            var selected_track = all_tracks.FirstOrDefault(track => track.track_name.Equals(comboBox_track.Text));
-            var selected_trackCarFuel = selected_track.car_track_fuel.FirstOrDefault(
-                carTrackFuel => carTrackFuel.car_name.Equals(comboBox_car.Text));
+            var selected_track = all_tracks.FirstOrDefault(track => track.TrackName.Equals(comboBox_track.Text));
+            var selected_trackCarFuel = selected_track.CarTrackFuel.FirstOrDefault(
+                carTrackFuel => carTrackFuel.CarName.Equals(comboBox_car.Text));
 
-            return int.Parse(selected_trackCarFuel.tank_capacity);
+            return int.Parse(selected_trackCarFuel.TankCapacity);
         }
 
         public List<Track> all_tracks;
@@ -47,10 +47,10 @@ namespace FCalcACC
         public List<string> car_classes;
         public List<int> fuelPerStint;
         public List<int> lapsPerStint;
-        public List<NumericUpDown> dynamic_numericUpDowns = new List<NumericUpDown>();
-        public List<int> new_list_of_laps_to_pit = new List<int>();
-        public List<int> new_list_of_refuel = new List<int>();
-        public List<Label> dynamic_labels = new List<Label>();
+        public List<NumericUpDown> dynamic_numericUpDowns = [];
+        public List<int> new_list_of_laps_to_pit = [];
+        public List<int> new_list_of_refuel = [];
+        public List<Label> dynamic_labels = [];
 
         public double time_lost_in_pits;
         public int time_in_pits;
@@ -63,30 +63,30 @@ namespace FCalcACC
         public int number_of_pits;
         public double formation_lap_fuel;
         private double fuel_for_race;
-        private Debouncer recalculate_debouncer = new Debouncer(50);
-
-        bool is_strat_ok = true;
+        private Debouncer recalculate_debouncer = new(50);
+        private bool is_strat_ok = true;
         private bool is_recalculate_needed = true;
-        private string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-        private double ONE_L_PIT_TIME = 3.6;
-        private double ONE_L_MORE = 0.2;
-        public int DEFAULT_TIME_IN_PITS = 57;
 
-        public List<string> PIT_OPTIONS = new List<string>()
-        {
+        private readonly string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+        private readonly double ONE_L_PIT_TIME = 3.6;
+        private readonly double ONE_L_MORE = 0.2;
+        public readonly int DEFAULT_TIME_IN_PITS = 57;
+
+        public List<string> PIT_OPTIONS =
+        [
             "Refuel only",
             "Fixed refuel only",
             "Tires only",
             "Refuel + tires",
             "1L refuel",
             "No pit stops"
-        };
+        ];
 
-        class Debouncer
+        private class Debouncer
         {
             // https://stackoverflow.com/a/47933557
 
-            private List<CancellationTokenSource> StepperCancelTokens = new List<CancellationTokenSource>();
+            private List<CancellationTokenSource> StepperCancelTokens = [];
             private int MillisecondsToWait;
             private readonly object _lockThis = new object(); // Use a locking object to prevent the debouncer
                                                               // to trigger again while the func is still running
@@ -137,21 +137,21 @@ namespace FCalcACC
             string tracks_resourse_name = "FCalcACC.car_track_data.TRACKS.json";
             Assembly assembly = Assembly.GetExecutingAssembly();
             using (Stream stream = assembly.GetManifestResourceStream(cars_resourse_name))
-            using (StreamReader reader = new StreamReader(stream))
+            using (StreamReader reader = new(stream))
             {
                 string cars_embedded = reader.ReadToEnd();
                 all_cars = JsonConvert.DeserializeObject<List<Car>>(cars_embedded);
+                int test = 0;
             }
 
             // Load Track objects, if no data file then load from embedded
             if (File.Exists("FCalcACC_data.json") == false)
             {
-                using (Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name))
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    string tracks_embedded = reader.ReadToEnd();
-                    all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
-                }
+                using Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name);
+                using StreamReader reader = new(stream);
+                string tracks_embedded = reader.ReadToEnd();
+                all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
+                int test = 0;
             }
             else
             {
@@ -182,6 +182,7 @@ namespace FCalcACC
                 }
             }
         }
+
         public void ResetSpecficCarTrack(ComboBox comboBoxCar, ComboBox comboBoxTrack)
         {
             if (comboBoxCar.Text == "CAR" || comboBoxTrack.Text == "TRACK")
@@ -195,28 +196,26 @@ namespace FCalcACC
 
             try
             {
-                using (Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name))
-                using (StreamReader reader = new StreamReader(stream))
+                using Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name);
+                using StreamReader reader = new(stream);
+                string tracks_embedded = reader.ReadToEnd();
+                List<Track> temp_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
+
+                // Find the specific track in the list
+                Track default_track = temp_tracks.Find(t => t.TrackName == comboBoxTrack.Text);
+                CarTrackFuel default_car_track_fuel = default_track.CarTrackFuel.Find(
+                    c => c.CarName == comboBoxCar.Text);
+                foreach (var track in all_tracks)
                 {
-                    string tracks_embedded = reader.ReadToEnd();
-                    List<Track> temp_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
-
-                    // Find the specific track in the list
-                    Track default_track = temp_tracks.Find(t => t.track_name == comboBoxTrack.Text);
-                    CarTrackFuel default_car_track_fuel = default_track.car_track_fuel.Find(
-                        c => c.car_name == comboBoxCar.Text);
-                    foreach (var track in all_tracks)
+                    if (track.TrackName.Equals(comboBox_track.Text))
                     {
-                        if (track.track_name.Equals(comboBox_track.Text))
-                        {
-                            track.track_lap_time = default_track.track_lap_time;
+                        track.TrackLapTime = default_track.TrackLapTime;
 
-                            foreach (var car_fuel in track.car_track_fuel)
+                        foreach (var car_fuel in track.CarTrackFuel)
+                        {
+                            if (car_fuel.CarName.Equals(comboBox_car.Text))
                             {
-                                if (car_fuel.car_name.Equals(comboBox_car.Text))
-                                {
-                                    car_fuel.fuel_per_lap = default_car_track_fuel.fuel_per_lap;
-                                }
+                                car_fuel.FuelPerLap = default_car_track_fuel.FuelPerLap;
                             }
                         }
                     }
@@ -245,7 +244,7 @@ namespace FCalcACC
 
         public void LoadCarClasses(ComboBox comboBoxClass)
         {
-            car_classes = all_cars.Select(car => car.class_name).Distinct().ToList();
+            car_classes = all_cars.Select(car => car.ClassName).Distinct().ToList();
 
             foreach (var car_class in car_classes)
             {
@@ -258,11 +257,11 @@ namespace FCalcACC
             comboBoxCar.ResetText();
             comboBoxCar.Items.Clear();
 
-            var cars_within_a_class = all_cars.Where(car => car.class_name.Contains(car_class));
+            var cars_within_a_class = all_cars.Where(car => car.ClassName.Contains(car_class));
 
             foreach (var car in cars_within_a_class)
             {
-                comboBoxCar.Items.Add(car.car_name);
+                comboBoxCar.Items.Add(car.CarName);
             }
             comboBoxCar.Text = "CAR";
 
@@ -276,11 +275,11 @@ namespace FCalcACC
         {
             foreach (var track in all_tracks)
             {
-                comboBoxTrack.Items.Add(track.track_name);
+                comboBoxTrack.Items.Add(track.TrackName);
             }
         }
 
-        public void LoadPitOptions(ComboBox comboBoxPit, List<string> pitOptions)
+        public static void LoadPitOptions(ComboBox comboBoxPit, List<string> pitOptions)
         {
             foreach (var pit_option in pitOptions)
             {
@@ -288,44 +287,44 @@ namespace FCalcACC
             }
         }
 
-        private void comboBox_class_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_class_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Load cars from selected class when comboBox_class changes
             LoadCars(comboBox_car, comboBox_class.Text);
         }
 
         // Restrictions to key presses in textBoxes, numericUpDowns
-        private void textBox_race_h_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_race_h_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void textBox_race_min_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_race_min_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void textBox_lap_time_min_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_lap_time_min_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void textBox_lap_time_sec_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_lap_time_sec_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',';
         }
 
-        private void textBox_fuel_per_lap_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_fuel_per_lap_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',';
         }
 
-        private void numericUpDown_pits_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumericUpDown_pits_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void textBox_max_stint_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_max_stint_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
@@ -367,8 +366,8 @@ namespace FCalcACC
             {
                 // calculate time lost in pits when track IS selected
 
-                var selected_track_object = all_tracks.FirstOrDefault(track => track.track_name.Contains(selected_track));
-                int.TryParse(selected_track_object.track_pit_duration, out time_in_pits);
+                var selected_track_object = all_tracks.FirstOrDefault(track => track.TrackName.Contains(selected_track));
+                int.TryParse(selected_track_object.TrackPitDuration, out time_in_pits);
 
                 switch (comboBoxPitOptions.Text)
                 {
@@ -410,8 +409,8 @@ namespace FCalcACC
             if (selected_track != "TRACK")
             {
                 // when track IS selected
-                var selected_track_object = all_tracks.FirstOrDefault(track => track.track_name.Contains(selected_track));
-                int.TryParse(selected_track_object.track_pit_duration, out time_in_pits);
+                var selected_track_object = all_tracks.FirstOrDefault(track => track.TrackName.Contains(selected_track));
+                int.TryParse(selected_track_object.TrackPitDuration, out time_in_pits);
             }
             else
             {
@@ -452,7 +451,7 @@ namespace FCalcACC
                 textBoxRaceMin.Text = min_race.ToString();
             }
 
-            if (h_race > 24)
+            if (h_race > 24 || h_race == 24 && min_race != 0)
             {
                 // if someone iserts more than 24h then set 24 for hours and 0 for mins
                 h_race = 24;
@@ -603,7 +602,7 @@ namespace FCalcACC
 
         public void CalculatePitStops(Panel panelPitStopStrategy, Label labelFuelRaceResult, NumericUpDown numericUpDownPits,
             ComboBox comboBoxPitOptions, out string labelFuelStartResultText, out List<int> fuelPerStint,
-            out List<int> lapsPerStint, List<int> newListOfLapsToPit)
+            out List<int> lapsPerStint)
         {
             // calculate pit stop strategy based on number of pit stops, pit options, max stint duration, tank capacity etc.
 
@@ -614,37 +613,46 @@ namespace FCalcACC
             panelPitStopStrategy.Controls.Clear();
 
             // groupBox for the start of the race
-            GroupBox groupBox_start = new GroupBox();
-            groupBox_start.Text = "Stint 1 - Start of the race";
-            groupBox_start.BackColor = Color.Gainsboro;
-            groupBox_start.Font = groupBox_car_track.Font;
-            groupBox_start.Location = new Point(16, 26);
-            Size groupBox_size = new Size(385, 83);
-            groupBox_start.Size = groupBox_size;
+            Size groupBox_size = new(385, 83);
+            GroupBox groupBox_start = new()
+            {
+                Text = "Stint 1 - Start of the race",
+                BackColor = Color.Gainsboro,
+                Font = groupBox_car_track.Font,
+                Location = new Point(16, 26),
+                Size = groupBox_size
+            };
             panelPitStopStrategy.Controls.Add(groupBox_start);
 
             // tableLayout with results for groupBox above
-            TableLayoutPanel tableLayoutPanel_start = new TableLayoutPanel();
-            tableLayoutPanel_start.Size = new Size(350, 32);
-            tableLayoutPanel_start.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
-            tableLayoutPanel_start.ColumnCount = 2;
+            TableLayoutPanel tableLayoutPanel_start = new()
+            {
+                Size = new Size(350, 32),
+                CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset,
+                ColumnCount = 2,
+                Location = new Point(15, 35)
+            };
             tableLayoutPanel_start.ColumnStyles.Clear();
             tableLayoutPanel_start.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             tableLayoutPanel_start.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             tableLayoutPanel_start.RowCount = 1;
-            tableLayoutPanel_start.Location = new Point(15, 35);
+
             groupBox_start.Controls.Add(tableLayoutPanel_start);
 
             // labels that are inside tableLayout above
-            Label label_fuel_for_start = new Label();
-            label_fuel_for_start.Text = "Fuel for the start";
-            label_fuel_for_start.Dock = DockStyle.Fill;
-            label_fuel_for_start.TextAlign = ContentAlignment.MiddleCenter;
-            label_fuel_for_start.Size = new Size(130, 17);
+            Label label_fuel_for_start = new()
+            {
+                Text = "Fuel for the start",
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Size = new Size(130, 17)
+            };
 
-            Label label_fuel_start_result = new Label();
-            label_fuel_start_result.Dock = DockStyle.Fill;
-            label_fuel_start_result.TextAlign = ContentAlignment.MiddleCenter;
+            Label label_fuel_start_result = new()
+            {
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
             this.Controls.Add(label_fuel_start_result);
             dynamic_labels.Add(label_fuel_start_result);
 
@@ -654,8 +662,8 @@ namespace FCalcACC
             number_of_pits = (int)numericUpDownPits.Value;
 
             // fuelPerStint, lapsPerStint, labelFuelStartResultText are for testing purposes
-            fuelPerStint = new List<int>();
-            lapsPerStint = new List<int>();
+            fuelPerStint = [];
+            lapsPerStint = [];
             labelFuelStartResultText = "";
 
             int tank_capacity;
@@ -682,7 +690,7 @@ namespace FCalcACC
                 {
                     number_of_pits = 1;
                     numericUpDownPits.Value = number_of_pits;
-                    button_calculate_Click(button_calculate, EventArgs.Empty);
+                    Button_calculate_Click(button_calculate, EventArgs.Empty);
                     return;
                 }
                 else if (comboBox_car.Text != "CAR" && comboBox_track.Text != "TRACK")
@@ -697,7 +705,7 @@ namespace FCalcACC
                     }
 
                     numericUpDownPits.Value = number_of_pits;
-                    button_calculate_Click(button_calculate, EventArgs.Empty);
+                    Button_calculate_Click(button_calculate, EventArgs.Empty);
                     return;
                 }
             }
@@ -710,7 +718,7 @@ namespace FCalcACC
                 number_of_pits = Math.Max(number_of_pits_tank, number_of_pits_stint);
 
                 numericUpDownPits.Value = number_of_pits;
-                button_calculate_Click(button_calculate, EventArgs.Empty);
+                Button_calculate_Click(button_calculate, EventArgs.Empty);
                 return;
             }
 
@@ -721,7 +729,7 @@ namespace FCalcACC
             {
                 number_of_pits = race_duration_secs / (int.Parse(textBox_max_stint.Text) * 60);
                 numericUpDownPits.Value = number_of_pits;
-                button_calculate_Click(button_calculate, EventArgs.Empty);
+                Button_calculate_Click(button_calculate, EventArgs.Empty);
                 return;
             }
 
@@ -737,23 +745,27 @@ namespace FCalcACC
                 // warning if tank capacity is lower than fuel require for the race
                 if (fuel_for_race_round_up > tank_capacity)
                 {
-                    GroupBox groupBox_warning = new GroupBox();
-                    groupBox_warning.Location = new Point(16, 124);
-                    groupBox_warning.Size = new Size(385, 130);
-                    groupBox_warning.Font = groupBox_car_track.Font;
-                    groupBox_warning.ForeColor = Color.Red;
-                    groupBox_warning.BackColor = groupBox_start.BackColor;
-                    groupBox_warning.Text = "WARNING";
+                    GroupBox groupBox_warning = new()
+                    {
+                        Location = new Point(16, 124),
+                        Size = new Size(385, 130),
+                        Font = groupBox_car_track.Font,
+                        ForeColor = Color.Red,
+                        BackColor = groupBox_start.BackColor,
+                        Text = "WARNING"
+                    };
                     panelPitStopStrategy.Controls.Add(groupBox_warning);
 
-                    Label label_warning = new Label();
-                    label_warning.Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
-                        " L) is greater than tank capacity (" + tank_capacity.ToString() + " L). " +
+                    Label label_warning = new()
+                    {
+                        Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
+                        " L) is greater than fuel tank capacity (" + tank_capacity.ToString() + " L). " +
                         "\n\nConsider adding a pit stop with refuel or " +
-                        "fuel saving (" + (fuel_for_race_round_up - tank_capacity).ToString() + " L) during the race.";
-                    label_warning.Location = new Point(16, 30);
-                    label_warning.Size = new Size(350, 90);
-                    label_warning.ForeColor = Color.Black;
+                        "fuel saving (" + (fuel_for_race_round_up - tank_capacity).ToString() + " L) during the race.",
+                        Location = new Point(16, 30),
+                        Size = new Size(350, 90),
+                        ForeColor = Color.Black
+                    };
                     groupBox_warning.Controls.Add(label_warning);
                 }
             }
@@ -792,7 +804,7 @@ namespace FCalcACC
                 }
 
                 // variables that will be used when when 1L strategy isnt optimal
-                List<int> fuel_1L_adjusted = new List<int>();
+                List<int> fuel_1L_adjusted = [];
                 int full_tank_count = fuel_for_race_round_up / tank_capacity;
                 int full_tank_sum = 0;
 
@@ -842,34 +854,42 @@ namespace FCalcACC
 
                         label_fuel_start_result.Text = label_fuel_race_result.Text;
 
-                        GroupBox groupBox_temp = new GroupBox();
-                        groupBox_temp.Name = name_for_groupbox;
-                        groupBox_temp.Location = new Point(16, y_groupBox);
-                        groupBox_temp.Font = groupBox_car_track.Font;
-                        groupBox_temp.Size = groupBox_size;
-                        groupBox_temp.BackColor = groupBox_start.BackColor;
-                        groupBox_temp.Text = "Stint " + stint;
+                        GroupBox groupBox_temp = new()
+                        {
+                            Name = name_for_groupbox,
+                            Location = new Point(16, y_groupBox),
+                            Font = groupBox_car_track.Font,
+                            Size = groupBox_size,
+                            BackColor = groupBox_start.BackColor,
+                            Text = "Stint " + stint
+                        };
                         panelPitStopStrategy.Controls.Add(groupBox_temp);
 
-                        TableLayoutPanel table_temp = new TableLayoutPanel();
-                        table_temp.Name = name_for_table;
-                        table_temp.Location = new Point(16, 30);
-                        table_temp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
+                        TableLayoutPanel table_temp = new()
+                        {
+                            Name = name_for_table,
+                            Location = new Point(16, 30),
+                            CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset
+                        };
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
 
-                        NumericUpDown numericUpDown_laps_temp = new NumericUpDown();
-                        numericUpDown_laps_temp.Name = "numericUpDown_laps_stint" + stint.ToString();
-                        numericUpDown_laps_temp.Dock = DockStyle.Fill;
-                        numericUpDown_laps_temp.TextAlign = HorizontalAlignment.Center;
-                        numericUpDown_laps_temp.Maximum = 999;
+                        NumericUpDown numericUpDown_laps_temp = new()
+                        {
+                            Name = "numericUpDown_laps_stint" + stint.ToString(),
+                            Dock = DockStyle.Fill,
+                            TextAlign = HorizontalAlignment.Center,
+                            Maximum = 999
+                        };
                         this.Controls.Add(numericUpDown_laps_temp);
                         dynamic_numericUpDowns.Add(numericUpDown_laps_temp);
 
-                        Label label_refuel_temp = new Label();
-                        label_refuel_temp.Dock = DockStyle.Fill;
-                        label_refuel_temp.TextAlign = ContentAlignment.MiddleCenter;
-                        label_refuel_temp.Name = name_for_refuel_label;
+                        Label label_refuel_temp = new()
+                        {
+                            Dock = DockStyle.Fill,
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            Name = name_for_refuel_label
+                        };
 
                         double current_part = Math.Min(number_of_laps_remaining, laps_per_stint);
                         current_laps += current_part;
@@ -893,23 +913,27 @@ namespace FCalcACC
                         // show a warning if fuel tank capacity is lower than fuel for the whole race
                         if (fuel_for_race_round_up > tank_capacity && i == 1)
                         {
-                            GroupBox groupBox_warning = new GroupBox();
-                            groupBox_warning.Location = new Point(16, y_groupBox);
-                            groupBox_warning.Size = new Size(385, 130);
-                            groupBox_warning.Font = groupBox_car_track.Font;
-                            groupBox_warning.ForeColor = Color.Red;
-                            groupBox_warning.BackColor = groupBox_start.BackColor;
-                            groupBox_warning.Text = "WARNING";
+                            GroupBox groupBox_warning = new()
+                            {
+                                Location = new Point(16, y_groupBox),
+                                Size = new Size(385, 130),
+                                Font = groupBox_car_track.Font,
+                                ForeColor = Color.Red,
+                                BackColor = groupBox_start.BackColor,
+                                Text = "WARNING"
+                            };
                             panelPitStopStrategy.Controls.Add(groupBox_warning);
 
-                            Label label_warning = new Label();
-                            label_warning.Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
-                                " L) is greater than tank capacity (" + tank_capacity.ToString() + " L). " +
+                            Label label_warning = new()
+                            {
+                                Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
+                                " L) is greater than fuel tank capacity (" + tank_capacity.ToString() + " L). " +
                                 "\n\nConsider changing a pit stop option with refuel or " +
-                                "fuel saving (" + (fuel_for_race_round_up - tank_capacity).ToString() + " L) during the race.";
-                            label_warning.Location = new Point(16, 30);
-                            label_warning.Size = new Size(350, 90);
-                            label_warning.ForeColor = Color.Black;
+                                "fuel saving (" + (fuel_for_race_round_up - tank_capacity).ToString() + " L) during the race.",
+                                Location = new Point(16, 30),
+                                Size = new Size(350, 90),
+                                ForeColor = Color.Black
+                            };
                             groupBox_warning.Controls.Add(label_warning);
                         }
                     }
@@ -923,11 +947,13 @@ namespace FCalcACC
                         if (fuel_for_race_round_up > (tank_capacity + number_of_pits))
                         {
                             groupBox_start.Size = new Size(385, 123);
-                            Label label_tank = new Label();
-                            label_tank.Text = "Exceeded fuel tank capacity of " + tank_capacity.ToString() + 
-                                " L for 1L strategy. Adjusted with higher refuel.";
-                            label_tank.Size = new Size(350, 50);
-                            label_tank.Location = new Point(16, 74);
+                            Label label_tank = new()
+                            {
+                                Text = "Exceeded fuel tank capacity of " + tank_capacity.ToString() +
+                                " L for 1L strategy. Adjusted with higher refuel.",
+                                Size = new Size(350, 50),
+                                Location = new Point(16, 74)
+                            };
                             groupBox_start.Controls.Add(label_tank);
 
                             if (i == number_of_pits)
@@ -946,34 +972,43 @@ namespace FCalcACC
 
                                 label_fuel_start_result.Text = (fuel_for_race_round_up - number_of_pits).ToString() + " L";
 
-                                GroupBox groupBox_temp = new GroupBox();
-                                groupBox_temp.Name = name_for_groupbox;
-                                groupBox_temp.Location = new Point(16, y_groupBox);
-                                groupBox_temp.Size = new Size(385, 103);
-                                groupBox_temp.Font = groupBox_car_track.Font;
-                                groupBox_temp.BackColor = groupBox_start.BackColor;
-                                groupBox_temp.Text = "Stint " + stint;
+                                GroupBox groupBox_temp = new()
+                                {
+                                    Name = name_for_groupbox,
+                                    Location = new Point(16, y_groupBox),
+                                    Size = new Size(385, 103),
+                                    Font = groupBox_car_track.Font,
+                                    BackColor = groupBox_start.BackColor,
+                                    Text = "Stint " + stint
+                                };
                                 panelPitStopStrategy.Controls.Add(groupBox_temp);
 
-                                TableLayoutPanel table_temp = new TableLayoutPanel();
-                                table_temp.Name = name_for_table;
-                                table_temp.Location = new Point(16, 30);
+                                TableLayoutPanel table_temp = new()
+                                {
+                                    Name = name_for_table,
+                                    Location = new Point(16, 30),
+                                    CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset
+                                };
                                 table_temp.ColumnStyles.Clear();
                                 table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                                 table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-                                table_temp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
 
-                                Label label_refuel_temp = new Label();
-                                label_refuel_temp.Name = name_for_refuel_label;
-                                label_refuel_temp.Dock = DockStyle.Fill;
-                                label_refuel_temp.TextAlign = ContentAlignment.MiddleCenter;
-                                label_refuel_temp.Text = "Refuel for Stint " + stint.ToString();
 
-                                NumericUpDown numericUpDown_laps_temp = new NumericUpDown();
-                                numericUpDown_laps_temp.Name = "numericUpDown_laps_stint" + stint.ToString();
-                                numericUpDown_laps_temp.Dock = DockStyle.Fill;
-                                numericUpDown_laps_temp.TextAlign = HorizontalAlignment.Center;
-                                numericUpDown_laps_temp.Maximum = 999;
+                                Label label_refuel_temp = new()
+                                {
+                                    Name = name_for_refuel_label,
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Text = "Refuel for Stint " + stint.ToString()
+                                };
+
+                                NumericUpDown numericUpDown_laps_temp = new()
+                                {
+                                    Name = "numericUpDown_laps_stint" + stint.ToString(),
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = HorizontalAlignment.Center,
+                                    Maximum = 999
+                                };
                                 this.Controls.Add(numericUpDown_laps_temp);
                                 dynamic_numericUpDowns.Add(numericUpDown_laps_temp);
 
@@ -984,17 +1019,22 @@ namespace FCalcACC
                                 number_of_laps_remaining -= laps_per_stint;
                                 lapsPerStint.Add((int)Math.Ceiling(current_laps));
 
-                                Label label_refuel_result_temp = new Label() { Text = "1 L" };
-                                label_refuel_result_temp.Name = name_for_refuel_result_label;
-                                label_refuel_result_temp.Dock = DockStyle.Fill;
-                                label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
+                                Label label_refuel_result_temp = new()
+                                {
+                                    Text = "1 L",
+                                    Name = name_for_refuel_result_label,
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = ContentAlignment.MiddleCenter
+                                };
                                 fuelPerStint.Add(1);
 
-                                Label label_laps_temp = new Label();
-                                label_laps_temp.Name = "label_laps_stint" + stint.ToString();
-                                label_laps_temp.Dock = DockStyle.Fill;
-                                label_laps_temp.TextAlign = ContentAlignment.MiddleCenter;
-                                label_laps_temp.Text = "Pit after lap";
+                                Label label_laps_temp = new()
+                                {
+                                    Name = "label_laps_stint" + stint.ToString(),
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Text = "Pit after lap"
+                                };
 
                                 table_temp.Controls.Add(label_refuel_temp, 0, 1);
                                 table_temp.Controls.Add(label_refuel_result_temp, 1, 1);
@@ -1016,34 +1056,43 @@ namespace FCalcACC
 
                                 label_fuel_start_result.Text = tank_capacity.ToString() + " L";
 
-                                GroupBox groupBox_temp2 = new GroupBox();
-                                groupBox_temp2.Name = name_for_groupbox;
-                                groupBox_temp2.Location = new Point(16, y_groupBox);
-                                groupBox_temp2.Size = new Size(385, 103);
-                                groupBox_temp2.Font = groupBox_car_track.Font;
-                                groupBox_temp2.BackColor = groupBox_start.BackColor;
-                                groupBox_temp2.Text = "Stint " + stint;
+                                GroupBox groupBox_temp2 = new()
+                                {
+                                    Name = name_for_groupbox,
+                                    Location = new Point(16, y_groupBox),
+                                    Size = new Size(385, 103),
+                                    Font = groupBox_car_track.Font,
+                                    BackColor = groupBox_start.BackColor,
+                                    Text = "Stint " + stint
+                                };
                                 panelPitStopStrategy.Controls.Add(groupBox_temp2);
 
-                                TableLayoutPanel table_temp2 = new TableLayoutPanel();
-                                table_temp2.Name = name_for_table;
-                                table_temp2.Location = new Point(16, 30);
+                                TableLayoutPanel table_temp2 = new()
+                                {
+                                    Name = name_for_table,
+                                    Location = new Point(16, 30),
+                                    CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset
+                                };
                                 table_temp2.ColumnStyles.Clear();
                                 table_temp2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                                 table_temp2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-                                table_temp2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
 
-                                Label label_laps_temp2 = new Label();
-                                label_laps_temp2.Name = name_for_refuel_label;
-                                label_laps_temp2.Dock = DockStyle.Fill;
-                                label_laps_temp2.TextAlign = ContentAlignment.MiddleCenter;
-                                label_laps_temp2.Text = "Pit after lap";
 
-                                Label label_refuel_temp2 = new Label();
-                                label_refuel_temp2.Name = name_for_refuel_label;
-                                label_refuel_temp2.Dock = DockStyle.Fill;
-                                label_refuel_temp2.TextAlign = ContentAlignment.MiddleCenter;
-                                label_refuel_temp2.Text = "Refuel for Stint " + stint.ToString();
+                                Label label_laps_temp2 = new()
+                                {
+                                    Name = name_for_refuel_label,
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Text = "Pit after lap"
+                                };
+
+                                Label label_refuel_temp2 = new()
+                                {
+                                    Name = name_for_refuel_label,
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Text = "Refuel for Stint " + stint.ToString()
+                                };
 
                                 if (stint == 2)
                                 {
@@ -1060,11 +1109,13 @@ namespace FCalcACC
                                     more_time_in_pits += (fuel_for_this_stint - 1) * ONE_L_MORE;
                                 }
 
-                                NumericUpDown numericUpDown_laps_temp2 = new NumericUpDown();
-                                numericUpDown_laps_temp2.Name = "numericUpDown_laps_stint" + stint.ToString();
-                                numericUpDown_laps_temp2.Dock = DockStyle.Fill;
-                                numericUpDown_laps_temp2.TextAlign = HorizontalAlignment.Center;
-                                numericUpDown_laps_temp2.Maximum = 9999;
+                                NumericUpDown numericUpDown_laps_temp2 = new()
+                                {
+                                    Name = "numericUpDown_laps_stint" + stint.ToString(),
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = HorizontalAlignment.Center,
+                                    Maximum = 9999
+                                };
                                 this.Controls.Add(numericUpDown_laps_temp2);
                                 dynamic_numericUpDowns.Add(numericUpDown_laps_temp2);
 
@@ -1088,11 +1139,13 @@ namespace FCalcACC
                                     numericUpDown_laps_temp2.Enabled = false;
                                 }
 
-                                Label label_refuel_result_temp2 = new Label();
-                                label_refuel_result_temp2.Name = name_for_refuel_result_label;
-                                label_refuel_result_temp2.Text = fuel_for_this_stint.ToString() + " L";
-                                label_refuel_result_temp2.Dock = DockStyle.Fill;
-                                label_refuel_result_temp2.TextAlign = ContentAlignment.MiddleCenter;
+                                Label label_refuel_result_temp2 = new()
+                                {
+                                    Name = name_for_refuel_result_label,
+                                    Text = fuel_for_this_stint.ToString() + " L",
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = ContentAlignment.MiddleCenter
+                                };
 
                                 table_temp2.Controls.Add(label_refuel_temp2, 0, 1);
                                 table_temp2.Controls.Add(label_refuel_result_temp2, 1, 1);
@@ -1117,7 +1170,7 @@ namespace FCalcACC
                                     is_recalculate_needed = false;    // change to false so it wont be endless loop
                                     CalculatePitStops(panel_pit_stop_strategy, label_fuel_race_result, numericUpDown_pits, comboBox_pit_options,
                                         out string labelFuelStartResultTextForTesting, out List<int> fuelPerStintForTesting,
-                                        out List<int> lapsPitStintForTesting, new_list_of_laps_to_pit);
+                                        out List<int> lapsPitStintForTesting);
                                     is_recalculate_needed = true;     // change back to true for next calculations
                                     SaveData();
                                 }
@@ -1128,25 +1181,29 @@ namespace FCalcACC
                         // for the whole race
                         if (i == 1 && pit_stops_left < 0)
                         {
-                            GroupBox groupBox_warning = new GroupBox();
-                            groupBox_warning.Name = name_for_groupbox + "_warning";
-                            groupBox_warning.Location = new Point(16, y_groupBox);
-                            groupBox_warning.Size = new Size(385, 135);
-                            groupBox_warning.Font = groupBox_car_track.Font;
-                            groupBox_warning.ForeColor = Color.Red;
-                            groupBox_warning.BackColor = groupBox_start.BackColor;
-                            groupBox_warning.Text = "WARNING";
+                            GroupBox groupBox_warning = new()
+                            {
+                                Name = name_for_groupbox + "_warning",
+                                Location = new Point(16, y_groupBox),
+                                Size = new Size(385, 135),
+                                Font = groupBox_car_track.Font,
+                                ForeColor = Color.Red,
+                                BackColor = groupBox_start.BackColor,
+                                Text = "WARNING"
+                            };
                             panelPitStopStrategy.Controls.Add(groupBox_warning);
 
-                            Label label_warning = new Label();
-                            label_warning.Name = name_for_refuel_result_label + "_warning";
-                            label_warning.Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
+                            Label label_warning = new()
+                            {
+                                Name = name_for_refuel_result_label + "_warning",
+                                Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
                                 " L) is greater than sum of full tank pit stops (" + full_tank_sum.ToString() + " L). " +
                                 "\n\nConsider changing pit option to refuel and increase number of pit stops or " +
-                                "fuel saving (" + (fuel_for_race_round_up - full_tank_sum).ToString() + " L) during the race.";
-                            label_warning.Location = new Point(16, 30);
-                            label_warning.Size = new Size(350, 90);
-                            label_warning.ForeColor = Color.Black;
+                                "fuel saving (" + (fuel_for_race_round_up - full_tank_sum).ToString() + " L) during the race.",
+                                Location = new Point(16, 30),
+                                Size = new Size(350, 90),
+                                ForeColor = Color.Black
+                            };
                             groupBox_warning.Controls.Add(label_warning);
                         }
                     }
@@ -1158,36 +1215,45 @@ namespace FCalcACC
 
                         label_fuel_start_result.Text = fuel_first_stint.ToString() + " L";
 
-                        GroupBox groupBox_temp = new GroupBox();
-                        groupBox_temp.Name = name_for_groupbox;
-                        groupBox_temp.Location = new Point(16, y_groupBox);
-                        groupBox_temp.Size = new Size(385, 103);
-                        groupBox_temp.Font = groupBox_car_track.Font;
-                        groupBox_temp.BackColor = groupBox_start.BackColor;
-                        groupBox_temp.Text = "Stint " + stint;
+                        GroupBox groupBox_temp = new()
+                        {
+                            Name = name_for_groupbox,
+                            Location = new Point(16, y_groupBox),
+                            Size = new Size(385, 103),
+                            Font = groupBox_car_track.Font,
+                            BackColor = groupBox_start.BackColor,
+                            Text = "Stint " + stint
+                        };
                         panelPitStopStrategy.Controls.Add(groupBox_temp);
 
-                        TableLayoutPanel table_temp = new TableLayoutPanel();
-                        table_temp.Name = name_for_table;
-                        table_temp.Location = new Point(16, 30);
+                        TableLayoutPanel table_temp = new()
+                        {
+                            Name = name_for_table,
+                            Location = new Point(16, 30),
+                            CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset
+                        };
                         table_temp.ColumnStyles.Clear();
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-                        table_temp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
 
-                        NumericUpDown numericUpDown_laps_temp = new NumericUpDown();
-                        numericUpDown_laps_temp.Name = "numericUpDown_laps_stint" + stint.ToString();
-                        numericUpDown_laps_temp.Dock = DockStyle.Fill;
-                        numericUpDown_laps_temp.TextAlign = HorizontalAlignment.Center;
-                        numericUpDown_laps_temp.Maximum = 99999;
+
+                        NumericUpDown numericUpDown_laps_temp = new()
+                        {
+                            Name = "numericUpDown_laps_stint" + stint.ToString(),
+                            Dock = DockStyle.Fill,
+                            TextAlign = HorizontalAlignment.Center,
+                            Maximum = 99999
+                        };
                         this.Controls.Add(numericUpDown_laps_temp);
                         dynamic_numericUpDowns.Add(numericUpDown_laps_temp);
 
-                        Label label_refuel_temp = new Label();
-                        label_refuel_temp.Name = name_for_refuel_label;
-                        label_refuel_temp.Dock = DockStyle.Fill;
-                        label_refuel_temp.TextAlign = ContentAlignment.MiddleCenter;
-                        label_refuel_temp.Text = "Refuel for Stint " + stint.ToString();
+                        Label label_refuel_temp = new()
+                        {
+                            Name = name_for_refuel_label,
+                            Dock = DockStyle.Fill,
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            Text = "Refuel for Stint " + stint.ToString()
+                        };
 
                         double current_part_laps = Math.Min(number_of_laps_remaining, laps_per_stint);
                         current_laps += current_part_laps;
@@ -1205,17 +1271,21 @@ namespace FCalcACC
                         stints_left--;
                         fuelPerStint.Add(fuel_for_this_stint);
 
-                        Label label_laps_temp = new Label();
-                        label_laps_temp.Name = "label_laps_stint" + stint.ToString();
-                        label_laps_temp.Dock = DockStyle.Fill;
-                        label_laps_temp.TextAlign = ContentAlignment.MiddleCenter;
-                        label_laps_temp.Text = "Pit after lap";
+                        Label label_laps_temp = new()
+                        {
+                            Name = "label_laps_stint" + stint.ToString(),
+                            Dock = DockStyle.Fill,
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            Text = "Pit after lap"
+                        };
 
-                        Label label_refuel_result_temp = new Label();
-                        label_refuel_result_temp.Name = name_for_refuel_result_label;
-                        label_refuel_result_temp.Text = fuel_for_this_stint.ToString() + " L";
-                        label_refuel_result_temp.Dock = DockStyle.Fill;
-                        label_refuel_result_temp.TextAlign = ContentAlignment.MiddleCenter;
+                        Label label_refuel_result_temp = new()
+                        {
+                            Name = name_for_refuel_result_label,
+                            Text = fuel_for_this_stint.ToString() + " L",
+                            Dock = DockStyle.Fill,
+                            TextAlign = ContentAlignment.MiddleCenter
+                        };
                         this.Controls.Add(label_refuel_result_temp);
                         dynamic_labels.Add(label_refuel_result_temp);
 
@@ -1233,25 +1303,29 @@ namespace FCalcACC
                         // for the whole race
                         if (i == 1 && pit_stops_left < 0 && full_tank_sum < fuel_for_race_round_up)
                         {
-                            GroupBox groupBox_warning = new GroupBox();
-                            groupBox_warning.Name = name_for_groupbox + "_warning";
-                            groupBox_warning.Location = new Point(16, y_groupBox);
-                            groupBox_warning.Size = new Size(385, 135);
-                            groupBox_warning.Font = groupBox_car_track.Font;
-                            groupBox_warning.ForeColor = Color.Red;
-                            groupBox_warning.BackColor = groupBox_start.BackColor;
-                            groupBox_warning.Text = "WARNING";
+                            GroupBox groupBox_warning = new()
+                            {
+                                Name = name_for_groupbox + "_warning",
+                                Location = new Point(16, y_groupBox),
+                                Size = new Size(385, 135),
+                                Font = groupBox_car_track.Font,
+                                ForeColor = Color.Red,
+                                BackColor = groupBox_start.BackColor,
+                                Text = "WARNING"
+                            };
                             panelPitStopStrategy.Controls.Add(groupBox_warning);
 
-                            Label label_warning = new Label();
-                            label_warning.Name = name_for_refuel_result_label + "_warning";
-                            label_warning.Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
+                            Label label_warning = new()
+                            {
+                                Name = name_for_refuel_result_label + "_warning",
+                                Text = "Fuel needed for this race (" + fuel_for_race_round_up.ToString() +
                                 " L) is greater than sum of full tank pit stops (" + full_tank_sum.ToString() + " L). " +
                                 "\n\nConsider increasing number of pit stops or " +
-                                "fuel saving (" + (fuel_for_race_round_up - full_tank_sum).ToString() + " L) during the race.";
-                            label_warning.Location = new Point(16, 30);
-                            label_warning.Size = new Size(350, 90);
-                            label_warning.ForeColor = Color.Black;
+                                "fuel saving (" + (fuel_for_race_round_up - full_tank_sum).ToString() + " L) during the race.",
+                                Location = new Point(16, 30),
+                                Size = new Size(350, 90),
+                                ForeColor = Color.Black
+                            };
                             groupBox_warning.Controls.Add(label_warning);
                         }
                     }
@@ -1334,7 +1408,7 @@ namespace FCalcACC
 
             int max_stint_limit = 99999;    // big number so it wont be a limit if there is no maximum stint timer
             int tank_capacity = 99999;      // big number so it wont be a limit if there is no car and track selected
-            List<int> tank_capacity_limit = new List<int>();
+            List<int> tank_capacity_limit = [];
 
             if (comboBox_car.Text != "CAR" && comboBox_track.Text != "TRACK")
             {
@@ -1463,9 +1537,9 @@ namespace FCalcACC
             {
                 string selected_car = comboBox_car.Text;
                 string selected_track = comboBox_track.Text;
-                var track = all_tracks.Where(track => track.track_name.Equals(selected_track)).First();
+                var track = all_tracks.Where(track => track.TrackName.Equals(selected_track)).First();
 
-                float.TryParse(track.track_lap_time.Replace(".", DECIMAL_SEPARATOR).Replace(",", DECIMAL_SEPARATOR),
+                float.TryParse(track.TrackLapTime.Replace(".", DECIMAL_SEPARATOR).Replace(",", DECIMAL_SEPARATOR),
                     out float lap_time);
                 int lap_time_mins = (int)(lap_time / 60);
                 float lap_time_secs = lap_time % 60;
@@ -1474,8 +1548,8 @@ namespace FCalcACC
 
                 if (comboBox_car.Text != "CAR")
                 {
-                    CarTrackFuel car_fuel = track.car_track_fuel.Find(car => car.car_name == selected_car);
-                    textBox_fuel_per_lap.Text = car_fuel.fuel_per_lap;
+                    CarTrackFuel car_fuel = track.CarTrackFuel.Find(car => car.CarName == selected_car);
+                    textBox_fuel_per_lap.Text = car_fuel.FuelPerLap;
                 }
             }
         }
@@ -1486,15 +1560,15 @@ namespace FCalcACC
 
             foreach (var track in all_tracks)
             {
-                if (track.track_name.Equals(comboBox_track.Text))
+                if (track.TrackName.Equals(comboBox_track.Text))
                 {
-                    track.track_lap_time = lap_time_secs.ToString();
+                    track.TrackLapTime = lap_time_secs.ToString();
 
-                    foreach (var car_fuel in track.car_track_fuel)
+                    foreach (var car_fuel in track.CarTrackFuel)
                     {
-                        if (car_fuel.car_name.Equals(comboBox_car.Text))
+                        if (car_fuel.CarName.Equals(comboBox_car.Text))
                         {
-                            car_fuel.fuel_per_lap = textBox_fuel_per_lap.Text;
+                            car_fuel.FuelPerLap = textBox_fuel_per_lap.Text;
                         }
                     }
                 }
@@ -1522,16 +1596,18 @@ namespace FCalcACC
             listBox_formation.SelectedIndex = 0;
         }
 
-        public void ChangeTextBoxColor(TextBox textBox)
+        public static void ChangeTextBoxColor(TextBox textBox)
         {
-            // textBox will flash red color
+            // textBox will flash red color (for button_calculate_Click action)
 
             Color original_color = textBox.BackColor;
 
             textBox.BackColor = Color.Red;
 
-            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-            timer.Interval = 1000;
+            System.Windows.Forms.Timer timer = new()
+            {
+                Interval = 1000
+            };
             timer.Tick += (sender, e) =>
             {
                 textBox.BackColor = original_color;
@@ -1543,9 +1619,9 @@ namespace FCalcACC
 
         private bool OnlyZeros(string text)
         {
-            // check if string consists only characters from the list below
+            // check if string consists only characters from the list below (for button_calculate_Click action)
 
-            List<char> chars = new List<char> { '0', '.', ',' };
+            List<char> chars = ['0', '.', ','];
 
             foreach (char c in text)
             {
@@ -1557,7 +1633,7 @@ namespace FCalcACC
             return false;
         }
 
-        private void button_calculate_Click(object sender, EventArgs e)
+        private void Button_calculate_Click(object sender, EventArgs e)
         {
             // if either lap time, fuel per lap or race duration is set to 0
             // prevent further calculations and flash textBox(es) with red color
@@ -1622,18 +1698,18 @@ namespace FCalcACC
             }
             CalculatePitStops(panel_pit_stop_strategy, label_fuel_race_result, numericUpDown_pits, comboBox_pit_options,
                 out string labelFuelStartResultTextForTesting, out List<int> fuelPerStint,
-                out List<int> lapsPerStint, new_list_of_laps_to_pit);
+                out List<int> lapsPerStint);
             SaveData();
         }
 
-        private void comboBox_car_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_car_SelectedIndexChanged(object sender, EventArgs e)
         {
             // load new data when selected car changes
 
             LoadData();
         }
 
-        private void comboBox_track_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_track_SelectedIndexChanged(object sender, EventArgs e)
         {
             // load new data when selected track changes
 
@@ -1652,22 +1728,22 @@ namespace FCalcACC
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // menu->exit
 
             Application.Exit();
         }
 
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // help button, showing new window
 
-            Form2 form2 = new Form2();
+            Form2 form2 = new();
             form2.ShowDialog();
         }
 
-        private void checkBox_max_stint_Click(object sender, EventArgs e)
+        private void CheckBox_max_stint_Click(object sender, EventArgs e)
         {
             // checkBox max stint enables and disables textBox
 
@@ -1682,11 +1758,11 @@ namespace FCalcACC
             }
         }
 
-        private void gitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GitHubToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // github button, opnes github website of this project in a browser
 
-            string github_url = "https:// github.com/LabuzPawel/FCalcACC";
+            string github_url = "https://github.com/LabuzPawel/FCalcACC";
             Process.Start(new ProcessStartInfo
             {
                 FileName = github_url,
@@ -1707,6 +1783,8 @@ namespace FCalcACC
 
         private void NumericUpDown_pit_strat_changes(object sender, EventArgs e)
         {
+            // this event needs a debounce, multiple fast clicks and changes overloads CPU
+
             recalculate_debouncer.Debouce(() =>
             {
                 new_list_of_laps_to_pit.Clear();
@@ -1720,7 +1798,7 @@ namespace FCalcACC
             });
         }
 
-        private void comboBox_pit_options_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_pit_options_SelectedIndexChanged(object sender, EventArgs e)
         {
             // if 'no pit stops' selected -> reset pit stops panel
 
@@ -1737,7 +1815,7 @@ namespace FCalcACC
             }
         }
 
-        private void resetAllDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ResetAllDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // menu->reset data->reset current cat/track, option to reset data just for the selected car and track combination
 
@@ -1750,7 +1828,7 @@ namespace FCalcACC
             }
         }
 
-        private void resetCurrentCartrackToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ResetCurrentCartrackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // menu->reset data->reset all data, option to reset FCalcACC_data.json
 

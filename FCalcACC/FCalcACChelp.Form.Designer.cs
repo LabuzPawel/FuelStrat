@@ -1,6 +1,6 @@
 ﻿namespace FCalcACC
 {
-    partial class Form2
+    partial class FCalcACChelp
     {
         /// <summary>
         /// Required designer variable.

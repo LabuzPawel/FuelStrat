@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace FCalcACC
 {
-    public partial class Form1 : Form
+    public partial class FCalcACC : Form
     {
         public class Car
         {
@@ -1578,7 +1578,7 @@ namespace FCalcACC
             File.WriteAllText("FCalcACC_data.json", json_data_save);
         }
 
-        public Form1()
+        public FCalcACC()
         {
             InitializeComponent();
         }
@@ -1739,8 +1739,8 @@ namespace FCalcACC
         {
             // help button, showing new window
 
-            Form2 form2 = new();
-            form2.ShowDialog();
+            FCalcACChelp FCalcACChelp = new();
+            FCalcACChelp.ShowDialog();
         }
 
         private void CheckBox_max_stint_Click(object sender, EventArgs e)
@@ -1770,7 +1770,7 @@ namespace FCalcACC
             });
         }
 
-        private void Form1_Shown(object sender, EventArgs e)
+        private void Form_Shown(object sender, EventArgs e)
         {
             // dialog pop up after Form is shown informing that the file was created
 

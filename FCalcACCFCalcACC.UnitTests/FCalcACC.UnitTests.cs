@@ -1,17 +1,17 @@
 ﻿using System.Windows.Forms;
-using static FCalcACC.Form1;
+using static FCalcACC.FCalcACC;
 
 namespace FCalcACC.Tests
 {
     [TestClass()]
-    public class Form1Tests
+    public class FCalcACCtests
     {
-        private Form1? form;
+        private FCalcACC? form;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            form = new Form1();
+            form = new FCalcACC();
         }
 
         [TestMethod("Car object from CARS.json")]

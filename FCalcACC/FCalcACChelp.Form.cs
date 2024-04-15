@@ -2,9 +2,12 @@
 
 namespace FCalcACC
 {
-    public partial class Form2 : Form
+
+    // this form is only for displaying 'help'
+
+    public partial class FCalcACChelp : Form
     {
-        public Form2()
+        public FCalcACChelp()
         {
             InitializeComponent();
             LoadHelpText(out string help_text);

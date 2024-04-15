@@ -1,6 +1,6 @@
 ﻿namespace FCalcACC
 {
-    partial class Form1
+    partial class FCalcACC
     {
         /// <summary>
         ///  Required designer variable.
@@ -91,12 +91,12 @@
             menuStrip1 = new MenuStrip();
             menuStrip2 = new MenuStrip();
             toolStripMenuItem_menu = new ToolStripMenuItem();
-            resetDataToolStripMenuItem1 = new ToolStripMenuItem();
-            resetAllDataToolStripMenuItem = new ToolStripMenuItem();
-            resetCurrentCartrackToolStripMenuItem = new ToolStripMenuItem();
+            resetDataToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem_help = new ToolStripMenuItem();
             ToolStripMenuItem_github = new ToolStripMenuItem();
+            resetAllDataToolStripMenuItem = new ToolStripMenuItem();
+            resetCurrentCartrackToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -124,7 +124,7 @@
             // label_fuel_L
             // 
             label_fuel_L.AutoSize = true;
-            label_fuel_L.Location = new Point(105, 142);
+            label_fuel_L.Location = new Point(41, 145);
             label_fuel_L.Name = "label_fuel_L";
             label_fuel_L.Size = new Size(56, 15);
             label_fuel_L.TabIndex = 19;
@@ -132,7 +132,7 @@
             // 
             // textBox_fuel_per_lap
             // 
-            textBox_fuel_per_lap.Location = new Point(45, 139);
+            textBox_fuel_per_lap.Location = new Point(103, 142);
             textBox_fuel_per_lap.MaxLength = 4;
             textBox_fuel_per_lap.Name = "textBox_fuel_per_lap";
             textBox_fuel_per_lap.Size = new Size(55, 23);
@@ -144,7 +144,7 @@
             // label_lap_time_sec
             // 
             label_lap_time_sec.AutoSize = true;
-            label_lap_time_sec.Location = new Point(358, 68);
+            label_lap_time_sec.Location = new Point(285, 68);
             label_lap_time_sec.Name = "label_lap_time_sec";
             label_lap_time_sec.Size = new Size(28, 15);
             label_lap_time_sec.TabIndex = 17;
@@ -153,7 +153,7 @@
             // label_lap_time_min
             // 
             label_lap_time_min.AutoSize = true;
-            label_lap_time_min.Location = new Point(254, 68);
+            label_lap_time_min.Location = new Point(206, 68);
             label_lap_time_min.Name = "label_lap_time_min";
             label_lap_time_min.Size = new Size(28, 15);
             label_lap_time_min.TabIndex = 16;
@@ -161,10 +161,10 @@
             // 
             // textBox_lap_time_sec
             // 
-            textBox_lap_time_sec.Location = new Point(290, 65);
+            textBox_lap_time_sec.Location = new Point(313, 65);
             textBox_lap_time_sec.MaxLength = 6;
             textBox_lap_time_sec.Name = "textBox_lap_time_sec";
-            textBox_lap_time_sec.Size = new Size(64, 23);
+            textBox_lap_time_sec.Size = new Size(73, 23);
             textBox_lap_time_sec.TabIndex = 15;
             textBox_lap_time_sec.Text = "0.000";
             textBox_lap_time_sec.TextAlign = HorizontalAlignment.Center;
@@ -172,8 +172,8 @@
             // 
             // textBox_lap_time_min
             // 
-            textBox_lap_time_min.Location = new Point(206, 65);
-            textBox_lap_time_min.MaxLength = 2;
+            textBox_lap_time_min.Location = new Point(232, 65);
+            textBox_lap_time_min.MaxLength = 1;
             textBox_lap_time_min.Name = "textBox_lap_time_min";
             textBox_lap_time_min.Size = new Size(46, 23);
             textBox_lap_time_min.TabIndex = 14;
@@ -184,7 +184,7 @@
             // label_race_min
             // 
             label_race_min.AutoSize = true;
-            label_race_min.Location = new Point(162, 68);
+            label_race_min.Location = new Point(103, 68);
             label_race_min.Name = "label_race_min";
             label_race_min.Size = new Size(28, 15);
             label_race_min.TabIndex = 13;
@@ -193,7 +193,7 @@
             // label_race_h
             // 
             label_race_h.AutoSize = true;
-            label_race_h.Location = new Point(70, 68);
+            label_race_h.Location = new Point(10, 68);
             label_race_h.Name = "label_race_h";
             label_race_h.Size = new Size(14, 15);
             label_race_h.TabIndex = 12;
@@ -201,7 +201,7 @@
             // 
             // textBox_race_min
             // 
-            textBox_race_min.Location = new Point(103, 65);
+            textBox_race_min.Location = new Point(135, 65);
             textBox_race_min.MaxLength = 2;
             textBox_race_min.Name = "textBox_race_min";
             textBox_race_min.Size = new Size(55, 23);
@@ -212,7 +212,7 @@
             // 
             // textBox_race_h
             // 
-            textBox_race_h.Location = new Point(10, 65);
+            textBox_race_h.Location = new Point(27, 65);
             textBox_race_h.MaxLength = 2;
             textBox_race_h.Name = "textBox_race_h";
             textBox_race_h.Size = new Size(55, 23);
@@ -325,7 +325,6 @@
             comboBox_pit_options.Name = "comboBox_pit_options";
             comboBox_pit_options.Size = new Size(155, 23);
             comboBox_pit_options.TabIndex = 12;
-            comboBox_pit_options.SelectedIndexChanged += ComboBox_pit_options_SelectedIndexChanged;
             // 
             // textBox_max_stint
             // 
@@ -333,7 +332,7 @@
             textBox_max_stint.Location = new Point(272, 76);
             textBox_max_stint.MaxLength = 2;
             textBox_max_stint.Name = "textBox_max_stint";
-            textBox_max_stint.Size = new Size(82, 23);
+            textBox_max_stint.Size = new Size(114, 23);
             textBox_max_stint.TabIndex = 17;
             textBox_max_stint.Text = "0";
             textBox_max_stint.TextAlign = HorizontalAlignment.Center;
@@ -353,7 +352,7 @@
             // label_max_stint_min
             // 
             label_max_stint_min.AutoSize = true;
-            label_max_stint_min.Location = new Point(358, 80);
+            label_max_stint_min.Location = new Point(272, 58);
             label_max_stint_min.Name = "label_max_stint_min";
             label_max_stint_min.Size = new Size(28, 15);
             label_max_stint_min.TabIndex = 18;
@@ -374,9 +373,9 @@
             label_max_stint.BorderStyle = BorderStyle.FixedSingle;
             label_max_stint.Location = new Point(251, 29);
             label_max_stint.Name = "label_max_stint";
-            label_max_stint.Size = new Size(135, 38);
+            label_max_stint.Size = new Size(135, 20);
             label_max_stint.TabIndex = 19;
-            label_max_stint.Text = "Maximum stint duration";
+            label_max_stint.Text = "Max stint duration";
             label_max_stint.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label_pits_options
@@ -836,37 +835,23 @@
             // toolStripMenuItem_menu
             // 
             toolStripMenuItem_menu.BackColor = Color.Gainsboro;
-            toolStripMenuItem_menu.DropDownItems.AddRange(new ToolStripItem[] { resetDataToolStripMenuItem1, exitToolStripMenuItem });
+            toolStripMenuItem_menu.DropDownItems.AddRange(new ToolStripItem[] { resetDataToolStripMenuItem, exitToolStripMenuItem });
             toolStripMenuItem_menu.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
             toolStripMenuItem_menu.Name = "toolStripMenuItem_menu";
             toolStripMenuItem_menu.Size = new Size(47, 20);
             toolStripMenuItem_menu.Text = "Menu";
             // 
-            // resetDataToolStripMenuItem1
+            // resetDataToolStripMenuItem
             // 
-            resetDataToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { resetAllDataToolStripMenuItem, resetCurrentCartrackToolStripMenuItem });
-            resetDataToolStripMenuItem1.Name = "resetDataToolStripMenuItem1";
-            resetDataToolStripMenuItem1.Size = new Size(144, 22);
-            resetDataToolStripMenuItem1.Text = "Reset data";
-            // 
-            // resetAllDataToolStripMenuItem
-            // 
-            resetAllDataToolStripMenuItem.Name = "resetAllDataToolStripMenuItem";
-            resetAllDataToolStripMenuItem.Size = new Size(235, 22);
-            resetAllDataToolStripMenuItem.Text = "Reset all data";
-            resetAllDataToolStripMenuItem.Click += ResetAllDataToolStripMenuItem_Click;
-            // 
-            // resetCurrentCartrackToolStripMenuItem
-            // 
-            resetCurrentCartrackToolStripMenuItem.Name = "resetCurrentCartrackToolStripMenuItem";
-            resetCurrentCartrackToolStripMenuItem.Size = new Size(235, 22);
-            resetCurrentCartrackToolStripMenuItem.Text = "Reset current car/track";
-            resetCurrentCartrackToolStripMenuItem.Click += ResetCurrentCartrackToolStripMenuItem_Click;
+            resetDataToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { resetAllDataToolStripMenuItem, resetCurrentCartrackToolStripMenuItem });
+            resetDataToolStripMenuItem.Name = "resetDataToolStripMenuItem";
+            resetDataToolStripMenuItem.Size = new Size(180, 22);
+            resetDataToolStripMenuItem.Text = "Reset data";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(144, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += ExitToolStripMenuItem_Click;
             // 
@@ -888,7 +873,21 @@
             ToolStripMenuItem_github.Text = "GitHub";
             ToolStripMenuItem_github.Click += GitHubToolStripMenuItem_Click;
             // 
-            // Form1
+            // resetAllDataToolStripMenuItem
+            // 
+            resetAllDataToolStripMenuItem.Name = "resetAllDataToolStripMenuItem";
+            resetAllDataToolStripMenuItem.Size = new Size(235, 22);
+            resetAllDataToolStripMenuItem.Text = "Reset all data";
+            resetAllDataToolStripMenuItem.Click += ResetAllDataToolStripMenuItem_Click;
+            // 
+            // resetCurrentCartrackToolStripMenuItem
+            // 
+            resetCurrentCartrackToolStripMenuItem.Name = "resetCurrentCartrackToolStripMenuItem";
+            resetCurrentCartrackToolStripMenuItem.Size = new Size(235, 22);
+            resetCurrentCartrackToolStripMenuItem.Text = "Reset current car/track";
+            resetCurrentCartrackToolStripMenuItem.Click += ResetCurrentCartrackToolStripMenuItem_Click;
+            // 
+            // FCalcACC
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -901,11 +900,11 @@
             Font = new Font("Segoe UI", 9.75F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
+            Name = "FCalcACC";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FCalcACC - Fuel and strategy for ACC";
             Load += Form1_Load;
-            Shown += Form1_Shown;
+            Shown += Form_Shown;
             splitContainer_input_result.Panel1.ResumeLayout(false);
             splitContainer_input_result.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).EndInit();
@@ -996,7 +995,7 @@
         private Label label_max_stint;
         private CheckBox checkBox_max_stint;
         private ToolStripMenuItem ToolStripMenuItem_github;
-        private ToolStripMenuItem resetDataToolStripMenuItem1;
+        private ToolStripMenuItem resetDataToolStripMenuItem;
         private ToolStripMenuItem resetAllDataToolStripMenuItem;
         private ToolStripMenuItem resetCurrentCartrackToolStripMenuItem;
     }

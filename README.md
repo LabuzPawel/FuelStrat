@@ -1,6 +1,6 @@
 # FCalcACC
 
-This is an application made in Visual Studio 2022 using C# Windows Form for calculating fuel and pit strategy for Assetto Corsa Competizione. 
+This is an application made in Visual Studio 2022 using C# Windows Form for calculating fuel and pit strategy in Assetto Corsa Competizione. 
 
 Originally project was created in python using tkinter GUI. Old script can be found in 'FCalcACC\python_old_script'.
 

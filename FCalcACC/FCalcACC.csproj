@@ -22,6 +22,11 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PrecisionTimer.NET" Version="2.4.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FCalcACC.SharedMemory\FCalcACC.SharedMemory.csproj" />
   </ItemGroup>
 
   <ItemGroup>

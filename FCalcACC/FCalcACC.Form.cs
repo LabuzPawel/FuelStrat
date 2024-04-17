@@ -2,6 +2,8 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
+using FCalcACC.SharedMemory;
+using System.IO.MemoryMappedFiles;
 
 namespace FCalcACC
 {
@@ -151,7 +153,6 @@ namespace FCalcACC
                 using StreamReader reader = new(stream);
                 string tracks_embedded = reader.ReadToEnd();
                 all_tracks = JsonConvert.DeserializeObject<List<Track>>(tracks_embedded);
-                int test = 0;
             }
             else
             {
@@ -1583,7 +1584,7 @@ namespace FCalcACC
             InitializeComponent();
         }
 
-        public void Form1_Load(object sender, EventArgs e)
+        public void Form_Load(object sender, EventArgs e)
         {
             // actions taken on applications start
 
@@ -1837,6 +1838,55 @@ namespace FCalcACC
             CalculateRaceDuration(textBox_race_h, textBox_race_min, textBox_lap_time_min, textBox_lap_time_sec,
                     label_overall_result, label_laps_result, label_lap_time_result2);   // SaveData needs lap_time_secs
             SaveData();
+        }
+
+        //private bool ACCrunnning()
+        //{
+        //    bool isRunning = Process.GetProcessesByName("AC2-Win64-Shipping.exe").Length > 0;
+        //
+        //    if (isRunning) return true;
+        //    {
+        //        return true;
+        //    }
+        //    else 
+        //    { 
+        //        return false; 
+        //    }
+        //}
+
+        private void ReadingTelemetry()
+        {
+            var reader = new TelemetryReader();
+
+            reader.GraphicUpdated += graphics =>
+            {
+                int iCurrentTime = graphics.ICurrentTime;
+
+                // Append the value to the text file
+                File.AppendAllText("!CurrentTime.txt", "\nCurrent Time: " + iCurrentTime.ToString());
+            };
+
+            reader.Start();
+
+            Thread.Sleep(10000);
+
+            reader.Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ReadingTelemetry();
+            try
+            {
+                using (MemoryMappedFile.OpenExisting("Local\\acpmf_graphics"))
+                {
+                    checkBox1.Checked = true;
+                }
+            }
+            catch
+            {
+                checkBox1.Checked = false;
+            }
         }
     }
 }

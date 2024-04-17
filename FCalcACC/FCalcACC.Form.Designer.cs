@@ -92,11 +92,13 @@
             menuStrip2 = new MenuStrip();
             toolStripMenuItem_menu = new ToolStripMenuItem();
             resetDataToolStripMenuItem = new ToolStripMenuItem();
+            resetAllDataToolStripMenuItem = new ToolStripMenuItem();
+            resetCurrentCartrackToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem_help = new ToolStripMenuItem();
             ToolStripMenuItem_github = new ToolStripMenuItem();
-            resetAllDataToolStripMenuItem = new ToolStripMenuItem();
-            resetCurrentCartrackToolStripMenuItem = new ToolStripMenuItem();
+            button1 = new Button();
+            checkBox1 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -819,7 +821,7 @@
             // 
             menuStrip1.Location = new Point(0, 24);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(934, 24);
+            menuStrip1.Size = new Size(985, 24);
             menuStrip1.TabIndex = 11;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -828,7 +830,7 @@
             menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem_menu, ToolStripMenuItem_help, ToolStripMenuItem_github });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
-            menuStrip2.Size = new Size(934, 24);
+            menuStrip2.Size = new Size(985, 24);
             menuStrip2.TabIndex = 12;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -845,13 +847,27 @@
             // 
             resetDataToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { resetAllDataToolStripMenuItem, resetCurrentCartrackToolStripMenuItem });
             resetDataToolStripMenuItem.Name = "resetDataToolStripMenuItem";
-            resetDataToolStripMenuItem.Size = new Size(180, 22);
+            resetDataToolStripMenuItem.Size = new Size(144, 22);
             resetDataToolStripMenuItem.Text = "Reset data";
+            // 
+            // resetAllDataToolStripMenuItem
+            // 
+            resetAllDataToolStripMenuItem.Name = "resetAllDataToolStripMenuItem";
+            resetAllDataToolStripMenuItem.Size = new Size(235, 22);
+            resetAllDataToolStripMenuItem.Text = "Reset all data";
+            resetAllDataToolStripMenuItem.Click += ResetAllDataToolStripMenuItem_Click;
+            // 
+            // resetCurrentCartrackToolStripMenuItem
+            // 
+            resetCurrentCartrackToolStripMenuItem.Name = "resetCurrentCartrackToolStripMenuItem";
+            resetCurrentCartrackToolStripMenuItem.Size = new Size(235, 22);
+            resetCurrentCartrackToolStripMenuItem.Text = "Reset current car/track";
+            resetCurrentCartrackToolStripMenuItem.Click += ResetCurrentCartrackToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(144, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += ExitToolStripMenuItem_Click;
             // 
@@ -873,25 +889,34 @@
             ToolStripMenuItem_github.Text = "GitHub";
             ToolStripMenuItem_github.Click += GitHubToolStripMenuItem_Click;
             // 
-            // resetAllDataToolStripMenuItem
+            // button1
             // 
-            resetAllDataToolStripMenuItem.Name = "resetAllDataToolStripMenuItem";
-            resetAllDataToolStripMenuItem.Size = new Size(235, 22);
-            resetAllDataToolStripMenuItem.Text = "Reset all data";
-            resetAllDataToolStripMenuItem.Click += ResetAllDataToolStripMenuItem_Click;
+            button1.Location = new Point(183, 670);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 13;
+            button1.Text = "READ TELEMETRY";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // resetCurrentCartrackToolStripMenuItem
+            // checkBox1
             // 
-            resetCurrentCartrackToolStripMenuItem.Name = "resetCurrentCartrackToolStripMenuItem";
-            resetCurrentCartrackToolStripMenuItem.Size = new Size(235, 22);
-            resetCurrentCartrackToolStripMenuItem.Text = "Reset current car/track";
-            resetCurrentCartrackToolStripMenuItem.Click += ResetCurrentCartrackToolStripMenuItem_Click;
+            checkBox1.AutoSize = true;
+            checkBox1.Enabled = false;
+            checkBox1.Location = new Point(379, 670);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(107, 21);
+            checkBox1.TabIndex = 14;
+            checkBox1.Text = "Telemetry ON";
+            checkBox1.UseVisualStyleBackColor = true;
             // 
             // FCalcACC
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(934, 628);
+            ClientSize = new Size(985, 789);
+            Controls.Add(checkBox1);
+            Controls.Add(button1);
             Controls.Add(label_results);
             Controls.Add(label_input_data);
             Controls.Add(splitContainer_input_result);
@@ -903,7 +928,7 @@
             Name = "FCalcACC";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FCalcACC - Fuel and strategy for ACC";
-            Load += Form1_Load;
+            Load += Form_Load;
             Shown += Form_Shown;
             splitContainer_input_result.Panel1.ResumeLayout(false);
             splitContainer_input_result.Panel2.ResumeLayout(false);
@@ -998,5 +1023,7 @@
         private ToolStripMenuItem resetDataToolStripMenuItem;
         private ToolStripMenuItem resetAllDataToolStripMenuItem;
         private ToolStripMenuItem resetCurrentCartrackToolStripMenuItem;
+        private Button button1;
+        private CheckBox checkBox1;
     }
 }

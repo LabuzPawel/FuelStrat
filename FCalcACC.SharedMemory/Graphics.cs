@@ -31,7 +31,10 @@ public record Graphics
     public int IBestTime;
     public float SessionTimeLeft;
     public float DistanceTraveled;
-    public int IsInPit;
+
+    [MarshalAs(UnmanagedType.Bool)] 
+    public bool IsInPits;
+
     public int CurrentSectorIndex;
     public int LastSectorTime;
     public int NumberOfLaps;
@@ -54,7 +57,10 @@ public record Graphics
     public FlagType Flag;
     public PenaltyType Penalty;
     public int IdealLineOn;
-    public int IsInPitLane;
+
+    [MarshalAs(UnmanagedType.Bool)] 
+    public bool IsInPitLane;
+
     public float SurfaceGrip;
     public int MandatoryPitDone;
     public float WindSpeed;

@@ -18,6 +18,12 @@
     <EmbeddedResource Include="car_track_data\CARS.json" />
     <EmbeddedResource Include="car_track_data\TRACKS.json" />
     <EmbeddedResource Include="help.txt" />
+    <EmbeddedResource Include="resourses\flag_green_icon.png">
+      <CustomToolNamespace>greenFlag</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resourses\flag_red_icon.png">
+      <CustomToolNamespace>redFlag</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FCalcACC.RecentSessions\FCalcACC.RecentSessions.csproj" />
     <ProjectReference Include="..\FCalcACC.SharedMemory\FCalcACC.SharedMemory.csproj" />
   </ItemGroup>
 

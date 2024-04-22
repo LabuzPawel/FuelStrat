@@ -20,7 +20,8 @@ namespace FCalcACC.SharedMemory
         private readonly MemoryMappedFile _graphicsMap;
         private readonly MemoryMappedFile _staticInfosMap;
 
-        public static PrecisionTimer MyTimer = new();
+        public static PrecisionTimer GraphicsTimer = new();
+        public static PrecisionTimer StaticInfosTimer = new();
         private readonly bool _newDataOnly;
 
         private Physics? _oldPhysics;
@@ -34,7 +35,7 @@ namespace FCalcACC.SharedMemory
         /// <param name="graphicsInterval">Time in milliseconds between graphics update</param>
         /// <param name="staticInterval">Time in milliseconds between statics info update</param>
         /// <param name="newDataOnly">If set to true, event will only be triggered if the data read is new</param>
-        public TelemetryReader(int physicsInterval = 2, int graphicsInterval = 10, int staticInterval = 1000,
+        public TelemetryReader(int physicsInterval = 2, int graphicsInterval = 1, int staticInterval = 1,
             bool newDataOnly = false)
         {
             _newDataOnly = newDataOnly;
@@ -44,8 +45,8 @@ namespace FCalcACC.SharedMemory
             _staticInfosMap = MemoryMappedFile.CreateOrOpen(StaticInfoPath, Marshal.SizeOf<StaticInfos>());
 
             //MyTimer.SetInterval(ReadPhysics, physicsInterval);
-            MyTimer.SetInterval(ReadGraphics, graphicsInterval);
-            //MyTimer.SetInterval(ReadStaticInfos, staticInterval);
+            GraphicsTimer.SetInterval(ReadGraphics, graphicsInterval);
+            StaticInfosTimer.SetInterval(ReadStaticInfos, staticInterval);
         }
 
         ~TelemetryReader()
@@ -55,12 +56,14 @@ namespace FCalcACC.SharedMemory
 
         public void Start()
         {
-            MyTimer.Start();
+            GraphicsTimer.Start();
+            StaticInfosTimer.Start();
         }
 
         public void Stop()
         {
-            MyTimer.Stop();
+            GraphicsTimer.Stop();
+            StaticInfosTimer.Stop();
         }
 
         private static T? ReadMap<T>(MemoryMappedFile file)
@@ -119,7 +122,8 @@ namespace FCalcACC.SharedMemory
         {
             if (_isDisposed) return;
 
-            MyTimer.Stop();
+            GraphicsTimer.Stop();
+            StaticInfosTimer.Stop();
 
             if (isDisposing)
             {

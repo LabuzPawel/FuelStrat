@@ -16,7 +16,7 @@ public record StaticInfos
     public int NumberOfSessions;
     public int NumCars;
 
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 33)]
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 33)] 
     public string? CarModel;
 
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 33)]

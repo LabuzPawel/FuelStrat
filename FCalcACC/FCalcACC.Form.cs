@@ -146,6 +146,23 @@ namespace FCalcACC
                         }
                     }
                 }
+                else
+                {
+                    using (var selectionBrush = new SolidBrush(SystemColors.Menu))
+                    {
+                        e.Graphics.FillRectangle(selectionBrush, e.Bounds);
+
+                        Rectangle selectedTextBounds = e.Bounds;
+                        selectedTextBounds.Y += (e.Bounds.Height - TextRenderer.MeasureText(e.Graphics, itemText, Font).Height) / 2;
+
+                        TextRenderer.DrawText(e.Graphics, parts[0], Font, firstLineBounds, Color.Black, flags);
+
+                        if (parts.Length > 1)
+                        {
+                            TextRenderer.DrawText(e.Graphics, parts[1], Font, secondLineBounds, Color.Black, flags);
+                        }
+                    }
+                }
 
                 base.OnDrawItem(e);
             }
@@ -244,6 +261,7 @@ namespace FCalcACC
         private System.Threading.Timer telemetry_update_timer;
         private UpdateFromTelemetry.Sim_data sim_data = new();
 
+        private string session_saved = "";
         int previous_lap = 0;
         List<Recent_lap> laps_data = new();
         private Recent_lap current_lap;
@@ -1767,6 +1785,7 @@ namespace FCalcACC
             listBoxMultiline_recent_sessions.Size = new Size(875, 80);
             listBoxMultiline_recent_sessions.DrawMode = DrawMode.OwnerDrawVariable;
             listBoxMultiline_recent_sessions.Font = consolas_font;
+            listBoxMultiline_recent_sessions.ScrollAlwaysVisible = true;
             listBoxMultiline_recent_sessions.SelectedIndexChanged += listBox_recent_sessions_SelectedIndexChanged;
             this.panel_telemetry.Controls.Add(listBoxMultiline_recent_sessions);
         }
@@ -2134,12 +2153,14 @@ namespace FCalcACC
             {
                 button_auto.Enabled = false;
                 button_import_race.Enabled = false;
+                previous_lap = 0;
                 return;
             }
 
-            if (sim_data.car_name == null)
+            if (session_saved != sim_data.session_type)
             {
-                return;
+                previous_lap = 0;
+                session_saved = sim_data.session_type;
             }
             
             if (sim_data.game_status == GameStatus.Off)
@@ -2373,6 +2394,8 @@ namespace FCalcACC
                 if (updateFromTelemetry == null)
                 {
                     updateFromTelemetry = new UpdateFromTelemetry();
+
+                    updateFromTelemetry.StartReading();
 
                     telemetry_update_timer = new System.Threading.Timer(
                         _ => UpdateRecentSessions(updateFromTelemetry),

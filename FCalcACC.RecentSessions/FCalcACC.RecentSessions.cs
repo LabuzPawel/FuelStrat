@@ -4,6 +4,9 @@ using FCalcACC.SharedMemory.Types.Enums;
 using System.Runtime.CompilerServices;
 using System.Reflection.PortableExecutable;
 using System.Timers;
+using FCalcACC.SharedMemory.Types;
+using System.Numerics;
+using System.Drawing;
 
 namespace FCalcACC.RecentSessions
 {
@@ -15,20 +18,38 @@ namespace FCalcACC.RecentSessions
         bool is_in_pits;
         string track_name = "?";
         string car_name = "?";
+        int missing_pit_stops;
+        float race_duration;
+        int stint_time;
+        int pit_window_start;
+        Vec3[] car_position;
         GameStatus game_status;
+        int[] car_ids;
+        int player_id;
+        int active_cars;
+        List<Vector3> cars_coords = new(); 
         TelemetryReader reader = new TelemetryReader();
         AcSessionType session_type;
+        TrackStartCoords trackStartCoords = new();
 
-        public struct recent_lap
+        public struct Sim_data
         {
             public int completed_laps;
             public double lap_time;
             public double fuel;
-            public DateTime date_time;
             public string session_type;
             public string track_name;
             public string car_name;
-        }
+            public GameStatus game_status;
+            public bool is_in_pits;
+            public int missing_pit_stops;
+            public float race_duration;
+            public int stint_time;
+            public int pit_window_start;
+            public int active_drivers;
+            public List<Vector3> cars_coordinates;
+            public Vec3[] players_coords;
+        };
 
         public void StartReading()
         {
@@ -41,122 +62,81 @@ namespace FCalcACC.RecentSessions
             reader.Dispose();
         }
 
-        public GameStatus GetGameStatus()
+        public Sim_data GetNewData()
         {
-            reader.GraphicUpdated += graphics =>
-            {
-                game_status = graphics.Status;
-            };
+            Sim_data sim_data = new();
 
-            return game_status;
-        }
-
-        public int GetCompletedLaps()
-        {
-            reader.GraphicUpdated += graphics =>
-            {
-                completed_laps = graphics.CompletedLaps;
-            };
-
-            return completed_laps;
-        }
-
-        public double GetLapTime()
-        {
-            reader.GraphicUpdated += graphics =>
-            {
-                lap_time = graphics.ILastTime;
-            };
-
-            double lap_time_formatted = Math.Round(((double)(lap_time / 1000) + 
-                (double)(lap_time % 1000) / 1000.0), 3);
-
-            return lap_time_formatted;
-        }
-
-        public double GetFuel()
-        {
-            reader.GraphicUpdated += graphics =>
-            {
-                fuel = Math.Round(graphics.FuelXLap, 2);
-            };
-
-            return fuel;
-        }
-
-        public string GetSessionType()
-        {
-            reader.GraphicUpdated += graphics =>
-            {
-                session_type = graphics.Session;
-            };
-
-            if (Maps.session_type_map.ContainsKey(session_type))
-            {
-                return Maps.session_type_map[session_type];
-            }
-            else
-            {
-                return "?";
-            }
-        }
-
-        public bool IsInPits()
-        {
-            reader.GraphicUpdated += graphics =>
-            {
-                is_in_pits = graphics.IsInPitLane;
-            };
-
-            return is_in_pits;
-        }
-
-        public string GetTrack()
-        {
             reader.StaticInfosUpdated += statics =>
             {
                 track_name = statics.Track;
-            };
+                sim_data.track_name = Maps.track_map[track_name];
 
-            if (Maps.track_map.ContainsKey(track_name))
-            {
-                return Maps.track_map[track_name];
-            }
-            else
-            {
-                return "?";
-            };
-        }
-
-        public string GetCarName()
-        {
-            reader.StaticInfosUpdated += statics =>
-            {
                 car_name = statics.CarModel;
+                sim_data.car_name = Maps.car_model_map[car_name];
+
+                pit_window_start = statics.PitWindowStart;
+                sim_data.pit_window_start = pit_window_start;
             };
 
-            if (Maps.car_model_map.ContainsKey(car_name))
+            reader.GraphicUpdated += graphics =>
             {
-                return Maps.car_model_map[car_name];
-            }
-            else
-            {
-                return "?";
-            }
-        }
+                sim_data.is_in_pits = graphics.IsInPitLane;
 
-        public recent_lap CreateStruct()
-        {
-            recent_lap recent_Session = new recent_lap();
-            recent_Session.completed_laps = GetCompletedLaps();
-            recent_Session.lap_time = GetLapTime();
-            recent_Session.fuel = GetFuel();
-            recent_Session.date_time = DateTime.Now;
-            recent_Session.session_type = GetSessionType();
-            recent_Session.track_name = GetTrack();
-            recent_Session.car_name = GetCarName();
+                completed_laps = graphics.CompletedLaps;
+                sim_data.completed_laps = completed_laps;
 
-            return recent_Session;
+                lap_time = graphics.ILastTime;
+                double lap_time_formatted = Math.Round(((double)(lap_time / 1000) +
+                (double)(lap_time % 1000) / 1000.0), 3);
+                sim_data.lap_time = lap_time_formatted;
+
+                fuel = Math.Round(graphics.FuelXLap, 2);
+                sim_data.fuel = fuel;
+
+                session_type = graphics.Session;
+                sim_data.session_type = Maps.session_type_map[session_type];           
+
+                missing_pit_stops = graphics.MissingMandatoryPits;
+                sim_data.missing_pit_stops = missing_pit_stops;
+
+                race_duration = graphics.SessionTimeLeft;
+                sim_data.race_duration = race_duration;
+
+                stint_time = graphics.DriverStintTimeLeft;
+                if (stint_time > 0)
+                {
+                    sim_data.stint_time = stint_time;
+                }
+                else
+                {
+                    sim_data.stint_time = 0;
+                }
+
+                active_cars = graphics.ActiveCars;
+                sim_data.active_drivers = active_cars;
+
+                Vector3 car_coords = new Vector3();
+                cars_coords.Clear();
+
+                for (int i = 0; i < sim_data.active_drivers; i++)
+                {
+                    Vec3 car_coords_ACC = graphics.CarCoordinates[i];
+
+                    car_coords = new Vector3(
+                    car_coords_ACC.X,
+                    car_coords_ACC.Y,
+                    car_coords_ACC.Z);
+
+                    cars_coords.Add(car_coords);
+                };
+                sim_data.cars_coordinates = cars_coords;
+
+                sim_data.game_status = graphics.Status;
+            };
+            StartReading();
+            Thread.Sleep(20);
+            //StopReading();
+            return sim_data;
         }
     }
 }

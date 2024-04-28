@@ -63,31 +63,31 @@ namespace FCalcACC.RecentSessions
 
         public static Dictionary<string, string> track_map = new()
         {
-            { "barcelona", "Barcelona"},
+            { "Barcelona", "Barcelona"},
             { "brands_hatch", "Brands Hatch" },
             { "cota", "COTA" },
             { "donington", "Donington" },
-            { "hungaroring", "Hungaroring" },
-            { "imola", "Imola" },
+            { "Hungaroring", "Hungaroring" },
+            { "Imola", "Imola" },
             { "indianapolis", "Indianapolis" },
-            { "kyalami", "Kyalami" },
-            { "laguna_seca", "Laguna Seca" },
+            { "Kyalami", "Kyalami" },
+            { "Laguna_Seca", "Laguna Seca" },
             { "misano", "Misano" },
             { "monza", "Monza" },
             { "mount_panorama", "Mount Panorama" },
             { "nurburgring", "Nurburgring" },
             { "nurburgring_24h", "Nordschleife" },
             { "oulton_park", "Oulton Park" },
-            { "paul_ricard", "Paul Ricard" },
+            { "Paul_Ricard", "Paul Ricard" },
             { "red_bull_ring", "Red Bull Ring" },
-            { "silverstone", "Silverstone" },
+            { "Silverstone", "Silverstone" },
             { "snetterton", "Snetterton" },
-            { "spa", "Spa-Francorchamps" },
-            { "suzuka", "Suzuka" },
-            { "valencia", "Valencia" },
+            { "Spa", "Spa-Francorchamps" },
+            { "Suzuka", "Suzuka" },
+            { "Valencia", "Valencia" },
             { "watkins_glen", "Watkins Glen" },
-            { "zandvoort", "Zandvoort" },
-            { "zolder", "Zolder" }
+            { "Zandvoort", "Zandvoort" },
+            { "Zolder", "Zolder" }
         };
 
         public static Dictionary<AcSessionType, string> session_type_map = new()

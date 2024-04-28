@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FCalcACC.UnitTests", "FCalc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FCalcACC.SharedMemory", "FCalcACC.SharedMemory\FCalcACC.SharedMemory.csproj", "{8E361213-D87E-4AED-99EC-FA914EA73268}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCalcACC.RecentSessions", "FCalcACC.RecentSessions\FCalcACC.RecentSessions.csproj", "{6A79F1C4-41EB-4189-8319-1F8FF6980289}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FCalcACC.RecentSessions", "FCalcACC.RecentSessions\FCalcACC.RecentSessions.csproj", "{6A79F1C4-41EB-4189-8319-1F8FF6980289}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

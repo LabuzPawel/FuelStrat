@@ -7,7 +7,7 @@ namespace FCalcACC.SharedMemory
 {
     public class TelemetryReader : IDisposable
     {
-        public event Action<Graphics>? GraphicUpdated;
+        public event Action<GraphicInfos>? GraphicUpdated;
         public event Action<Physics>? PhysicsUpdated;
         public event Action<StaticInfos>? StaticInfosUpdated;
         public event Action<GameStatus>? GameStatusChanged;
@@ -25,7 +25,7 @@ namespace FCalcACC.SharedMemory
         private readonly bool _newDataOnly;
 
         private Physics? _oldPhysics;
-        private Graphics? _oldGraphics;
+        private GraphicInfos? _oldGraphics;
         private StaticInfos? _oldStaticInfos;
 
         /// <summary>
@@ -35,16 +35,16 @@ namespace FCalcACC.SharedMemory
         /// <param name="graphicsInterval">Time in milliseconds between graphics update</param>
         /// <param name="staticInterval">Time in milliseconds between statics info update</param>
         /// <param name="newDataOnly">If set to true, event will only be triggered if the data read is new</param>
-        public TelemetryReader(int physicsInterval = 2, int graphicsInterval = 1, int staticInterval = 1,
+        public TelemetryReader(int physicsInterval = 1, int graphicsInterval = 3, int staticInterval = 3,
             bool newDataOnly = false)
         {
             _newDataOnly = newDataOnly;
 
             _physicsMap = MemoryMappedFile.CreateOrOpen(PhysicPath, Marshal.SizeOf<Physics>());
-            _graphicsMap = MemoryMappedFile.CreateOrOpen(GraphicPath, Marshal.SizeOf<Graphics>());
+            _graphicsMap = MemoryMappedFile.CreateOrOpen(GraphicPath, Marshal.SizeOf<GraphicInfos>());
             _staticInfosMap = MemoryMappedFile.CreateOrOpen(StaticInfoPath, Marshal.SizeOf<StaticInfos>());
 
-            //MyTimer.SetInterval(ReadPhysics, physicsInterval);
+            //PhysicsTimer.SetInterval(ReadPhysics, physicsInterval);
             GraphicsTimer.SetInterval(ReadGraphics, graphicsInterval);
             StaticInfosTimer.SetInterval(ReadStaticInfos, staticInterval);
         }
@@ -90,7 +90,7 @@ namespace FCalcACC.SharedMemory
 
         private void ReadGraphics()
         {
-            var data = ReadMap<Graphics>(_graphicsMap);
+            var data = ReadMap<GraphicInfos>(_graphicsMap);
 
             if (data is null || (_newDataOnly && data == _oldGraphics)) return;
 

@@ -99,15 +99,16 @@
             ToolStripMenuItem_github = new ToolStripMenuItem();
             toolStripMenuItem_empty = new ToolStripMenuItem();
             ToolStripMenuItem_game_status = new ToolStripMenuItem();
-            listBox_recent_sessions = new ListBox();
             button_save = new Button();
             button_import_race = new Button();
             button_auto = new Button();
             button_import_stint = new Button();
             checkBox_lap_time = new CheckBox();
             button_load = new Button();
-            panel1 = new Panel();
+            panel_telemetry = new Panel();
             label_telemetry = new Label();
+            label7 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -120,7 +121,7 @@
             table_fuel_results.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             menuStrip_game_status.SuspendLayout();
-            panel1.SuspendLayout();
+            panel_telemetry.SuspendLayout();
             SuspendLayout();
             // 
             // listBox_formation
@@ -832,7 +833,7 @@
             // 
             menuStrip1.Location = new Point(0, 25);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(937, 24);
+            menuStrip1.Size = new Size(942, 24);
             menuStrip1.TabIndex = 11;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -841,7 +842,7 @@
             menuStrip_game_status.Items.AddRange(new ToolStripItem[] { toolStripMenuItem_menu, ToolStripMenuItem_help, ToolStripMenuItem_github, toolStripMenuItem_empty, ToolStripMenuItem_game_status });
             menuStrip_game_status.Location = new Point(0, 0);
             menuStrip_game_status.Name = "menuStrip_game_status";
-            menuStrip_game_status.Size = new Size(937, 25);
+            menuStrip_game_status.Size = new Size(942, 25);
             menuStrip_game_status.TabIndex = 12;
             menuStrip_game_status.Text = "ACC OFF";
             // 
@@ -914,44 +915,39 @@
             ToolStripMenuItem_game_status.Name = "ToolStripMenuItem_game_status";
             ToolStripMenuItem_game_status.Size = new Size(89, 21);
             ToolStripMenuItem_game_status.Text = "ACC STATUS";
-            // 
-            // listBox_recent_sessions
-            // 
-            listBox_recent_sessions.FormattingEnabled = true;
-            listBox_recent_sessions.HorizontalScrollbar = true;
-            listBox_recent_sessions.ItemHeight = 15;
-            listBox_recent_sessions.Location = new Point(14, 12);
-            listBox_recent_sessions.Name = "listBox_recent_sessions";
-            listBox_recent_sessions.Size = new Size(874, 79);
-            listBox_recent_sessions.TabIndex = 16;
-            listBox_recent_sessions.SelectedIndexChanged += listBox_recent_sessions_SelectedIndexChanged;
+            ToolStripMenuItem_game_status.TextChanged += ToolStripMenuItem_game_status_TextChanged;
             // 
             // button_save
             // 
             button_save.Location = new Point(678, 101);
             button_save.Name = "button_save";
-            button_save.Size = new Size(210, 23);
+            button_save.Size = new Size(211, 23);
             button_save.TabIndex = 18;
             button_save.Text = "Save strategy";
             button_save.UseVisualStyleBackColor = true;
+            button_save.Click += button_save_Click;
             // 
             // button_import_race
             // 
+            button_import_race.Enabled = false;
             button_import_race.Location = new Point(434, 101);
             button_import_race.Name = "button_import_race";
             button_import_race.Size = new Size(230, 50);
             button_import_race.TabIndex = 20;
             button_import_race.Text = "Import current race";
             button_import_race.UseVisualStyleBackColor = true;
+            button_import_race.Click += button_import_race_Click;
             // 
             // button_auto
             // 
+            button_auto.Enabled = false;
             button_auto.Location = new Point(14, 101);
             button_auto.Name = "button_auto";
             button_auto.Size = new Size(190, 50);
             button_auto.TabIndex = 21;
             button_auto.Text = "AUTO";
             button_auto.UseVisualStyleBackColor = true;
+            button_auto.Click += button_auto_Click_1;
             // 
             // button_import_stint
             // 
@@ -978,26 +974,26 @@
             // 
             button_load.Location = new Point(678, 130);
             button_load.Name = "button_load";
-            button_load.Size = new Size(210, 23);
+            button_load.Size = new Size(211, 23);
             button_load.TabIndex = 24;
             button_load.Text = "Load strategy";
             button_load.UseVisualStyleBackColor = true;
+            button_load.Click += button_load_Click;
             // 
-            // panel1
+            // panel_telemetry
             // 
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(button_load);
-            panel1.Controls.Add(listBox_recent_sessions);
-            panel1.Controls.Add(button_save);
-            panel1.Controls.Add(checkBox_lap_time);
-            panel1.Controls.Add(button_import_race);
-            panel1.Controls.Add(button_auto);
-            panel1.Controls.Add(button_import_stint);
-            panel1.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-            panel1.Location = new Point(12, 65);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(909, 162);
-            panel1.TabIndex = 25;
+            panel_telemetry.BorderStyle = BorderStyle.FixedSingle;
+            panel_telemetry.Controls.Add(button_load);
+            panel_telemetry.Controls.Add(button_save);
+            panel_telemetry.Controls.Add(checkBox_lap_time);
+            panel_telemetry.Controls.Add(button_import_race);
+            panel_telemetry.Controls.Add(button_auto);
+            panel_telemetry.Controls.Add(button_import_stint);
+            panel_telemetry.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            panel_telemetry.Location = new Point(12, 65);
+            panel_telemetry.Name = "panel_telemetry";
+            panel_telemetry.Size = new Size(909, 162);
+            panel_telemetry.TabIndex = 25;
             // 
             // label_telemetry
             // 
@@ -1011,13 +1007,31 @@
             label_telemetry.Text = "Telemetry";
             label_telemetry.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label7
+            // 
+            label7.Location = new Point(12, 830);
+            label7.Name = "label7";
+            label7.Size = new Size(170, 17);
+            label7.TabIndex = 30;
+            label7.Text = "label7";
+            // 
+            // label3
+            // 
+            label3.Location = new Point(222, 831);
+            label3.Name = "label3";
+            label3.Size = new Size(150, 17);
+            label3.TabIndex = 31;
+            label3.Text = "label3";
+            // 
             // FCalcACC
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 827);
+            ClientSize = new Size(942, 857);
+            Controls.Add(label3);
+            Controls.Add(label7);
             Controls.Add(label_telemetry);
-            Controls.Add(panel1);
+            Controls.Add(panel_telemetry);
             Controls.Add(label_results);
             Controls.Add(label_input_data);
             Controls.Add(splitContainer_input_result);
@@ -1050,8 +1064,8 @@
             tableLayoutPanel2.PerformLayout();
             menuStrip_game_status.ResumeLayout(false);
             menuStrip_game_status.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panel_telemetry.ResumeLayout(false);
+            panel_telemetry.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1126,7 +1140,6 @@
         private ToolStripMenuItem resetDataToolStripMenuItem;
         private ToolStripMenuItem resetAllDataToolStripMenuItem;
         private ToolStripMenuItem resetCurrentCartrackToolStripMenuItem;
-        private ListBox listBox_recent_sessions;
         private Button button_save;
         private Button button_import_race;
         private ToolStripMenuItem ToolStripMenuItem_game_status;
@@ -1135,7 +1148,9 @@
         private Button button_import_stint;
         private CheckBox checkBox_lap_time;
         private Button button_load;
-        private Panel panel1;
+        private Panel panel_telemetry;
         private Label label_telemetry;
+        private Label label7;
+        private Label label3;
     }
 }

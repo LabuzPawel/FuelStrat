@@ -6,7 +6,7 @@ namespace FCalcACC.SharedMemory;
 
 [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Unicode)]
 [Serializable]
-public record Graphics
+public record GraphicInfos
 {
     public int PacketId;
     public GameStatus Status;

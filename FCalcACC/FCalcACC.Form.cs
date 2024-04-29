@@ -198,37 +198,23 @@ namespace FCalcACC
             public DateTime date_time;
             public string session_type;
         }
-        FixedSizeList<RecentStint> recent_stints = new(5);
-        struct SavedStrategy
+        FixedSizeList<RecentStint> recent_stints = new(10);
+        public struct SavedStrategy
         {
+            public string saved_name;
             public int saved_car_class_index;
             public int saved_car_index;
             public int saved_track_index;
-            public int saved_race_h;
-            public int saved_race_min;
-            public int saved_lap_min;
-            public double saved_lap_secs;
-            public double saved_fuel_per_lap;
+            public string saved_race_h;
+            public string saved_race_min;
+            public string saved_lap_min;
+            public string saved_lap_secs;
+            public string saved_fuel_per_lap;
             public int saved_formation_index;
             public int saved_number_of_pits;
             public int saved_pit_stop_option_index;
             public bool saved_checkbox_max_stint;
-            public int saved_max_stint;
-        }
-        FixedSizeList<SavedStrategy> saved_strategys = new(5);
-
-        public int GetTankCapacity(string carName, string trackName)
-        {
-            if (carName == "CAR" || trackName == "TRACK" || carName == "" || trackName == "")
-            {
-                return 99999;
-            }
-
-            var selected_track = all_tracks.FirstOrDefault(track => track.TrackName.Equals(comboBox_track.Text));
-            var selected_trackCarFuel = selected_track.CarTrackFuel.FirstOrDefault(
-                carTrackFuel => carTrackFuel.CarName.Equals(comboBox_car.Text));
-
-            return int.Parse(selected_trackCarFuel.TankCapacity);
+            public string saved_max_stint;
         }
 
         public List<Track> all_tracks;
@@ -259,7 +245,7 @@ namespace FCalcACC
         private System.Threading.Timer telemetryTimer;
         private UpdateFromTelemetry updateFromTelemetry;
         private System.Threading.Timer telemetry_update_timer;
-        private UpdateFromTelemetry.Sim_data sim_data = new();
+        public UpdateFromTelemetry.Sim_data sim_data = new();
 
         private string session_saved = "";
         int previous_lap = 0;
@@ -273,10 +259,10 @@ namespace FCalcACC
 
         public List<string> PIT_OPTIONS =
         [
-            "Refuel only",
+            "Refuel + tires",
             "Fixed refuel only",
             "Tires only",
-            "Refuel + tires",
+            "Refuel only",
             "1L refuel",
             "No pit stops"
         ];
@@ -332,15 +318,14 @@ namespace FCalcACC
         public void LoadCarTrackObjects()
         {
             // Load Cars from embedded json's
-            string cars_resourse_name = "FCalcACC.car_track_data.CARS.json";
-            string tracks_resourse_name = "FCalcACC.car_track_data.TRACKS.json";
+            string cars_resourse_name = "FCalcACC.json_resources.CARS.json";
+            string tracks_resourse_name = "FCalcACC.json_resources.TRACKS.json";
             Assembly assembly = Assembly.GetExecutingAssembly();
             using (Stream stream = assembly.GetManifestResourceStream(cars_resourse_name))
             using (StreamReader reader = new(stream))
             {
                 string cars_embedded = reader.ReadToEnd();
                 all_cars = JsonConvert.DeserializeObject<List<Car>>(cars_embedded);
-                int test = 0;
             }
 
             // Load Track objects, if no data file then load from embedded
@@ -389,7 +374,7 @@ namespace FCalcACC
                 return;
             }
 
-            string tracks_resourse_name = "FCalcACC.car_track_data.TRACKS.json";
+            string tracks_resourse_name = "FCalcACC.json_resources.TRACKS.json";
             Assembly assembly = Assembly.GetExecutingAssembly();
 
             try
@@ -477,6 +462,25 @@ namespace FCalcACC
             }
         }
 
+        public int GetTankCapacity(string carName, string trackName)
+        {
+            if (updateFromTelemetry != null)
+            {
+                return sim_data.tank_capacity;
+            }
+
+            if (carName == "CAR" || trackName == "TRACK" || carName == "" || trackName == "")
+            {
+                return 99999;
+            }
+
+            var selected_track = all_tracks.FirstOrDefault(track => track.TrackName.Equals(comboBox_track.Text));
+            var selected_trackCarFuel = selected_track.CarTrackFuel.FirstOrDefault(
+                carTrackFuel => carTrackFuel.CarName.Equals(comboBox_car.Text));
+
+            return int.Parse(selected_trackCarFuel.TankCapacity);
+        }
+
         public static void LoadPitOptions(ComboBox comboBoxPit, List<string> pitOptions)
         {
             foreach (var pit_option in pitOptions)
@@ -533,7 +537,7 @@ namespace FCalcACC
             {
                 // change to default pit option (tires and fuel) if nothing is selected AND
                 // number of pits is different than 0
-                comboBoxPitOptions.SelectedIndex = 3;
+                comboBoxPitOptions.SelectedIndex = 0;
             }
 
             if (selected_track == "TRACK")
@@ -2214,6 +2218,8 @@ namespace FCalcACC
 
             if (sim_data.is_in_pits == true && laps_data.Count > 0)
             {
+                checkBox_lap_time.Enabled = true;
+
                 double sum_fuel = 0.0;
                 double sum_lap_times = 0.0;
 
@@ -2376,15 +2382,31 @@ namespace FCalcACC
             });
         }
 
-        private void button_save_Click(object sender, EventArgs e)
+        private void button_save_load_Click(object sender, EventArgs e)
         {
+            SavedStrategy current_strat = new SavedStrategy()
+            {
+                saved_name = "",
+                saved_car_class_index = comboBox_class.SelectedIndex,
+                saved_car_index = comboBox_car.SelectedIndex,
+                saved_track_index = comboBox_track.SelectedIndex,
+                saved_race_h = textBox_race_h.Text,
+                saved_race_min = textBox_race_min.Text,
+                saved_lap_min = textBox_lap_time_min.Text,
+                saved_lap_secs = textBox_lap_time_sec.Text,
+                saved_fuel_per_lap = textBox_fuel_per_lap.Text,
+                saved_formation_index = listBox_formation.SelectedIndex,
+                saved_number_of_pits = (int)numericUpDown_pits.Value,
+                saved_pit_stop_option_index = comboBox_pit_options.SelectedIndex,
+                saved_checkbox_max_stint = checkBox_max_stint.Checked,
+                saved_max_stint = textBox_max_stint.Text
+            };
 
+            SaveLoad save_load_form = new SaveLoad(current_strat);
 
-        }
+            save_load_form.LoadButtonClicked += LoadStrat_LoadButtonClicked;
 
-        private void button_load_Click(object sender, EventArgs e)
-        {
-
+            save_load_form.ShowDialog();
         }
 
         private void ToolStripMenuItem_game_status_TextChanged(object sender, EventArgs e)
@@ -2416,6 +2438,16 @@ namespace FCalcACC
 
         private void button_auto_Click_1(object sender, EventArgs e)
         {
+            if (sim_data.missing_pit_stops > 0)
+            {
+                Pit_option pit_option_form = new Pit_option(sim_data.missing_pit_stops);
+
+                pit_option_form.ButtonClicked += PitOptionForm_ButtonClicked;
+
+                pit_option_form.ShowDialog();
+            }
+            ChangeControlColor(comboBox_pit_options, Color.LightGreen);
+
             int secs = (int)sim_data.race_duration / 1000;
             int hours = secs / 3600;
             textBox_race_h.Text = hours.ToString();
@@ -2521,6 +2553,34 @@ namespace FCalcACC
             }
 
             button_calculate.PerformClick();
+        }
+
+        private void PitOptionForm_ButtonClicked(object sender, int pitOption)
+        {
+            comboBox_pit_options.SelectedIndex = pitOption;
+        }
+
+        private void LoadStrat_LoadButtonClicked(object sender, int slot)
+        {
+            string saved_json = File.ReadAllText("FCalcACC_saved_strats.json");
+            List<SavedStrategy> saved_strat_list = 
+                JsonConvert.DeserializeObject<List<FCalcACC.SavedStrategy>>(saved_json);
+
+            SavedStrategy strat_to_load = saved_strat_list[slot];
+
+            comboBox_class.SelectedIndex = strat_to_load.saved_car_class_index;
+            comboBox_car.SelectedIndex = strat_to_load.saved_car_index;
+            comboBox_track.SelectedIndex = strat_to_load.saved_track_index;
+            textBox_race_h.Text = strat_to_load.saved_race_h;
+            textBox_race_min.Text = strat_to_load.saved_race_min;
+            textBox_lap_time_min.Text = strat_to_load.saved_lap_min;
+            textBox_lap_time_sec.Text = strat_to_load.saved_lap_secs;
+            textBox_fuel_per_lap.Text = strat_to_load.saved_fuel_per_lap;
+            listBox_formation.SelectedIndex = strat_to_load.saved_formation_index;
+            numericUpDown_pits.Value = strat_to_load.saved_number_of_pits;
+            comboBox_pit_options.SelectedIndex = strat_to_load.saved_pit_stop_option_index;
+            checkBox_max_stint.Checked = strat_to_load.saved_checkbox_max_stint;
+            textBox_max_stint.Text = strat_to_load.saved_max_stint;
         }
     }
 }

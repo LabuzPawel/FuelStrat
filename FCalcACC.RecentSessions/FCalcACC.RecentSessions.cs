@@ -49,6 +49,7 @@ namespace FCalcACC.RecentSessions
             public int active_drivers;
             public List<Vector3> cars_coordinates;
             public Vec3[] players_coords;
+            public int tank_capacity;
         };
 
         public void StartReading()
@@ -66,6 +67,8 @@ namespace FCalcACC.RecentSessions
         {
             Sim_data sim_data = new();
 
+            Thread.Sleep(10);
+
             reader.StaticInfosUpdated += statics =>
             {
                 track_name = statics.Track;
@@ -74,33 +77,30 @@ namespace FCalcACC.RecentSessions
                 car_name = statics.CarModel;
                 sim_data.car_name = Maps.car_model_map[car_name];
 
-                pit_window_start = statics.PitWindowStart;
-                sim_data.pit_window_start = pit_window_start;
+                sim_data.pit_window_start = statics.PitWindowStart;
+
+                sim_data.tank_capacity = (int)statics.MaxFuel;
             };
 
             reader.GraphicUpdated += graphics =>
             {
                 sim_data.is_in_pits = graphics.IsInPitLane;
 
-                completed_laps = graphics.CompletedLaps;
-                sim_data.completed_laps = completed_laps;
+                sim_data.completed_laps = graphics.CompletedLaps;
 
                 lap_time = graphics.ILastTime;
                 double lap_time_formatted = Math.Round(((double)(lap_time / 1000) +
                 (double)(lap_time % 1000) / 1000.0), 3);
                 sim_data.lap_time = lap_time_formatted;
 
-                fuel = Math.Round(graphics.FuelXLap, 2);
-                sim_data.fuel = fuel;
+                sim_data.fuel = Math.Round(graphics.FuelXLap, 2);
 
                 session_type = graphics.Session;
                 sim_data.session_type = Maps.session_type_map[session_type];           
 
-                missing_pit_stops = graphics.MissingMandatoryPits;
-                sim_data.missing_pit_stops = missing_pit_stops;
+                sim_data.missing_pit_stops = graphics.MissingMandatoryPits;
 
-                race_duration = graphics.SessionTimeLeft;
-                sim_data.race_duration = race_duration;
+                sim_data.race_duration = graphics.SessionTimeLeft;
 
                 stint_time = graphics.DriverStintTimeLeft;
                 if (stint_time > 0)
@@ -112,8 +112,7 @@ namespace FCalcACC.RecentSessions
                     sim_data.stint_time = 0;
                 }
 
-                active_cars = graphics.ActiveCars;
-                sim_data.active_drivers = active_cars;
+                sim_data.active_drivers = graphics.ActiveCars;
 
                 Vector3 car_coords = new Vector3();
                 cars_coords.Clear();

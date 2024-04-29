@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FCalcACC));
             listBox_formation = new ListBox();
             label_fuel_L = new Label();
             textBox_fuel_per_lap = new TextBox();
@@ -99,12 +100,11 @@
             ToolStripMenuItem_github = new ToolStripMenuItem();
             toolStripMenuItem_empty = new ToolStripMenuItem();
             ToolStripMenuItem_game_status = new ToolStripMenuItem();
-            button_save = new Button();
+            button_save_load = new Button();
             button_import_race = new Button();
             button_auto = new Button();
             button_import_stint = new Button();
             checkBox_lap_time = new CheckBox();
-            button_load = new Button();
             panel_telemetry = new Panel();
             label_telemetry = new Label();
             label7 = new Label();
@@ -917,22 +917,22 @@
             ToolStripMenuItem_game_status.Text = "ACC STATUS";
             ToolStripMenuItem_game_status.TextChanged += ToolStripMenuItem_game_status_TextChanged;
             // 
-            // button_save
+            // button_save_load
             // 
-            button_save.Location = new Point(678, 101);
-            button_save.Name = "button_save";
-            button_save.Size = new Size(211, 23);
-            button_save.TabIndex = 18;
-            button_save.Text = "Save strategy";
-            button_save.UseVisualStyleBackColor = true;
-            button_save.Click += button_save_Click;
+            button_save_load.Location = new Point(668, 101);
+            button_save_load.Name = "button_save_load";
+            button_save_load.Size = new Size(220, 50);
+            button_save_load.TabIndex = 18;
+            button_save_load.Text = "Save / Load strategy";
+            button_save_load.UseVisualStyleBackColor = true;
+            button_save_load.Click += button_save_load_Click;
             // 
             // button_import_race
             // 
             button_import_race.Enabled = false;
-            button_import_race.Location = new Point(434, 101);
+            button_import_race.Location = new Point(438, 101);
             button_import_race.Name = "button_import_race";
-            button_import_race.Size = new Size(230, 50);
+            button_import_race.Size = new Size(220, 50);
             button_import_race.TabIndex = 20;
             button_import_race.Text = "Import current race";
             button_import_race.UseVisualStyleBackColor = true;
@@ -943,7 +943,7 @@
             button_auto.Enabled = false;
             button_auto.Location = new Point(14, 101);
             button_auto.Name = "button_auto";
-            button_auto.Size = new Size(190, 50);
+            button_auto.Size = new Size(160, 50);
             button_auto.TabIndex = 21;
             button_auto.Text = "AUTO";
             button_auto.UseVisualStyleBackColor = true;
@@ -952,9 +952,9 @@
             // button_import_stint
             // 
             button_import_stint.Enabled = false;
-            button_import_stint.Location = new Point(215, 101);
+            button_import_stint.Location = new Point(184, 100);
             button_import_stint.Name = "button_import_stint";
-            button_import_stint.Size = new Size(210, 25);
+            button_import_stint.Size = new Size(160, 50);
             button_import_stint.TabIndex = 22;
             button_import_stint.Text = "Import stint data";
             button_import_stint.UseVisualStyleBackColor = true;
@@ -962,29 +962,19 @@
             // 
             // checkBox_lap_time
             // 
-            checkBox_lap_time.AutoSize = true;
-            checkBox_lap_time.Location = new Point(215, 132);
+            checkBox_lap_time.Enabled = false;
+            checkBox_lap_time.Location = new Point(349, 101);
             checkBox_lap_time.Name = "checkBox_lap_time";
-            checkBox_lap_time.Size = new Size(194, 19);
+            checkBox_lap_time.Size = new Size(83, 49);
             checkBox_lap_time.TabIndex = 23;
             checkBox_lap_time.Text = "Take my average lap time";
+            checkBox_lap_time.TextAlign = ContentAlignment.MiddleCenter;
             checkBox_lap_time.UseVisualStyleBackColor = true;
-            // 
-            // button_load
-            // 
-            button_load.Location = new Point(678, 130);
-            button_load.Name = "button_load";
-            button_load.Size = new Size(211, 23);
-            button_load.TabIndex = 24;
-            button_load.Text = "Load strategy";
-            button_load.UseVisualStyleBackColor = true;
-            button_load.Click += button_load_Click;
             // 
             // panel_telemetry
             // 
             panel_telemetry.BorderStyle = BorderStyle.FixedSingle;
-            panel_telemetry.Controls.Add(button_load);
-            panel_telemetry.Controls.Add(button_save);
+            panel_telemetry.Controls.Add(button_save_load);
             panel_telemetry.Controls.Add(checkBox_lap_time);
             panel_telemetry.Controls.Add(button_import_race);
             panel_telemetry.Controls.Add(button_auto);
@@ -1004,7 +994,7 @@
             label_telemetry.Name = "label_telemetry";
             label_telemetry.Size = new Size(909, 19);
             label_telemetry.TabIndex = 10;
-            label_telemetry.Text = "Telemetry";
+            label_telemetry.Text = "Recent stints";
             label_telemetry.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label7
@@ -1039,6 +1029,7 @@
             Controls.Add(menuStrip_game_status);
             Font = new Font("Segoe UI", 9.75F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "FCalcACC";
             StartPosition = FormStartPosition.CenterScreen;
@@ -1065,7 +1056,6 @@
             menuStrip_game_status.ResumeLayout(false);
             menuStrip_game_status.PerformLayout();
             panel_telemetry.ResumeLayout(false);
-            panel_telemetry.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1140,14 +1130,13 @@
         private ToolStripMenuItem resetDataToolStripMenuItem;
         private ToolStripMenuItem resetAllDataToolStripMenuItem;
         private ToolStripMenuItem resetCurrentCartrackToolStripMenuItem;
-        private Button button_save;
+        private Button button_save_load;
         private Button button_import_race;
         private ToolStripMenuItem ToolStripMenuItem_game_status;
         private ToolStripMenuItem toolStripMenuItem_empty;
         private Button button_auto;
         private Button button_import_stint;
         private CheckBox checkBox_lap_time;
-        private Button button_load;
         private Panel panel_telemetry;
         private Label label_telemetry;
         private Label label7;

@@ -63,6 +63,16 @@ namespace FCalcACC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fuel_icon {
+            get {
+                object obj = ResourceManager.GetObject("fuel_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap greenFlag {
             get {
                 object obj = ResourceManager.GetObject("greenFlag", resourceCulture);

@@ -53,16 +53,16 @@
             button_close_help.UseVisualStyleBackColor = false;
             button_close_help.Click += button_close_help_Click;
             // 
-            // Form2
+            // FCalcACChelp
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
             Controls.Add(button_close_help);
             Controls.Add(richTextBox_help);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Form2";
-            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Name = "FCalcACChelp";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FCalcACC - HELP";
             ResumeLayout(false);
         }

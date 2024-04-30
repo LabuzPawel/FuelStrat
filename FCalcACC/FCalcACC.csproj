@@ -9,19 +9,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="car_track_data\CARS.json" />
-    <None Remove="car_track_data\TRACKS.json" />
+    <Compile Remove="resourses\**" />
+    <EmbeddedResource Remove="resourses\**" />
+    <None Remove="resourses\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="json_resources\CARS.json" />
+    <None Remove="json_resources\TRACKS.json" />
     <None Remove="help.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="car_track_data\CARS.json" />
-    <EmbeddedResource Include="car_track_data\TRACKS.json" />
-    <EmbeddedResource Include="help.txt" />
+    <EmbeddedResource Include="json_resources\CARS.json" />
+    <EmbeddedResource Include="json_resources\TRACKS.json" />
+    <EmbeddedResource Include="other_forms\help.txt" />
+    <EmbeddedResource Include="json_resources\FCalcACC_saved_strats.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PrecisionTimer.NET" Version="2.4.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FCalcACC.RecentSessions\FCalcACC.RecentSessions.csproj" />
+    <ProjectReference Include="..\FCalcACC.SharedMemory\FCalcACC.SharedMemory.csproj" />
   </ItemGroup>
 
   <ItemGroup>

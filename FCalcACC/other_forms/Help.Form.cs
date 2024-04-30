@@ -22,7 +22,7 @@ namespace FCalcACC
         public void LoadHelpText(out string helpText)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            using (Stream stream = assembly.GetManifestResourceStream("FCalcACC.help.txt"))
+            using (Stream stream = assembly.GetManifestResourceStream("FCalcACC.other_forms.help.txt"))
             {
                 using (StreamReader reader = new StreamReader(stream))
                 {

@@ -22,6 +22,7 @@ namespace FCalcACC.SharedMemory
 
         public static PrecisionTimer GraphicsTimer = new();
         public static PrecisionTimer StaticInfosTimer = new();
+        public static PrecisionTimer PhysicsTimer = new();
         private readonly bool _newDataOnly;
 
         private Physics? _oldPhysics;
@@ -44,7 +45,7 @@ namespace FCalcACC.SharedMemory
             _graphicsMap = MemoryMappedFile.CreateOrOpen(GraphicPath, Marshal.SizeOf<GraphicInfos>());
             _staticInfosMap = MemoryMappedFile.CreateOrOpen(StaticInfoPath, Marshal.SizeOf<StaticInfos>());
 
-            //PhysicsTimer.SetInterval(ReadPhysics, physicsInterval);
+            PhysicsTimer.SetInterval(ReadPhysics, physicsInterval);
             GraphicsTimer.SetInterval(ReadGraphics, graphicsInterval);
             StaticInfosTimer.SetInterval(ReadStaticInfos, staticInterval);
         }
@@ -58,12 +59,14 @@ namespace FCalcACC.SharedMemory
         {
             GraphicsTimer.Start();
             StaticInfosTimer.Start();
+            PhysicsTimer.Start();
         }
 
         public void Stop()
         {
             GraphicsTimer.Stop();
             StaticInfosTimer.Stop();
+            PhysicsTimer.Stop();
         }
 
         private static T? ReadMap<T>(MemoryMappedFile file)
@@ -124,6 +127,7 @@ namespace FCalcACC.SharedMemory
 
             GraphicsTimer.Stop();
             StaticInfosTimer.Stop();
+            PhysicsTimer.Stop();
 
             if (isDisposing)
             {

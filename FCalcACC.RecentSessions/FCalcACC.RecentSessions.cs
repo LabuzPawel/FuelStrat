@@ -50,6 +50,8 @@ namespace FCalcACC.RecentSessions
             public List<Vector3> cars_coordinates;
             public Vec3[] players_coords;
             public int tank_capacity;
+            public float fuel_now;
+            public float fuel_used;
         };
 
         public void StartReading()
@@ -59,7 +61,7 @@ namespace FCalcACC.RecentSessions
 
         public void StopReading()
         {
-            reader.Stop();
+            //reader.Stop();
             reader.Dispose();
         }
 
@@ -68,6 +70,11 @@ namespace FCalcACC.RecentSessions
             Sim_data sim_data = new();
 
             Thread.Sleep(10);
+
+            reader.PhysicsUpdated += physics =>
+            {
+                sim_data.fuel_now = physics.Fuel;
+            };
 
             reader.StaticInfosUpdated += statics =>
             {
@@ -131,6 +138,8 @@ namespace FCalcACC.RecentSessions
                 sim_data.cars_coordinates = cars_coords;
 
                 sim_data.game_status = graphics.Status;
+
+                sim_data.fuel_used = graphics.UsedFuel;
             };
             StartReading();
             Thread.Sleep(20);

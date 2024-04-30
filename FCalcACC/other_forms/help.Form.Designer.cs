@@ -28,18 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            richTextBox_help = new RichTextBox();
             button_close_help = new Button();
+            panel1 = new Panel();
             SuspendLayout();
-            // 
-            // richTextBox_help
-            // 
-            richTextBox_help.Font = new Font("Consolas", 12F);
-            richTextBox_help.Location = new Point(12, 12);
-            richTextBox_help.Name = "richTextBox_help";
-            richTextBox_help.Size = new Size(760, 500);
-            richTextBox_help.TabIndex = 0;
-            richTextBox_help.Text = "";
             // 
             // button_close_help
             // 
@@ -53,13 +44,21 @@
             button_close_help.UseVisualStyleBackColor = false;
             button_close_help.Click += button_close_help_Click;
             // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Location = new Point(12, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(760, 500);
+            panel1.TabIndex = 2;
+            // 
             // FCalcACChelp
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
+            Controls.Add(panel1);
             Controls.Add(button_close_help);
-            Controls.Add(richTextBox_help);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FCalcACChelp";
             StartPosition = FormStartPosition.CenterParent;
@@ -68,9 +67,7 @@
         }
 
         #endregion
-
-        private RichTextBox richTextBox_help;
         private Button button_close_help;
-
+        private Panel panel1;
     }
 }

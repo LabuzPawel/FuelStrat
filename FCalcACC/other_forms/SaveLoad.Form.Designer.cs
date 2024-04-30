@@ -87,7 +87,7 @@
             // 
             textBox_save.Font = new Font("Consolas", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 238);
             textBox_save.Location = new Point(253, 272);
-            textBox_save.MaxLength = 22;
+            textBox_save.MaxLength = 39;
             textBox_save.Name = "textBox_save";
             textBox_save.Size = new Size(184, 25);
             textBox_save.TabIndex = 4;
@@ -95,6 +95,7 @@
             textBox_save.TextAlign = HorizontalAlignment.Center;
             textBox_save.Click += textBox_save_Click;
             textBox_save.TextChanged += textBox_save_TextChanged;
+            textBox_save.KeyDown += textBox_save_KeyDown;
             // 
             // contextMenuStrip1
             // 

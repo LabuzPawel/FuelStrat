@@ -85,11 +85,9 @@
             label_fuel_for_the_race = new Label();
             label_input_data = new Label();
             label_results = new Label();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             tableLayoutPanel2 = new TableLayoutPanel();
             label1 = new Label();
             label2 = new Label();
-            menuStrip1 = new MenuStrip();
             menuStrip_game_status = new MenuStrip();
             toolStripMenuItem_menu = new ToolStripMenuItem();
             resetDataToolStripMenuItem = new ToolStripMenuItem();
@@ -107,8 +105,6 @@
             checkBox_lap_time = new CheckBox();
             panel_telemetry = new Panel();
             label_telemetry = new Label();
-            label7 = new Label();
-            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -829,20 +825,12 @@
             label2.TabIndex = 3;
             label2.Text = "Number of laps";
             // 
-            // menuStrip1
-            // 
-            menuStrip1.Location = new Point(0, 25);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(942, 24);
-            menuStrip1.TabIndex = 11;
-            menuStrip1.Text = "menuStrip1";
-            // 
             // menuStrip_game_status
             // 
             menuStrip_game_status.Items.AddRange(new ToolStripItem[] { toolStripMenuItem_menu, ToolStripMenuItem_help, ToolStripMenuItem_github, toolStripMenuItem_empty, ToolStripMenuItem_game_status });
             menuStrip_game_status.Location = new Point(0, 0);
             menuStrip_game_status.Name = "menuStrip_game_status";
-            menuStrip_game_status.Size = new Size(942, 25);
+            menuStrip_game_status.Size = new Size(931, 25);
             menuStrip_game_status.TabIndex = 12;
             menuStrip_game_status.Text = "ACC OFF";
             // 
@@ -997,43 +985,23 @@
             label_telemetry.Text = "Recent stints";
             label_telemetry.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label7
-            // 
-            label7.Location = new Point(12, 830);
-            label7.Name = "label7";
-            label7.Size = new Size(170, 17);
-            label7.TabIndex = 30;
-            label7.Text = "label7";
-            // 
-            // label3
-            // 
-            label3.Location = new Point(222, 831);
-            label3.Name = "label3";
-            label3.Size = new Size(150, 17);
-            label3.TabIndex = 31;
-            label3.Text = "label3";
-            // 
             // FCalcACC
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(942, 857);
-            Controls.Add(label3);
-            Controls.Add(label7);
+            ClientSize = new Size(931, 827);
             Controls.Add(label_telemetry);
             Controls.Add(panel_telemetry);
             Controls.Add(label_results);
             Controls.Add(label_input_data);
             Controls.Add(splitContainer_input_result);
-            Controls.Add(menuStrip1);
             Controls.Add(menuStrip_game_status);
             Font = new Font("Segoe UI", 9.75F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MainMenuStrip = menuStrip1;
             Name = "FCalcACC";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FCalcACC - Fuel and strategy for ACC";
+            Text = "FuelStrat - Fuel and strategy for ACC";
             Load += Form_Load;
             Shown += Form_Shown;
             splitContainer_input_result.Panel1.ResumeLayout(false);
@@ -1139,7 +1107,5 @@
         private CheckBox checkBox_lap_time;
         private Panel panel_telemetry;
         private Label label_telemetry;
-        private Label label7;
-        private Label label3;
     }
 }

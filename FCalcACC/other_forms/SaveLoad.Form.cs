@@ -18,7 +18,7 @@ namespace FCalcACC
         List<FCalcACC.SavedStrategy> default_saved_strat_list;
         List<FCalcACC.SavedStrategy> saved_strat_list;
         FCalcACC.SavedStrategy current_strat;
-        public delegate void LoadButtonClickedEventHandler (object sender, int slot);
+        public delegate void LoadButtonClickedEventHandler(object sender, int slot);
         public event LoadButtonClickedEventHandler LoadButtonClicked;
 
         public SaveLoad(FCalcACC.SavedStrategy currentStrat)
@@ -141,6 +141,19 @@ namespace FCalcACC
 
             listBox_save_load.Items.Clear();
             CreateOrLoadSavedJson();
+        }
+
+        private void textBox_save_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+
+                if (textBox_save.Text != "")
+                {
+                    button_save.PerformClick();
+                }
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ using static FCalcACC.RecentSessions.TrackStartCoords;
 using System.Security.Cryptography.X509Certificates;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace FCalcACC
 {
@@ -76,7 +77,6 @@ namespace FCalcACC
 
         public class ListBoxMultiline : ListBox
         {
-
             // https://stackoverflow.com/a/60589434
 
             TextFormatFlags flags = TextFormatFlags.WordBreak |
@@ -118,9 +118,16 @@ namespace FCalcACC
 
                 string[] parts = itemText.Split(new string[] { "nextLine" }, StringSplitOptions.None);
 
-                Rectangle firstLineBounds = new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height / 2);
+                int offsetY = -1;
 
-                Rectangle secondLineBounds = new Rectangle(e.Bounds.X, e.Bounds.Y + e.Bounds.Height / 2, e.Bounds.Width, e.Bounds.Height / 2);
+                Rectangle outerBounds = new Rectangle(e.Bounds.X, e.Bounds.Y + offsetY, e.Bounds.Width, e.Bounds.Height - offsetY);
+                Rectangle firstLineBounds = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + offsetY, e.Bounds.Width - 2, (e.Bounds.Height / 2) - offsetY);
+                Rectangle secondLineBounds = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + (e.Bounds.Height / 2) - 3, e.Bounds.Width - 2, (e.Bounds.Height / 2) + 3);
+
+                e.Graphics.DrawRectangle(Pens.Black, outerBounds);
+
+                firstLineBounds.Inflate(-1, -1);
+                secondLineBounds.Inflate(2, 2);
 
                 TextRenderer.DrawText(e.Graphics, parts[0], Font, firstLineBounds, ForeColor, flags);
 
@@ -129,6 +136,7 @@ namespace FCalcACC
                     TextRenderer.DrawText(e.Graphics, parts[1], Font, secondLineBounds, ForeColor, flags);
                 }
 
+                // Handle selection
                 if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
                 {
                     using (var selectionBrush = new SolidBrush(SystemColors.Highlight))
@@ -168,16 +176,10 @@ namespace FCalcACC
             }
 
 
-            private void InitializeComponent()
-            {
-                SuspendLayout();
-                ResumeLayout(false);
-            }
-
-
         }
 
         ListBoxMultiline listBoxMultiline_recent_sessions = new ListBoxMultiline();
+
         public struct Recent_lap
         {
             public int completed_laps;
@@ -186,6 +188,7 @@ namespace FCalcACC
             public string session_type;
             public string track_name;
             public string car_name;
+            public int fuel_at_the_start;
         }
         struct RecentStint
         {
@@ -197,6 +200,7 @@ namespace FCalcACC
             public double average_lap_time;
             public DateTime date_time;
             public string session_type;
+            public int fuel_at_the_start;
         }
         FixedSizeList<RecentStint> recent_stints = new(10);
         public struct SavedStrategy
@@ -245,6 +249,7 @@ namespace FCalcACC
         private System.Threading.Timer telemetryTimer;
         private UpdateFromTelemetry updateFromTelemetry;
         private System.Threading.Timer telemetry_update_timer;
+        private System.Threading.Timer exe_status_timer;
         public UpdateFromTelemetry.Sim_data sim_data = new();
 
         private string session_saved = "";
@@ -1790,6 +1795,26 @@ namespace FCalcACC
             listBoxMultiline_recent_sessions.DrawMode = DrawMode.OwnerDrawVariable;
             listBoxMultiline_recent_sessions.Font = consolas_font;
             listBoxMultiline_recent_sessions.ScrollAlwaysVisible = true;
+            //listBoxMultiline_recent_sessions.Items.Add(
+            //    "Session: Practice | " +
+            //            "Car: Lamborghini Huracan Evo2 GT3 2023 | " +
+            //            "Track: Red Bull Ring | " +
+            //            "Date: 30.04.2024 19:12:21nextLine " +
+            //            "Laps: 2 | " +
+            //            "Avg lap time: 1:28.492 | " +
+            //            "Fuel at the start: 13 L | " +
+            //            "Avg fuel per lap: 2.38"
+            //    );
+            //listBoxMultiline_recent_sessions.Items.Add(
+            //    "Session: Practice | " +
+            //            "Car: Lamborghini Huracan Evo2 GT3 2023 | " +
+            //            "Track: Red Bull Ring | " +
+            //            "Date: 30.04.2024 19:41:11nextLine " +
+            //            "Laps: 13 | " +
+            //            "Avg lap time: 1:29.654 | " +
+            //            "Fuel at the start: 78 L | " +
+            //            "Avg fuel per lap: 2.40"
+            //    );
             listBoxMultiline_recent_sessions.SelectedIndexChanged += listBox_recent_sessions_SelectedIndexChanged;
             this.panel_telemetry.Controls.Add(listBoxMultiline_recent_sessions);
         }
@@ -1850,7 +1875,7 @@ namespace FCalcACC
 
                 listBox_formation.SelectedIndex = 1;
             }
-            else if(listBox_formation.SelectedIndex == -1)
+            else if (listBox_formation.SelectedIndex == -1)
             {
                 listBox_formation.SelectedIndex = 0;
             }
@@ -2054,12 +2079,12 @@ namespace FCalcACC
         private void InitializeTelemetryTimer()
         {
             telemetryTimer = new System.Threading.Timer(
-                async _ => await TelemetryCheckAsync(), null, 3000, 5000);
+                async _ => await GameStatusCheckAsync(), null, 3000, 5000);
         }
 
-        private async Task TelemetryCheckAsync()
+        private async Task GameStatusCheckAsync()
         {
-            bool isACCRunning = await Task.Run(() => CheckTelemetry());
+            bool isACCRunning = await Task.Run(() => CheckGameStatus());
 
             if (isACCRunning)
             {
@@ -2088,7 +2113,7 @@ namespace FCalcACC
         {
             int minutes = (int)lapTime / 60;
             int full_secs = (int)Math.Floor(lapTime) - (60 * minutes);
-            int rest_secs = (int)Math.Round((lapTime - full_secs) * 1000, 3);
+            int rest_secs = (int)Math.Round((lapTime - full_secs - (60 * minutes)) * 1000);
 
             string lap_time_to_string = string.Format("{0:D1}:{1:D2}.{2:000}",
                 minutes, full_secs, rest_secs);
@@ -2140,15 +2165,6 @@ namespace FCalcACC
 
         public void UpdateRecentSessions(UpdateFromTelemetry updateFromTelemetry)
         {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new System.Windows.Forms.MethodInvoker(delegate
-                {
-                    UpdateRecentSessions(updateFromTelemetry);
-                }));
-                return;
-            }
-
             if (updateFromTelemetry != null)
             {
                 sim_data = updateFromTelemetry.GetNewData();
@@ -2161,19 +2177,24 @@ namespace FCalcACC
                 return;
             }
 
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new System.Windows.Forms.MethodInvoker(delegate
+                {
+                    UpdateRecentSessions(updateFromTelemetry);
+                }));
+                return;
+            }
+
+            if (sim_data.game_status == GameStatus.Off)
+            {
+                previous_lap = 0;
+            }
             if (session_saved != sim_data.session_type)
             {
                 previous_lap = 0;
                 session_saved = sim_data.session_type;
             }
-            
-            if (sim_data.game_status == GameStatus.Off)
-            {
-                ToolStripMenuItem_game_status.Text = " ACC OFF";
-                ToolStripMenuItem_game_status.Image = Properties.Resources.redFlag;
-                return;
-            }
-
             if (previous_lap == 0)
             {
                 previous_lap = sim_data.completed_laps;
@@ -2188,7 +2209,8 @@ namespace FCalcACC
                     fuel = sim_data.fuel,
                     session_type = sim_data.session_type,
                     track_name = sim_data.track_name,
-                    car_name = sim_data.car_name
+                    car_name = sim_data.car_name,
+                    fuel_at_the_start = (int)(sim_data.fuel_now + sim_data.fuel_used + 0.1)
                 };
 
                 if (current_lap.lap_time != 0 && previous_lap != sim_data.completed_laps)
@@ -2208,13 +2230,6 @@ namespace FCalcACC
                 button_import_race.Enabled = false;
                 button_auto.Enabled = false;
             }
-
-            // TESTING
-
-            label7.Text = "Pit Window: " + sim_data.pit_window_start;
-            label3.Text = "Game Status: " + sim_data.game_status;
-
-            // TESTING
 
             if (sim_data.is_in_pits == true && laps_data.Count > 0)
             {
@@ -2240,6 +2255,7 @@ namespace FCalcACC
                 recent_stint.car_name = laps_data[0].car_name;
                 recent_stint.session_type = laps_data[0].session_type;
                 recent_stint.date_time = DateTime.Now;
+                recent_stint.fuel_at_the_start = laps_data[0].fuel_at_the_start;
 
                 recent_stints.Add(recent_stint);
 
@@ -2253,8 +2269,9 @@ namespace FCalcACC
                         "Car: " + stint.car_name + " | " +
                         "Track: " + stint.track_name + " | " +
                         "Date: " + stint.date_time + "nextLine" +
-                        "Laps: " + stint.stint_lenght + " | " +
+                        " Laps: " + stint.stint_lenght + " | " +
                         "Avg lap time: " + LapTimeSecsFormatted(stint.average_lap_time) + " | " +
+                        "Fuel at the start: " + stint.fuel_at_the_start + " L | " +
                         "Avg fuel per lap: " + Math.Round(stint.average_fuel_per_lap, 2).ToString().Replace(",", ".");
 
                     listBoxMultiline_recent_sessions.Items.Add(to_listbox);
@@ -2273,22 +2290,6 @@ namespace FCalcACC
             {
                 ToolStripMenuItem_game_status.Text = " ACC OFF";
                 ToolStripMenuItem_game_status.Image = Properties.Resources.redFlag;
-            }
-        }
-
-        private bool CheckTelemetry()
-        {
-            try
-            {
-                using (MemoryMappedFile.OpenExisting("Local\\acpmf_graphics"))
-                {
-                    return true;
-
-                }
-            }
-            catch
-            {
-                return false;
             }
         }
 
@@ -2413,27 +2414,38 @@ namespace FCalcACC
         {
             if (ToolStripMenuItem_game_status.Text == " ACC ON ")
             {
-                if (updateFromTelemetry == null)
-                {
-                    updateFromTelemetry = new UpdateFromTelemetry();
+                updateFromTelemetry = new UpdateFromTelemetry();
 
-                    updateFromTelemetry.StartReading();
+                updateFromTelemetry.StartReading();
 
-                    telemetry_update_timer = new System.Threading.Timer(
-                        _ => UpdateRecentSessions(updateFromTelemetry),
-                        null,
-                        TimeSpan.Zero,
-                        TimeSpan.FromSeconds(4));
-                }
+                telemetry_update_timer = new System.Threading.Timer(
+                    _ => UpdateRecentSessions(updateFromTelemetry),
+                    null,
+                    TimeSpan.Zero,
+                    TimeSpan.FromSeconds(4));
             }
-            else if (sim_data.game_status == GameStatus.Off)
+            else if (ToolStripMenuItem_game_status.Text == " ACC OFF")
             {
+                if (telemetry_update_timer != null)
+                {
+                    telemetry_update_timer.Dispose();
+                }
+                
                 if (updateFromTelemetry != null)
                 {
                     updateFromTelemetry.StopReading();
-                    updateFromTelemetry = null;
                 }
+
+                button_auto.Enabled = false;
+                button_import_race.Enabled = false;
+                previous_lap = 0;
             }
+        }
+
+        public bool CheckGameStatus()
+        {
+            Process[] processes = Process.GetProcessesByName("AC2-Win64-Shipping");
+            return processes.Length > 0;
         }
 
         private void button_auto_Click_1(object sender, EventArgs e)
@@ -2473,6 +2485,7 @@ namespace FCalcACC
             if (sim_data.stint_time < sim_data.race_duration && sim_data.stint_time > 0)
             {
                 checkBox_max_stint.Checked = true;
+                textBox_max_stint.Enabled = true;
                 textBox_max_stint.Text = (sim_data.stint_time / 60000).ToString();
                 ChangeControlColor(checkBox_max_stint, Color.LightGreen);
                 ChangeControlColor(textBox_max_stint, Color.LightGreen);
@@ -2563,7 +2576,7 @@ namespace FCalcACC
         private void LoadStrat_LoadButtonClicked(object sender, int slot)
         {
             string saved_json = File.ReadAllText("FCalcACC_saved_strats.json");
-            List<SavedStrategy> saved_strat_list = 
+            List<SavedStrategy> saved_strat_list =
                 JsonConvert.DeserializeObject<List<FCalcACC.SavedStrategy>>(saved_json);
 
             SavedStrategy strat_to_load = saved_strat_list[slot];
@@ -2582,5 +2595,6 @@ namespace FCalcACC
             checkBox_max_stint.Checked = strat_to_load.saved_checkbox_max_stint;
             textBox_max_stint.Text = strat_to_load.saved_max_stint;
         }
+        
     }
 }

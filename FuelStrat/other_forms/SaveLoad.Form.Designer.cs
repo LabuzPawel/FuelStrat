@@ -54,7 +54,7 @@
             listBox_save_load.FormattingEnabled = true;
             listBox_save_load.Location = new Point(12, 34);
             listBox_save_load.Name = "listBox_save_load";
-            listBox_save_load.Size = new Size(426, 220);
+            listBox_save_load.Size = new Size(425, 184);
             listBox_save_load.TabIndex = 1;
             listBox_save_load.SelectedIndexChanged += listBox_save_load_SelectedIndexChanged;
             // 
@@ -62,7 +62,7 @@
             // 
             button_save.Enabled = false;
             button_save.Font = new Font("Consolas", 11.25F);
-            button_save.Location = new Point(133, 269);
+            button_save.Location = new Point(133, 224);
             button_save.Name = "button_save";
             button_save.Size = new Size(115, 30);
             button_save.TabIndex = 2;
@@ -74,7 +74,7 @@
             // 
             button_load.Enabled = false;
             button_load.Font = new Font("Consolas", 11.25F);
-            button_load.Location = new Point(12, 269);
+            button_load.Location = new Point(12, 224);
             button_load.Name = "button_load";
             button_load.Size = new Size(115, 30);
             button_load.TabIndex = 3;
@@ -85,8 +85,8 @@
             // textBox_save
             // 
             textBox_save.Font = new Font("Consolas", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 238);
-            textBox_save.Location = new Point(253, 272);
-            textBox_save.MaxLength = 39;
+            textBox_save.Location = new Point(253, 227);
+            textBox_save.MaxLength = 48;
             textBox_save.Name = "textBox_save";
             textBox_save.Size = new Size(184, 25);
             textBox_save.TabIndex = 4;
@@ -105,7 +105,7 @@
             // 
             button_close.BackColor = SystemColors.ActiveCaption;
             button_close.Font = new Font("Consolas", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button_close.Location = new Point(12, 305);
+            button_close.Location = new Point(12, 260);
             button_close.Name = "button_close";
             button_close.Size = new Size(425, 30);
             button_close.TabIndex = 5;
@@ -117,7 +117,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(452, 344);
+            ClientSize = new Size(452, 301);
             Controls.Add(button_close);
             Controls.Add(textBox_save);
             Controls.Add(button_load);

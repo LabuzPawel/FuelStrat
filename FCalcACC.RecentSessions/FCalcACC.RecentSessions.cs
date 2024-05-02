@@ -12,25 +12,13 @@ namespace FCalcACC.RecentSessions
 {
     public class UpdateFromTelemetry
     {
-        double fuel;
-        int completed_laps;
         double lap_time;
-        bool is_in_pits;
         string track_name = "?";
         string car_name = "?";
-        int missing_pit_stops;
-        float race_duration;
         int stint_time;
-        int pit_window_start;
-        Vec3[] car_position;
-        GameStatus game_status;
-        int[] car_ids;
-        int player_id;
-        int active_cars;
         List<Vector3> cars_coords = new(); 
         TelemetryReader reader = new TelemetryReader();
         AcSessionType session_type;
-        TrackStartCoords trackStartCoords = new();
 
         public struct Sim_data
         {
@@ -143,7 +131,6 @@ namespace FCalcACC.RecentSessions
             };
             StartReading();
             Thread.Sleep(20);
-            //StopReading();
             return sim_data;
         }
     }

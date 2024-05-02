@@ -2,21 +2,9 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
-using FCalcACC.SharedMemory;
-using System.IO.MemoryMappedFiles;
 using FCalcACC.RecentSessions;
 using FCalcACC.SharedMemory.Types.Enums;
-using System.Windows.Forms;
-using System.Runtime.CompilerServices;
-using System.Drawing;
-using System.IO;
-using PrecisionTiming;
 using System.Numerics;
-using static FCalcACC.RecentSessions.TrackStartCoords;
-using System.Security.Cryptography.X509Certificates;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 
 namespace FCalcACC
 {
@@ -1795,26 +1783,6 @@ namespace FCalcACC
             listBoxMultiline_recent_sessions.DrawMode = DrawMode.OwnerDrawVariable;
             listBoxMultiline_recent_sessions.Font = consolas_font;
             listBoxMultiline_recent_sessions.ScrollAlwaysVisible = true;
-            //listBoxMultiline_recent_sessions.Items.Add(
-            //    "Session: Practice | " +
-            //            "Car: Lamborghini Huracan Evo2 GT3 2023 | " +
-            //            "Track: Red Bull Ring | " +
-            //            "Date: 30.04.2024 19:12:21nextLine " +
-            //            "Laps: 2 | " +
-            //            "Avg lap time: 1:28.492 | " +
-            //            "Fuel at the start: 13 L | " +
-            //            "Avg fuel per lap: 2.38"
-            //    );
-            //listBoxMultiline_recent_sessions.Items.Add(
-            //    "Session: Practice | " +
-            //            "Car: Lamborghini Huracan Evo2 GT3 2023 | " +
-            //            "Track: Red Bull Ring | " +
-            //            "Date: 30.04.2024 19:41:11nextLine " +
-            //            "Laps: 13 | " +
-            //            "Avg lap time: 1:29.654 | " +
-            //            "Fuel at the start: 78 L | " +
-            //            "Avg fuel per lap: 2.40"
-            //    );
             listBoxMultiline_recent_sessions.SelectedIndexChanged += listBox_recent_sessions_SelectedIndexChanged;
             this.panel_telemetry.Controls.Add(listBoxMultiline_recent_sessions);
         }
@@ -2189,6 +2157,7 @@ namespace FCalcACC
             if (sim_data.game_status == GameStatus.Off)
             {
                 previous_lap = 0;
+                AddToListBox();
             }
             if (session_saved != sim_data.session_type)
             {
@@ -2231,6 +2200,11 @@ namespace FCalcACC
                 button_auto.Enabled = false;
             }
 
+            AddToListBox();
+        }
+
+        private void AddToListBox()
+        {
             if (sim_data.is_in_pits == true && laps_data.Count > 0)
             {
                 checkBox_lap_time.Enabled = true;
@@ -2290,6 +2264,8 @@ namespace FCalcACC
             {
                 ToolStripMenuItem_game_status.Text = " ACC OFF";
                 ToolStripMenuItem_game_status.Image = Properties.Resources.redFlag;
+
+                AddToListBox();
             }
         }
 

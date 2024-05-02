@@ -39,29 +39,30 @@
             // 
             // label_pit_option1
             // 
-            label_pit_option1.Font = new Font("Consolas", 13.75F);
+            label_pit_option1.Font = new Font("Consolas", 11.25F);
             label_pit_option1.Location = new Point(12, 9);
             label_pit_option1.Name = "label_pit_option1";
-            label_pit_option1.Size = new Size(599, 27);
+            label_pit_option1.Size = new Size(599, 22);
             label_pit_option1.TabIndex = 0;
             label_pit_option1.Text = "In this race there are 0 mandatory pit stops.";
             label_pit_option1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label_pit_option2
             // 
-            label_pit_option2.Font = new Font("Consolas", 13.75F);
-            label_pit_option2.Location = new Point(12, 45);
+            label_pit_option2.Font = new Font("Consolas", 11.25F);
+            label_pit_option2.Location = new Point(12, 31);
             label_pit_option2.Name = "label_pit_option2";
-            label_pit_option2.Size = new Size(599, 24);
+            label_pit_option2.Size = new Size(599, 22);
             label_pit_option2.TabIndex = 1;
             label_pit_option2.Text = " Select your desired pit stop option:";
             label_pit_option2.TextAlign = ContentAlignment.TopCenter;
             // 
             // button_Refuel_Tires
             // 
-            button_Refuel_Tires.Location = new Point(12, 83);
+            button_Refuel_Tires.Font = new Font("Consolas", 11.25F);
+            button_Refuel_Tires.Location = new Point(12, 56);
             button_Refuel_Tires.Name = "button_Refuel_Tires";
-            button_Refuel_Tires.Size = new Size(115, 40);
+            button_Refuel_Tires.Size = new Size(115, 45);
             button_Refuel_Tires.TabIndex = 2;
             button_Refuel_Tires.Text = "Refuel + Tires";
             button_Refuel_Tires.UseVisualStyleBackColor = true;
@@ -69,9 +70,10 @@
             // 
             // button_tires
             // 
-            button_tires.Location = new Point(133, 83);
+            button_tires.Font = new Font("Consolas", 11.25F);
+            button_tires.Location = new Point(133, 56);
             button_tires.Name = "button_tires";
-            button_tires.Size = new Size(115, 40);
+            button_tires.Size = new Size(115, 45);
             button_tires.TabIndex = 3;
             button_tires.Text = "Tires only";
             button_tires.UseVisualStyleBackColor = true;
@@ -79,9 +81,10 @@
             // 
             // button_refuel
             // 
-            button_refuel.Location = new Point(254, 83);
+            button_refuel.Font = new Font("Consolas", 11.25F);
+            button_refuel.Location = new Point(254, 56);
             button_refuel.Name = "button_refuel";
-            button_refuel.Size = new Size(115, 40);
+            button_refuel.Size = new Size(115, 45);
             button_refuel.TabIndex = 4;
             button_refuel.Text = "Refuel only";
             button_refuel.UseVisualStyleBackColor = true;
@@ -89,9 +92,10 @@
             // 
             // button_1L_refuel
             // 
-            button_1L_refuel.Location = new Point(496, 83);
+            button_1L_refuel.Font = new Font("Consolas", 11.25F);
+            button_1L_refuel.Location = new Point(496, 56);
             button_1L_refuel.Name = "button_1L_refuel";
-            button_1L_refuel.Size = new Size(115, 40);
+            button_1L_refuel.Size = new Size(115, 45);
             button_1L_refuel.TabIndex = 5;
             button_1L_refuel.Text = "1L refuel";
             button_1L_refuel.UseVisualStyleBackColor = true;
@@ -99,9 +103,10 @@
             // 
             // button_fixed_refuel
             // 
-            button_fixed_refuel.Location = new Point(375, 83);
+            button_fixed_refuel.Font = new Font("Consolas", 11.25F);
+            button_fixed_refuel.Location = new Point(375, 56);
             button_fixed_refuel.Name = "button_fixed_refuel";
-            button_fixed_refuel.Size = new Size(115, 40);
+            button_fixed_refuel.Size = new Size(115, 45);
             button_fixed_refuel.TabIndex = 6;
             button_fixed_refuel.Text = "Fixed refuel";
             button_fixed_refuel.UseVisualStyleBackColor = true;
@@ -111,7 +116,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(625, 141);
+            ClientSize = new Size(625, 115);
             Controls.Add(button_fixed_refuel);
             Controls.Add(button_1L_refuel);
             Controls.Add(button_refuel);

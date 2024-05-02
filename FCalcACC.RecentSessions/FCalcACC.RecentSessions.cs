@@ -12,7 +12,8 @@ namespace FCalcACC.RecentSessions
 {
     public class UpdateFromTelemetry
     {
-        double lap_time;
+        //double lap_time;
+        int lap_time_millisecs;
         string track_name = "?";
         string car_name = "?";
         int stint_time;
@@ -23,7 +24,7 @@ namespace FCalcACC.RecentSessions
         public struct Sim_data
         {
             public int completed_laps;
-            public double lap_time;
+            //public double lap_time;
             public double fuel;
             public string session_type;
             public string track_name;
@@ -53,6 +54,15 @@ namespace FCalcACC.RecentSessions
             reader.Dispose();
         }
 
+        public int GetLapTime()
+        {
+            reader.GraphicUpdated += graphics =>
+            {
+                lap_time_millisecs = graphics.ILastTime;
+            };
+            return lap_time_millisecs;
+        }
+
         public Sim_data GetNewData()
         {
             Sim_data sim_data = new();
@@ -67,10 +77,24 @@ namespace FCalcACC.RecentSessions
             reader.StaticInfosUpdated += statics =>
             {
                 track_name = statics.Track;
-                sim_data.track_name = Maps.track_map[track_name];
+                if (Maps.track_map.ContainsKey(track_name))
+                {
+                    sim_data.track_name = Maps.track_map[track_name];
+                }
+                else
+                {
+                    sim_data.track_name = "?";
+                }
 
                 car_name = statics.CarModel;
-                sim_data.car_name = Maps.car_model_map[car_name];
+                if (Maps.car_model_map.ContainsKey(car_name))
+                {
+                    sim_data.car_name = Maps.car_model_map[car_name];
+                }
+                else
+                {
+                    sim_data.car_name = "?";
+                }
 
                 sim_data.pit_window_start = statics.PitWindowStart;
 
@@ -83,10 +107,10 @@ namespace FCalcACC.RecentSessions
 
                 sim_data.completed_laps = graphics.CompletedLaps;
 
-                lap_time = graphics.ILastTime;
-                double lap_time_formatted = Math.Round(((double)(lap_time / 1000) +
-                (double)(lap_time % 1000) / 1000.0), 3);
-                sim_data.lap_time = lap_time_formatted;
+                //lap_time = graphics.ILastTime;
+                //double lap_time_formatted = Math.Round(((double)(lap_time / 1000) +
+                //(double)(lap_time % 1000) / 1000.0), 3);
+                //sim_data.lap_time = lap_time_formatted;
 
                 sim_data.fuel = Math.Round(graphics.FuelXLap, 2);
 

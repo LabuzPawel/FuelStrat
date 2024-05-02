@@ -41,28 +41,27 @@
             // label_save_load
             // 
             label_save_load.AutoSize = true;
-            label_save_load.Font = new Font("Consolas", 13.75F);
+            label_save_load.Font = new Font("Consolas", 11.25F);
             label_save_load.Location = new Point(12, 9);
             label_save_load.Name = "label_save_load";
-            label_save_load.Size = new Size(310, 22);
+            label_save_load.Size = new Size(248, 18);
             label_save_load.TabIndex = 0;
             label_save_load.Text = "Select a slot to save or load:";
             // 
             // listBox_save_load
             // 
-            listBox_save_load.Font = new Font("Consolas", 13.75F);
+            listBox_save_load.Font = new Font("Consolas", 11.25F);
             listBox_save_load.FormattingEnabled = true;
-            listBox_save_load.ItemHeight = 22;
             listBox_save_load.Location = new Point(12, 34);
             listBox_save_load.Name = "listBox_save_load";
-            listBox_save_load.Size = new Size(426, 224);
+            listBox_save_load.Size = new Size(426, 220);
             listBox_save_load.TabIndex = 1;
             listBox_save_load.SelectedIndexChanged += listBox_save_load_SelectedIndexChanged;
             // 
             // button_save
             // 
             button_save.Enabled = false;
-            button_save.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            button_save.Font = new Font("Consolas", 11.25F);
             button_save.Location = new Point(133, 269);
             button_save.Name = "button_save";
             button_save.Size = new Size(115, 30);
@@ -74,7 +73,7 @@
             // button_load
             // 
             button_load.Enabled = false;
-            button_load.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            button_load.Font = new Font("Consolas", 11.25F);
             button_load.Location = new Point(12, 269);
             button_load.Name = "button_load";
             button_load.Size = new Size(115, 30);
@@ -104,13 +103,14 @@
             // 
             // button_close
             // 
-            button_close.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            button_close.BackColor = SystemColors.ActiveCaption;
+            button_close.Font = new Font("Consolas", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             button_close.Location = new Point(12, 305);
             button_close.Name = "button_close";
             button_close.Size = new Size(425, 30);
             button_close.TabIndex = 5;
             button_close.Text = "Close";
-            button_close.UseVisualStyleBackColor = true;
+            button_close.UseVisualStyleBackColor = false;
             button_close.Click += button_close_Click;
             // 
             // SaveLoad

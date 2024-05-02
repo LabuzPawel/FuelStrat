@@ -75,13 +75,13 @@
             // button_close_help
             // 
             button_close_help.BackColor = SystemColors.ActiveCaption;
-            button_close_help.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            button_close_help.Font = new Font("Consolas", 11.25F);
             button_close_help.Location = new Point(14, 902);
             button_close_help.Margin = new Padding(3, 4, 3, 4);
             button_close_help.Name = "button_close_help";
             button_close_help.Size = new Size(898, 36);
             button_close_help.TabIndex = 1;
-            button_close_help.Text = "CLOSE";
+            button_close_help.Text = "Close";
             button_close_help.UseVisualStyleBackColor = false;
             button_close_help.Click += button_close_help_Click;
             // 
@@ -211,7 +211,8 @@
             pictureBox5.ImageLocation = "D:\\!Projekty\\FCalcACC\\FCalcACC\\FCalcACC\\other_forms\\help_pics\\right_panel.png";
             pictureBox5.Location = new Point(409, 1810);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(467, 595);
+            pictureBox5.Size = new Size(467, 618);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 25;
             pictureBox5.TabStop = false;
             // 
@@ -298,9 +299,9 @@
             // pictureBox4
             // 
             pictureBox4.ImageLocation = "D:\\!Projekty\\FCalcACC\\FCalcACC\\FCalcACC\\other_forms\\help_pics/left_panel.png";
-            pictureBox4.Location = new Point(398, 992);
+            pictureBox4.Location = new Point(409, 992);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(478, 673);
+            pictureBox4.Size = new Size(467, 673);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 16;
             pictureBox4.TabStop = false;
@@ -398,9 +399,9 @@
             // pictureBox3
             // 
             pictureBox3.ImageLocation = "D:\\!Projekty\\FCalcACC\\FCalcACC\\FCalcACC\\other_forms\\help_pics\\top_panel.png";
-            pictureBox3.Location = new Point(12, 120);
+            pictureBox3.Location = new Point(12, 153);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(856, 245);
+            pictureBox3.Size = new Size(856, 199);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 6;
             pictureBox3.TabStop = false;
@@ -408,18 +409,18 @@
             // pictureBox2
             // 
             pictureBox2.ImageLocation = "D:\\!Projekty\\FCalcACC\\FCalcACC\\FCalcACC\\other_forms\\help_pics\\ACC_on.png";
-            pictureBox2.Location = new Point(320, 56);
+            pictureBox2.Location = new Point(320, 71);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(290, 35);
+            pictureBox2.Size = new Size(307, 35);
             pictureBox2.TabIndex = 5;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.ImageLocation = "D:\\!Projekty\\FCalcACC\\FCalcACC\\FCalcACC\\other_forms\\help_pics\\ACC_off.png";
-            pictureBox1.Location = new Point(320, 10);
+            pictureBox1.Location = new Point(320, 25);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(290, 40);
+            pictureBox1.Size = new Size(307, 40);
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
@@ -436,7 +437,7 @@
             // label1
             // 
             label1.BorderStyle = BorderStyle.FixedSingle;
-            label1.Location = new Point(12, 10);
+            label1.Location = new Point(12, 25);
             label1.Name = "label1";
             label1.Size = new Size(302, 81);
             label1.TabIndex = 0;

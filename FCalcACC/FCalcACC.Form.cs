@@ -5,6 +5,7 @@ using System.Reflection;
 using FCalcACC.RecentSessions;
 using FCalcACC.SharedMemory.Types.Enums;
 using System.Numerics;
+using static FCalcACC.RecentSessions.UpdateFromTelemetry;
 
 namespace FCalcACC
 {
@@ -171,7 +172,7 @@ namespace FCalcACC
         public struct Recent_lap
         {
             public int completed_laps;
-            public double lap_time;
+            public int lap_time;
             public double fuel;
             public string session_type;
             public string track_name;
@@ -185,7 +186,7 @@ namespace FCalcACC
             public string car_name;
             public int stint_lenght;
             public double average_fuel_per_lap;
-            public double average_lap_time;
+            public int average_lap_time;
             public DateTime date_time;
             public string session_type;
             public int fuel_at_the_start;
@@ -232,6 +233,7 @@ namespace FCalcACC
         private double fuel_for_race;
         private Debouncer recalculate_debouncer = new(50);
         private Debouncer import_race_debouncer = new(300);
+        private Debouncer auto_debouncer = new(300);
         private bool is_strat_ok = true;
         private bool is_recalculate_needed = true;
         private System.Threading.Timer telemetryTimer;
@@ -241,7 +243,7 @@ namespace FCalcACC
         public UpdateFromTelemetry.Sim_data sim_data = new();
 
         private string session_saved = "";
-        int previous_lap = 0;
+        int previous_lap = -1;
         List<Recent_lap> laps_data = new();
         private Recent_lap current_lap;
 
@@ -457,7 +459,7 @@ namespace FCalcACC
 
         public int GetTankCapacity(string carName, string trackName)
         {
-            if (updateFromTelemetry != null)
+            if (updateFromTelemetry != null && sim_data.car_name != "?")
             {
                 return sim_data.tank_capacity;
             }
@@ -813,8 +815,8 @@ namespace FCalcACC
             {
                 Text = "Stint 1 - Start of the race",
                 BackColor = Color.Gainsboro,
-                Font = groupBox_car_track.Font,
-                Location = new Point(16, 26),
+                Font = labelFuelRaceResult.Font,
+                Location = new Point(40, 26),
                 Size = groupBox_size
             };
             panelPitStopStrategy.Controls.Add(groupBox_start);
@@ -942,9 +944,9 @@ namespace FCalcACC
                 {
                     GroupBox groupBox_warning = new()
                     {
-                        Location = new Point(16, 124),
+                        Location = new Point(40, 124),
                         Size = new Size(385, 130),
-                        Font = groupBox_car_track.Font,
+                        Font = labelFuelRaceResult.Font,
                         ForeColor = Color.Red,
                         BackColor = groupBox_start.BackColor,
                         Text = "WARNING"
@@ -1052,8 +1054,8 @@ namespace FCalcACC
                         GroupBox groupBox_temp = new()
                         {
                             Name = name_for_groupbox,
-                            Location = new Point(16, y_groupBox),
-                            Font = groupBox_car_track.Font,
+                            Location = new Point(40, y_groupBox),
+                            Font = labelFuelRaceResult.Font,
                             Size = groupBox_size,
                             BackColor = groupBox_start.BackColor,
                             Text = "Stint " + stint
@@ -1110,9 +1112,9 @@ namespace FCalcACC
                         {
                             GroupBox groupBox_warning = new()
                             {
-                                Location = new Point(16, y_groupBox),
+                                Location = new Point(40, y_groupBox),
                                 Size = new Size(385, 130),
-                                Font = groupBox_car_track.Font,
+                                Font = labelFuelRaceResult.Font,
                                 ForeColor = Color.Red,
                                 BackColor = groupBox_start.BackColor,
                                 Text = "WARNING"
@@ -1170,9 +1172,9 @@ namespace FCalcACC
                                 GroupBox groupBox_temp = new()
                                 {
                                     Name = name_for_groupbox,
-                                    Location = new Point(16, y_groupBox),
+                                    Location = new Point(40, y_groupBox),
                                     Size = new Size(385, 103),
-                                    Font = groupBox_car_track.Font,
+                                    Font = labelFuelRaceResult.Font,
                                     BackColor = groupBox_start.BackColor,
                                     Text = "Stint " + stint
                                 };
@@ -1254,9 +1256,9 @@ namespace FCalcACC
                                 GroupBox groupBox_temp2 = new()
                                 {
                                     Name = name_for_groupbox,
-                                    Location = new Point(16, y_groupBox),
+                                    Location = new Point(40, y_groupBox),
                                     Size = new Size(385, 103),
-                                    Font = groupBox_car_track.Font,
+                                    Font = labelFuelRaceResult.Font,
                                     BackColor = groupBox_start.BackColor,
                                     Text = "Stint " + stint
                                 };
@@ -1379,9 +1381,9 @@ namespace FCalcACC
                             GroupBox groupBox_warning = new()
                             {
                                 Name = name_for_groupbox + "_warning",
-                                Location = new Point(16, y_groupBox),
+                                Location = new Point(40, y_groupBox),
                                 Size = new Size(385, 135),
-                                Font = groupBox_car_track.Font,
+                                Font = labelFuelRaceResult.Font,
                                 ForeColor = Color.Red,
                                 BackColor = groupBox_start.BackColor,
                                 Text = "WARNING"
@@ -1413,9 +1415,9 @@ namespace FCalcACC
                         GroupBox groupBox_temp = new()
                         {
                             Name = name_for_groupbox,
-                            Location = new Point(16, y_groupBox),
+                            Location = new Point(40, y_groupBox),
                             Size = new Size(385, 103),
-                            Font = groupBox_car_track.Font,
+                            Font = labelFuelRaceResult.Font,
                             BackColor = groupBox_start.BackColor,
                             Text = "Stint " + stint
                         };
@@ -1501,9 +1503,9 @@ namespace FCalcACC
                             GroupBox groupBox_warning = new()
                             {
                                 Name = name_for_groupbox + "_warning",
-                                Location = new Point(16, y_groupBox),
+                                Location = new Point(40, y_groupBox),
                                 Size = new Size(385, 135),
-                                Font = groupBox_car_track.Font,
+                                Font = labelFuelRaceResult.Font,
                                 ForeColor = Color.Red,
                                 BackColor = groupBox_start.BackColor,
                                 Text = "WARNING"
@@ -1778,8 +1780,8 @@ namespace FCalcACC
             InitializeComponent();
 
             Font consolas_font = listBox_formation.Font;
-            listBoxMultiline_recent_sessions.Location = new Point(14, 12);
-            listBoxMultiline_recent_sessions.Size = new Size(875, 80);
+            listBoxMultiline_recent_sessions.Location = new Point(21, 12);
+            listBoxMultiline_recent_sessions.Size = new Size(993, 90);
             listBoxMultiline_recent_sessions.DrawMode = DrawMode.OwnerDrawVariable;
             listBoxMultiline_recent_sessions.Font = consolas_font;
             listBoxMultiline_recent_sessions.ScrollAlwaysVisible = true;
@@ -2077,14 +2079,12 @@ namespace FCalcACC
             }
         }
 
-        public string LapTimeSecsFormatted(double lapTime)
+        public string LapTimeSecsFormatted(int lapTimeInMillisecs)
         {
-            int minutes = (int)lapTime / 60;
-            int full_secs = (int)Math.Floor(lapTime) - (60 * minutes);
-            int rest_secs = (int)Math.Round((lapTime - full_secs - (60 * minutes)) * 1000);
+            TimeSpan timeSpan = TimeSpan.FromMilliseconds(lapTimeInMillisecs);
 
-            string lap_time_to_string = string.Format("{0:D1}:{1:D2}.{2:000}",
-                minutes, full_secs, rest_secs);
+            string lap_time_to_string = $"{timeSpan.Minutes}:{timeSpan.Seconds:00}." +
+                $"{timeSpan.Milliseconds:000}";
 
             return lap_time_to_string;
         }
@@ -2141,7 +2141,6 @@ namespace FCalcACC
             {
                 button_auto.Enabled = false;
                 button_import_race.Enabled = false;
-                previous_lap = 0;
                 return;
             }
 
@@ -2154,17 +2153,7 @@ namespace FCalcACC
                 return;
             }
 
-            if (sim_data.game_status == GameStatus.Off)
-            {
-                previous_lap = 0;
-                AddToListBox();
-            }
-            if (session_saved != sim_data.session_type)
-            {
-                previous_lap = 0;
-                session_saved = sim_data.session_type;
-            }
-            if (previous_lap == 0)
+            if (previous_lap == -1)
             {
                 previous_lap = sim_data.completed_laps;
             }
@@ -2174,7 +2163,7 @@ namespace FCalcACC
                 Recent_lap current_lap = new()
                 {
                     completed_laps = sim_data.completed_laps,
-                    lap_time = sim_data.lap_time,
+                    lap_time = updateFromTelemetry.GetLapTime(),
                     fuel = sim_data.fuel,
                     session_type = sim_data.session_type,
                     track_name = sim_data.track_name,
@@ -2200,17 +2189,35 @@ namespace FCalcACC
                 button_auto.Enabled = false;
             }
 
+            if (sim_data.game_status == GameStatus.Off)
+            {
+                AddToListBox();
+                previous_lap = -1;
+                return;
+            }
+
+            if (session_saved != sim_data.session_type)
+            {
+                AddToListBox();
+                previous_lap = -1;
+                session_saved = sim_data.session_type;
+                return;
+            }
+
             AddToListBox();
         }
 
         private void AddToListBox()
         {
-            if (sim_data.is_in_pits == true && laps_data.Count > 0)
+            if (sim_data.is_in_pits == true && laps_data.Count > 0 || 
+                ToolStripMenuItem_game_status.Text == " ACC OFF" && laps_data.Count > 0 ||
+                sim_data.game_status == GameStatus.Off && laps_data.Count > 0 ||
+                session_saved != sim_data.session_type && laps_data.Count > 0)
             {
                 checkBox_lap_time.Enabled = true;
 
                 double sum_fuel = 0.0;
-                double sum_lap_times = 0.0;
+                int sum_lap_times = 0;
 
                 foreach (var lap in laps_data)
                 {
@@ -2219,11 +2226,11 @@ namespace FCalcACC
                 }
 
                 double average_fuel = sum_fuel / laps_data.Count;
-                double average_lap_time = sum_lap_times / laps_data.Count;
+                int average_lap_time = sum_lap_times / laps_data.Count;
 
                 RecentStint recent_stint = new();
                 recent_stint.average_fuel_per_lap = Math.Round(average_fuel, 2);
-                recent_stint.average_lap_time = Math.Round(average_lap_time, 3);
+                recent_stint.average_lap_time = average_lap_time;
                 recent_stint.stint_lenght = laps_data.Count();
                 recent_stint.track_name = laps_data[0].track_name;
                 recent_stint.car_name = laps_data[0].car_name;
@@ -2246,7 +2253,8 @@ namespace FCalcACC
                         " Laps: " + stint.stint_lenght + " | " +
                         "Avg lap time: " + LapTimeSecsFormatted(stint.average_lap_time) + " | " +
                         "Fuel at the start: " + stint.fuel_at_the_start + " L | " +
-                        "Avg fuel per lap: " + Math.Round(stint.average_fuel_per_lap, 2).ToString().Replace(",", ".");
+                        "Avg fuel per lap: " + Math.Round(stint.average_fuel_per_lap, 2).ToString().
+                        Replace(",", ".");
 
                     listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                 }
@@ -2266,6 +2274,7 @@ namespace FCalcACC
                 ToolStripMenuItem_game_status.Image = Properties.Resources.redFlag;
 
                 AddToListBox();
+                previous_lap = -1;
             }
         }
 
@@ -2303,10 +2312,9 @@ namespace FCalcACC
 
             if (checkBox_lap_time.Checked)
             {
-                int minutes = (int)recent_stints[selected_stint].average_lap_time / 60;
-                textBox_lap_time_min.Text = (minutes).ToString();
-                textBox_lap_time_sec.Text = (recent_stints[selected_stint].average_lap_time - minutes * 60.0)
-                    .ToString();
+                TimeSpan timeSpan = TimeSpan.FromMilliseconds(recent_stints[selected_stint].average_lap_time);
+                textBox_lap_time_min.Text = timeSpan.Minutes.ToString();
+                textBox_lap_time_sec.Text = $"{timeSpan.Seconds:00}.{timeSpan.Milliseconds:000}";
                 ChangeControlColor(textBox_lap_time_min, Color.LightGreen);
                 ChangeControlColor(textBox_lap_time_sec, Color.LightGreen);
             }
@@ -2398,7 +2406,7 @@ namespace FCalcACC
                     _ => UpdateRecentSessions(updateFromTelemetry),
                     null,
                     TimeSpan.Zero,
-                    TimeSpan.FromSeconds(4));
+                    TimeSpan.FromSeconds(3));
             }
             else if (ToolStripMenuItem_game_status.Text == " ACC OFF")
             {
@@ -2426,122 +2434,126 @@ namespace FCalcACC
 
         private void button_auto_Click_1(object sender, EventArgs e)
         {
-            if (sim_data.missing_pit_stops > 0)
+            auto_debouncer.Debouce(() =>
             {
-                Pit_option pit_option_form = new Pit_option(sim_data.missing_pit_stops);
-
-                pit_option_form.ButtonClicked += PitOptionForm_ButtonClicked;
-
-                pit_option_form.ShowDialog();
-            }
-            ChangeControlColor(comboBox_pit_options, Color.LightGreen);
-
-            int secs = (int)sim_data.race_duration / 1000;
-            int hours = secs / 3600;
-            textBox_race_h.Text = hours.ToString();
-            textBox_race_min.Text = ((secs - hours * 3600) / 60).ToString();
-            ChangeControlColor(textBox_race_h, Color.LightGreen);
-            ChangeControlColor(textBox_race_min, Color.LightGreen);
-
-            int formation_index;
-            if (IsFormationLapFull(sim_data.track_name, sim_data.cars_coordinates, sim_data.session_type) == true)
-            {
-                formation_index = 0;
-            }
-            else
-            {
-                formation_index = 1;
-            }
-            listBox_formation.SelectedIndex = formation_index;
-            ChangeControlColor(listBox_formation, Color.LightGreen);
-
-            numericUpDown_pits.Value = sim_data.missing_pit_stops;
-            ChangeControlColor(numericUpDown_pits, Color.LightGreen);
-
-            if (sim_data.stint_time < sim_data.race_duration && sim_data.stint_time > 0)
-            {
-                checkBox_max_stint.Checked = true;
-                textBox_max_stint.Enabled = true;
-                textBox_max_stint.Text = (sim_data.stint_time / 60000).ToString();
-                ChangeControlColor(checkBox_max_stint, Color.LightGreen);
-                ChangeControlColor(textBox_max_stint, Color.LightGreen);
-            }
-
-            if (listBoxMultiline_recent_sessions.Items.Count != 0)
-            {
-                List<RecentStint> filtered_stints = new();
-
-                foreach (var stint in recent_stints)
+                if (sim_data.missing_pit_stops > 0)
                 {
-                    if (stint.track_name == sim_data.track_name && stint.car_name == sim_data.car_name)
-                    {
-                        filtered_stints.Add(stint);
-                    }
+                    Pit_option pit_option_form = new Pit_option(sim_data.missing_pit_stops);
+
+                    pit_option_form.ButtonClicked += PitOptionForm_ButtonClicked;
+
+                    pit_option_form.ShowDialog();
+                }
+                ChangeControlColor(comboBox_pit_options, Color.LightGreen);
+
+                int secs = (int)sim_data.race_duration / 1000;
+                int hours = secs / 3600;
+                textBox_race_h.Text = hours.ToString();
+                textBox_race_min.Text = ((secs - hours * 3600) / 60).ToString();
+                ChangeControlColor(textBox_race_h, Color.LightGreen);
+                ChangeControlColor(textBox_race_min, Color.LightGreen);
+
+                int formation_index;
+                if (IsFormationLapFull(sim_data.track_name, sim_data.cars_coordinates, sim_data.session_type) == true)
+                {
+                    formation_index = 0;
+                }
+                else
+                {
+                    formation_index = 1;
+                }
+                listBox_formation.SelectedIndex = formation_index;
+                ChangeControlColor(listBox_formation, Color.LightGreen);
+
+                numericUpDown_pits.Value = sim_data.missing_pit_stops;
+                ChangeControlColor(numericUpDown_pits, Color.LightGreen);
+
+                if (sim_data.stint_time < sim_data.race_duration && sim_data.stint_time > 0)
+                {
+                    checkBox_max_stint.Checked = true;
+                    textBox_max_stint.Enabled = true;
+                    textBox_max_stint.Text = (sim_data.stint_time / 60000).ToString();
+                    ChangeControlColor(checkBox_max_stint, Color.LightGreen);
+                    ChangeControlColor(textBox_max_stint, Color.LightGreen);
                 }
 
-                if (filtered_stints.Count > 0)
+                if (listBoxMultiline_recent_sessions.Items.Count != 0)
                 {
-                    RecentStint longest_stint = new();
-                    int stint_lenght = 0;
+                    List<RecentStint> filtered_stints = new();
 
-                    foreach (var stint in filtered_stints)
+                    foreach (var stint in recent_stints)
                     {
-                        if (stint.stint_lenght > stint_lenght)
+                        if (stint.track_name == sim_data.track_name && stint.car_name == sim_data.car_name)
                         {
-                            longest_stint = stint;
-                            stint_lenght = stint.stint_lenght;
+                            filtered_stints.Add(stint);
                         }
                     }
 
-                    comboBox_track.SelectedItem = longest_stint.track_name;
+                    if (filtered_stints.Count > 0)
+                    {
+                        RecentStint longest_stint = new();
+                        int stint_lenght = 0;
+
+                        foreach (var stint in filtered_stints)
+                        {
+                            if (stint.stint_lenght > stint_lenght)
+                            {
+                                longest_stint = stint;
+                                stint_lenght = stint.stint_lenght;
+                            }
+                        }
+
+                        comboBox_track.SelectedItem = longest_stint.track_name;
+                        ChangeControlColor(comboBox_track, Color.LightGreen);
+
+                        var selected_car2 = all_cars.Where(car => car.CarName == longest_stint.car_name);
+                        comboBox_class.SelectedItem = selected_car2.FirstOrDefault().ClassName;
+                        ChangeControlColor(comboBox_class, Color.LightGreen);
+
+                        comboBox_car.SelectedItem = selected_car2.FirstOrDefault().CarName;
+                        ChangeControlColor(comboBox_car, Color.LightGreen);
+
+                        textBox_fuel_per_lap.Text = longest_stint.average_fuel_per_lap.ToString().Replace(",", ".");
+                        ChangeControlColor(textBox_fuel_per_lap, Color.LightGreen);
+
+                        if (checkBox_lap_time.Checked)
+                        {
+                            TimeSpan timeSpan = TimeSpan.FromMilliseconds(longest_stint.average_lap_time);
+                            textBox_lap_time_min.Text = timeSpan.Minutes.ToString();
+                            textBox_lap_time_sec.Text = $"{timeSpan.Seconds:00}.{timeSpan.Milliseconds:000}";
+                            ChangeControlColor(textBox_lap_time_min, Color.LightGreen);
+                            ChangeControlColor(textBox_lap_time_sec, Color.LightGreen);
+                            ChangeControlColor(textBox_lap_time_min, Color.LightGreen);
+                            ChangeControlColor(textBox_lap_time_sec, Color.LightGreen);
+                        }
+                    }
+
+                    comboBox_track.SelectedItem = sim_data.track_name;
                     ChangeControlColor(comboBox_track, Color.LightGreen);
 
-                    var selected_car2 = all_cars.Where(car => car.CarName == longest_stint.car_name);
-                    comboBox_class.SelectedItem = selected_car2.FirstOrDefault().ClassName;
+                    var selected_car = all_cars.Where(car => car.CarName == sim_data.car_name);
+                    comboBox_class.SelectedItem = selected_car.FirstOrDefault().ClassName;
                     ChangeControlColor(comboBox_class, Color.LightGreen);
 
-                    comboBox_car.SelectedItem = selected_car2.FirstOrDefault().CarName;
+                    comboBox_car.SelectedItem = selected_car.FirstOrDefault().CarName;
                     ChangeControlColor(comboBox_car, Color.LightGreen);
+                }
+                else
+                {
 
-                    textBox_fuel_per_lap.Text = longest_stint.average_fuel_per_lap.ToString().Replace(",", ".");
-                    ChangeControlColor(textBox_fuel_per_lap, Color.LightGreen);
+                    comboBox_track.SelectedItem = sim_data.track_name;
+                    ChangeControlColor(comboBox_track, Color.LightGreen);
 
-                    if (checkBox_lap_time.Checked)
-                    {
-                        int minutes = (int)longest_stint.average_lap_time / 60;
-                        textBox_lap_time_min.Text = (minutes).ToString();
-                        textBox_lap_time_sec.Text = (longest_stint.average_lap_time - minutes * 60.0)
-                        .ToString();
-                        ChangeControlColor(textBox_lap_time_min, Color.LightGreen);
-                        ChangeControlColor(textBox_lap_time_sec, Color.LightGreen);
-                    }
+                    var selected_car = all_cars.Where(car => car.CarName == sim_data.car_name);
+                    comboBox_class.SelectedItem = selected_car.FirstOrDefault().ClassName;
+                    ChangeControlColor(comboBox_class, Color.LightGreen);
+
+                    comboBox_car.SelectedItem = selected_car.FirstOrDefault().CarName;
+                    ChangeControlColor(comboBox_car, Color.LightGreen);
                 }
 
-                comboBox_track.SelectedItem = sim_data.track_name;
-                ChangeControlColor(comboBox_track, Color.LightGreen);
-
-                var selected_car = all_cars.Where(car => car.CarName == sim_data.car_name);
-                comboBox_class.SelectedItem = selected_car.FirstOrDefault().ClassName;
-                ChangeControlColor(comboBox_class, Color.LightGreen);
-
-                comboBox_car.SelectedItem = selected_car.FirstOrDefault().CarName;
-                ChangeControlColor(comboBox_car, Color.LightGreen);
-            }
-            else
-            {
-
-                comboBox_track.SelectedItem = sim_data.track_name;
-                ChangeControlColor(comboBox_track, Color.LightGreen);
-
-                var selected_car = all_cars.Where(car => car.CarName == sim_data.car_name);
-                comboBox_class.SelectedItem = selected_car.FirstOrDefault().ClassName;
-                ChangeControlColor(comboBox_class, Color.LightGreen);
-
-                comboBox_car.SelectedItem = selected_car.FirstOrDefault().CarName;
-                ChangeControlColor(comboBox_car, Color.LightGreen);
-            }
-
-            button_calculate.PerformClick();
+                button_calculate.PerformClick();
+            });
         }
 
         private void PitOptionForm_ButtonClicked(object sender, int pitOption)

@@ -125,14 +125,14 @@ There are few limitations set that will prevent moving the pit stop beyond pract
   <data name="label23.Text" xml:space="preserve">
     <value>Lap time is taken from Input data panel. Fuel for the race is a fuel for that given average lap time.
 
-Lap time for +1 lap is average lap time that is required for the race to have one more lap than for what was set up. This is additional information for user to consider if race could have one more lap.
+Lap time for +1 lap is average lap time that is required for the race to have one more lap than for what was inserted in Lap time in Variables. This is additional information for user to consider if race could have one more lap.
 
 Lap time for -1 lap is the opposite to +1 where race is shorter by one lap.</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Overall race duration shows time race will last. It can be equal to race duration from input panel but usually race last more.
 
-Number of laps shows how many laps will race have. Formation lap isnt included.</value>
+Number of laps shows how many laps will race have. Formation lap isnt added to this number.</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>This part isnt obligatory. If user sets only 'Number of pit stops' and leave 'Pit stops option' blank then a default pit option is 'Refuel + tires'. If user selects a pit option but leave 'Number of pit stops' to 0 then a number of pit stops will be calcululated automatically. If user set a 'Max stint duration' and leave 'Number of pits' to 0 and 'Pit stops options' blank then it will automatically calculate number of pit stops with a defualt pit option that maximazes stint duration (unless tank capacity is a limiting factor).</value>
@@ -144,10 +144,10 @@ Number of laps shows how many laps will race have. Formation lap isnt included.<
     <value>Here user can select their car and track. This information isnt obligatory for the calculation but it will give more information for more accurate results. Additional information are fuel tank capacity for a given car/track combination and accurate time lost during pit stop. It will also fill 'Lap time' and 'Fuel per lap' with either default data or from the last calculation.</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Import stint data button is disabled until user selects one of the stints from the list above. It takes all information from that stint and fill 'Input panel'. If user checks 'Take my average lap time' then average lap time from that stint will be included. Note that the best option is to be using leaders average lap time unless you are going to be lapped by the leader.</value>
+    <value>Import stint data button is disabled until user selects one of the stints from the list above. It takes all information from that stint and fill 'Input panel'. If user checks 'Take my avg lap time' then average lap time from that stint will be included. Note that the best option is to be using leaders average lap time unless you are going to be lapped by the leader.</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Auto button is disabled until session is 'Race'. After clicking this button all information needed to calculate fuel are being taken from sim and autmatically calculates and fill 'Results' panel. If there is at least one mandatory pit stop for this race, then a pop-up window will appear asking for desired pit stop option before calculation. If there are recent stints that match car and track then average fuel per lap will be taken from the longest stint. If user checks 'Take my average lap time' then also average lap time from that stint will be included. Note that the best option is to be using leaders average lap time unless you are going to be lapped by the leader. </value>
+    <value>Auto button is disabled until session is 'Race'. After clicking this button all information needed to calculate fuel are being taken from sim and autmatically calculates and fill 'Results' panel. If there is at least one mandatory pit stop for this race, then a pop-up window will appear asking for desired pit stop option before calculation. If there are recent stints that match car and track then average fuel per lap will be taken from the longest stint. If user checks 'Take my avg lap time' then also average lap time from that stint will be included. Note that the best option is to use leaders average lap time unless you are going to be lapped by the leader. </value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Recent stints panel shows user recent stints in ACC. Stint must consist of at least one completed lap. Stint appears on a list when its finished. To finish a stint user needs to go back to pit lane. All recorded completed laps are then converted into a stint. If user leaves current session or shuts down ACC all recorded and fully completed laps will also be converted into a new stint.</value>

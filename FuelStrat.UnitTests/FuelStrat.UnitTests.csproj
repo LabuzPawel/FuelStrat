@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FCalcACC\FuelStrat.csproj" />
+    <ProjectReference Include="..\FuelStrat\FuelStrat.csproj" />
   </ItemGroup>
 
   <ItemGroup>

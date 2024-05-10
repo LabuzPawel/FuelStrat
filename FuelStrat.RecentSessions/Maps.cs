@@ -19,6 +19,7 @@ namespace FuelStrat.RecentSessions
             { "ferrari_488_gt3", "Ferrari 488 GT3 2018" },
             { "ferrari_488_gt3_evo", "Ferrari 488 GT3 Evo 2020" },
             { "ferrari_296_gt3", "Ferrari 296 GT3 2023" },
+            { "ford_mustang_gt3", "Ford Mustang GT3 2024" },
             { "honda_nsx_gt3", "Honda NSX GT3 2017" },
             { "honda_nsx_gt3_evo", "Honda NSX Evo GT3 2019" },
             { "lamborghini_huracan_gt3", "Lamborghini Huracan GT3 2015" },

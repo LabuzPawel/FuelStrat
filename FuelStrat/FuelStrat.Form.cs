@@ -2153,6 +2153,8 @@ namespace FuelStrat
                 return;
             }
 
+            button_auto.Text = sim_data.car_name;
+
             if (previous_lap == -1)
             {
                 previous_lap = sim_data.completed_laps;

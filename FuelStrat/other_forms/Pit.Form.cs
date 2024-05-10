@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FuelStrat
+﻿namespace FuelStrat
 {
     public partial class Pit_option : Form
     {
-
-        public delegate void ButtonClickedEventHandler (object sender, int pitOption);
+        public delegate void ButtonClickedEventHandler(object sender, int pitOption);
 
         public event ButtonClickedEventHandler ButtonClicked;
 
@@ -25,7 +14,7 @@ namespace FuelStrat
 
         public void LoadPitsNumber(int pit_number)
         {
-            if (pit_number == 1) 
+            if (pit_number == 1)
             {
                 label_pit_option1.Text = "In this race there is 1 mandatory pit stop.";
             }
@@ -64,6 +53,5 @@ namespace FuelStrat
             ButtonClicked?.Invoke(this, 1);
             this.Close();
         }
-
     }
 }

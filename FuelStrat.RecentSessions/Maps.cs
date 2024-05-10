@@ -4,6 +4,10 @@ namespace FuelStrat.RecentSessions
 {
     public class Maps
     {
+        // names for tracks and cars from ACC is incosistent and doesnt match those in the app
+        // those maps are for changing strings from telemetry to more readable strings that
+        // allign with what is in the app
+
         public static Dictionary<string, string> car_model_map = new()
         {
             { "amr_v12_vantage_gt3", "Aston Martin V12 Vantage GT3 2013" },
@@ -98,10 +102,10 @@ namespace FuelStrat.RecentSessions
             { AcSessionType.Qualify, "Qualify" },
             { AcSessionType.Hotlap, "Hotlap" },
             { AcSessionType.Hotstint, "Hotstint" },
-            { AcSessionType.TimeAttack, "TimeAttack" },
+            { AcSessionType.TimeAttack, "Time Attack" },
             { AcSessionType.Unknown, "Unknown" },
             { AcSessionType.Drag, "Drag" },
-            { AcSessionType.HotstintSuperpole, "HotstintSuperpole" }
+            { AcSessionType.HotstintSuperpole, "Hotstint Superpole" }
         };
 
         public static Dictionary<string, string> GetCarMap()
@@ -119,6 +123,4 @@ namespace FuelStrat.RecentSessions
             return session_type_map;
         }
     }
-    
 }
-

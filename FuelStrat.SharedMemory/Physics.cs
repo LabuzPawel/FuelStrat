@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using FuelStrat.SharedMemory.Types;
+﻿using FuelStrat.SharedMemory.Types;
+using System.Runtime.InteropServices;
 
 namespace FuelStrat.SharedMemory;
 

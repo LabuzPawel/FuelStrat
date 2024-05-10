@@ -1,15 +1,21 @@
-﻿using System.IO.MemoryMappedFiles;
-using System.Runtime.InteropServices;
+﻿using FuelStrat.SharedMemory.Types.Enums;
 using PrecisionTiming;
-using FuelStrat.SharedMemory.Types.Enums;
+using System.IO.MemoryMappedFiles;
+using System.Runtime.InteropServices;
 
 namespace FuelStrat.SharedMemory
 {
+    // For SharedMemory credits to https://github.com/rrennoir/Jackal and
+    // https://github.com/RiddleTime/Race-Element
+
     public class TelemetryReader : IDisposable
     {
         public event Action<GraphicInfos>? GraphicUpdated;
+
         public event Action<Physics>? PhysicsUpdated;
+
         public event Action<StaticInfos>? StaticInfosUpdated;
+
         public event Action<GameStatus>? GameStatusChanged;
 
         private const string PhysicPath = "Local\\acpmf_physics";

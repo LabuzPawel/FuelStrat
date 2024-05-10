@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing.Drawing2D;
-using FuelStrat.SharedMemory.Types;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace FuelStrat.RecentSessions
 {
@@ -24,10 +17,13 @@ namespace FuelStrat.RecentSessions
         }
 
         public List<Track_start_coords> track_start_list = new();
-        
+
         public TrackStartCoords()
         {
             track_start_list = new List<Track_start_coords>();
+
+            // those are close coordinates of a first car in full formation lap
+            // used to determine type of formation lap (Full or Short)
 
             track_start_list.Add(new Track_start_coords("Barcelona", new Vector3(329.62f, -18.54f, -133.99f)));
             track_start_list.Add(new Track_start_coords("Brands Hatch", new Vector3(-151.03f, -7.97f, -381.24f)));
@@ -54,6 +50,6 @@ namespace FuelStrat.RecentSessions
             track_start_list.Add(new Track_start_coords("Watkins Glen", new Vector3(1110.52f, 448.13f, 559.26f)));
             track_start_list.Add(new Track_start_coords("Zandvoort", new Vector3(-236.25f, 2.69f, -36.47f)));
             track_start_list.Add(new Track_start_coords("Zolder", new Vector3(1341.75f, 83.35f, -1048.29f)));
-        } 
+        }
     }
 }

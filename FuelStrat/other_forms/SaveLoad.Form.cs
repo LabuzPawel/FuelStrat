@@ -1,24 +1,16 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FuelStrat
 {
     public partial class SaveLoad : Form
     {
+        private List<FuelStrat.SavedStrategy> default_saved_strat_list;
+        private List<FuelStrat.SavedStrategy> saved_strat_list;
+        private FuelStrat.SavedStrategy current_strat;
 
-        List<FuelStrat.SavedStrategy> default_saved_strat_list;
-        List<FuelStrat.SavedStrategy> saved_strat_list;
-        FuelStrat.SavedStrategy current_strat;
         public delegate void LoadButtonClickedEventHandler(object sender, int slot);
+
         public event LoadButtonClickedEventHandler LoadButtonClicked;
 
         public SaveLoad(FuelStrat.SavedStrategy currentStrat)

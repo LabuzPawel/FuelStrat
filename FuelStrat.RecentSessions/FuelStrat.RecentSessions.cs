@@ -1,31 +1,32 @@
 ﻿using FuelStrat.SharedMemory;
-using FuelStrat;
-using FuelStrat.SharedMemory.Types.Enums;
-using System.Runtime.CompilerServices;
-using System.Reflection.PortableExecutable;
-using System.Timers;
 using FuelStrat.SharedMemory.Types;
+using FuelStrat.SharedMemory.Types.Enums;
 using System.Numerics;
-using System.Drawing;
 
 namespace FuelStrat.RecentSessions
 {
+    // uses SharedMemory to get data from Memory Mapped Files that stores telemetry
+    // each update is being stored in a Sim_data struct (except lap time)
+
     public class UpdateFromTelemetry
     {
         //double lap_time;
-        int lap_time_millisecs;
-        string track_name = "?";
-        string car_name = "?";
-        int stint_time;
-        List<Vector3> cars_coords = new(); 
-        TelemetryReader reader = new TelemetryReader();
-        AcSessionType session_type;
+        private int lap_time_millisecs;
+
+        private string track_name = "?";
+        private string car_name = "?";
+        private int stint_time;
+        private List<Vector3> cars_coords = new();
+        private TelemetryReader reader = new TelemetryReader();
+        private AcSessionType session_type;
 
         public struct Sim_data
         {
             public int completed_laps;
+
             //public double lap_time;
             public double fuel;
+
             public string session_type;
             public string track_name;
             public string car_name;
@@ -107,6 +108,8 @@ namespace FuelStrat.RecentSessions
 
                 sim_data.completed_laps = graphics.CompletedLaps;
 
+                // lap time inside this reader is broken, sends wrong data
+
                 //lap_time = graphics.ILastTime;
                 //double lap_time_formatted = Math.Round(((double)(lap_time / 1000) +
                 //(double)(lap_time % 1000) / 1000.0), 3);
@@ -115,7 +118,7 @@ namespace FuelStrat.RecentSessions
                 sim_data.fuel = Math.Round(graphics.FuelXLap, 2);
 
                 session_type = graphics.Session;
-                sim_data.session_type = Maps.session_type_map[session_type];           
+                sim_data.session_type = Maps.session_type_map[session_type];
 
                 sim_data.missing_pit_stops = graphics.MissingMandatoryPits;
 

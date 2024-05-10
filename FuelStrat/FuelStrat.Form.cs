@@ -1,11 +1,10 @@
+using FuelStrat.RecentSessions;
+using FuelStrat.SharedMemory.Types.Enums;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
-using System.Reflection;
-using FuelStrat.RecentSessions;
-using FuelStrat.SharedMemory.Types.Enums;
 using System.Numerics;
-using static FuelStrat.RecentSessions.UpdateFromTelemetry;
+using System.Reflection;
 
 namespace FuelStrat
 {
@@ -68,13 +67,14 @@ namespace FuelStrat
         {
             // https://stackoverflow.com/a/60589434
 
-            TextFormatFlags flags = TextFormatFlags.WordBreak |
+            private TextFormatFlags flags = TextFormatFlags.WordBreak |
                                     TextFormatFlags.PreserveGraphicsClipping |
                                     TextFormatFlags.LeftAndRightPadding |
                                     TextFormatFlags.ExpandTabs |
                                     TextFormatFlags.VerticalCenter;
 
-            public ListBoxMultiline() { this.DrawMode = DrawMode.OwnerDrawVariable; }
+            public ListBoxMultiline()
+            { this.DrawMode = DrawMode.OwnerDrawVariable; }
 
             private Size GetItemSize(Graphics g, string itemText)
             {
@@ -163,11 +163,9 @@ namespace FuelStrat
 
                 base.OnDrawItem(e);
             }
-
-
         }
 
-        ListBoxMultiline listBoxMultiline_recent_sessions = new ListBoxMultiline();
+        private ListBoxMultiline listBoxMultiline_recent_sessions = new ListBoxMultiline();
 
         public struct Recent_lap
         {
@@ -179,7 +177,8 @@ namespace FuelStrat
             public string car_name;
             public int fuel_at_the_start;
         }
-        struct RecentStint
+
+        private struct RecentStint
         {
             public int count_number;
             public string track_name;
@@ -191,7 +190,9 @@ namespace FuelStrat
             public string session_type;
             public int fuel_at_the_start;
         }
-        FixedSizeList<RecentStint> recent_stints = new(10);
+
+        private FixedSizeList<RecentStint> recent_stints = new(10);
+
         public struct SavedStrategy
         {
             public string saved_name;
@@ -233,6 +234,7 @@ namespace FuelStrat
         private double fuel_for_race;
         private Debouncer recalculate_debouncer = new(50);
         private Debouncer import_race_debouncer = new(300);
+        private Debouncer import_stint_debouncer = new(300);
         private Debouncer auto_debouncer = new(300);
         private bool is_strat_ok = true;
         private bool is_recalculate_needed = true;
@@ -243,8 +245,8 @@ namespace FuelStrat
         public UpdateFromTelemetry.Sim_data sim_data = new();
 
         private string session_saved = "";
-        int previous_lap = -1;
-        List<Recent_lap> laps_data = new();
+        private int previous_lap = -1;
+        private List<Recent_lap> laps_data = new();
         private Recent_lap current_lap;
 
         private readonly string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
@@ -1190,7 +1192,6 @@ namespace FuelStrat
                                 table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                                 table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
 
-
                                 Label label_refuel_temp = new()
                                 {
                                     Name = name_for_refuel_label,
@@ -1273,7 +1274,6 @@ namespace FuelStrat
                                 table_temp2.ColumnStyles.Clear();
                                 table_temp2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                                 table_temp2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-
 
                                 Label label_laps_temp2 = new()
                                 {
@@ -1432,7 +1432,6 @@ namespace FuelStrat
                         table_temp.ColumnStyles.Clear();
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                         table_temp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-
 
                         NumericUpDown numericUpDown_laps_temp = new()
                         {
@@ -1801,9 +1800,9 @@ namespace FuelStrat
 
         public static void ChangeControlColor(Control control, Color color)
         {
-            // textBox will flash in a certain color (for warnings or automatic fill of textBox)
+            // textBox will flash in a certain color (for warnings or automatic fill of Control objects)
 
-            Color original_color = control.BackColor;
+            //Color original_color = control.BackColor;
 
             control.BackColor = color;
 
@@ -1813,7 +1812,9 @@ namespace FuelStrat
             };
             timer.Tick += (sender, e) =>
             {
-                control.BackColor = original_color;
+                //control.BackColor = original_color;
+
+                control.BackColor = Color.White;
 
                 timer.Dispose();
             };
@@ -2048,6 +2049,8 @@ namespace FuelStrat
 
         private void InitializeTelemetryTimer()
         {
+            // start a timer that will check if ACC is running
+
             telemetryTimer = new System.Threading.Timer(
                 async _ => await GameStatusCheckAsync(), null, 3000, 5000);
         }
@@ -2066,6 +2069,73 @@ namespace FuelStrat
             }
         }
 
+        public bool CheckGameStatus()
+        {
+            // check processes if ACC exe is running
+
+            Process[] processes = Process.GetProcessesByName("AC2-Win64-Shipping");
+            return processes.Length > 0;
+        }
+
+        private void UpdateGameStatusMenuItem(bool isRunning)
+        {
+            // update ACC status icon
+
+            if (isRunning)
+            {
+                ToolStripMenuItem_game_status.Text = " ACC ON ";
+                ToolStripMenuItem_game_status.Image = Properties.Resources.greenFlag;
+            }
+            else
+            {
+                ToolStripMenuItem_game_status.Text = " ACC OFF";
+                ToolStripMenuItem_game_status.Image = Properties.Resources.redFlag;
+
+                // if there were some recorded laps and ACC was shut down, complete a stint with AddToListBox
+
+                AddToListBox();
+                previous_lap = -1;
+            }
+        }
+
+        private void ToolStripMenuItem_game_status_TextChanged(object sender, EventArgs e)
+        {
+            // actions to be taken when ACC status changes
+
+            if (ToolStripMenuItem_game_status.Text == " ACC ON ")
+            {
+                // start reading telemetry on a timer when ACC is ON
+
+                updateFromTelemetry = new UpdateFromTelemetry();
+
+                updateFromTelemetry.StartReading();
+
+                telemetry_update_timer = new System.Threading.Timer(
+                    _ => UpdateRecentSessions(updateFromTelemetry),
+                    null,
+                    TimeSpan.Zero,
+                    TimeSpan.FromSeconds(3));
+            }
+            else if (ToolStripMenuItem_game_status.Text == " ACC OFF")
+            {
+                // if ACC is shut down dispose telemetry timer and stop reading
+
+                if (telemetry_update_timer != null)
+                {
+                    telemetry_update_timer.Dispose();
+                }
+
+                if (updateFromTelemetry != null)
+                {
+                    updateFromTelemetry.StopReading();
+                }
+
+                button_auto.Enabled = false;
+                button_import_race.Enabled = false;
+                previous_lap = -1;
+            }
+        }
+
         private void UpdateGameStatus(bool isRunning)
         {
             if (this.InvokeRequired)
@@ -2081,6 +2151,8 @@ namespace FuelStrat
 
         public string LapTimeSecsFormatted(int lapTimeInMillisecs)
         {
+            // telemtry sends lap time in milliseconds, method to format into a string M:SS.msmsms
+
             TimeSpan timeSpan = TimeSpan.FromMilliseconds(lapTimeInMillisecs);
 
             string lap_time_to_string = $"{timeSpan.Minutes}:{timeSpan.Seconds:00}." +
@@ -2091,6 +2163,12 @@ namespace FuelStrat
 
         public bool IsFormationLapFull(string trackName, List<Vector3> carsCoords, string session)
         {
+            // there is no information about type of formation lap (Full or Short) from telemetry
+            // to get this info this method is going through all cars coordinates,
+            // measure distance to a coordinates where first car in full formation lap should be,
+            // finds the closest car and if distance is less than 20 units
+            // that means there is a Full formation lap
+
             Vector3 current_track_coords;
             Vector3 car_coords;
             float closest_distance = 9999999.0f;
@@ -2133,6 +2211,8 @@ namespace FuelStrat
 
         public void UpdateRecentSessions(UpdateFromTelemetry updateFromTelemetry)
         {
+            // method that is gathering all telemetry data
+
             if (updateFromTelemetry != null)
             {
                 sim_data = updateFromTelemetry.GetNewData();
@@ -2153,15 +2233,18 @@ namespace FuelStrat
                 return;
             }
 
-            button_auto.Text = sim_data.car_name;
-
             if (previous_lap == -1)
             {
+                // if completed laps counter is in default -1 state, check completed laps
+                // necessary if app was started during session where some laps were already done
+
                 previous_lap = sim_data.completed_laps;
             }
 
             if (sim_data.completed_laps > previous_lap && sim_data.completed_laps != 0)
             {
+                // fill a struct with a data
+
                 Recent_lap current_lap = new()
                 {
                     completed_laps = sim_data.completed_laps,
@@ -2175,6 +2258,8 @@ namespace FuelStrat
 
                 if (current_lap.lap_time != 0 && previous_lap != sim_data.completed_laps)
                 {
+                    // if this is a new lap then add it to the list
+
                     laps_data.Add(current_lap);
                     previous_lap = sim_data.completed_laps;
                 }
@@ -2182,17 +2267,24 @@ namespace FuelStrat
 
             if (sim_data.session_type == "Race")
             {
+                // enable buttons when session is Race
+
                 button_import_race.Enabled = true;
                 button_auto.Enabled = true;
             }
             else
             {
+                // disable buttons when session isnt Race
+
                 button_import_race.Enabled = false;
                 button_auto.Enabled = false;
             }
 
             if (sim_data.game_status == GameStatus.Off)
             {
+                // if user quits to a main menu and there are some laps recorded, then complete a stint
+                // and add it with AddToListBox
+
                 AddToListBox();
                 previous_lap = -1;
                 return;
@@ -2200,6 +2292,9 @@ namespace FuelStrat
 
             if (session_saved != sim_data.session_type)
             {
+                // if session type changes and there are some laps recorded, then complete a stint
+                // and add it with AddToListBox
+
                 AddToListBox();
                 previous_lap = -1;
                 session_saved = sim_data.session_type;
@@ -2211,12 +2306,14 @@ namespace FuelStrat
 
         private void AddToListBox()
         {
-            if (sim_data.is_in_pits == true && laps_data.Count > 0 || 
+            if (sim_data.is_in_pits == true && laps_data.Count > 0 ||
                 ToolStripMenuItem_game_status.Text == " ACC OFF" && laps_data.Count > 0 ||
                 sim_data.game_status == GameStatus.Off && laps_data.Count > 0 ||
                 session_saved != sim_data.session_type && laps_data.Count > 0)
             {
                 checkBox_lap_time.Enabled = true;
+
+                // get average fuel per lap and average lap time
 
                 double sum_fuel = 0.0;
                 int sum_lap_times = 0;
@@ -2230,6 +2327,8 @@ namespace FuelStrat
                 double average_fuel = sum_fuel / laps_data.Count;
                 int average_lap_time = sum_lap_times / laps_data.Count;
 
+                // fill a stint struct
+
                 RecentStint recent_stint = new();
                 recent_stint.average_fuel_per_lap = Math.Round(average_fuel, 2);
                 recent_stint.average_lap_time = average_lap_time;
@@ -2240,7 +2339,12 @@ namespace FuelStrat
                 recent_stint.date_time = DateTime.Now;
                 recent_stint.fuel_at_the_start = laps_data[0].fuel_at_the_start;
 
+                // add to list of structs
+
                 recent_stints.Add(recent_stint);
+
+                // clear recorded laps that were converted into a stint
+                // clear listBox because new list is going to be added
 
                 laps_data.Clear();
                 listBoxMultiline_recent_sessions.Items.Clear();
@@ -2263,25 +2367,11 @@ namespace FuelStrat
             }
         }
 
-        private void UpdateGameStatusMenuItem(bool isRunning)
-        {
-            if (isRunning)
-            {
-                ToolStripMenuItem_game_status.Text = " ACC ON ";
-                ToolStripMenuItem_game_status.Image = Properties.Resources.greenFlag;
-            }
-            else
-            {
-                ToolStripMenuItem_game_status.Text = " ACC OFF";
-                ToolStripMenuItem_game_status.Image = Properties.Resources.redFlag;
-
-                AddToListBox();
-                previous_lap = -1;
-            }
-        }
-
         private void listBox_recent_sessions_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // enable and disable Import stint button, this button shouldnt be active unless
+            // user select something from a listBox
+
             if (listBoxMultiline_recent_sessions.Items.Count > 0)
             {
                 if (listBoxMultiline_recent_sessions.SelectedIndex != -1)
@@ -2297,33 +2387,39 @@ namespace FuelStrat
 
         private void button_import_stint_Click(object sender, EventArgs e)
         {
-            int selected_stint = listBoxMultiline_recent_sessions.SelectedIndex;
+            // this button click is importing data from selected stint in a listBox
 
-            comboBox_track.SelectedItem = recent_stints[selected_stint].track_name;
-            ChangeControlColor(comboBox_track, Color.LightGreen);
-
-            var selected_car = all_cars.Where(car => car.CarName == recent_stints[selected_stint].car_name);
-            comboBox_class.SelectedItem = selected_car.FirstOrDefault().ClassName;
-            ChangeControlColor(comboBox_class, Color.LightGreen);
-
-            comboBox_car.SelectedItem = selected_car.FirstOrDefault().CarName;
-            ChangeControlColor(comboBox_car, Color.LightGreen);
-
-            textBox_fuel_per_lap.Text = recent_stints[selected_stint].average_fuel_per_lap.ToString().Replace(",", ".");
-            ChangeControlColor(textBox_fuel_per_lap, Color.LightGreen);
-
-            if (checkBox_lap_time.Checked)
+            import_stint_debouncer.Debouce(() =>
             {
-                TimeSpan timeSpan = TimeSpan.FromMilliseconds(recent_stints[selected_stint].average_lap_time);
-                textBox_lap_time_min.Text = timeSpan.Minutes.ToString();
-                textBox_lap_time_sec.Text = $"{timeSpan.Seconds:00}.{timeSpan.Milliseconds:000}";
-                ChangeControlColor(textBox_lap_time_min, Color.LightGreen);
-                ChangeControlColor(textBox_lap_time_sec, Color.LightGreen);
-            }
+                int selected_stint = listBoxMultiline_recent_sessions.SelectedIndex;
+
+                comboBox_track.SelectedItem = recent_stints[selected_stint].track_name;
+                ChangeControlColor(comboBox_track, Color.LightGreen);
+
+                var selected_car = all_cars.Where(car => car.CarName == recent_stints[selected_stint].car_name);
+                comboBox_class.SelectedItem = selected_car.FirstOrDefault().ClassName;
+                ChangeControlColor(comboBox_class, Color.LightGreen);
+
+                comboBox_car.SelectedItem = selected_car.FirstOrDefault().CarName;
+                ChangeControlColor(comboBox_car, Color.LightGreen);
+
+                textBox_fuel_per_lap.Text = recent_stints[selected_stint].average_fuel_per_lap.ToString().Replace(",", ".");
+                ChangeControlColor(textBox_fuel_per_lap, Color.LightGreen);
+
+                if (checkBox_lap_time.Checked)
+                {
+                    TimeSpan timeSpan = TimeSpan.FromMilliseconds(recent_stints[selected_stint].average_lap_time);
+                    textBox_lap_time_min.Text = timeSpan.Minutes.ToString();
+                    textBox_lap_time_sec.Text = $"{timeSpan.Seconds:00}.{timeSpan.Milliseconds:000}";
+                    ChangeControlColor(textBox_lap_time_min, Color.LightGreen);
+                    ChangeControlColor(textBox_lap_time_sec, Color.LightGreen);
+                }
+            });
         }
 
         private void button_import_race_Click(object sender, EventArgs e)
         {
+            // this button click is importing race information from the telemetry
 
             import_race_debouncer.Debouce(() =>
             {
@@ -2371,6 +2467,9 @@ namespace FuelStrat
 
         private void button_save_load_Click(object sender, EventArgs e)
         {
+            // when user clicks on save / load button a struct with current settings from
+            // input panel is being created and used if user wants to save
+
             SavedStrategy current_strat = new SavedStrategy()
             {
                 saved_name = "",
@@ -2389,6 +2488,8 @@ namespace FuelStrat
                 saved_max_stint = textBox_max_stint.Text
             };
 
+            // new form pops out for saving and loading
+
             SaveLoad save_load_form = new SaveLoad(current_strat);
 
             save_load_form.LoadButtonClicked += LoadStrat_LoadButtonClicked;
@@ -2396,50 +2497,17 @@ namespace FuelStrat
             save_load_form.ShowDialog();
         }
 
-        private void ToolStripMenuItem_game_status_TextChanged(object sender, EventArgs e)
-        {
-            if (ToolStripMenuItem_game_status.Text == " ACC ON ")
-            {
-                updateFromTelemetry = new UpdateFromTelemetry();
-
-                updateFromTelemetry.StartReading();
-
-                telemetry_update_timer = new System.Threading.Timer(
-                    _ => UpdateRecentSessions(updateFromTelemetry),
-                    null,
-                    TimeSpan.Zero,
-                    TimeSpan.FromSeconds(3));
-            }
-            else if (ToolStripMenuItem_game_status.Text == " ACC OFF")
-            {
-                if (telemetry_update_timer != null)
-                {
-                    telemetry_update_timer.Dispose();
-                }
-                
-                if (updateFromTelemetry != null)
-                {
-                    updateFromTelemetry.StopReading();
-                }
-
-                button_auto.Enabled = false;
-                button_import_race.Enabled = false;
-                previous_lap = 0;
-            }
-        }
-
-        public bool CheckGameStatus()
-        {
-            Process[] processes = Process.GetProcessesByName("AC2-Win64-Shipping");
-            return processes.Length > 0;
-        }
-
         private void button_auto_Click_1(object sender, EventArgs e)
         {
+            // auto button is filling all input panel and perform calculations
+
             auto_debouncer.Debouce(() =>
             {
                 if (sim_data.missing_pit_stops > 0)
                 {
+                    // if there are mandatory pit stops, new form pops out where user can select
+                    // a desired pit stop option
+
                     Pit_option pit_option_form = new Pit_option(sim_data.missing_pit_stops);
 
                     pit_option_form.ButtonClicked += PitOptionForm_ButtonClicked;
@@ -2481,6 +2549,9 @@ namespace FuelStrat
 
                 if (listBoxMultiline_recent_sessions.Items.Count != 0)
                 {
+                    // if there are stints in listBox that are matching current car and track
+                    // search for the longest stint and add use this data
+
                     List<RecentStint> filtered_stints = new();
 
                     foreach (var stint in recent_stints)
@@ -2542,6 +2613,9 @@ namespace FuelStrat
                 }
                 else
                 {
+                    // if there are no matching car and track in a listBox (or if its empty)
+                    // fill car, track from telemetry which automatically fill
+                    // fuel per lap and lap time with last used data
 
                     comboBox_track.SelectedItem = sim_data.track_name;
                     ChangeControlColor(comboBox_track, Color.LightGreen);
@@ -2560,11 +2634,15 @@ namespace FuelStrat
 
         private void PitOptionForm_ButtonClicked(object sender, int pitOption)
         {
+            // select pit option based on what user selects in Pit.Form
+
             comboBox_pit_options.SelectedIndex = pitOption;
         }
 
         private void LoadStrat_LoadButtonClicked(object sender, int slot)
         {
+            // fill all controls in Input panel with selected save to load
+
             string saved_json = File.ReadAllText("FuelStrat_saved_strats.json");
             List<SavedStrategy> saved_strat_list =
                 JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(saved_json);
@@ -2585,6 +2663,5 @@ namespace FuelStrat
             checkBox_max_stint.Checked = strat_to_load.saved_checkbox_max_stint;
             textBox_max_stint.Text = strat_to_load.saved_max_stint;
         }
-        
     }
 }

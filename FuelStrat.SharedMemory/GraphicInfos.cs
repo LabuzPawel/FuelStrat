@@ -1,6 +1,6 @@
-﻿using System.Runtime.InteropServices;
-using FuelStrat.SharedMemory.Types;
+﻿using FuelStrat.SharedMemory.Types;
 using FuelStrat.SharedMemory.Types.Enums;
+using System.Runtime.InteropServices;
 
 namespace FuelStrat.SharedMemory;
 
@@ -32,7 +32,7 @@ public record GraphicInfos
     public float SessionTimeLeft;
     public float DistanceTraveled;
 
-    [MarshalAs(UnmanagedType.Bool)] 
+    [MarshalAs(UnmanagedType.Bool)]
     public bool IsInPits;
 
     public int CurrentSectorIndex;
@@ -58,7 +58,7 @@ public record GraphicInfos
     public PenaltyType Penalty;
     public int IdealLineOn;
 
-    [MarshalAs(UnmanagedType.Bool)] 
+    [MarshalAs(UnmanagedType.Bool)]
     public bool IsInPitLane;
 
     public float SurfaceGrip;

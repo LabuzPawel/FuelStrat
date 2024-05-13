@@ -31,16 +31,10 @@ namespace FuelStrat
             public string TankCapacity { get; set; }
         }
 
-        public class FixedSizeList<T>
+        public class FixedSizeList<T>(int max_size)
         {
-            private readonly int max_size;
-            private readonly List<T> list;
-
-            public FixedSizeList(int max_size)
-            {
-                this.max_size = max_size;
-                this.list = new List<T>(max_size);
-            }
+            private readonly int max_size = max_size;
+            private readonly List<T> list = new(max_size);
 
             public void Add(T item)
             {
@@ -67,11 +61,12 @@ namespace FuelStrat
         {
             // https://stackoverflow.com/a/60589434
 
-            private TextFormatFlags flags = TextFormatFlags.WordBreak |
+            private readonly TextFormatFlags flags = TextFormatFlags.WordBreak |
                                     TextFormatFlags.PreserveGraphicsClipping |
                                     TextFormatFlags.LeftAndRightPadding |
                                     TextFormatFlags.ExpandTabs |
                                     TextFormatFlags.VerticalCenter;
+            private static readonly string[] separator = ["nextLine"];
 
             public ListBoxMultiline()
             { this.DrawMode = DrawMode.OwnerDrawVariable; }
@@ -105,13 +100,13 @@ namespace FuelStrat
 
                 string itemText = GetItemText(Items[e.Index]);
 
-                string[] parts = itemText.Split(new string[] { "nextLine" }, StringSplitOptions.None);
+                string[] parts = itemText.Split(separator, StringSplitOptions.None);
 
                 int offsetY = -1;
 
-                Rectangle outerBounds = new Rectangle(e.Bounds.X, e.Bounds.Y + offsetY, e.Bounds.Width, e.Bounds.Height - offsetY);
-                Rectangle firstLineBounds = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + offsetY, e.Bounds.Width - 2, (e.Bounds.Height / 2) - offsetY);
-                Rectangle secondLineBounds = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + (e.Bounds.Height / 2) - 3, e.Bounds.Width - 2, (e.Bounds.Height / 2) + 3);
+                Rectangle outerBounds = new(e.Bounds.X, e.Bounds.Y + offsetY, e.Bounds.Width, e.Bounds.Height - offsetY);
+                Rectangle firstLineBounds = new(e.Bounds.X + 1, e.Bounds.Y + offsetY, e.Bounds.Width - 2, (e.Bounds.Height / 2) - offsetY);
+                Rectangle secondLineBounds = new(e.Bounds.X + 1, e.Bounds.Y + (e.Bounds.Height / 2) - 3, e.Bounds.Width - 2, (e.Bounds.Height / 2) + 3);
 
                 e.Graphics.DrawRectangle(Pens.Black, outerBounds);
 
@@ -165,7 +160,7 @@ namespace FuelStrat
             }
         }
 
-        private ListBoxMultiline listBoxMultiline_recent_sessions = new ListBoxMultiline();
+        private ListBoxMultiline listBoxMultiline_recent_sessions = new();
 
         public struct Recent_lap
         {
@@ -241,13 +236,11 @@ namespace FuelStrat
         private System.Threading.Timer telemetryTimer;
         private UpdateFromTelemetry updateFromTelemetry;
         private System.Threading.Timer telemetry_update_timer;
-        private System.Threading.Timer exe_status_timer;
         public UpdateFromTelemetry.Sim_data sim_data = new();
 
         private string session_saved = "";
         private int previous_lap = -1;
-        private List<Recent_lap> laps_data = new();
-        private Recent_lap current_lap;
+        private List<Recent_lap> laps_data = [];
 
         private readonly string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         private readonly double ONE_L_PIT_TIME = 3.6;
@@ -1558,7 +1551,7 @@ namespace FuelStrat
                 dynamic_labels[0].Text = fuel_first_stint.ToString() + " L";
 
                 int sum_of_laps_from_prev_iterations = 0;
-                int current_laps = 0;
+                int current_laps;
 
                 for (int i = 1; i < dynamic_labels.Count; i++)
                 {
@@ -1784,7 +1777,7 @@ namespace FuelStrat
             listBoxMultiline_recent_sessions.DrawMode = DrawMode.OwnerDrawVariable;
             listBoxMultiline_recent_sessions.Font = consolas_font;
             listBoxMultiline_recent_sessions.ScrollAlwaysVisible = true;
-            listBoxMultiline_recent_sessions.SelectedIndexChanged += listBox_recent_sessions_SelectedIndexChanged;
+            listBoxMultiline_recent_sessions.SelectedIndexChanged += ListBox_recent_sessions_SelectedIndexChanged;
             this.panel_telemetry.Controls.Add(listBoxMultiline_recent_sessions);
         }
 
@@ -1821,7 +1814,7 @@ namespace FuelStrat
             timer.Start();
         }
 
-        private bool OnlyZeros(string text)
+        private static bool OnlyZeros(string text)
         {
             // check if string consists only characters from the list below (for button_calculate_Click action)
 
@@ -2069,7 +2062,7 @@ namespace FuelStrat
             }
         }
 
-        public bool CheckGameStatus()
+        public static bool CheckGameStatus()
         {
             // check processes if ACC exe is running
 
@@ -2120,15 +2113,9 @@ namespace FuelStrat
             {
                 // if ACC is shut down dispose telemetry timer and stop reading
 
-                if (telemetry_update_timer != null)
-                {
-                    telemetry_update_timer.Dispose();
-                }
+                telemetry_update_timer?.Dispose();
 
-                if (updateFromTelemetry != null)
-                {
-                    updateFromTelemetry.StopReading();
-                }
+                updateFromTelemetry?.StopReading();
 
                 button_auto.Enabled = false;
                 button_import_race.Enabled = false;
@@ -2149,7 +2136,7 @@ namespace FuelStrat
             }
         }
 
-        public string LapTimeSecsFormatted(int lapTimeInMillisecs)
+        public static string LapTimeSecsFormatted(int lapTimeInMillisecs)
         {
             // telemtry sends lap time in milliseconds, method to format into a string M:SS.msmsms
 
@@ -2161,7 +2148,7 @@ namespace FuelStrat
             return lap_time_to_string;
         }
 
-        public bool IsFormationLapFull(string trackName, List<Vector3> carsCoords, string session)
+        public static bool IsFormationLapFull(string trackName, List<Vector3> carsCoords, string session)
         {
             // there is no information about type of formation lap (Full or Short) from telemetry
             // to get this info this method is going through all cars coordinates,
@@ -2329,15 +2316,17 @@ namespace FuelStrat
 
                 // fill a stint struct
 
-                RecentStint recent_stint = new();
-                recent_stint.average_fuel_per_lap = Math.Round(average_fuel, 2);
-                recent_stint.average_lap_time = average_lap_time;
-                recent_stint.stint_lenght = laps_data.Count();
-                recent_stint.track_name = laps_data[0].track_name;
-                recent_stint.car_name = laps_data[0].car_name;
-                recent_stint.session_type = laps_data[0].session_type;
-                recent_stint.date_time = DateTime.Now;
-                recent_stint.fuel_at_the_start = laps_data[0].fuel_at_the_start;
+                RecentStint recent_stint = new()
+                {
+                    average_fuel_per_lap = Math.Round(average_fuel, 2),
+                    average_lap_time = average_lap_time,
+                    stint_lenght = laps_data.Count,
+                    track_name = laps_data[0].track_name,
+                    car_name = laps_data[0].car_name,
+                    session_type = laps_data[0].session_type,
+                    date_time = DateTime.Now,
+                    fuel_at_the_start = laps_data[0].fuel_at_the_start
+                };
 
                 // add to list of structs
 
@@ -2367,7 +2356,7 @@ namespace FuelStrat
             }
         }
 
-        private void listBox_recent_sessions_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox_recent_sessions_SelectedIndexChanged(object sender, EventArgs e)
         {
             // enable and disable Import stint button, this button shouldnt be active unless
             // user select something from a listBox
@@ -2385,7 +2374,7 @@ namespace FuelStrat
             }
         }
 
-        private void button_import_stint_Click(object sender, EventArgs e)
+        private void Button_import_stint_Click(object sender, EventArgs e)
         {
             // this button click is importing data from selected stint in a listBox
 
@@ -2417,7 +2406,7 @@ namespace FuelStrat
             });
         }
 
-        private void button_import_race_Click(object sender, EventArgs e)
+        private void Button_import_race_Click(object sender, EventArgs e)
         {
             // this button click is importing race information from the telemetry
 
@@ -2465,12 +2454,12 @@ namespace FuelStrat
             });
         }
 
-        private void button_save_load_Click(object sender, EventArgs e)
+        private void Button_save_load_Click(object sender, EventArgs e)
         {
             // when user clicks on save / load button a struct with current settings from
             // input panel is being created and used if user wants to save
 
-            SavedStrategy current_strat = new SavedStrategy()
+            SavedStrategy current_strat = new()
             {
                 saved_name = "",
                 saved_car_class_index = comboBox_class.SelectedIndex,
@@ -2490,7 +2479,7 @@ namespace FuelStrat
 
             // new form pops out for saving and loading
 
-            SaveLoad save_load_form = new SaveLoad(current_strat);
+            SaveLoad save_load_form = new(current_strat);
 
             save_load_form.LoadButtonClicked += LoadStrat_LoadButtonClicked;
 
@@ -2504,7 +2493,7 @@ namespace FuelStrat
             }
         }
 
-        private void button_auto_Click_1(object sender, EventArgs e)
+        private void Button_auto_Click_1(object sender, EventArgs e)
         {
             // auto button is filling all input panel and perform calculations
 
@@ -2515,7 +2504,7 @@ namespace FuelStrat
                     // if there are mandatory pit stops, new form pops out where user can select
                     // a desired pit stop option
 
-                    Pit_option pit_option_form = new Pit_option(sim_data.missing_pit_stops);
+                    Pit_option pit_option_form = new(sim_data.missing_pit_stops);
 
                     pit_option_form.ButtonClicked += PitOptionForm_ButtonClicked;
 
@@ -2559,7 +2548,7 @@ namespace FuelStrat
                     // if there are stints in listBox that are matching current car and track
                     // search for the longest stint and add use this data
 
-                    List<RecentStint> filtered_stints = new();
+                    List<RecentStint> filtered_stints = [];
 
                     foreach (var stint in recent_stints)
                     {
@@ -2690,7 +2679,7 @@ namespace FuelStrat
 
                     Assembly assembly = Assembly.GetExecutingAssembly();
                     using (Stream stream = assembly.GetManifestResourceStream("FuelStrat.json_resources.FuelStrat_saved_strats.json"))
-                    using (StreamReader reader = new StreamReader(stream))
+                    using (StreamReader reader = new(stream))
                     {
                         string defualt_saved = reader.ReadToEnd();
                         default_saved_strat_list = JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(defualt_saved);

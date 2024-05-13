@@ -958,7 +958,7 @@
             button_save_load.TabIndex = 18;
             button_save_load.Text = "Save / Load strategy";
             button_save_load.UseVisualStyleBackColor = true;
-            button_save_load.Click += button_save_load_Click;
+            button_save_load.Click += Button_save_load_Click;
             // 
             // button_import_race
             // 
@@ -970,7 +970,7 @@
             button_import_race.TabIndex = 20;
             button_import_race.Text = "Import current race";
             button_import_race.UseVisualStyleBackColor = true;
-            button_import_race.Click += button_import_race_Click;
+            button_import_race.Click += Button_import_race_Click;
             // 
             // button_auto
             // 
@@ -982,7 +982,7 @@
             button_auto.TabIndex = 21;
             button_auto.Text = "AUTO";
             button_auto.UseVisualStyleBackColor = true;
-            button_auto.Click += button_auto_Click_1;
+            button_auto.Click += Button_auto_Click_1;
             // 
             // button_import_stint
             // 
@@ -994,7 +994,7 @@
             button_import_stint.TabIndex = 22;
             button_import_stint.Text = "Import stint data";
             button_import_stint.UseVisualStyleBackColor = true;
-            button_import_stint.Click += button_import_stint_Click;
+            button_import_stint.Click += Button_import_stint_Click;
             // 
             // checkBox_lap_time
             // 

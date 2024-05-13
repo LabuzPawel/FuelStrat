@@ -2494,7 +2494,14 @@ namespace FuelStrat
 
             save_load_form.LoadButtonClicked += LoadStrat_LoadButtonClicked;
 
-            save_load_form.ShowDialog();
+            try
+            {
+                save_load_form.ShowDialog();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void button_auto_Click_1(object sender, EventArgs e)
@@ -2643,25 +2650,59 @@ namespace FuelStrat
         {
             // fill all controls in Input panel with selected save to load
 
-            string saved_json = File.ReadAllText("FuelStrat_saved_strats.json");
-            List<SavedStrategy> saved_strat_list =
+            try
+            {
+                string saved_json = File.ReadAllText("FuelStrat_saved_strats.json");
+                List<SavedStrategy> saved_strat_list =
                 JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(saved_json);
 
-            SavedStrategy strat_to_load = saved_strat_list[slot];
+                SavedStrategy strat_to_load = saved_strat_list[slot];
 
-            comboBox_class.SelectedIndex = strat_to_load.saved_car_class_index;
-            comboBox_car.SelectedIndex = strat_to_load.saved_car_index;
-            comboBox_track.SelectedIndex = strat_to_load.saved_track_index;
-            textBox_race_h.Text = strat_to_load.saved_race_h;
-            textBox_race_min.Text = strat_to_load.saved_race_min;
-            textBox_lap_time_min.Text = strat_to_load.saved_lap_min;
-            textBox_lap_time_sec.Text = strat_to_load.saved_lap_secs;
-            textBox_fuel_per_lap.Text = strat_to_load.saved_fuel_per_lap;
-            listBox_formation.SelectedIndex = strat_to_load.saved_formation_index;
-            numericUpDown_pits.Value = strat_to_load.saved_number_of_pits;
-            comboBox_pit_options.SelectedIndex = strat_to_load.saved_pit_stop_option_index;
-            checkBox_max_stint.Checked = strat_to_load.saved_checkbox_max_stint;
-            textBox_max_stint.Text = strat_to_load.saved_max_stint;
+                comboBox_class.SelectedIndex = strat_to_load.saved_car_class_index;
+                comboBox_car.SelectedIndex = strat_to_load.saved_car_index;
+                comboBox_track.SelectedIndex = strat_to_load.saved_track_index;
+                textBox_race_h.Text = strat_to_load.saved_race_h;
+                textBox_race_min.Text = strat_to_load.saved_race_min;
+                textBox_lap_time_min.Text = strat_to_load.saved_lap_min;
+                textBox_lap_time_sec.Text = strat_to_load.saved_lap_secs;
+                textBox_fuel_per_lap.Text = strat_to_load.saved_fuel_per_lap;
+                listBox_formation.SelectedIndex = strat_to_load.saved_formation_index;
+                numericUpDown_pits.Value = strat_to_load.saved_number_of_pits;
+                comboBox_pit_options.SelectedIndex = strat_to_load.saved_pit_stop_option_index;
+                checkBox_max_stint.Checked = strat_to_load.saved_checkbox_max_stint;
+                textBox_max_stint.Text = strat_to_load.saved_max_stint;
+            }
+            catch (Exception ex)
+            {
+                // catch exception when data file is corrupted or unreadable
+
+                MessageBox.Show("Error reading FuelStrat_saved_strats.json:\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                DialogResult result = MessageBox.Show("Would you like to reset the " +
+                    "FuelStrat_saved_strats.json?\n\nChoosing 'Yes' will delete all saved strategies.\n\n" +
+                    "Choosing 'No' will abort current load.",
+                    "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    File.Delete("FuelStrat_saved_strats.json");
+                    List<FuelStrat.SavedStrategy> default_saved_strat_list;
+
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+                    using (Stream stream = assembly.GetManifestResourceStream("FuelStrat.json_resources.FuelStrat_saved_strats.json"))
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string defualt_saved = reader.ReadToEnd();
+                        default_saved_strat_list = JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(defualt_saved);
+                    }
+                    string default_save_json = JsonConvert.SerializeObject(default_saved_strat_list, Formatting.Indented);
+                    File.WriteAllText("FuelStrat_saved_strats.json", default_save_json);
+                }
+                else if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
         }
     }
 }

@@ -22,7 +22,10 @@ namespace FuelStrat
 
         public void listBox_save_load_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox_save_load.SelectedIndex != -1 && listBox_save_load.Text.Contains(" EMPTY        ") != true)
+            // Load button active only when user selects a valid save
+
+            if (listBox_save_load.SelectedIndex != -1 && 
+                listBox_save_load.Text.Contains(" EMPTY        ") != true)
             {
                 button_load.Enabled = true;
             }
@@ -31,8 +34,16 @@ namespace FuelStrat
                 button_load.Enabled = false;
             }
 
+            // Save button active only when user selects a slot and there is text in 'save name' textBox or
+            // selects a slot that is already occupy by some save in attempt to replace it
+
             if (listBox_save_load.SelectedIndex != -1 && textBox_save.Text != "save name" &&
                 textBox_save.Text != "")
+            {
+                button_save.Enabled = true;
+            }
+            else if (listBox_save_load.SelectedIndex != -1 && 
+                listBox_save_load.Text.Contains(" EMPTY        ") != true)
             {
                 button_save.Enabled = true;
             }
@@ -56,7 +67,7 @@ namespace FuelStrat
             textBox_save.Font = new Font(textBox_save.Font, FontStyle.Regular);
         }
 
-        private void CreateOrLoadSavedJson()
+        public void CreateOrLoadSavedJson()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             using (Stream stream = assembly.GetManifestResourceStream("FuelStrat.json_resources.FuelStrat_saved_strats.json"))
@@ -93,9 +104,9 @@ namespace FuelStrat
                     MessageBox.Show("Error reading FuelStrat_saved_strats.json:\n" + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    DialogResult result = MessageBox.Show("Would you like to reset the FuelStrat_saved_strats.json?\n\n" +
-                        "Choosing 'No' will close Save/Load window.",
-                        "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show("Would you like to reset the " +
+                    "FuelStrat_saved_strats.json?\n\nChoosing 'Yes' will delete all saved strategies.",
+                    "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         File.Delete("FuelStrat_saved_strats.json");
@@ -124,6 +135,21 @@ namespace FuelStrat
         private void button_save_Click(object sender, EventArgs e)
         {
             int selected_slot = listBox_save_load.SelectedIndex;
+
+            if (listBox_save_load.Text.Contains(" EMPTY        ") != true)
+            {
+                DialogResult result = MessageBox.Show("Do you want overwrite this save slot?", "Question",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No) 
+                {
+                    return;
+                }
+                else
+                {
+                    textBox_save.Text = listBox_save_load.Text.Replace((selected_slot + 1).ToString() + ". ", "");
+                }
+            }
+
             string save_name = (selected_slot + 1).ToString() + ". " + textBox_save.Text;
             current_strat.saved_name = save_name;
             saved_strat_list[selected_slot] = current_strat;
@@ -133,6 +159,9 @@ namespace FuelStrat
 
             listBox_save_load.Items.Clear();
             CreateOrLoadSavedJson();
+
+            textBox_save.Text = "save name";
+            textBox_save.Font = new Font(textBox_save.Font, FontStyle.Italic);
         }
 
         private void textBox_save_KeyDown(object sender, KeyEventArgs e)

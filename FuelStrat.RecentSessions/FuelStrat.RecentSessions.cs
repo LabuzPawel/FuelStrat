@@ -26,7 +26,6 @@ namespace FuelStrat.RecentSessions
 
             //public double lap_time;
             public double fuel;
-
             public string session_type;
             public string track_name;
             public string car_name;
@@ -42,6 +41,7 @@ namespace FuelStrat.RecentSessions
             public int tank_capacity;
             public float fuel_now;
             public float fuel_used;
+            public float distance_traveled;
         };
 
         public void StartReading()
@@ -104,6 +104,8 @@ namespace FuelStrat.RecentSessions
 
             reader.GraphicUpdated += graphics =>
             {
+                sim_data.distance_traveled = graphics.DistanceTraveled;
+
                 sim_data.is_in_pits = graphics.IsInPitLane;
 
                 sim_data.completed_laps = graphics.CompletedLaps;

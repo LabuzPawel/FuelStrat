@@ -2288,6 +2288,16 @@ namespace FuelStrat
                 return;
             }
 
+            if (sim_data.session_type == "Hotstint" && sim_data.distance_traveled < 3000.0 || 
+                sim_data.session_type == "Hotlap" && sim_data.distance_traveled < 3000.0)
+            {
+                // those 2 session works in a different way and reset into a position on track rather than pit lane
+
+                AddToListBox();
+                previous_lap = -1;
+                return;
+            }
+
             AddToListBox();
         }
 
@@ -2296,7 +2306,9 @@ namespace FuelStrat
             if (sim_data.is_in_pits == true && laps_data.Count > 0 ||
                 ToolStripMenuItem_game_status.Text == " ACC OFF" && laps_data.Count > 0 ||
                 sim_data.game_status == GameStatus.Off && laps_data.Count > 0 ||
-                session_saved != sim_data.session_type && laps_data.Count > 0)
+                session_saved != sim_data.session_type && laps_data.Count > 0 ||
+                sim_data.session_type == "Hotstint" && sim_data.distance_traveled < 3000.0 && laps_data.Count > 0 ||
+                sim_data.session_type == "Hotlap" && sim_data.distance_traveled < 3000.0 && laps_data.Count > 0 )
             {
                 checkBox_lap_time.Enabled = true;
 

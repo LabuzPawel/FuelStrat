@@ -555,7 +555,7 @@
   },
   {
     "TrackName": "COTA",
-    "TrackLapTime": "125.5",
+    "TrackLapTime": "125.0",
     "TrackPitDuration": "69",
     "CarTrackFuel": [
       {
@@ -1109,7 +1109,7 @@
   },
   {
     "TrackName": "Hungaroring",
-    "TrackLapTime": "104",
+    "TrackLapTime": "103",
     "TrackPitDuration": "61",
     "CarTrackFuel": [
       {
@@ -1663,7 +1663,7 @@
   },
   {
     "TrackName": "Indianapolis",
-    "TrackLapTime": "95.8",
+    "TrackLapTime": "95.0",
     "TrackPitDuration": "90",
     "CarTrackFuel": [
       {
@@ -2771,7 +2771,7 @@
   },
   {
     "TrackName": "Monza",
-    "TrackLapTime": "107",
+    "TrackLapTime": "106.5",
     "TrackPitDuration": "65",
     "CarTrackFuel": [
       {
@@ -3325,7 +3325,7 @@
   },
   {
     "TrackName": "Nordschleife",
-    "TrackLapTime": "488",
+    "TrackLapTime": "486",
     "TrackPitDuration": "62",
     "CarTrackFuel": [
       {
@@ -3879,7 +3879,7 @@
   },
   {
     "TrackName": "Oulton Park",
-    "TrackLapTime": "92.8",
+    "TrackLapTime": "92.5",
     "TrackPitDuration": "50",
     "CarTrackFuel": [
       {
@@ -4433,7 +4433,7 @@
   },
   {
     "TrackName": "Red Bull Ring",
-    "TrackLapTime": "88",
+    "TrackLapTime": "87.8",
     "TrackPitDuration": "60",
     "CarTrackFuel": [
       {
@@ -4710,7 +4710,7 @@
   },
   {
     "TrackName": "Silverstone",
-    "TrackLapTime": "117.7",
+    "TrackLapTime": "117.5",
     "TrackPitDuration": "59",
     "CarTrackFuel": [
       {
@@ -4987,7 +4987,7 @@
   },
   {
     "TrackName": "Snetterton",
-    "TrackLapTime": "106",
+    "TrackLapTime": "105.4",
     "TrackPitDuration": "53",
     "CarTrackFuel": [
       {
@@ -5264,7 +5264,7 @@
   },
   {
     "TrackName": "Spa-Francorchamps",
-    "TrackLapTime": "135.8",
+    "TrackLapTime": "135.3",
     "TrackPitDuration": "106",
     "CarTrackFuel": [
       {
@@ -5541,7 +5541,7 @@
   },
   {
     "TrackName": "Suzuka",
-    "TrackLapTime": "118.7",
+    "TrackLapTime": "118.5",
     "TrackPitDuration": "61",
     "CarTrackFuel": [
       {
@@ -6095,7 +6095,7 @@
   },
   {
     "TrackName": "Watkins Glen",
-    "TrackLapTime": "103",
+    "TrackLapTime": "102.8",
     "TrackPitDuration": "69",
     "CarTrackFuel": [
       {
@@ -6372,7 +6372,7 @@
   },
   {
     "TrackName": "Zandvoort",
-    "TrackLapTime": "95",
+    "TrackLapTime": "94.8",
     "TrackPitDuration": "49",
     "CarTrackFuel": [
       {

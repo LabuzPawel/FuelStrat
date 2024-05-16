@@ -90,6 +90,7 @@
             label2 = new Label();
             menuStrip_game_status = new MenuStrip();
             toolStripMenuItem_menu = new ToolStripMenuItem();
+            ignoreInvalidLapsToolStripMenuItem = new ToolStripMenuItem();
             resetDataToolStripMenuItem = new ToolStripMenuItem();
             resetAllDataToolStripMenuItem = new ToolStripMenuItem();
             resetCurrentCartrackToolStripMenuItem = new ToolStripMenuItem();
@@ -105,6 +106,7 @@
             checkBox_lap_time = new CheckBox();
             panel_telemetry = new Panel();
             label_telemetry = new Label();
+            telemetryDisabledToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -881,17 +883,25 @@
             // toolStripMenuItem_menu
             // 
             toolStripMenuItem_menu.BackColor = Color.Gainsboro;
-            toolStripMenuItem_menu.DropDownItems.AddRange(new ToolStripItem[] { resetDataToolStripMenuItem, exitToolStripMenuItem });
+            toolStripMenuItem_menu.DropDownItems.AddRange(new ToolStripItem[] { ignoreInvalidLapsToolStripMenuItem, telemetryDisabledToolStripMenuItem, resetDataToolStripMenuItem, exitToolStripMenuItem });
             toolStripMenuItem_menu.Font = new Font("Consolas", 11.25F);
             toolStripMenuItem_menu.Name = "toolStripMenuItem_menu";
             toolStripMenuItem_menu.Size = new Size(52, 22);
             toolStripMenuItem_menu.Text = "Menu";
             // 
+            // ignoreInvalidLapsToolStripMenuItem
+            // 
+            ignoreInvalidLapsToolStripMenuItem.Name = "ignoreInvalidLapsToolStripMenuItem";
+            ignoreInvalidLapsToolStripMenuItem.RightToLeft = RightToLeft.No;
+            ignoreInvalidLapsToolStripMenuItem.Size = new Size(228, 22);
+            ignoreInvalidLapsToolStripMenuItem.Text = "Ignore invalid laps";
+            ignoreInvalidLapsToolStripMenuItem.Click += ignoreInvalidLaToolStripMenuItem_Click;
+            // 
             // resetDataToolStripMenuItem
             // 
             resetDataToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { resetAllDataToolStripMenuItem, resetCurrentCartrackToolStripMenuItem });
             resetDataToolStripMenuItem.Name = "resetDataToolStripMenuItem";
-            resetDataToolStripMenuItem.Size = new Size(156, 22);
+            resetDataToolStripMenuItem.Size = new Size(228, 22);
             resetDataToolStripMenuItem.Text = "Reset data";
             // 
             // resetAllDataToolStripMenuItem
@@ -911,7 +921,7 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(156, 22);
+            exitToolStripMenuItem.Size = new Size(228, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += ExitToolStripMenuItem_Click;
             // 
@@ -1034,6 +1044,13 @@
             label_telemetry.Text = "Recent stints";
             label_telemetry.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // telemetryDisabledToolStripMenuItem
+            // 
+            telemetryDisabledToolStripMenuItem.Name = "telemetryDisabledToolStripMenuItem";
+            telemetryDisabledToolStripMenuItem.Size = new Size(228, 22);
+            telemetryDisabledToolStripMenuItem.Text = "Telemetry disabled";
+            telemetryDisabledToolStripMenuItem.Click += telemetryDisabledToolStripMenuItem_Click;
+            // 
             // FuelStrat
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
@@ -1155,5 +1172,7 @@
         private CheckBox checkBox_lap_time;
         private Panel panel_telemetry;
         private Label label_telemetry;
+        private ToolStripMenuItem ignoreInvalidLapsToolStripMenuItem;
+        private ToolStripMenuItem telemetryDisabledToolStripMenuItem;
     }
 }

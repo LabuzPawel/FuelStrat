@@ -241,6 +241,7 @@ namespace FuelStrat
         private string session_saved = "";
         private int previous_lap = -1;
         private List<Recent_lap> laps_data = [];
+        private bool invalid_lap = false;
 
         private readonly string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         private readonly double ONE_L_PIT_TIME = 3.6;
@@ -1789,6 +1790,7 @@ namespace FuelStrat
             LoadCarClasses(comboBox_class);
             LoadTracks(comboBox_track);
             LoadPitOptions(comboBox_pit_options, PIT_OPTIONS);
+
         }
 
         public static void ChangeControlColor(Control control, Color color)
@@ -2062,12 +2064,20 @@ namespace FuelStrat
             }
         }
 
-        public static bool CheckGameStatus()
+        public bool CheckGameStatus()
         {
             // check processes if ACC exe is running
+            // if users checks 'Telemetry disabled' then this will result in false
 
-            Process[] processes = Process.GetProcessesByName("AC2-Win64-Shipping");
-            return processes.Length > 0;
+            if (telemetryDisabledToolStripMenuItem.Checked)
+            {
+                return false;
+            }
+            else
+            {
+                Process[] processes = Process.GetProcessesByName("AC2-Win64-Shipping");
+                return processes.Length > 0;
+            }
         }
 
         private void UpdateGameStatusMenuItem(bool isRunning)
@@ -2228,30 +2238,53 @@ namespace FuelStrat
                 previous_lap = sim_data.completed_laps;
             }
 
+            // TESTING
+            //button_auto.Text = invalid_lap.ToString();
+            //button_import_stint.Text = laps_data.Count.ToString();
+
             if (sim_data.completed_laps > previous_lap && sim_data.completed_laps != 0)
             {
-                // fill a struct with a data
+                // fill a struct with a data if lap is valid
 
-                Recent_lap current_lap = new()
+                if (invalid_lap == false)
                 {
-                    completed_laps = sim_data.completed_laps,
-                    lap_time = updateFromTelemetry.GetLapTime(),
-                    fuel = sim_data.fuel,
-                    session_type = sim_data.session_type,
-                    track_name = sim_data.track_name,
-                    car_name = sim_data.car_name,
-                    fuel_at_the_start = (int)(sim_data.fuel_now + sim_data.fuel_used + 0.1)
-                };
+                    Recent_lap current_lap = new()
+                    {
+                        completed_laps = sim_data.completed_laps,
+                        lap_time = updateFromTelemetry.GetLapTime(),
+                        fuel = sim_data.fuel,
+                        session_type = sim_data.session_type,
+                        track_name = sim_data.track_name,
+                        car_name = sim_data.car_name,
+                        fuel_at_the_start = (int)(sim_data.fuel_now + sim_data.fuel_used + 0.1)
+                    };
 
-                if (current_lap.lap_time != 0 && previous_lap != sim_data.completed_laps)
-                {
-                    // if this is a new lap then add it to the list
+                    // POTENTIAL PROBLEM HERE
 
-                    laps_data.Add(current_lap);
-                    previous_lap = sim_data.completed_laps;
+                    if (current_lap.lap_time != 0 && previous_lap != sim_data.completed_laps)
+                    {
+                        // if this is a new lap then add it to the list
+
+                        laps_data.Add(current_lap);
+                    }
                 }
+
+                previous_lap = sim_data.completed_laps;
             }
 
+            if (ignoreInvalidLapsToolStripMenuItem.Checked)
+            {
+                // if user checks 'Ignore invalid laps' get information about it
+
+                invalid_lap = sim_data.invalid_lap;
+            }
+            else
+            {
+                // chacked == false will always set all laps as valid
+
+                invalid_lap = false;
+            }
+            
             if (sim_data.session_type == "Race")
             {
                 // enable buttons when session is Race
@@ -2288,7 +2321,7 @@ namespace FuelStrat
                 return;
             }
 
-            if (sim_data.session_type == "Hotstint" && sim_data.distance_traveled < 3000.0 || 
+            if (sim_data.session_type == "Hotstint" && sim_data.distance_traveled < 3000.0 ||
                 sim_data.session_type == "Hotlap" && sim_data.distance_traveled < 3000.0)
             {
                 // those 2 session works in a different way and reset into a position on track rather than pit lane
@@ -2308,7 +2341,7 @@ namespace FuelStrat
                 sim_data.game_status == GameStatus.Off && laps_data.Count > 0 ||
                 session_saved != sim_data.session_type && laps_data.Count > 0 ||
                 sim_data.session_type == "Hotstint" && sim_data.distance_traveled < 3000.0 && laps_data.Count > 0 ||
-                sim_data.session_type == "Hotlap" && sim_data.distance_traveled < 3000.0 && laps_data.Count > 0 )
+                sim_data.session_type == "Hotlap" && sim_data.distance_traveled < 3000.0 && laps_data.Count > 0)
             {
                 checkBox_lap_time.Enabled = true;
 
@@ -2703,6 +2736,34 @@ namespace FuelStrat
                 {
                     return;
                 }
+            }
+        }
+
+        private void ignoreInvalidLaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // change a checked status for 'Ignore invalid laps' in menu
+
+            if (ignoreInvalidLapsToolStripMenuItem.Checked)
+            {
+                ignoreInvalidLapsToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                ignoreInvalidLapsToolStripMenuItem.Checked = true;
+            }
+        }
+
+        private void telemetryDisabledToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // change a checked status for 'Telemetry disabled' in menu
+
+            if (telemetryDisabledToolStripMenuItem.Checked)
+            {
+                telemetryDisabledToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                telemetryDisabledToolStripMenuItem.Checked = true;
             }
         }
     }

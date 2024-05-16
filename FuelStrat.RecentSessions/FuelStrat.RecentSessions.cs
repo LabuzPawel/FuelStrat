@@ -42,6 +42,7 @@ namespace FuelStrat.RecentSessions
             public float fuel_now;
             public float fuel_used;
             public float distance_traveled;
+            public bool invalid_lap;
         };
 
         public void StartReading()
@@ -104,6 +105,15 @@ namespace FuelStrat.RecentSessions
 
             reader.GraphicUpdated += graphics =>
             {
+                if (graphics.IsValidLap == 0)
+                {
+                    sim_data.invalid_lap = true;
+                }
+                else
+                {
+                    sim_data.invalid_lap = false;
+                }
+
                 sim_data.distance_traveled = graphics.DistanceTraveled;
 
                 sim_data.is_in_pits = graphics.IsInPitLane;

@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>icons\fuel_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,10 @@
     <None Remove="json_resources\CARS.json" />
     <None Remove="json_resources\TRACKS.json" />
     <None Remove="help.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icons\fuel_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>

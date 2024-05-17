@@ -895,7 +895,7 @@
             ignoreInvalidLapsToolStripMenuItem.RightToLeft = RightToLeft.No;
             ignoreInvalidLapsToolStripMenuItem.Size = new Size(228, 22);
             ignoreInvalidLapsToolStripMenuItem.Text = "Ignore invalid laps";
-            ignoreInvalidLapsToolStripMenuItem.Click += ignoreInvalidLaToolStripMenuItem_Click;
+            ignoreInvalidLapsToolStripMenuItem.Click += IgnoreInvalidLaToolStripMenuItem_Click;
             // 
             // resetDataToolStripMenuItem
             // 
@@ -1049,7 +1049,7 @@
             telemetryDisabledToolStripMenuItem.Name = "telemetryDisabledToolStripMenuItem";
             telemetryDisabledToolStripMenuItem.Size = new Size(228, 22);
             telemetryDisabledToolStripMenuItem.Text = "Telemetry disabled";
-            telemetryDisabledToolStripMenuItem.Click += telemetryDisabledToolStripMenuItem_Click;
+            telemetryDisabledToolStripMenuItem.Click += TelemetryDisabledToolStripMenuItem_Click;
             // 
             // FuelStrat
             // 

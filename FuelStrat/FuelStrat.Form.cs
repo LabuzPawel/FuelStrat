@@ -2238,11 +2238,6 @@ namespace FuelStrat
                 previous_lap = sim_data.completed_laps;
             }
 
-            // TESTING
-            button_auto.Text = invalid_lap.ToString();
-            button_import_stint.Text = laps_data.Count.ToString();
-            //button_import_race.Text = updateFromTelemetry.GetLapTime().ToString();
-
             int last_lap_time = updateFromTelemetry.GetLapTime();
 
             if (sim_data.completed_laps > previous_lap && sim_data.completed_laps != 0)
@@ -2740,7 +2735,7 @@ namespace FuelStrat
             }
         }
 
-        private void ignoreInvalidLaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IgnoreInvalidLaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // change a checked status for 'Ignore invalid laps' in menu
 
@@ -2754,7 +2749,7 @@ namespace FuelStrat
             }
         }
 
-        private void telemetryDisabledToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TelemetryDisabledToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // change a checked status for 'Telemetry disabled' in menu
 

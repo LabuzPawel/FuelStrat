@@ -2239,8 +2239,11 @@ namespace FuelStrat
             }
 
             // TESTING
-            //button_auto.Text = invalid_lap.ToString();
-            //button_import_stint.Text = laps_data.Count.ToString();
+            button_auto.Text = invalid_lap.ToString();
+            button_import_stint.Text = laps_data.Count.ToString();
+            //button_import_race.Text = updateFromTelemetry.GetLapTime().ToString();
+
+            int last_lap_time = updateFromTelemetry.GetLapTime();
 
             if (sim_data.completed_laps > previous_lap && sim_data.completed_laps != 0)
             {
@@ -2251,7 +2254,7 @@ namespace FuelStrat
                     Recent_lap current_lap = new()
                     {
                         completed_laps = sim_data.completed_laps,
-                        lap_time = updateFromTelemetry.GetLapTime(),
+                        lap_time = last_lap_time,
                         fuel = sim_data.fuel,
                         session_type = sim_data.session_type,
                         track_name = sim_data.track_name,
@@ -2259,12 +2262,10 @@ namespace FuelStrat
                         fuel_at_the_start = (int)(sim_data.fuel_now + sim_data.fuel_used + 0.1)
                     };
 
-                    // POTENTIAL PROBLEM HERE
-
                     if (current_lap.lap_time != 0 && previous_lap != sim_data.completed_laps)
                     {
                         // if this is a new lap then add it to the list
-
+                    
                         laps_data.Add(current_lap);
                     }
                 }

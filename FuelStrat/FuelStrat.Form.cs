@@ -243,6 +243,8 @@ namespace FuelStrat
         private List<Recent_lap> laps_data = [];
         private bool invalid_lap = false;
 
+        private readonly string documents_path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            "FuelStrat");
         private readonly string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         private readonly double ONE_L_PIT_TIME = 3.6;
         private readonly double ONE_L_MORE = 0.2;
@@ -319,8 +321,10 @@ namespace FuelStrat
                 all_cars = JsonConvert.DeserializeObject<List<Car>>(cars_embedded);
             }
 
+            string data_path = Path.Combine(documents_path, "FuelStrat_data.json");
+
             // Load Track objects, if no data file then load from embedded
-            if (File.Exists("FuelStrat_data.json") == false)
+            if (File.Exists(data_path) == false)
             {
                 using Stream stream = assembly.GetManifestResourceStream(tracks_resourse_name);
                 using StreamReader reader = new(stream);
@@ -331,7 +335,7 @@ namespace FuelStrat
             {
                 try
                 {
-                    string json_string_tracks = File.ReadAllText("FuelStrat_data.json");
+                    string json_string_tracks = File.ReadAllText(data_path);
                     all_tracks = JsonConvert.DeserializeObject<List<Track>>(json_string_tracks);
                 }
                 catch (Exception ex)
@@ -346,7 +350,7 @@ namespace FuelStrat
                         "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        File.Delete("FuelStrat_data.json");
+                        File.Delete(data_path);
                         LoadCarTrackObjects();
                     }
                     else if (result == DialogResult.No)
@@ -406,7 +410,7 @@ namespace FuelStrat
                     "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    File.Delete("FuelStrat_data.json");
+                    File.Delete(Path.Combine(documents_path, "FuelStrat_data.json"));
                     LoadCarTrackObjects();
                 }
                 else if (result == DialogResult.No)
@@ -1765,7 +1769,7 @@ namespace FuelStrat
             }
 
             string json_data_save = JsonConvert.SerializeObject(all_tracks, Formatting.Indented);
-            File.WriteAllText("FuelStrat_data.json", json_data_save);
+            File.WriteAllText(Path.Combine(documents_path, "FuelStrat_data.json"), json_data_save);
         }
 
         public FuelStrat()
@@ -1780,6 +1784,11 @@ namespace FuelStrat
             listBoxMultiline_recent_sessions.ScrollAlwaysVisible = true;
             listBoxMultiline_recent_sessions.SelectedIndexChanged += ListBox_recent_sessions_SelectedIndexChanged;
             this.panel_telemetry.Controls.Add(listBoxMultiline_recent_sessions);
+
+            if (!Directory.Exists(documents_path))
+            {
+                Directory.CreateDirectory(documents_path);
+            }
         }
 
         public void Form_Load(object sender, EventArgs e)
@@ -1971,17 +1980,7 @@ namespace FuelStrat
 
         private void Form_Shown(object sender, EventArgs e)
         {
-            // dialog pop up after Form is shown informing that the file was created
-
-            if (File.Exists("FuelStrat_data.json") == false)
-            {
-                SaveData();
-                MessageBox.Show("'FuelStrat_data.json' created in application directory");
-            }
-
             InitializeTelemetryTimer();
-            //listBox_recent_sessions.DrawMode = DrawMode.OwnerDrawVariable;
-            //listBox_recent_sessions.DrawItem += ListBox_DrawItem;
         }
 
         private void NumericUpDown_pit_strat_changes(object sender, EventArgs e)
@@ -2026,7 +2025,7 @@ namespace FuelStrat
                         "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                File.Delete("FuelStrat_data.json");
+                File.Delete(Path.Combine(documents_path, "FuelStrat_data.json"));
                 LoadCarTrackObjects();
             }
         }
@@ -2682,7 +2681,7 @@ namespace FuelStrat
 
             try
             {
-                string saved_json = File.ReadAllText("FuelStrat_saved_strats.json");
+                string saved_json = File.ReadAllText(Path.Combine(documents_path, "FuelStrat_saved_strats.json"));
                 List<SavedStrategy> saved_strat_list =
                 JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(saved_json);
 
@@ -2715,7 +2714,7 @@ namespace FuelStrat
                     "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    File.Delete("FuelStrat_saved_strats.json");
+                    File.Delete(Path.Combine(documents_path, "FuelStrat_saved_strats.json"));
                     List<FuelStrat.SavedStrategy> default_saved_strat_list;
 
                     Assembly assembly = Assembly.GetExecutingAssembly();
@@ -2726,7 +2725,7 @@ namespace FuelStrat
                         default_saved_strat_list = JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(defualt_saved);
                     }
                     string default_save_json = JsonConvert.SerializeObject(default_saved_strat_list, Formatting.Indented);
-                    File.WriteAllText("FuelStrat_saved_strats.json", default_save_json);
+                    File.WriteAllText(Path.Combine(documents_path, "FuelStrat_saved_strats.json"), default_save_json);
                 }
                 else if (result == DialogResult.No)
                 {

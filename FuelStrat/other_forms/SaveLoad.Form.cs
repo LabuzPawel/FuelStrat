@@ -9,6 +9,9 @@ namespace FuelStrat
         private List<FuelStrat.SavedStrategy> saved_strat_list;
         private FuelStrat.SavedStrategy current_strat;
 
+        private readonly string documents_path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            "FuelStrat");
+
         public delegate void LoadButtonClickedEventHandler(object sender, int slot);
 
         public event LoadButtonClickedEventHandler LoadButtonClicked;
@@ -77,10 +80,10 @@ namespace FuelStrat
                 default_saved_strat_list = JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(defualt_saved);
             }
 
-            if (File.Exists("FuelStrat_saved_strats.json") == false)
+            if (File.Exists(Path.Combine(documents_path, "FuelStrat_saved_strats.json")) == false)
             {
                 string default_save_json = JsonConvert.SerializeObject(default_saved_strat_list, Formatting.Indented);
-                File.WriteAllText("FuelStrat_saved_strats.json", default_save_json);
+                File.WriteAllText(Path.Combine(documents_path, "FuelStrat_saved_strats.json"), default_save_json);
 
                 foreach (var strat in default_saved_strat_list)
                 {
@@ -91,7 +94,7 @@ namespace FuelStrat
             {
                 try
                 {
-                    string saved_json = File.ReadAllText("FuelStrat_saved_strats.json");
+                    string saved_json = File.ReadAllText(Path.Combine(documents_path, "FuelStrat_saved_strats.json"));
                     saved_strat_list = JsonConvert.DeserializeObject<List<FuelStrat.SavedStrategy>>(saved_json);
 
                     foreach (var strat in saved_strat_list)
@@ -109,7 +112,7 @@ namespace FuelStrat
                     "Reset data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        File.Delete("FuelStrat_saved_strats.json");
+                        File.Delete(Path.Combine(documents_path, "FuelStrat_saved_strats.json"));
                         CreateOrLoadSavedJson();
                     }
                     else if (result == DialogResult.No)
@@ -155,7 +158,7 @@ namespace FuelStrat
             saved_strat_list[selected_slot] = current_strat;
 
             string new_json = JsonConvert.SerializeObject(saved_strat_list, Formatting.Indented);
-            File.WriteAllText("FuelStrat_saved_strats.json", new_json);
+            File.WriteAllText(Path.Combine(documents_path, "FuelStrat_saved_strats.json"), new_json);
 
             listBox_save_load.Items.Clear();
             CreateOrLoadSavedJson();

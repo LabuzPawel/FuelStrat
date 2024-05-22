@@ -91,6 +91,7 @@
             menuStrip_game_status = new MenuStrip();
             toolStripMenuItem_menu = new ToolStripMenuItem();
             ignoreInvalidLapsToolStripMenuItem = new ToolStripMenuItem();
+            telemetryDisabledToolStripMenuItem = new ToolStripMenuItem();
             resetDataToolStripMenuItem = new ToolStripMenuItem();
             resetAllDataToolStripMenuItem = new ToolStripMenuItem();
             resetCurrentCartrackToolStripMenuItem = new ToolStripMenuItem();
@@ -106,7 +107,7 @@
             checkBox_lap_time = new CheckBox();
             panel_telemetry = new Panel();
             label_telemetry = new Label();
-            telemetryDisabledToolStripMenuItem = new ToolStripMenuItem();
+            button_open_stint = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -126,6 +127,7 @@
             // 
             listBox_formation.Font = new Font("Consolas", 11.25F);
             listBox_formation.FormattingEnabled = true;
+            listBox_formation.ItemHeight = 18;
             listBox_formation.Items.AddRange(new object[] { "Full", "Short" });
             listBox_formation.Location = new Point(235, 139);
             listBox_formation.Name = "listBox_formation";
@@ -857,7 +859,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(5, 2);
             label1.Name = "label1";
-            label1.Size = new Size(43, 17);
+            label1.Size = new Size(37, 15);
             label1.TabIndex = 4;
             label1.Text = "0 laps";
             // 
@@ -896,6 +898,13 @@
             ignoreInvalidLapsToolStripMenuItem.Size = new Size(228, 22);
             ignoreInvalidLapsToolStripMenuItem.Text = "Ignore invalid laps";
             ignoreInvalidLapsToolStripMenuItem.Click += IgnoreInvalidLaToolStripMenuItem_Click;
+            // 
+            // telemetryDisabledToolStripMenuItem
+            // 
+            telemetryDisabledToolStripMenuItem.Name = "telemetryDisabledToolStripMenuItem";
+            telemetryDisabledToolStripMenuItem.Size = new Size(228, 22);
+            telemetryDisabledToolStripMenuItem.Text = "Telemetry disabled";
+            telemetryDisabledToolStripMenuItem.Click += TelemetryDisabledToolStripMenuItem_Click;
             // 
             // resetDataToolStripMenuItem
             // 
@@ -947,7 +956,7 @@
             // 
             toolStripMenuItem_empty.Enabled = false;
             toolStripMenuItem_empty.Name = "toolStripMenuItem_empty";
-            toolStripMenuItem_empty.Size = new Size(24, 22);
+            toolStripMenuItem_empty.Size = new Size(22, 22);
             toolStripMenuItem_empty.Text = " ";
             // 
             // ToolStripMenuItem_game_status
@@ -1000,9 +1009,9 @@
             button_import_stint.Font = new Font("Consolas", 11.25F);
             button_import_stint.Location = new Point(200, 114);
             button_import_stint.Name = "button_import_stint";
-            button_import_stint.Size = new Size(173, 53);
+            button_import_stint.Size = new Size(173, 25);
             button_import_stint.TabIndex = 22;
-            button_import_stint.Text = "Import stint data";
+            button_import_stint.Text = "Import stint";
             button_import_stint.UseVisualStyleBackColor = true;
             button_import_stint.Click += Button_import_stint_Click;
             // 
@@ -1021,6 +1030,7 @@
             // panel_telemetry
             // 
             panel_telemetry.BorderStyle = BorderStyle.FixedSingle;
+            panel_telemetry.Controls.Add(button_open_stint);
             panel_telemetry.Controls.Add(button_save_load);
             panel_telemetry.Controls.Add(checkBox_lap_time);
             panel_telemetry.Controls.Add(button_import_race);
@@ -1044,12 +1054,17 @@
             label_telemetry.Text = "Recent stints";
             label_telemetry.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // telemetryDisabledToolStripMenuItem
+            // button_open_stint
             // 
-            telemetryDisabledToolStripMenuItem.Name = "telemetryDisabledToolStripMenuItem";
-            telemetryDisabledToolStripMenuItem.Size = new Size(228, 22);
-            telemetryDisabledToolStripMenuItem.Text = "Telemetry disabled";
-            telemetryDisabledToolStripMenuItem.Click += TelemetryDisabledToolStripMenuItem_Click;
+            button_open_stint.Enabled = false;
+            button_open_stint.Font = new Font("Consolas", 11.25F);
+            button_open_stint.Location = new Point(200, 142);
+            button_open_stint.Name = "button_open_stint";
+            button_open_stint.Size = new Size(173, 25);
+            button_open_stint.TabIndex = 24;
+            button_open_stint.Text = "Open stint";
+            button_open_stint.UseVisualStyleBackColor = true;
+            button_open_stint.Click += button_open_stint_Click;
             // 
             // FuelStrat
             // 
@@ -1174,5 +1189,6 @@
         private Label label_telemetry;
         private ToolStripMenuItem ignoreInvalidLapsToolStripMenuItem;
         private ToolStripMenuItem telemetryDisabledToolStripMenuItem;
+        private Button button_open_stint;
     }
 }

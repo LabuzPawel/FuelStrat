@@ -106,8 +106,8 @@
             button_import_stint = new Button();
             checkBox_lap_time = new CheckBox();
             panel_telemetry = new Panel();
-            label_telemetry = new Label();
             button_open_stint = new Button();
+            label_telemetry = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer_input_result).BeginInit();
             splitContainer_input_result.Panel1.SuspendLayout();
             splitContainer_input_result.Panel2.SuspendLayout();
@@ -1042,18 +1042,6 @@
             panel_telemetry.Size = new Size(1039, 178);
             panel_telemetry.TabIndex = 25;
             // 
-            // label_telemetry
-            // 
-            label_telemetry.BackColor = SystemColors.ActiveBorder;
-            label_telemetry.BorderStyle = BorderStyle.FixedSingle;
-            label_telemetry.Font = new Font("Consolas", 11.25F);
-            label_telemetry.Location = new Point(14, 44);
-            label_telemetry.Name = "label_telemetry";
-            label_telemetry.Size = new Size(1039, 22);
-            label_telemetry.TabIndex = 10;
-            label_telemetry.Text = "Recent stints";
-            label_telemetry.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // button_open_stint
             // 
             button_open_stint.Enabled = false;
@@ -1065,6 +1053,18 @@
             button_open_stint.Text = "Open stint";
             button_open_stint.UseVisualStyleBackColor = true;
             button_open_stint.Click += button_open_stint_Click;
+            // 
+            // label_telemetry
+            // 
+            label_telemetry.BackColor = SystemColors.ActiveBorder;
+            label_telemetry.BorderStyle = BorderStyle.FixedSingle;
+            label_telemetry.Font = new Font("Consolas", 11.25F);
+            label_telemetry.Location = new Point(14, 44);
+            label_telemetry.Name = "label_telemetry";
+            label_telemetry.Size = new Size(1039, 22);
+            label_telemetry.TabIndex = 10;
+            label_telemetry.Text = "Recent stints";
+            label_telemetry.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FuelStrat
             // 

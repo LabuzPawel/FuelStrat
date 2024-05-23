@@ -174,6 +174,7 @@ namespace FuelStrat
             public int fuel_at_the_start;
             public bool invalid;
             public bool used;
+            public bool outlier;
         }
 
         public struct Stint

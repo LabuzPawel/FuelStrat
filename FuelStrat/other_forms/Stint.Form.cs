@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,9 @@ namespace FuelStrat
         FuelStrat.StintData stint = new();
 
         CustomListBox customListBox = new();
+
+        int button_invalid_count = 0;
+        int button_outliers_count = 0;
 
         public class CustomListBox : ListBox
         {
@@ -36,6 +40,8 @@ namespace FuelStrat
             {
                 base.OnDrawItem(e);
 
+                int bestLapTime = 99999999;
+
                 if (e.Index < 0)
                 {
                     return;
@@ -43,17 +49,18 @@ namespace FuelStrat
 
                 if (this.Items.Count > 0)
                 {
-                    int sumLapTime = 0;
                     foreach (var i in this.Items)
                     {
                         string textToSplit = i.ToString();
                         string[] textParts = textToSplit.Split(new string[] { "time:", " Fuel:" }, StringSplitOptions.None);
                         if (int.TryParse(textParts[1], out int lapTime))
                         {
-                            sumLapTime += lapTime;
+                            if (lapTime < bestLapTime)
+                            {
+                                bestLapTime = lapTime;
+                            }
                         }
                     }
-                    avgLapTime = sumLapTime / this.Items.Count;
                 }
 
                 var item = this.Items[e.Index].ToString();
@@ -63,16 +70,16 @@ namespace FuelStrat
                 Color textColor;
                 if (item.Contains("Invalid:True"))
                 {
-                    textColor = Color.Orange;
+                    textColor = Color.DarkOrange;
 
                     if (item.Contains("Used:False"))
                     {
                         textColor = Color.Red;
                     }
                 }
-                else if ((double)avgLapTime / lapTimeItem < 0.95)
+                else if (item.Contains("Outlier:True"))
                 {
-                    textColor = Color.Yellow;
+                    textColor = Color.Chocolate;
 
                     if (item.Contains("Used:False"))
                     {
@@ -83,10 +90,19 @@ namespace FuelStrat
                 {
                     textColor = Color.Red;
                 }
+                else if (lapTimeItem == bestLapTime)
+                {
+                    textColor = Color.Magenta;
+                }
                 else
                 {
                     textColor = Color.Black;
                 }
+
+                TimeSpan lapTimeSpan = TimeSpan.FromMilliseconds(lapTimeItem);
+                string laptimeFormatted = lapTimeSpan.ToString(@"m\:ss\.fff");
+
+                string displayText = item.Replace(textPartsItem[1], laptimeFormatted);
 
                 if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
                 {
@@ -99,7 +115,7 @@ namespace FuelStrat
 
                 using (Brush textBrush = new SolidBrush(textColor))
                 {
-                    e.Graphics.DrawString(item, e.Font, textBrush, e.Bounds);
+                    e.Graphics.DrawString(displayText, e.Font, textBrush, e.Bounds);
                 }
 
                 e.DrawFocusRectangle();
@@ -110,22 +126,28 @@ namespace FuelStrat
         {
             InitializeComponent();
             this.stint = selected_stint;
+            IsLapOutlier(stint);
 
-            customListBox.Location = new Point(100, 100);
-            customListBox.Size = new Size(500, 300);
+            customListBox.Location = new Point(15, 45);
+            customListBox.Size = new Size(440, 200);
             customListBox.ScrollAlwaysVisible = true;
+            customListBox.SelectedIndex = -1;
             customListBox.SelectedIndexChanged += customListBox_selected_index_changed;
             this.Controls.Add(customListBox);
 
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel + 
-                    " Invalid:" + lap.invalid + " Used:" + lap.used);
+                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
+                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
         }
-        
+
         public void customListBox_selected_index_changed(object sender, EventArgs e)
         {
+            if (customListBox.SelectedIndex == -1)
+            {
+                return;
+            }
             if (customListBox.Text.Contains("Used:True"))
             {
                 customListBox.Text.Replace("Used:True", "Used:False");
@@ -145,7 +167,108 @@ namespace FuelStrat
             foreach (var lap in stint.ListOfLaps)
             {
                 customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
-                    " Invalid:" + lap.invalid + " Used:" + lap.used);
+                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
+            }
+        }
+
+        private void button_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button_ignore_invalid_Click(object sender, EventArgs e)
+        {
+            if (button_invalid_count % 2 != 0 && button_invalid_count != 0)
+            {
+                for (int i = 0; i < stint.ListOfLaps.Count; i++)
+                {
+                    if (stint.ListOfLaps[i].invalid)
+                    {
+                        FuelStrat.Lap lap = stint.ListOfLaps[i];
+                        lap.used = true;
+                        stint.ListOfLaps[i] = lap;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < stint.ListOfLaps.Count; i++)
+                {
+                    if (stint.ListOfLaps[i].invalid)
+                    {
+                        FuelStrat.Lap lap = stint.ListOfLaps[i];
+                        lap.used = false;
+                        stint.ListOfLaps[i] = lap;
+                    }
+                }
+            }
+
+            customListBox.Items.Clear();
+            foreach (var lap in stint.ListOfLaps)
+            {
+                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
+                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
+            }
+
+            button_invalid_count++;
+        }
+
+        private void button_ignore_outliers_Click(object sender, EventArgs e)
+        {
+            if (button_outliers_count % 2 != 0 && button_outliers_count != 0)
+            {
+                for (int i = 0; i < stint.ListOfLaps.Count; i++)
+                {
+                    if (stint.ListOfLaps[i].outlier)
+                    {
+                        FuelStrat.Lap lap = stint.ListOfLaps[i];
+                        lap.used = true;
+                        stint.ListOfLaps[i] = lap;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < stint.ListOfLaps.Count; i++)
+                {
+                    if (stint.ListOfLaps[i].outlier)
+                    {
+                        FuelStrat.Lap lap = stint.ListOfLaps[i];
+                        lap.used = false;
+                        stint.ListOfLaps[i] = lap;
+                    }
+                }
+            }
+
+            customListBox.Items.Clear();
+            foreach (var lap in stint.ListOfLaps)
+            {
+                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
+                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
+            }
+
+            button_outliers_count++;
+        }
+
+        private void IsLapOutlier(FuelStrat.StintData stint)
+        {
+            int sum_lap_times = 0;
+
+            foreach (var lap in stint.ListOfLaps)
+            {
+                sum_lap_times += lap.lap_time;
+            }
+
+            double avg_lap_time = sum_lap_times / stint.ListOfLaps.Count;
+
+            for (int i = 0; i < stint.ListOfLaps.Count; i++)
+            {
+                var lap = stint.ListOfLaps[i];
+                if (avg_lap_time / lap.lap_time < 0.95)
+                {
+                    lap.outlier = true;
+                    stint.ListOfLaps[i] = lap;
+                }
             }
         }
     }

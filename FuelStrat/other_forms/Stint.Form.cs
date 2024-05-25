@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FuelStrat
+﻿namespace FuelStrat
 {
     public partial class StintForm : Form
     {
+        public delegate void ButtonClickedEventHandler(object sender, FuelStrat.StintData outStint);
+
+        public event ButtonClickedEventHandler ButtonClicked;
+
         FuelStrat.StintData stint = new();
+        FuelStrat.StintData stint_copy = new();
 
         CustomListBox customListBox = new();
 
@@ -23,7 +16,7 @@ namespace FuelStrat
 
         public class CustomListBox : ListBox
         {
-            private int avgLapTime;
+            // this is custom version of a ListBox that will change color of items
 
             public CustomListBox()
             {
@@ -52,10 +45,10 @@ namespace FuelStrat
                     foreach (var i in this.Items)
                     {
                         string textToSplit = i.ToString();
-                        string[] textParts = textToSplit.Split(new string[] { "time:", " Fuel:" }, StringSplitOptions.None);
+                        string[] textParts = textToSplit.Split(new string[] { "time: ", " | Fuel" }, StringSplitOptions.None);
                         if (int.TryParse(textParts[1], out int lapTime))
                         {
-                            if (lapTime < bestLapTime)
+                            if (lapTime < bestLapTime && i.ToString().Contains("Invalid: False"))
                             {
                                 bestLapTime = lapTime;
                             }
@@ -64,11 +57,11 @@ namespace FuelStrat
                 }
 
                 var item = this.Items[e.Index].ToString();
-                string[] textPartsItem = item.Split(new string[] { "time:", " Fuel:" }, StringSplitOptions.None);
+                string[] textPartsItem = item.Split(new string[] { "time: ", " | Fuel" }, StringSplitOptions.None);
                 int lapTimeItem = int.Parse(textPartsItem[1]);
 
                 Color textColor;
-                if (item.Contains("Invalid:True"))
+                if (item.Contains("Invalid: True"))
                 {
                     textColor = Color.DarkOrange;
 
@@ -122,14 +115,16 @@ namespace FuelStrat
             }
         }
 
-        public StintForm(FuelStrat.StintData selected_stint)
+        public StintForm(FuelStrat.StintData selectedStint)
         {
             InitializeComponent();
-            this.stint = selected_stint;
+            this.stint = selectedStint;
+            this.stint_copy = new(stint);   // a copy for revert button
+
             IsLapOutlier(stint);
 
-            customListBox.Location = new Point(15, 45);
-            customListBox.Size = new Size(440, 200);
+            customListBox.Location = new Point(15, 75);
+            customListBox.Size = new Size(520, 200);
             customListBox.ScrollAlwaysVisible = true;
             customListBox.SelectedIndex = -1;
             customListBox.SelectedIndexChanged += customListBox_selected_index_changed;
@@ -137,13 +132,19 @@ namespace FuelStrat
 
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
-                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
+                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                    " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
+                    " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
+
+            RecalculateStint(stint);
         }
 
         public void customListBox_selected_index_changed(object sender, EventArgs e)
         {
+            // when clicking on an item, toggle 'used' property that indicates if this lap should be
+            // taken into stint calculation
+
             if (customListBox.SelectedIndex == -1)
             {
                 return;
@@ -166,18 +167,76 @@ namespace FuelStrat
             customListBox.Items.Clear();
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
-                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
+                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                    " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
+                    " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
+
+            RecalculateStint(stint);
         }
 
         private void button_close_Click(object sender, EventArgs e)
         {
+            RecalculateStint(stint);
+
+            ButtonClicked?.Invoke(this, stint);
             this.Close();
+        }
+
+        private void RecalculateStint(FuelStrat.StintData stint)
+        {
+            // recalculation of stint when one or more laps changed 'used' property
+
+            double sum_fuel = 0.0;
+            int sum_lap_times = 0;
+            int laps_count = 0;
+            double average_fuel;
+            int average_lap_time;
+
+            foreach (var lap in stint.ListOfLaps)
+            {
+                if (lap.used == true)
+                {
+                    sum_fuel += lap.fuel;
+                    sum_lap_times += lap.lap_time;
+                    laps_count++;
+                }
+            }
+
+            try
+            {
+                // possible division by 0 if all lap.used == false
+
+                average_fuel = sum_fuel / laps_count;
+                average_lap_time = sum_lap_times / laps_count;
+            }
+            catch
+            {
+                // ignore 'used' property
+
+                foreach (var lap in stint.ListOfLaps)
+                {
+                    sum_fuel += lap.fuel;
+                    sum_lap_times += lap.lap_time;
+                    laps_count++;
+                }
+
+                average_fuel = sum_fuel / laps_count;
+                average_lap_time = sum_lap_times / laps_count;
+            }
+
+            stint.Stint.average_lap_time = average_lap_time;
+            stint.Stint.average_fuel_per_lap = Math.Round(average_fuel, 2);
+
+            label_avg_lap.Text = "Avg lap time: " + FuelStrat.LapTimeSecsFormatted(average_lap_time);
+            label_avg_fuel.Text = "Avg fuel per lap: " + Math.Round(average_fuel, 2).ToString().Replace(",", ".");
         }
 
         private void button_ignore_invalid_Click(object sender, EventArgs e)
         {
+            // this button works as toggle on/off
+            // if lap is invalid then change its 'used' property
+
             if (button_invalid_count % 2 != 0 && button_invalid_count != 0)
             {
                 for (int i = 0; i < stint.ListOfLaps.Count; i++)
@@ -206,15 +265,21 @@ namespace FuelStrat
             customListBox.Items.Clear();
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
-                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
+                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                    " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
+                    " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
+
+            RecalculateStint(stint);
 
             button_invalid_count++;
         }
 
         private void button_ignore_outliers_Click(object sender, EventArgs e)
         {
+            // this button works as toggle on/off
+            // if lap is an outlier (more than 105% of avg lap time) then change its 'used' property
+
             if (button_outliers_count % 2 != 0 && button_outliers_count != 0)
             {
                 for (int i = 0; i < stint.ListOfLaps.Count; i++)
@@ -243,9 +308,12 @@ namespace FuelStrat
             customListBox.Items.Clear();
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap:" + lap.completed_laps + " Lap time:" + lap.lap_time + " Fuel:" + lap.fuel +
-                    " Invalid:" + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
+                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                    " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
+                    " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
+
+            RecalculateStint(stint);
 
             button_outliers_count++;
         }
@@ -264,11 +332,28 @@ namespace FuelStrat
             for (int i = 0; i < stint.ListOfLaps.Count; i++)
             {
                 var lap = stint.ListOfLaps[i];
-                if (avg_lap_time / lap.lap_time < 0.95)
+                if (lap.lap_time / avg_lap_time > 1.05)
                 {
                     lap.outlier = true;
                     stint.ListOfLaps[i] = lap;
                 }
+            }
+        }
+
+        private void button_revert_Click(object sender, EventArgs e)
+        {
+            // reverts all changes made after opening this form
+
+            stint = new(stint_copy);
+            IsLapOutlier(stint);
+            RecalculateStint(stint);
+
+            customListBox.Items.Clear();
+            foreach (var lap in stint.ListOfLaps)
+            {
+                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                    " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
+                    " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
         }
     }

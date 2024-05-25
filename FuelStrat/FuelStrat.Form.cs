@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Numerics;
 using System.Reflection;
-using static FuelStrat.FuelStrat;
 
 namespace FuelStrat
 {
@@ -67,6 +66,7 @@ namespace FuelStrat
                                     TextFormatFlags.LeftAndRightPadding |
                                     TextFormatFlags.ExpandTabs |
                                     TextFormatFlags.VerticalCenter;
+
             private static readonly string[] separator = ["nextLine"];
 
             public ListBoxMultiline()
@@ -161,6 +161,18 @@ namespace FuelStrat
             }
         }
 
+        public class LastStateOfTheApp
+        {
+            public List<StintData> Stints { get; set; }
+            public SavedStrategy Controls { get; set; }
+
+            public LastStateOfTheApp(SavedStrategy controls, List<StintData> stints)
+            {
+                Stints = stints;
+                Controls = controls;
+            }
+        }
+
         public ListBoxMultiline listBoxMultiline_recent_sessions = new();
 
         public struct Lap
@@ -194,9 +206,16 @@ namespace FuelStrat
         {
             public List<Lap> ListOfLaps;
             public Stint Stint;
-        }
 
-        public StintData TEST_STINT = new();
+            public StintData(StintData stintData)
+            {
+                ListOfLaps = new List<Lap>(stintData.ListOfLaps);
+                Stint = stintData.Stint;
+            }
+
+            public StintData()
+            { }
+        }
 
         public FixedSizeList<StintData> recent_stints = new(10);
 
@@ -216,6 +235,7 @@ namespace FuelStrat
             public int saved_pit_stop_option_index;
             public bool saved_checkbox_max_stint;
             public string saved_max_stint;
+            public bool saved_max_stint_enabled;
         }
 
         public List<Track> all_tracks;
@@ -257,6 +277,7 @@ namespace FuelStrat
 
         private readonly string documents_path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
             "FuelStrat");
+
         private readonly string DECIMAL_SEPARATOR = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         private readonly double ONE_L_PIT_TIME = 3.6;
         private readonly double ONE_L_MORE = 0.2;
@@ -1799,101 +1820,10 @@ namespace FuelStrat
 
             if (!Directory.Exists(documents_path))
             {
+                // create a FuelStrat folder in documents
+
                 Directory.CreateDirectory(documents_path);
             }
-
-
-            // TESTING
-
-
-            Lap lap1 = new Lap()
-            {
-                completed_laps = 1,
-                lap_time = 65350,
-                fuel = 3.5,
-                session_type = "Practice",
-                track_name = "Red Bull Ring",
-                car_name = "Lamborghini Huracan GT3 Evo2 2023",
-                fuel_at_the_start = 60,
-                invalid = false,
-                used = true
-            };
-
-            Lap lap2 = new Lap()
-            {
-                completed_laps = 2,
-                lap_time = 66550,
-                fuel = 3.3,
-                session_type = "Practice",
-                track_name = "Red Bull Ring",
-                car_name = "Lamborghini Huracan GT3 Evo2 2023",
-                fuel_at_the_start = 60,
-                invalid = false,
-                used = true
-            };
-
-            Lap lap3 = new Lap()
-            {
-                completed_laps = 3,
-                lap_time = 67550,
-                fuel = 3.35,
-                session_type = "Practice",
-                track_name = "Red Bull Ring",
-                car_name = "Lamborghini Huracan GT3 Evo2 2023",
-                fuel_at_the_start = 60,
-                invalid = true,
-                used = true
-            };
-
-            Lap lap4 = new Lap()
-            {
-                completed_laps = 4,
-                lap_time = 78150,
-                fuel = 3.02,
-                session_type = "Practice",
-                track_name = "Red Bull Ring",
-                car_name = "Lamborghini Huracan GT3 Evo2 2023",
-                fuel_at_the_start = 60,
-                invalid = false,
-                used = true
-            };
-
-            List<Lap> laps = new();
-            laps.Add(lap1);
-            laps.Add(lap2);
-            laps.Add(lap3);
-            laps.Add(lap4);
-
-            TEST_STINT.ListOfLaps = laps;
-
-            Stint stint_for_test = new Stint()
-            {
-                track_name = "Red Bull Ring",
-                car_name = "Lamborghini Huracan GT3 Evo2 2023",
-                stint_lenght = 4,
-                average_fuel_per_lap = 3.29,
-                average_lap_time = 69400,
-                date_time = new DateTime(),
-                session_type = "Practice",
-                fuel_at_the_start = 60
-            };
-
-            TEST_STINT.Stint = stint_for_test;
-
-            recent_stints.Add(TEST_STINT);
-
-            string to_listbox =
-                        "Session: " + TEST_STINT.Stint.session_type + " | " +
-                        "Car: " + TEST_STINT.Stint.car_name + " | " +
-                        "Track: " + TEST_STINT.Stint.track_name + " | " +
-                        "Date: " + TEST_STINT.Stint.date_time + "nextLine" +
-                        " Laps: " + TEST_STINT.Stint.stint_lenght + " | " +
-                        "Avg lap time: " + LapTimeSecsFormatted(TEST_STINT.Stint.average_lap_time) + " | " +
-                        "Fuel at the start: " + TEST_STINT.Stint.fuel_at_the_start + " L | " +
-                        "Avg fuel per lap: " + Math.Round(TEST_STINT.Stint.average_fuel_per_lap, 2).ToString().
-                        Replace(",", ".");
-
-            listBoxMultiline_recent_sessions.Items.Add(to_listbox);
         }
 
         public void Form_Load(object sender, EventArgs e)
@@ -1904,7 +1834,6 @@ namespace FuelStrat
             LoadCarClasses(comboBox_class);
             LoadTracks(comboBox_track);
             LoadPitOptions(comboBox_pit_options, PIT_OPTIONS);
-
         }
 
         public static void ChangeControlColor(Control control, Color color)
@@ -2086,6 +2015,60 @@ namespace FuelStrat
         private void Form_Shown(object sender, EventArgs e)
         {
             InitializeTelemetryTimer();
+
+            try
+            {
+                if (File.Exists(Path.Combine(documents_path, "FuelStrat_last_state.json")))
+                {
+                    // Load last state of the app if file exists
+
+                    string saved_json = File.ReadAllText(Path.Combine(documents_path, "FuelStrat_last_state.json"));
+                    LastStateOfTheApp last_state =
+                    JsonConvert.DeserializeObject<LastStateOfTheApp>(saved_json);
+
+                    comboBox_class.SelectedIndex = last_state.Controls.saved_car_class_index;
+                    comboBox_car.SelectedIndex = last_state.Controls.saved_car_index;
+                    comboBox_track.SelectedIndex = last_state.Controls.saved_track_index;
+                    textBox_race_h.Text = last_state.Controls.saved_race_h;
+                    textBox_race_min.Text = last_state.Controls.saved_race_min;
+                    textBox_lap_time_min.Text = last_state.Controls.saved_lap_min;
+                    textBox_lap_time_sec.Text = last_state.Controls.saved_lap_secs;
+                    textBox_fuel_per_lap.Text = last_state.Controls.saved_fuel_per_lap;
+                    listBox_formation.SelectedIndex = last_state.Controls.saved_formation_index;
+                    numericUpDown_pits.Value = last_state.Controls.saved_number_of_pits;
+                    comboBox_pit_options.SelectedIndex = last_state.Controls.saved_pit_stop_option_index;
+                    checkBox_max_stint.Checked = last_state.Controls.saved_checkbox_max_stint;
+                    textBox_max_stint.Text = last_state.Controls.saved_max_stint;
+                    textBox_max_stint.Enabled = last_state.Controls.saved_max_stint_enabled;
+
+                    foreach (var stint in last_state.Stints)
+                    {
+                        recent_stints.Add(stint);
+                    }
+
+                    foreach (var stint in recent_stints)
+                    {
+                        string to_listbox =
+                            "Session: " + stint.Stint.session_type + " | " +
+                            "Car: " + stint.Stint.car_name + " | " +
+                            "Track: " + stint.Stint.track_name + " | " +
+                            "Date: " + stint.Stint.date_time + "nextLine" +
+                            " Laps: " + stint.Stint.stint_lenght + " | " +
+                            "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
+                            "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
+                            Replace(",", ".") + " | " +
+                            "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L";
+
+                        listBoxMultiline_recent_sessions.Items.Add(to_listbox);
+                    }
+                }
+            }
+            catch
+            {
+                // abort if file is corrupted or cant be deserialized
+
+                return;
+            }
         }
 
         private void NumericUpDown_pit_strat_changes(object sender, EventArgs e)
@@ -2200,7 +2183,7 @@ namespace FuelStrat
 
                 // if there were some recorded laps and ACC was shut down, complete a stint with AddToListBox
 
-                AddToListBox();
+                ConvertLapsIntoStintAndAddToListBox();
                 previous_lap = -1;
             }
         }
@@ -2346,7 +2329,7 @@ namespace FuelStrat
 
             if (sim_data.completed_laps > previous_lap && sim_data.completed_laps != 0)
             {
-                // fill a struct with a data
+                // create a lap struct
 
                 Lap current_lap = new()
                 {
@@ -2357,8 +2340,17 @@ namespace FuelStrat
                     track_name = sim_data.track_name,
                     car_name = sim_data.car_name,
                     fuel_at_the_start = (int)(sim_data.fuel_now + sim_data.fuel_used + 0.1),
-                    invalid = invalid_lap
+                    invalid = invalid_lap,
+                    used = true,
+                    outlier = false
                 };
+
+                if (ignoreInvalidLapsToolStripMenuItem.Checked && current_lap.invalid)
+                {
+                    // if 'ignored invalid laps' checked then set this lap to not be used for stint
+
+                    current_lap.used = false;
+                }
 
                 if (current_lap.lap_time != 0 && previous_lap != sim_data.completed_laps)
                 {
@@ -2371,19 +2363,6 @@ namespace FuelStrat
             }
 
             invalid_lap = sim_data.invalid_lap;
-
-            //if (ignoreInvalidLapsToolStripMenuItem.Checked)
-            //{
-            //    // if user checks 'Ignore invalid laps' get information about it
-            //
-            //    invalid_lap = sim_data.invalid_lap;
-            //}
-            //else
-            //{
-            //    // chacked == false will always set all laps as valid
-            //
-            //    invalid_lap = false;
-            //}
 
             if (sim_data.session_type == "Race")
             {
@@ -2405,7 +2384,7 @@ namespace FuelStrat
                 // if user quits to a main menu and there are some laps recorded, then complete a stint
                 // and add it with AddToListBox
 
-                AddToListBox();
+                ConvertLapsIntoStintAndAddToListBox();
                 previous_lap = -1;
                 return;
             }
@@ -2415,7 +2394,7 @@ namespace FuelStrat
                 // if session type changes and there are some laps recorded, then complete a stint
                 // and add it with AddToListBox
 
-                AddToListBox();
+                ConvertLapsIntoStintAndAddToListBox();
                 previous_lap = -1;
                 session_saved = sim_data.session_type;
                 return;
@@ -2426,22 +2405,34 @@ namespace FuelStrat
             {
                 // those 2 session works in a different way and reset into a position on track rather than pit lane
 
-                AddToListBox();
+                ConvertLapsIntoStintAndAddToListBox();
                 previous_lap = -1;
                 return;
             }
 
-            AddToListBox();
+            ConvertLapsIntoStintAndAddToListBox();
         }
 
-        private void AddToListBox()
+        private void ConvertLapsIntoStintAndAddToListBox()
         {
-            if (sim_data.is_in_pits == true && laps_data.Count > 0 ||
-                ToolStripMenuItem_game_status.Text == " ACC OFF" && laps_data.Count > 0 ||
-                sim_data.game_status == GameStatus.Off && laps_data.Count > 0 ||
-                session_saved != sim_data.session_type && laps_data.Count > 0 ||
-                sim_data.session_type == "Hotstint" && sim_data.distance_traveled < 3000.0 && laps_data.Count > 0 ||
-                sim_data.session_type == "Hotlap" && sim_data.distance_traveled < 3000.0 && laps_data.Count > 0)
+            if (laps_data.Count == 0)
+            {
+                return;
+            }
+
+            if (sim_data.session_type == "Race" && sim_data.is_pitting == false)
+            {
+                // for race situation convert laps into stint when performing a pit stop
+
+                return;
+            }
+
+            if (sim_data.is_in_pits == true ||
+                ToolStripMenuItem_game_status.Text == " ACC OFF" ||
+                sim_data.game_status == GameStatus.Off ||
+                session_saved != sim_data.session_type ||
+                sim_data.session_type == "Hotstint" && sim_data.distance_traveled < 1000.0 ||
+                sim_data.session_type == "Hotlap" && sim_data.distance_traveled < 1000.0)
             {
                 checkBox_lap_time.Enabled = true;
 
@@ -2449,17 +2440,43 @@ namespace FuelStrat
 
                 double sum_fuel = 0.0;
                 int sum_lap_times = 0;
+                int laps_count = 0;
+                double average_fuel;
+                int average_lap_time;
 
                 foreach (var lap in laps_data)
                 {
-                    sum_fuel += lap.fuel;
-                    sum_lap_times += lap.lap_time;
+                    if (lap.used == true)
+                    {
+                        sum_fuel += lap.fuel;
+                        sum_lap_times += lap.lap_time;
+                        laps_count++;
+                    }
                 }
 
-                double average_fuel = sum_fuel / laps_data.Count;
-                int average_lap_time = sum_lap_times / laps_data.Count;
+                try
+                {
+                    // possible division by 0 if all lap.used == false
 
-                // fill a stint struct
+                    average_fuel = sum_fuel / laps_count;
+                    average_lap_time = sum_lap_times / laps_count;
+                }
+                catch
+                {
+                    // ignore 'used' property
+
+                    foreach (var lap in laps_data)
+                    {
+                        sum_fuel += lap.fuel;
+                        sum_lap_times += lap.lap_time;
+                        laps_count++;
+                    }
+
+                    average_fuel = sum_fuel / laps_count;
+                    average_lap_time = sum_lap_times / laps_count;
+                }
+
+                // create a stint struct
 
                 Stint recent_stint = new()
                 {
@@ -2478,7 +2495,7 @@ namespace FuelStrat
                 StintData stint_data = new()
                 {
                     Stint = recent_stint,
-                    ListOfLaps = laps_data
+                    ListOfLaps = new List<Lap>(laps_data)
                 };
                 recent_stints.Add(stint_data);
 
@@ -2497,9 +2514,9 @@ namespace FuelStrat
                         "Date: " + stint.Stint.date_time + "nextLine" +
                         " Laps: " + stint.Stint.stint_lenght + " | " +
                         "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
-                        "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L | " +
                         "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
-                        Replace(",", ".");
+                        Replace(",", ".") + " | " +
+                        "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L";
 
                     listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                 }
@@ -2626,7 +2643,8 @@ namespace FuelStrat
                 saved_number_of_pits = (int)numericUpDown_pits.Value,
                 saved_pit_stop_option_index = comboBox_pit_options.SelectedIndex,
                 saved_checkbox_max_stint = checkBox_max_stint.Checked,
-                saved_max_stint = textBox_max_stint.Text
+                saved_max_stint = textBox_max_stint.Text,
+                saved_max_stint_enabled = textBox_max_stint.Enabled
             };
 
             // new form pops out for saving and loading
@@ -2787,6 +2805,32 @@ namespace FuelStrat
             comboBox_pit_options.SelectedIndex = pitOption;
         }
 
+        private void NewEditedStint_ButtonClicked(object sender, FuelStrat.StintData outStint)
+        {
+            // Load stint edited in Stint.Form and replace the old one
+
+            recent_stints[listBoxMultiline_recent_sessions.SelectedIndex] = outStint;
+            int listBox_index = listBoxMultiline_recent_sessions.SelectedIndex;
+            listBoxMultiline_recent_sessions.Items.Clear();
+
+            foreach (var stint in recent_stints)
+            {
+                string to_listbox =
+                    "Session: " + stint.Stint.session_type + " | " +
+                    "Car: " + stint.Stint.car_name + " | " +
+                    "Track: " + stint.Stint.track_name + " | " +
+                    "Date: " + stint.Stint.date_time + "nextLine" +
+                    " Laps: " + stint.Stint.stint_lenght + " | " +
+                    "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
+                    "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L | " +
+                    "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
+                    Replace(",", ".");
+
+                listBoxMultiline_recent_sessions.Items.Add(to_listbox);
+                listBoxMultiline_recent_sessions.SelectedIndex = listBox_index;
+            }
+        }
+
         private void LoadStrat_LoadButtonClicked(object sender, int slot)
         {
             // fill all controls in Input panel with selected save to load
@@ -2812,6 +2856,7 @@ namespace FuelStrat
                 comboBox_pit_options.SelectedIndex = strat_to_load.saved_pit_stop_option_index;
                 checkBox_max_stint.Checked = strat_to_load.saved_checkbox_max_stint;
                 textBox_max_stint.Text = strat_to_load.saved_max_stint;
+                textBox_max_stint.Enabled = strat_to_load.saved_max_stint_enabled;
             }
             catch (Exception ex)
             {
@@ -2876,11 +2921,50 @@ namespace FuelStrat
 
         private void button_open_stint_Click(object sender, EventArgs e)
         {
+            // open selected stint form listBox and pass it to the Stint.Form
+
             int selected_stint_index = listBoxMultiline_recent_sessions.SelectedIndex;
-            var selected_stint = recent_stints[selected_stint_index];
+            StintData selected_stint = recent_stints[selected_stint_index];
 
             StintForm stint_form = new(selected_stint);
+            stint_form.ButtonClicked += NewEditedStint_ButtonClicked;
             stint_form.ShowDialog();
+        }
+
+        private void FuelStrat_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // create a last state of the app and save it into a json file
+
+            SavedStrategy controls = new()
+            {
+                saved_name = "",
+                saved_car_class_index = comboBox_class.SelectedIndex,
+                saved_car_index = comboBox_car.SelectedIndex,
+                saved_track_index = comboBox_track.SelectedIndex,
+                saved_race_h = textBox_race_h.Text,
+                saved_race_min = textBox_race_min.Text,
+                saved_lap_min = textBox_lap_time_min.Text,
+                saved_lap_secs = textBox_lap_time_sec.Text,
+                saved_fuel_per_lap = textBox_fuel_per_lap.Text,
+                saved_formation_index = listBox_formation.SelectedIndex,
+                saved_number_of_pits = (int)numericUpDown_pits.Value,
+                saved_pit_stop_option_index = comboBox_pit_options.SelectedIndex,
+                saved_checkbox_max_stint = checkBox_max_stint.Checked,
+                saved_max_stint = textBox_max_stint.Text,
+                saved_max_stint_enabled = textBox_max_stint.Enabled
+            };
+
+            List<StintData> stints = new();
+
+            foreach (var stint in recent_stints)
+            {
+                stints.Add(stint);
+            }
+
+            LastStateOfTheApp last_state = new(controls, stints);
+
+            string new_json = JsonConvert.SerializeObject(last_state, Formatting.Indented);
+            File.WriteAllText(Path.Combine(documents_path, "FuelStrat_last_state.json"), new_json);
         }
     }
 }

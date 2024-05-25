@@ -132,6 +132,7 @@
             Font = new Font("Consolas", 11.25F);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "Pit_option";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Pit stop option";

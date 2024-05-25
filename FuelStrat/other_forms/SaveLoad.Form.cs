@@ -27,7 +27,7 @@ namespace FuelStrat
         {
             // Load button active only when user selects a valid save
 
-            if (listBox_save_load.SelectedIndex != -1 && 
+            if (listBox_save_load.SelectedIndex != -1 &&
                 listBox_save_load.Text.Contains(" EMPTY        ") != true)
             {
                 button_load.Enabled = true;
@@ -45,7 +45,7 @@ namespace FuelStrat
             {
                 button_save.Enabled = true;
             }
-            else if (listBox_save_load.SelectedIndex != -1 && 
+            else if (listBox_save_load.SelectedIndex != -1 &&
                 listBox_save_load.Text.Contains(" EMPTY        ") != true)
             {
                 button_save.Enabled = true;
@@ -143,7 +143,7 @@ namespace FuelStrat
             {
                 DialogResult result = MessageBox.Show("Do you want overwrite this save slot?", "Question",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.No) 
+                if (result == DialogResult.No)
                 {
                     return;
                 }

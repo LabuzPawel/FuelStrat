@@ -10,9 +10,8 @@ namespace FuelStrat.RecentSessions
 
     public class UpdateFromTelemetry
     {
-        //double lap_time;
         private int lap_time_millisecs;
-
+        private bool is_pitting;
         private string track_name = "?";
         private string car_name = "?";
         private int stint_time;
@@ -24,7 +23,6 @@ namespace FuelStrat.RecentSessions
         {
             public int completed_laps;
 
-            //public double lap_time;
             public double fuel;
             public string session_type;
             public string track_name;
@@ -43,6 +41,7 @@ namespace FuelStrat.RecentSessions
             public float fuel_used;
             public float distance_traveled;
             public bool invalid_lap;
+            public bool is_pitting;
         };
 
         public void StartReading()
@@ -114,18 +113,13 @@ namespace FuelStrat.RecentSessions
                     sim_data.invalid_lap = false;
                 }
 
+                sim_data.is_pitting = graphics.IsInPits;
+
                 sim_data.distance_traveled = graphics.DistanceTraveled;
 
                 sim_data.is_in_pits = graphics.IsInPitLane;
 
                 sim_data.completed_laps = graphics.CompletedLaps;
-
-                // lap time inside this reader is broken, sends wrong data
-
-                //lap_time = graphics.ILastTime;
-                //double lap_time_formatted = Math.Round(((double)(lap_time / 1000) +
-                //(double)(lap_time % 1000) / 1000.0), 3);
-                //sim_data.lap_time = lap_time_formatted;
 
                 sim_data.fuel = Math.Round(graphics.FuelXLap, 2);
 

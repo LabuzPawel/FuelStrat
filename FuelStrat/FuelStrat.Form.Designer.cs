@@ -1080,9 +1080,11 @@
             Font = new Font("Consolas", 11.25F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FuelStrat";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FuelStrat - Fuel and strategy for ACC";
+            FormClosing += FuelStrat_FormClosing;
             Load += Form_Load;
             Shown += Form_Shown;
             splitContainer_input_result.Panel1.ResumeLayout(false);
@@ -1145,7 +1147,6 @@
         private Label label_fuel_for_plus1;
         private Label label_fuel_for_minus1;
         private TableLayoutPanel tableLayoutPanel_duration_laps_result;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label label_laps_result;
         private Label label_laps_number;
         private Panel panel_pit_stop_strategy;

@@ -436,6 +436,7 @@
             Controls.Add(panel_help);
             Font = new Font("Consolas", 11.25F);
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "FuelStratHelp";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterParent;

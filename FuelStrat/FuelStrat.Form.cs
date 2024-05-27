@@ -1008,8 +1008,8 @@ namespace FuelStrat
                 int stints_left = number_of_pits;
 
                 // number_of_laps_remaining holds a number of laps left after each stint
-                double laps_per_stint = (double)number_of_laps / (number_of_pits + 1);
-                double number_of_laps_remaining = number_of_laps;
+                int laps_per_stint = (int)Math.Ceiling((double)number_of_laps / (number_of_pits + 1));
+                int number_of_laps_remaining = number_of_laps;
 
                 // variable that will set location of grouBox below the previous one
                 int y_groupBox = 120;
@@ -1052,7 +1052,7 @@ namespace FuelStrat
 
                 if (comboBoxPitOptions.Text == "1L refuel")
                 {
-                    laps_per_stint = (double)number_of_laps / (number_of_pits + 1);
+                    laps_per_stint = (int)Math.Ceiling((double)number_of_laps / (number_of_pits + 1));
                     number_of_laps_remaining = number_of_laps;
                 }
 

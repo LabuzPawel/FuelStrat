@@ -11,7 +11,6 @@ namespace FuelStrat.RecentSessions
     public class UpdateFromTelemetry
     {
         private int lap_time_millisecs;
-        private bool is_pitting;
         private string track_name = "?";
         private string car_name = "?";
         private int stint_time;
@@ -32,7 +31,6 @@ namespace FuelStrat.RecentSessions
             public int missing_pit_stops;
             public float race_duration;
             public int stint_time;
-            public int pit_window_start;
             public int active_drivers;
             public List<Vector3> cars_coordinates;
             public Vec3[] players_coords;
@@ -97,9 +95,8 @@ namespace FuelStrat.RecentSessions
                     sim_data.car_name = "?";
                 }
 
-                sim_data.pit_window_start = statics.PitWindowStart;
-
                 sim_data.tank_capacity = (int)statics.MaxFuel;
+
             };
 
             reader.GraphicUpdated += graphics =>

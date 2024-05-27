@@ -236,6 +236,8 @@ namespace FuelStrat
             public bool saved_checkbox_max_stint;
             public string saved_max_stint;
             public bool saved_max_stint_enabled;
+            public bool saved_ignore_invalid_laps;
+            public bool saved_telemetry_disabled;
         }
 
         public List<Track> all_tracks;
@@ -2040,6 +2042,8 @@ namespace FuelStrat
                     checkBox_max_stint.Checked = last_state.Controls.saved_checkbox_max_stint;
                     textBox_max_stint.Text = last_state.Controls.saved_max_stint;
                     textBox_max_stint.Enabled = last_state.Controls.saved_max_stint_enabled;
+                    ignoreInvalidLapsToolStripMenuItem.Checked = last_state.Controls.saved_ignore_invalid_laps;
+                    telemetryDisabledToolStripMenuItem.Checked = last_state.Controls.saved_telemetry_disabled;
 
                     foreach (var stint in last_state.Stints)
                     {
@@ -2951,7 +2955,9 @@ namespace FuelStrat
                 saved_pit_stop_option_index = comboBox_pit_options.SelectedIndex,
                 saved_checkbox_max_stint = checkBox_max_stint.Checked,
                 saved_max_stint = textBox_max_stint.Text,
-                saved_max_stint_enabled = textBox_max_stint.Enabled
+                saved_max_stint_enabled = textBox_max_stint.Enabled,
+                saved_ignore_invalid_laps = ignoreInvalidLapsToolStripMenuItem.Checked,
+                saved_telemetry_disabled = telemetryDisabledToolStripMenuItem.Checked
             };
 
             List<StintData> stints = new();

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Numerics;
 using System.Reflection;
+using static FuelStrat.FuelStrat;
 
 namespace FuelStrat
 {
@@ -50,6 +51,8 @@ namespace FuelStrat
                 get => list[index];
                 set => list[index] = value;
             }
+
+            public int Count => list.Count;
 
             public IEnumerator<T> GetEnumerator()
             {
@@ -2050,18 +2053,18 @@ namespace FuelStrat
                         recent_stints.Add(stint);
                     }
 
-                    foreach (var stint in recent_stints)
+                    for (int i = recent_stints.Count; i > 0; i--)
                     {
                         string to_listbox =
-                            "Session: " + stint.Stint.session_type + " | " +
-                            "Car: " + stint.Stint.car_name + " | " +
-                            "Track: " + stint.Stint.track_name + " | " +
-                            "Date: " + stint.Stint.date_time + "nextLine" +
-                            " Laps: " + stint.Stint.stint_lenght + " | " +
-                            "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
-                            "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
+                        "Session: " + recent_stints[i - 1].Stint.session_type + " | " +
+                        "Car: " + recent_stints[i - 1].Stint.car_name + " | " +
+                        "Track: " + recent_stints[i - 1].Stint.track_name + " | " +
+                        "Date: " + recent_stints[i - 1].Stint.date_time + "nextLine" +
+                        " Laps: " + recent_stints[i - 1].Stint.stint_lenght + " | " +
+                        "Avg lap time: " + LapTimeSecsFormatted(recent_stints[i - 1].Stint.average_lap_time) + " | " +
+                        "Avg fuel per lap: " + Math.Round(recent_stints[i - 1].Stint.average_fuel_per_lap, 2).ToString().
                             Replace(",", ".") + " | " +
-                            "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L";
+                        "Fuel at the start: " + recent_stints[i - 1].Stint.fuel_at_the_start + " L";
 
                         listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                     }
@@ -2509,18 +2512,18 @@ namespace FuelStrat
                 laps_data.Clear();
                 listBoxMultiline_recent_sessions.Items.Clear();
 
-                foreach (var stint in recent_stints)
+                for (int i = recent_stints.Count; i > 0; i--)
                 {
                     string to_listbox =
-                        "Session: " + stint.Stint.session_type + " | " +
-                        "Car: " + stint.Stint.car_name + " | " +
-                        "Track: " + stint.Stint.track_name + " | " +
-                        "Date: " + stint.Stint.date_time + "nextLine" +
-                        " Laps: " + stint.Stint.stint_lenght + " | " +
-                        "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
-                        "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
-                        Replace(",", ".") + " | " +
-                        "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L";
+                        "Session: " + recent_stints[i - 1].Stint.session_type + " | " +
+                        "Car: " + recent_stints[i - 1].Stint.car_name + " | " +
+                        "Track: " + recent_stints[i - 1].Stint.track_name + " | " +
+                        "Date: " + recent_stints[i - 1].Stint.date_time + "nextLine" +
+                        " Laps: " + recent_stints[i - 1].Stint.stint_lenght + " | " +
+                        "Avg lap time: " + LapTimeSecsFormatted(recent_stints[i - 1].Stint.average_lap_time) + " | " +
+                        "Avg fuel per lap: " + Math.Round(recent_stints[i - 1].Stint.average_fuel_per_lap, 2).ToString().
+                            Replace(",", ".") + " | " +
+                        "Fuel at the start: " + recent_stints[i - 1].Stint.fuel_at_the_start + " L";
 
                     listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                 }
@@ -2817,18 +2820,18 @@ namespace FuelStrat
             int listBox_index = listBoxMultiline_recent_sessions.SelectedIndex;
             listBoxMultiline_recent_sessions.Items.Clear();
 
-            foreach (var stint in recent_stints)
+            for (int i = recent_stints.Count; i > 0; i--)
             {
                 string to_listbox =
-                    "Session: " + stint.Stint.session_type + " | " +
-                    "Car: " + stint.Stint.car_name + " | " +
-                    "Track: " + stint.Stint.track_name + " | " +
-                    "Date: " + stint.Stint.date_time + "nextLine" +
-                    " Laps: " + stint.Stint.stint_lenght + " | " +
-                    "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
-                    "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L | " +
-                    "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
-                    Replace(",", ".");
+                        "Session: " + recent_stints[i - 1].Stint.session_type + " | " +
+                        "Car: " + recent_stints[i - 1].Stint.car_name + " | " +
+                        "Track: " + recent_stints[i - 1].Stint.track_name + " | " +
+                        "Date: " + recent_stints[i - 1].Stint.date_time + "nextLine" +
+                        " Laps: " + recent_stints[i - 1].Stint.stint_lenght + " | " +
+                        "Avg lap time: " + LapTimeSecsFormatted(recent_stints[i - 1].Stint.average_lap_time) + " | " +
+                        "Avg fuel per lap: " + Math.Round(recent_stints[i - 1].Stint.average_fuel_per_lap, 2).ToString().
+                            Replace(",", ".") + " | " +
+                        "Fuel at the start: " + recent_stints[i - 1].Stint.fuel_at_the_start + " L";
 
                 listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                 listBoxMultiline_recent_sessions.SelectedIndex = listBox_index;

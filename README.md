@@ -6,7 +6,7 @@ Originally project early version was created in python using tkinter GUI. Old sc
 
 Help section at the top of the app shows detailed information how it works.
 
-![Alt text](\FuelStrat\other_forms\help_pics/full_app.png?raw=true "Title")
+![Alt text](/FuelStrat/other_forms/help_pics/full_app.png)
 ***
 ## Key features:
 - **'AUTO'** button that will be enabled whenever ACC session is 'Race'. Clicking this button will fill all the information about the car, track and race and calculate fuel. If there will be a mandatory pit stop, additional window will show up asking for desired pit stop option. **TL:DR** maximum of 2 clicks to get all the info about fuel and pit stops.

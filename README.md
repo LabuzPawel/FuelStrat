@@ -1,14 +1,22 @@
 # FuelStrat - Fuel and strategy for Assetto Corsa Competizione
 
-This is an application made in Visual Studio 2022 using C# Windows Form for calculating fuel and pit strategy in Assetto Corsa Competizione. 
+This is an application made in Visual Studio 2022 using C# Windows Form for calculating fuel and pit strategy in Assetto Corsa Competizione (ACC). 
 
 Originally project early version was created in python using tkinter GUI. Old script can be found in 'FCalcACC\python_old_script'.
 
-Release version requieres .NET 8.0 Framework to work (https://dotnet.microsoft.com/en-us/download/dotnet/8.0). Larger size exe release that is independent from .NET version can be found in 'FuelStrat/self_contained'.
+Help section at the top of the app shows detailed information how it works.
 
-Application is creating a 'FuelStrat_data.json' at first start up and 'FuelStrat_saved_strats.json' after clicking on 'Save / Load strategy' button. Those files stores user data.
+![Alt text](\FuelStrat\other_forms\help_pics/full_app.png?raw=true "Title")
+***
+## Key features:
+- **'AUTO'** button that will be enabled whenever ACC session is 'Race'. Clicking this button will fill all the information about the car, track and race and calculate fuel. If there will be a mandatory pit stop, additional window will show up asking for desired pit stop option. **TL:DR** maximum of 2 clicks to get all the info about fuel and pit stops.
+- Recent stints list that shows stints that were recorded when app was running. Stints can be edited and used to accurately calculate fuel.
+- Save / Load strategy for future usage
+- In 'Pit Stop Strategy' panel user can move pit stop timing earlier/later and see how much fuel is needed for each stint
+- FuelStart is very flexible and works also with limited amount of information like car and track. 
 
-Plans for 1.0 version:
-- Improved recent stint list with more options and access to each lap
-- Move all files that are being created and stores data to documents
-- Create another file or solution that will store last state of the app
+***
+## Future plans:
+Current 1.0 version completed most of the features that were planned for this application. 
+There are two things missing that I would want to add and improve. Right now app detects invalid laps only in practice session. 
+There is a possibility to read a pit window but couldnt make it work. Most of those problems probably lies in SharedMemory/RecentSessions that needs to be completely change.

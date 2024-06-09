@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FuelStratHelp));
             panel_help = new Panel();
+            label28 = new Label();
+            label27 = new Label();
             label26 = new Label();
             label25 = new Label();
             pictureBox6 = new PictureBox();
@@ -63,6 +65,9 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             button_close = new Button();
+            pictureBox7 = new PictureBox();
+            label29 = new Label();
+            label30 = new Label();
             panel_help.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -70,12 +75,18 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
             // 
             // panel_help
             // 
             panel_help.AutoScroll = true;
             panel_help.BorderStyle = BorderStyle.FixedSingle;
+            panel_help.Controls.Add(label30);
+            panel_help.Controls.Add(label29);
+            panel_help.Controls.Add(pictureBox7);
+            panel_help.Controls.Add(label28);
+            panel_help.Controls.Add(label27);
             panel_help.Controls.Add(label26);
             panel_help.Controls.Add(label25);
             panel_help.Controls.Add(pictureBox6);
@@ -113,38 +124,57 @@
             panel_help.Size = new Size(862, 602);
             panel_help.TabIndex = 0;
             // 
+            // label28
+            // 
+            label28.BorderStyle = BorderStyle.FixedSingle;
+            label28.Location = new Point(18, 734);
+            label28.Name = "label28";
+            label28.Size = new Size(800, 44);
+            label28.TabIndex = 35;
+            label28.Text = "Open stint button will show a window where user can see all the laps from selected stint and edit which should be taken into account in calculating avg lap time and fuel.";
+            // 
+            // label27
+            // 
+            label27.BorderStyle = BorderStyle.FixedSingle;
+            label27.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label27.Location = new Point(18, 709);
+            label27.Name = "label27";
+            label27.Size = new Size(91, 25);
+            label27.TabIndex = 34;
+            label27.Text = "Open stint";
+            // 
             // label26
             // 
             label26.BorderStyle = BorderStyle.FixedSingle;
-            label26.Location = new Point(18, 2259);
+            label26.Location = new Point(19, 2769);
             label26.Name = "label26";
-            label26.Size = new Size(364, 78);
+            label26.Size = new Size(808, 95);
             label26.TabIndex = 33;
-            label26.Text = "There are two options to reset data to its default state. That includes track lap time and fuel per lap for a given car and track combination.";
+            label26.Text = resources.GetString("label26.Text");
             // 
             // label25
             // 
             label25.BorderStyle = BorderStyle.FixedSingle;
             label25.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label25.Location = new Point(18, 2234);
+            label25.Location = new Point(19, 2744);
             label25.Name = "label25";
-            label25.Size = new Size(91, 25);
+            label25.Size = new Size(46, 25);
             label25.TabIndex = 32;
-            label25.Text = "Reset data";
+            label25.Text = "Menu";
             // 
             // pictureBox6
             // 
-            pictureBox6.ImageLocation = "D:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\reset.png";
-            pictureBox6.Location = new Point(388, 2247);
+            pictureBox6.ImageLocation = "F:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\menu.png";
+            pictureBox6.Location = new Point(259, 2638);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(438, 112);
+            pictureBox6.Size = new Size(458, 116);
             pictureBox6.TabIndex = 31;
             pictureBox6.TabStop = false;
             // 
             // label24
             // 
             label24.BorderStyle = BorderStyle.FixedSingle;
-            label24.Location = new Point(18, 2055);
+            label24.Location = new Point(19, 2482);
             label24.Name = "label24";
             label24.Size = new Size(808, 116);
             label24.TabIndex = 30;
@@ -154,7 +184,7 @@
             // 
             label22.BorderStyle = BorderStyle.FixedSingle;
             label22.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label22.Location = new Point(18, 2030);
+            label22.Location = new Point(19, 2457);
             label22.Name = "label22";
             label22.Size = new Size(150, 25);
             label22.TabIndex = 29;
@@ -163,7 +193,7 @@
             // label23
             // 
             label23.BorderStyle = BorderStyle.FixedSingle;
-            label23.Location = new Point(18, 1657);
+            label23.Location = new Point(19, 2084);
             label23.Name = "label23";
             label23.Size = new Size(400, 350);
             label23.TabIndex = 28;
@@ -172,7 +202,7 @@
             // label21
             // 
             label21.BorderStyle = BorderStyle.FixedSingle;
-            label21.Location = new Point(18, 1586);
+            label21.Location = new Point(19, 2013);
             label21.Name = "label21";
             label21.Size = new Size(400, 60);
             label21.TabIndex = 26;
@@ -182,7 +212,7 @@
             // 
             label20.BorderStyle = BorderStyle.FixedSingle;
             label20.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label20.Location = new Point(18, 1561);
+            label20.Location = new Point(19, 1988);
             label20.Name = "label20";
             label20.Size = new Size(84, 25);
             label20.TabIndex = 25;
@@ -190,8 +220,8 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.ImageLocation = "D:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\right_panel.png";
-            pictureBox5.Location = new Point(424, 1561);
+            pictureBox5.ImageLocation = "F:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\right_panel.png";
+            pictureBox5.Location = new Point(425, 1988);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(415, 494);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
@@ -201,7 +231,7 @@
             // label19
             // 
             label19.BorderStyle = BorderStyle.FixedSingle;
-            label19.Location = new Point(18, 1390);
+            label19.Location = new Point(19, 1817);
             label19.Name = "label19";
             label19.Size = new Size(807, 115);
             label19.TabIndex = 23;
@@ -211,7 +241,7 @@
             // 
             label18.BorderStyle = BorderStyle.FixedSingle;
             label18.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label18.Location = new Point(18, 1365);
+            label18.Location = new Point(19, 1792);
             label18.Name = "label18";
             label18.Size = new Size(84, 25);
             label18.TabIndex = 22;
@@ -220,7 +250,7 @@
             // label17
             // 
             label17.BorderStyle = BorderStyle.FixedSingle;
-            label17.Location = new Point(18, 1209);
+            label17.Location = new Point(19, 1636);
             label17.Name = "label17";
             label17.Size = new Size(400, 133);
             label17.TabIndex = 21;
@@ -230,7 +260,7 @@
             // 
             label16.BorderStyle = BorderStyle.FixedSingle;
             label16.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label16.Location = new Point(18, 1184);
+            label16.Location = new Point(19, 1611);
             label16.Name = "label16";
             label16.Size = new Size(84, 25);
             label16.TabIndex = 20;
@@ -239,7 +269,7 @@
             // label15
             // 
             label15.BorderStyle = BorderStyle.FixedSingle;
-            label15.Location = new Point(18, 999);
+            label15.Location = new Point(19, 1426);
             label15.Name = "label15";
             label15.Size = new Size(400, 167);
             label15.TabIndex = 19;
@@ -249,7 +279,7 @@
             // 
             label14.BorderStyle = BorderStyle.FixedSingle;
             label14.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label14.Location = new Point(18, 974);
+            label14.Location = new Point(19, 1401);
             label14.Name = "label14";
             label14.Size = new Size(121, 25);
             label14.TabIndex = 18;
@@ -258,7 +288,7 @@
             // label13
             // 
             label13.BorderStyle = BorderStyle.FixedSingle;
-            label13.Location = new Point(18, 909);
+            label13.Location = new Point(19, 1336);
             label13.Name = "label13";
             label13.Size = new Size(400, 46);
             label13.TabIndex = 17;
@@ -268,7 +298,7 @@
             // 
             label12.BorderStyle = BorderStyle.FixedSingle;
             label12.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label12.Location = new Point(18, 884);
+            label12.Location = new Point(19, 1311);
             label12.Name = "label12";
             label12.Size = new Size(102, 25);
             label12.TabIndex = 16;
@@ -276,8 +306,8 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.ImageLocation = "D:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\left_panel.png";
-            pictureBox4.Location = new Point(424, 872);
+            pictureBox4.ImageLocation = "F:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\left_panel.png";
+            pictureBox4.Location = new Point(425, 1299);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(415, 520);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -288,7 +318,7 @@
             // 
             label11.BorderStyle = BorderStyle.FixedSingle;
             label11.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label11.Location = new Point(18, 785);
+            label11.Location = new Point(18, 871);
             label11.Name = "label11";
             label11.Size = new Size(170, 25);
             label11.TabIndex = 14;
@@ -297,7 +327,7 @@
             // label10
             // 
             label10.BorderStyle = BorderStyle.FixedSingle;
-            label10.Location = new Point(18, 810);
+            label10.Location = new Point(18, 896);
             label10.Name = "label10";
             label10.Size = new Size(800, 46);
             label10.TabIndex = 13;
@@ -307,7 +337,7 @@
             // 
             label9.BorderStyle = BorderStyle.FixedSingle;
             label9.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label9.Location = new Point(18, 705);
+            label9.Location = new Point(18, 791);
             label9.Name = "label9";
             label9.Size = new Size(165, 25);
             label9.TabIndex = 12;
@@ -316,7 +346,7 @@
             // label8
             // 
             label8.BorderStyle = BorderStyle.FixedSingle;
-            label8.Location = new Point(18, 730);
+            label8.Location = new Point(18, 816);
             label8.Name = "label8";
             label8.Size = new Size(800, 44);
             label8.TabIndex = 11;
@@ -381,7 +411,7 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.ImageLocation = "D:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\top_panel.png";
+            pictureBox3.ImageLocation = "F:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\top_panel.png";
             pictureBox3.Location = new Point(18, 115);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(800, 173);
@@ -391,7 +421,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.ImageLocation = "D:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\ACC_on.png";
+            pictureBox2.ImageLocation = "F:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\ACC_off.png";
             pictureBox2.Location = new Point(446, 59);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(318, 50);
@@ -400,7 +430,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.ImageLocation = "D:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\ACC_off.png";
+            pictureBox1.ImageLocation = "F:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\ACC_on.png";
             pictureBox1.Location = new Point(446, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(318, 50);
@@ -427,6 +457,35 @@
             button_close.UseVisualStyleBackColor = false;
             button_close.Click += button_close_Click;
             // 
+            // pictureBox7
+            // 
+            pictureBox7.ImageLocation = "F:\\!Projekty\\FuelStrat\\FuelStrat\\other_forms\\help_pics\\stint_window.png";
+            pictureBox7.Location = new Point(396, 968);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(444, 290);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 36;
+            pictureBox7.TabStop = false;
+            // 
+            // label29
+            // 
+            label29.BorderStyle = BorderStyle.FixedSingle;
+            label29.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label29.Location = new Point(19, 968);
+            label29.Name = "label29";
+            label29.Size = new Size(110, 25);
+            label29.TabIndex = 37;
+            label29.Text = "Stint window";
+            // 
+            // label30
+            // 
+            label30.BorderStyle = BorderStyle.FixedSingle;
+            label30.Location = new Point(18, 993);
+            label30.Name = "label30";
+            label30.Size = new Size(372, 282);
+            label30.TabIndex = 38;
+            label30.Text = resources.GetString("label30.Text");
+            // 
             // FuelStratHelp
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
@@ -448,6 +507,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ResumeLayout(false);
         }
 
@@ -487,5 +547,10 @@
         private Label label26;
         private Label label25;
         private PictureBox pictureBox6;
+        private Label label28;
+        private Label label27;
+        private Label label29;
+        private PictureBox pictureBox7;
+        private Label label30;
     }
 }

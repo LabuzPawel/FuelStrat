@@ -8,7 +8,7 @@ namespace FuelStrat.RecentSessions
     // uses SharedMemory to get data from Memory Mapped Files that stores telemetry
     // each update is being stored in a Sim_data struct (except lap time)
 
-    public class UpdateFromTelemetry
+    public class UpdateFromSharedMemory
     {
         private int lap_time_millisecs;
         private string track_name = "?";
@@ -101,6 +101,7 @@ namespace FuelStrat.RecentSessions
 
             reader.GraphicUpdated += graphics =>
             {
+
                 if (graphics.IsValidLap == 0)
                 {
                     sim_data.invalid_lap = true;

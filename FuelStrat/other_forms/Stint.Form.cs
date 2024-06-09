@@ -72,7 +72,7 @@
                 }
                 else if (item.Contains("Outlier:True"))
                 {
-                    textColor = Color.Chocolate;
+                    textColor = Color.Sienna;
 
                     if (item.Contains("Used:False"))
                     {
@@ -132,7 +132,7 @@
 
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                customListBox.Items.Add("Lap: " + lap.lap_number + " | Lap time: " + lap.lap_time +
                     " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
                     " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
@@ -167,7 +167,7 @@
             customListBox.Items.Clear();
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                customListBox.Items.Add("Lap: " + lap.lap_number + " | Lap time: " + lap.lap_time +
                     " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
                     " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
@@ -265,7 +265,7 @@
             customListBox.Items.Clear();
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                customListBox.Items.Add("Lap: " + lap.lap_number + " | Lap time: " + lap.lap_time +
                     " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
                     " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
@@ -308,7 +308,7 @@
             customListBox.Items.Clear();
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                customListBox.Items.Add("Lap: " + lap.lap_number + " | Lap time: " + lap.lap_time +
                     " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
                     " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }
@@ -351,7 +351,7 @@
             customListBox.Items.Clear();
             foreach (var lap in stint.ListOfLaps)
             {
-                customListBox.Items.Add("Lap: " + lap.completed_laps + " | Lap time: " + lap.lap_time +
+                customListBox.Items.Add("Lap: " + lap.lap_number + " | Lap time: " + lap.lap_time +
                     " | Fuel: " + lap.fuel.ToString().Replace(",", ".") +
                     " | Invalid: " + lap.invalid + "    Used:" + lap.used + " Outlier:" + lap.outlier);
             }

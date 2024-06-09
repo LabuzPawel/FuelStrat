@@ -39,10 +39,10 @@ namespace FuelStrat
 
             public void Add(T item)
             {
-                list.Add(item);
+                list.Insert(0, item);
                 if (list.Count > max_size)
                 {
-                    list.RemoveAt(0);
+                    list.RemoveAt(max_size);
                 }
             }
 
@@ -180,7 +180,7 @@ namespace FuelStrat
 
         public struct Lap
         {
-            public int completed_laps;
+            public int lap_number;
             public int lap_time;
             public double fuel;
             public string session_type;
@@ -194,7 +194,6 @@ namespace FuelStrat
 
         public struct Stint
         {
-            public int count_number;
             public string track_name;
             public string car_name;
             public int stint_lenght;
@@ -271,9 +270,9 @@ namespace FuelStrat
         private bool is_strat_ok = true;
         private bool is_recalculate_needed = true;
         private System.Threading.Timer telemetryTimer;
-        private UpdateFromTelemetry updateFromTelemetry;
+        private UpdateFromSharedMemory updateFromSharedMemory;
         private System.Threading.Timer telemetry_update_timer;
-        public UpdateFromTelemetry.Sim_data sim_data = new();
+        public UpdateFromSharedMemory.Sim_data sim_data = new();
 
         private string session_saved = "";
         private int previous_lap = -1;
@@ -497,7 +496,7 @@ namespace FuelStrat
 
         public int GetTankCapacity(string carName, string trackName)
         {
-            if (updateFromTelemetry != null && sim_data.car_name != "?")
+            if (updateFromSharedMemory != null && sim_data.car_name != "?")
             {
                 return sim_data.tank_capacity;
             }
@@ -2048,23 +2047,23 @@ namespace FuelStrat
                     ignoreInvalidLapsToolStripMenuItem.Checked = last_state.Controls.saved_ignore_invalid_laps;
                     telemetryDisabledToolStripMenuItem.Checked = last_state.Controls.saved_telemetry_disabled;
 
-                    foreach (var stint in last_state.Stints)
+                    for (int i = last_state.Stints.Count - 1; i > -1; i--)
                     {
-                        recent_stints.Add(stint);
+                        recent_stints.Add(last_state.Stints[i]);
                     }
 
-                    for (int i = recent_stints.Count; i > 0; i--)
+                    foreach (var stint in recent_stints)
                     {
                         string to_listbox =
-                        "Session: " + recent_stints[i - 1].Stint.session_type + " | " +
-                        "Car: " + recent_stints[i - 1].Stint.car_name + " | " +
-                        "Track: " + recent_stints[i - 1].Stint.track_name + " | " +
-                        "Date: " + recent_stints[i - 1].Stint.date_time + "nextLine" +
-                        " Laps: " + recent_stints[i - 1].Stint.stint_lenght + " | " +
-                        "Avg lap time: " + LapTimeSecsFormatted(recent_stints[i - 1].Stint.average_lap_time) + " | " +
-                        "Avg fuel per lap: " + Math.Round(recent_stints[i - 1].Stint.average_fuel_per_lap, 2).ToString().
+                        "Session: " + stint.Stint.session_type + " | " +
+                        "Car: " + stint.Stint.car_name + " | " +
+                        "Track: " + stint.Stint.track_name + " | " +
+                        "Date: " + stint.Stint.date_time + "nextLine" +
+                        " Laps: " + stint.Stint.stint_lenght + " | " +
+                        "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
+                        "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
                             Replace(",", ".") + " | " +
-                        "Fuel at the start: " + recent_stints[i - 1].Stint.fuel_at_the_start + " L";
+                        "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L";
 
                         listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                     }
@@ -2203,12 +2202,12 @@ namespace FuelStrat
             {
                 // start reading telemetry on a timer when ACC is ON
 
-                updateFromTelemetry = new UpdateFromTelemetry();
+                updateFromSharedMemory = new UpdateFromSharedMemory();
 
-                updateFromTelemetry.StartReading();
+                updateFromSharedMemory.StartReading();
 
                 telemetry_update_timer = new System.Threading.Timer(
-                    _ => UpdateRecentSessions(updateFromTelemetry),
+                    _ => UpdateRecentSessions(updateFromSharedMemory),
                     null,
                     TimeSpan.Zero,
                     TimeSpan.FromSeconds(3));
@@ -2219,7 +2218,7 @@ namespace FuelStrat
 
                 telemetry_update_timer?.Dispose();
 
-                updateFromTelemetry?.StopReading();
+                updateFromSharedMemory?.StopReading();
 
                 button_auto.Enabled = false;
                 button_import_race.Enabled = false;
@@ -2300,13 +2299,13 @@ namespace FuelStrat
             }
         }
 
-        public void UpdateRecentSessions(UpdateFromTelemetry updateFromTelemetry)
+        public void UpdateRecentSessions(UpdateFromSharedMemory updateFromSharedMemory)
         {
-            // method that is gathering all telemetry data
+            // function that is turning data provided by shared memory into a stint
 
-            if (updateFromTelemetry != null)
+            if (updateFromSharedMemory != null)
             {
-                sim_data = updateFromTelemetry.GetNewData();
+                sim_data = updateFromSharedMemory.GetNewData();
             }
             else
             {
@@ -2319,7 +2318,7 @@ namespace FuelStrat
             {
                 this.Invoke(new System.Windows.Forms.MethodInvoker(delegate
                 {
-                    UpdateRecentSessions(updateFromTelemetry);
+                    UpdateRecentSessions(updateFromSharedMemory);
                 }));
                 return;
             }
@@ -2332,7 +2331,7 @@ namespace FuelStrat
                 previous_lap = sim_data.completed_laps;
             }
 
-            int last_lap_time = updateFromTelemetry.GetLapTime();
+            int last_lap_time = updateFromSharedMemory.GetLapTime();
 
             if (sim_data.completed_laps > previous_lap && sim_data.completed_laps != 0)
             {
@@ -2340,7 +2339,7 @@ namespace FuelStrat
 
                 Lap current_lap = new()
                 {
-                    completed_laps = sim_data.completed_laps,
+                    lap_number = sim_data.completed_laps,
                     lap_time = last_lap_time,
                     fuel = sim_data.fuel,
                     session_type = sim_data.session_type,
@@ -2512,18 +2511,18 @@ namespace FuelStrat
                 laps_data.Clear();
                 listBoxMultiline_recent_sessions.Items.Clear();
 
-                for (int i = recent_stints.Count; i > 0; i--)
+                foreach (var stint in recent_stints)
                 {
                     string to_listbox =
-                        "Session: " + recent_stints[i - 1].Stint.session_type + " | " +
-                        "Car: " + recent_stints[i - 1].Stint.car_name + " | " +
-                        "Track: " + recent_stints[i - 1].Stint.track_name + " | " +
-                        "Date: " + recent_stints[i - 1].Stint.date_time + "nextLine" +
-                        " Laps: " + recent_stints[i - 1].Stint.stint_lenght + " | " +
-                        "Avg lap time: " + LapTimeSecsFormatted(recent_stints[i - 1].Stint.average_lap_time) + " | " +
-                        "Avg fuel per lap: " + Math.Round(recent_stints[i - 1].Stint.average_fuel_per_lap, 2).ToString().
+                        "Session: " + stint.Stint.session_type + " | " +
+                        "Car: " + stint.Stint.car_name + " | " +
+                        "Track: " + stint.Stint.track_name + " | " +
+                        "Date: " + stint.Stint.date_time + "nextLine" +
+                        " Laps: " + stint.Stint.stint_lenght + " | " +
+                        "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
+                        "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
                             Replace(",", ".") + " | " +
-                        "Fuel at the start: " + recent_stints[i - 1].Stint.fuel_at_the_start + " L";
+                        "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L";
 
                     listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                 }
@@ -2588,7 +2587,7 @@ namespace FuelStrat
 
             import_race_debouncer.Debouce(() =>
             {
-                UpdateRecentSessions(updateFromTelemetry);
+                UpdateRecentSessions(updateFromSharedMemory);
 
                 int secs = (int)sim_data.race_duration / 1000;
                 int hours = secs / 3600;
@@ -2820,18 +2819,18 @@ namespace FuelStrat
             int listBox_index = listBoxMultiline_recent_sessions.SelectedIndex;
             listBoxMultiline_recent_sessions.Items.Clear();
 
-            for (int i = recent_stints.Count; i > 0; i--)
+            foreach (var stint in recent_stints)
             {
                 string to_listbox =
-                        "Session: " + recent_stints[i - 1].Stint.session_type + " | " +
-                        "Car: " + recent_stints[i - 1].Stint.car_name + " | " +
-                        "Track: " + recent_stints[i - 1].Stint.track_name + " | " +
-                        "Date: " + recent_stints[i - 1].Stint.date_time + "nextLine" +
-                        " Laps: " + recent_stints[i - 1].Stint.stint_lenght + " | " +
-                        "Avg lap time: " + LapTimeSecsFormatted(recent_stints[i - 1].Stint.average_lap_time) + " | " +
-                        "Avg fuel per lap: " + Math.Round(recent_stints[i - 1].Stint.average_fuel_per_lap, 2).ToString().
+                        "Session: " + stint.Stint.session_type + " | " +
+                        "Car: " + stint.Stint.car_name + " | " +
+                        "Track: " + stint.Stint.track_name + " | " +
+                        "Date: " + stint.Stint.date_time + "nextLine" +
+                        " Laps: " + stint.Stint.stint_lenght + " | " +
+                        "Avg lap time: " + LapTimeSecsFormatted(stint.Stint.average_lap_time) + " | " +
+                        "Avg fuel per lap: " + Math.Round(stint.Stint.average_fuel_per_lap, 2).ToString().
                             Replace(",", ".") + " | " +
-                        "Fuel at the start: " + recent_stints[i - 1].Stint.fuel_at_the_start + " L";
+                        "Fuel at the start: " + stint.Stint.fuel_at_the_start + " L";
 
                 listBoxMultiline_recent_sessions.Items.Add(to_listbox);
                 listBoxMultiline_recent_sessions.SelectedIndex = listBox_index;

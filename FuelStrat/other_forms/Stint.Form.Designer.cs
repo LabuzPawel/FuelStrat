@@ -70,7 +70,7 @@
             label_outlier.BackColor = Color.Transparent;
             label_outlier.BorderStyle = BorderStyle.FixedSingle;
             label_outlier.Font = new Font("Consolas", 11.25F);
-            label_outlier.ForeColor = Color.Chocolate;
+            label_outlier.ForeColor = Color.Sienna;
             label_outlier.Location = new Point(344, 279);
             label_outlier.Name = "label_outlier";
             label_outlier.Size = new Size(66, 25);

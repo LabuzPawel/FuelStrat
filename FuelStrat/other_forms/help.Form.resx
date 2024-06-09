@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label30.Text" xml:space="preserve">
+    <value>This window will be shown after clicking 'Open stint' and it shows all the laps in the selected stint. Legend below the list explain colors of the laps records. Clicking on a lap will flag this lap as 'ignored' and this lap will be excluded from this stint. 'Avg lap time' and 'Avg fuel per lap' labels shows current values and will update when user makes any changes. 'Ignore invalid laps' and 'Ignore outliers' works as toggle switches where it changes 'ignored' property of all laps that are invalid or outlier. Outlier is a lap that exceeds 105% of the avg lap time. 'Revert all changes' reverts changes to the moment when user opened this window.</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>First two position in menu allows to switch on/off two settings. 'Ignore invalid laps' switched on will ignore invalid laps when calculating stints and will affect all laps after turning this setting on.'Telemetry disabled' on will stop the app from reading ACC shared memory. There are two options to reset data to its default state. That includes track lap time and fuel per lap for a giver car and track combination.</value>
+  </data>
   <data name="label24.Text" xml:space="preserve">
     <value>In this section all pit stops with fuel and laps for each stint will appear. User can move pit stop up and down. That will recalculate fuel and will show how much fuel is needed for start or how much refuel before next stint with new pit timing.
 
